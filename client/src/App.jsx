@@ -25,6 +25,9 @@ import Emergency from "./pages/Emergency/Emergency";
 import Profile from "./pages/Profile/Profile";
 import Analytics from "./pages/Analytics/Analytics";
 
+import "./App.css";
+import logo from "./assets/logo.jpg";
+
 // Store
 import { useAuthStore } from "./store/authStore";
 
@@ -60,6 +63,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <header className="flex flex-col items-center py-6 bg-white border-b mb-6 w-full">
+          <img src={logo} alt="Aqua Assists Logo" className="w-24 h-24 mb-2" />
+          <h1 className="text-3xl font-bold text-gray-800">
+            Aqua <span className="text-blue-500">Assists</span>
+          </h1>
+        </header>
         <div className="App min-h-screen bg-gray-50">
           <Routes>
             {/* Public Routes */}
