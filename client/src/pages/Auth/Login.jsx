@@ -1,30 +1,24 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { AlertTriangle, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
-import toast from "react-hot-toast";
-
+import { useNavigate, Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
+import { Mail, Lock, Eye, EyeOff, Loader2, AlertTriangle } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login, isLoading, error } = useAuthStore();
-  const [showPassword, setShowPassword] = useState(false);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
-    const result = await login({
-      login: data.emailOrPhone,
-      password: data.password,
-    });
-
+    const result = await login(data);
     if (result.success) {
-      toast.success("Login successful!");
+      toast.success("Welcome back to FloodGuard!");
       navigate("/dashboard");
     } else {
       toast.error(result.error || "Login failed");
@@ -32,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
@@ -40,13 +34,13 @@ const Login = () => {
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign in to Aqua Assists
+          Sign In to FloodGuard
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            className="font-medium text-primary-600 hover:text-primary-500"
+            className="text-primary-600 hover:text-primary-500 font-medium"
           >
             Register here
           </Link>
@@ -58,25 +52,30 @@ const Login = () => {
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
-                htmlFor="emailOrPhone"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email or Phone Number
+                Email address
               </label>
               <div className="mt-1 relative">
                 <input
-                  {...register("emailOrPhone", {
-                    required: "Email or phone number is required",
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email address",
+                    },
                   })}
-                  type="text"
+                  type="email"
+                  id="email"
                   className="appearance-none block w-full px-3 py-2 pl-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                  placeholder="Enter email or phone number"
+                  placeholder="Enter your email"
                 />
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
               </div>
-              {errors.emailOrPhone && (
+              {errors.email && (
                 <p className="mt-1 text-sm text-red-600">
-                  {errors.emailOrPhone.message}
+                  {errors.email.message}
                 </p>
               )}
             </div>
@@ -98,6 +97,7 @@ const Login = () => {
                     },
                   })}
                   type={showPassword ? "text" : "password"}
+                  id="password"
                   className="appearance-none block w-full px-3 py-2 pl-10 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   placeholder="Enter your password"
                 />
@@ -115,6 +115,32 @@ const Login = () => {
                   {errors.password.message}
                 </p>
               )}
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  Remember me
+                </label>
+              </div>
+
+              <div className="text-sm">
+                <a
+                  href="#"
+                  className="font-medium text-primary-600 hover:text-primary-500"
+                >
+                  Forgot password?
+                </a>
+              </div>
             </div>
 
             {error && (
@@ -135,7 +161,7 @@ const Login = () => {
                     Signing in...
                   </>
                 ) : (
-                  "Sign in"
+                  "Sign In"
                 )}
               </button>
             </div>
@@ -159,7 +185,7 @@ const Login = () => {
                 className="w-full flex justify-center py-2 px-4 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
               >
                 <AlertTriangle className="w-4 h-4 mr-2" />
-                Emergency Help (No Login Required)
+                Need Emergency Help? Click Here
               </Link>
             </div>
           </div>
