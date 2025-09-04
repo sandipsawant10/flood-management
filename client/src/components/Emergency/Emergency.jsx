@@ -15,11 +15,11 @@ import {
   WifiOff,
 } from "lucide-react";
 
-//import EmergencyContacts from "../../components/Emergency/EmergencyContacts.jsx";
-// import NearbyResources from "../../components/Emergency/NearbyResources";
-// import QuickActions from "../../components/Emergency/QuickActions";
-import { emergencyService } from "../../services/emergencyService";
-import { useAuthStore } from "../../store/authStore";
+import EmergencyContacts from "./EmergencyContacts.jsx";
+import NearbyResources from "./NearbyResources.jsx";
+import QuickActions from "./QuickActions.jsx";
+import { emergencyService } from "../../services/emergencyService.js";
+import { useAuthStore } from "../../store/authStore.jsx";
 
 const Emergency = () => {
   const { user } = useAuthStore();
