@@ -1,57 +1,548 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
+import {
+  MapPin,
+  Camera,
+  AlertTriangle,
+  Droplets,
+  Users,
+  Clock,
+  Upload,
+  X,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
+import toast from "react-hot-toast";
 
 const ReportFlood = () => {
+  const navigate = useNavigate();
   const { user } = useAuthStore();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [locationDetected, setLocationDetected] = useState(false);
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+
+  const watchSeverity = watch("severity");
+
+  // File upload handling
+  const onDrop = useCallback((acceptedFiles) => {
+    const newFiles = acceptedFiles.map((file) => ({
+      file,
+      id: Math.random().toString(36).substr(2, 9),
+      preview: URL.createObjectURL(file),
+    }));
+
+    setUploadedFiles((prev) => [...prev, ...newFiles]);
+    toast.success(`${acceptedFiles.length} file(s) added`);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpeg", ".jpg", ".png", ".webp"],
+      "video/*": [".mp4", ".webm", ".ogg"],
+    },
+    maxSize: 10 * 1024 * 1024, // 10MB
+    multiple: true,
+  });
+
+  const removeFile = (fileId) => {
+    setUploadedFiles((prev) => {
+      const fileToRemove = prev.find((f) => f.id === fileId);
+      if (fileToRemove) URL.revokeObjectURL(fileToRemove.preview);
+      return prev.filter((f) => f.id !== fileId);
+    });
+  };
+
+  // Location detection
+  const detectLocation = () => {
+    setIsDetectingLocation(true);
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setValue("location.coordinates", [longitude, latitude]);
+          setLocationDetected(true);
+          setIsDetectingLocation(false);
+          toast.success("Location detected successfully!");
+        },
+        (error) => {
+          setIsDetectingLocation(false);
+          toast.error("Unable to detect location. Please enter manually.");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 300000,
+        }
+      );
+    } else {
+      setIsDetectingLocation(false);
+      toast.error("Geolocation not supported by browser");
+    }
+  };
+
+  const onSubmit = async (data) => {
+    if (!locationDetected && !data.location?.coordinates) {
+      toast.error("Location is required for flood reporting");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Create FormData for file upload
+      const formData = new FormData();
+
+      // Add form fields
+      Object.keys(data).forEach((key) => {
+        if (key === "location") {
+          formData.append(key, JSON.stringify(data[key]));
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+
+      // Add files
+      uploadedFiles.forEach(({ file }) => {
+        formData.append("media", file);
+      });
+
+      const response = await fetch("/api/flood-reports", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Failed to submit report");
+
+      const result = await response.json();
+
+      toast.success("Flood report submitted successfully!");
+      navigate("/reports");
+    } catch (error) {
+      toast.error(error.message || "Failed to submit report");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const indianStates = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-4">Report Flood</h1>
-        <p className="text-gray-600 mb-6">
-          Help your community by reporting flood conditions in your area
-        </p>
-
-        <div className="space-y-4">
+    <div className="max-w-4xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-6 text-white">
+        <div className="flex items-center mb-4">
+          <Droplets className="w-8 h-8 mr-3" />
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Location
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your location"
-              className="w-full p-3 border border-gray-300 rounded-lg"
-            />
+            <h1 className="text-3xl font-bold">Report Flood Incident</h1>
+            <p className="text-blue-100 mt-1">
+              Help your community by reporting flood conditions
+            </p>
           </div>
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Severity Level
-            </label>
-            <select className="w-full p-3 border border-gray-300 rounded-lg">
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
-              <option>Critical</option>
-            </select>
+        <div className="bg-blue-700/50 rounded-lg p-4">
+          <div className="flex items-center text-blue-100">
+            <AlertTriangle className="w-5 h-5 mr-2" />
+            <span className="text-sm">
+              Your report helps authorities respond quickly and keeps your
+              community informed
+            </span>
           </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Description
-            </label>
-            <textarea
-              rows={4}
-              placeholder="Describe the flood situation..."
-              className="w-full p-3 border border-gray-300 rounded-lg"
-            />
-          </div>
-
-          <button className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700">
-            Submit Report (Coming Soon)
-          </button>
         </div>
       </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Location Information */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <MapPin className="w-5 h-5 mr-2 text-blue-600" />
+            Location Details
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                District *
+              </label>
+              <input
+                {...register("location.district", {
+                  required: "District is required",
+                })}
+                type="text"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter district name"
+              />
+              {errors.location?.district && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.location.district.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                State *
+              </label>
+              <select
+                {...register("location.state", {
+                  required: "State is required",
+                })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select State</option>
+                {indianStates.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+              {errors.location?.state && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.location.state.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Specific Location/Landmark
+            </label>
+            <textarea
+              {...register("location.address")}
+              rows={2}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Describe the exact location or nearby landmarks"
+            />
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <button
+              type="button"
+              onClick={detectLocation}
+              disabled={isDetectingLocation}
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            >
+              {isDetectingLocation ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Detecting...
+                </>
+              ) : (
+                <>
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Detect My Location
+                </>
+              )}
+            </button>
+
+            {locationDetected && (
+              <div className="flex items-center text-green-600">
+                <CheckCircle className="w-4 h-4 mr-1" />
+                <span className="text-sm">Location detected</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Flood Details */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <Droplets className="w-5 h-5 mr-2 text-blue-600" />
+            Flood Information
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Severity Level *
+              </label>
+              <select
+                {...register("severity", { required: "Severity is required" })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select Severity</option>
+                <option value="low">Low - Minor flooding</option>
+                <option value="medium">Medium - Moderate flooding</option>
+                <option value="high">High - Significant flooding</option>
+                <option value="critical">Critical - Severe flooding</option>
+              </select>
+              {errors.severity && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.severity.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Water Level *
+              </label>
+              <select
+                {...register("waterLevel", {
+                  required: "Water level is required",
+                })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select Water Level</option>
+                <option value="ankle-deep">Ankle Deep (0-15 cm)</option>
+                <option value="knee-deep">Knee Deep (15-50 cm)</option>
+                <option value="waist-deep">Waist Deep (50-100 cm)</option>
+                <option value="chest-deep">Chest Deep (1-2 meters)</option>
+                <option value="over-head">Over Head (2+ meters)</option>
+              </select>
+              {errors.waterLevel && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.waterLevel.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Urgency Level (1-10) *
+            </label>
+            <input
+              {...register("urgencyLevel", {
+                required: "Urgency level is required",
+                min: { value: 1, message: "Minimum value is 1" },
+                max: { value: 10, message: "Maximum value is 10" },
+              })}
+              type="range"
+              min="1"
+              max="10"
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+            />
+            <div className="flex justify-between text-sm text-gray-600 mt-1">
+              <span>1 - Not urgent</span>
+              <span>5 - Moderate</span>
+              <span>10 - Emergency</span>
+            </div>
+            {errors.urgencyLevel && (
+              <p className="text-red-600 text-sm mt-1">
+                {errors.urgencyLevel.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Description *
+            </label>
+            <textarea
+              {...register("description", {
+                required: "Description is required",
+                minLength: {
+                  value: 10,
+                  message: "Description must be at least 10 characters",
+                },
+              })}
+              rows={4}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Describe the flood situation, affected areas, and current conditions..."
+            />
+            {errors.description && (
+              <p className="text-red-600 text-sm mt-1">
+                {errors.description.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Impact Assessment */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <Users className="w-5 h-5 mr-2 text-blue-600" />
+            Impact Assessment (Optional)
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                People Affected
+              </label>
+              <input
+                {...register("impact.affectedPeople")}
+                type="number"
+                min="0"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Number of people"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Properties Damaged
+              </label>
+              <input
+                {...register("impact.damagedProperties")}
+                type="number"
+                min="0"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Number of properties"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Roads Blocked
+              </label>
+              <input
+                {...register("impact.roadsClosed")}
+                type="number"
+                min="0"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Number of roads"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Media Upload */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <Camera className="w-5 h-5 mr-2 text-blue-600" />
+            Photos & Videos
+          </h2>
+
+          <div
+            {...getRootProps()}
+            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+              isDragActive
+                ? "border-blue-400 bg-blue-50"
+                : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
+            }`}
+          >
+            <input {...getInputProps()} />
+            <Upload className="w-8 h-8 text-gray-400 mx-auto mb-4" />
+            {isDragActive ? (
+              <p className="text-blue-600">Drop the files here...</p>
+            ) : (
+              <>
+                <p className="text-gray-600 mb-2">
+                  Drag & drop photos or videos here, or click to select
+                </p>
+                <p className="text-sm text-gray-500">
+                  Supports: JPG, PNG, MP4, WebM (Max 10MB each)
+                </p>
+              </>
+            )}
+          </div>
+
+          {uploadedFiles.length > 0 && (
+            <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {uploadedFiles.map(({ id, file, preview }) => (
+                <div key={id} className="relative group">
+                  <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100">
+                    {file.type.startsWith("image/") ? (
+                      <img
+                        src={preview}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <video
+                        src={preview}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(id)}
+                    className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                  <p className="text-xs text-gray-600 mt-1 truncate">
+                    {file.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-600">
+              <p>
+                By submitting this report, you confirm that the information is
+                accurate.
+              </p>
+              <p>
+                Your report will be reviewed by the community and authorities.
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="ml-6 inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Submit Report
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };
