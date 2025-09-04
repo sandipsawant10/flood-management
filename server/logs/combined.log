@@ -1,0 +1,55 @@
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T09:32:08.839Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T09:32:08.841Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T09:32:08.876Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T09:33:23.704Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T09:33:23.706Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T09:33:23.733Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:05:20.332Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:05:20.336Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:05:20.364Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:07:49.166Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:07:49.170Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:07:49.204Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:08:19.255Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:08:19.260Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:08:19.288Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:08:58.129Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:08:58.133Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:08:58.157Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:09:36.597Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:09:36.599Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:09:36.634Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-09-04T10:09:45.281Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","timestamp":"2025-09-04T10:09:45.284Z"}
+{"level":"info","message":"MongoDB Connected","timestamp":"2025-09-04T10:09:45.309Z"}
+{"level":"info","message":"Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:10:11.561Z"}
+{"level":"info","message":"API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:10:11.564Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:10:11.596Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:12:03.433Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:12:03.437Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:12:03.438Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:12:03.484Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:14:57.678Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:14:57.682Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:14:57.682Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:14:57.710Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:15:15.414Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:15:15.417Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:15:15.417Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:15:15.453Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:18:18.268Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:18:18.271Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:18:18.272Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:18:18.301Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:00.186Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:00.190Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:00.191Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:00.306Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:09.706Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:09.709Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:09.709Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:19:09.741Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.005Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.010Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.011Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.050Z"}

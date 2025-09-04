@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import {
   AlertTriangle,
   User,
@@ -28,6 +30,7 @@ const Register = () => {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -43,6 +46,7 @@ const Register = () => {
           setCurrentLocation(location);
           setValue("location.coordinates", location.coordinates);
           setLocationLoading(false);
+          toast.success("Location detected automatically!");
         },
         (error) => {
           console.error("Location access denied:", error);
@@ -59,6 +63,12 @@ const Register = () => {
   }, [setValue]);
 
   const onSubmit = async (data) => {
+    // Validate phone number
+    if (!data.phone || !isValidPhoneNumber(data.phone)) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+
     if (!currentLocation && !data.location?.coordinates) {
       toast.error("Location information is required for flood alerts");
       return;
@@ -68,10 +78,10 @@ const Register = () => {
       ...data,
       location: {
         coordinates: currentLocation?.coordinates || data.location.coordinates,
-        address: data.location.address,
+        address: data.location?.address || "",
         district: data.location.district,
         state: data.location.state,
-        pincode: data.location.pincode,
+        pincode: data.location?.pincode || "",
       },
     };
 
@@ -82,6 +92,28 @@ const Register = () => {
       navigate("/dashboard");
     } else {
       toast.error(result.error || "Registration failed");
+    }
+  };
+
+  const getCurrentLocation = () => {
+    setLocationLoading(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = {
+            coordinates: [position.coords.longitude, position.coords.latitude],
+          };
+          setCurrentLocation(location);
+          setValue("location.coordinates", location.coordinates);
+          setLocationLoading(false);
+          toast.success("Location updated!");
+        },
+        (error) => {
+          console.error("Location error:", error);
+          setLocationLoading(false);
+          toast.error("Unable to get location");
+        }
+      );
     }
   };
 
@@ -209,6 +241,7 @@ const Register = () => {
               )}
             </div>
 
+            {/* Enhanced Phone Input */}
             <div>
               <label
                 htmlFor="phone"
@@ -216,20 +249,24 @@ const Register = () => {
               >
                 Phone Number
               </label>
-              <div className="mt-1 relative">
-                <input
-                  {...register("phone", {
+              <div className="mt-1">
+                <Controller
+                  name="phone"
+                  control={control}
+                  rules={{
                     required: "Phone number is required",
-                    pattern: {
-                      value: /^[6-9]\d{9}$/,
-                      message: "Invalid Indian phone number",
-                    },
-                  })}
-                  type="tel"
-                  className="appearance-none block w-full px-3 py-2 pl-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                  placeholder="10-digit mobile number"
+                    validate: (value) =>
+                      isValidPhoneNumber(value) || "Invalid phone number",
+                  }}
+                  render={({ field }) => (
+                    <PhoneInput
+                      {...field}
+                      defaultCountry="IN"
+                      placeholder="Enter phone number"
+                      className="block w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                    />
+                  )}
                 />
-                <Phone className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
               </div>
               {errors.phone && (
                 <p className="mt-1 text-sm text-red-600">
@@ -250,8 +287,13 @@ const Register = () => {
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters",
+                      value: 8,
+                      message: "Password must be at least 8 characters",
+                    },
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                      message:
+                        "Password must contain uppercase, lowercase, and number",
                     },
                   })}
                   type={showPassword ? "text" : "password"}
@@ -301,6 +343,20 @@ const Register = () => {
                   </div>
                 </div>
               )}
+
+              <button
+                type="button"
+                onClick={getCurrentLocation}
+                disabled={locationLoading}
+                className="mb-4 inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-primary-600 bg-primary-100 hover:bg-primary-200 disabled:opacity-50"
+              >
+                {locationLoading ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <MapPin className="w-4 h-4 mr-2" />
+                )}
+                {locationLoading ? "Getting Location..." : "Detect My Location"}
+              </button>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -358,7 +414,7 @@ const Register = () => {
                   htmlFor="address"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Address/Landmark
+                  Address/Landmark (Optional)
                 </label>
                 <textarea
                   {...register("location.address")}

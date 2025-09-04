@@ -1,0 +1,225 @@
+const nodemailer = require("nodemailer");
+const twilio = require("twilio");
+const { logger } = require("../middleware/errorHandler");
+
+class NotificationService {
+  constructor() {
+    // Email setup
+    this.emailTransporter = nodemailer.createTransporter({
+      service: process.env.EMAIL_SERVICE || "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    // SMS setup (optional)
+    this.smsClient = process.env.TWILIO_SID
+      ? twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
+      : null;
+  }
+
+  async sendFloodAlert(users, alert) {
+    const results = [];
+
+    for (const user of users) {
+      try {
+        // Send email notification
+        if (user.preferences?.notifications?.email !== false) {
+          await this.sendEmail(
+            user.email,
+            `🚨 Flood Alert: ${alert.title}`,
+            this.generateAlertHTML(alert, user)
+          );
+          results.push({ userId: user._id, type: "email", success: true });
+        }
+
+        // Send SMS for critical alerts
+        if (
+          alert.severity === "critical" &&
+          user.phone &&
+          user.preferences?.notifications?.sms !== false
+        ) {
+          await this.sendSMS(
+            user.phone,
+            `FLOOD ALERT: ${alert.title}. ${alert.message}. Stay safe!`
+          );
+          results.push({ userId: user._id, type: "sms", success: true });
+        }
+
+        // Update user's last notification time
+        user.lastNotificationAt = new Date();
+        await user.save();
+      } catch (error) {
+        logger.error(`Notification failed for user ${user._id}:`, error);
+        results.push({
+          userId: user._id,
+          type: "error",
+          success: false,
+          error: error.message,
+        });
+      }
+    }
+
+    return results;
+  }
+
+  async sendEmail(to, subject, html) {
+    const mailOptions = {
+      from: process.env.FROM_EMAIL || "Aqua Assists <noreply@Aqua Assists.in>",
+      to,
+      subject,
+      html,
+    };
+
+    const info = await this.emailTransporter.sendMail(mailOptions);
+    logger.info(`Email sent: ${info.messageId}`);
+    return info;
+  }
+
+  async sendSMS(to, message) {
+    if (!this.smsClient) {
+      logger.warn("SMS service not configured");
+      return null;
+    }
+
+    const result = await this.smsClient.messages.create({
+      body: message,
+      from: process.env.TWILIO_PHONE,
+      to,
+    });
+
+    logger.info(`SMS sent: ${result.sid}`);
+    return result;
+  }
+
+  generateAlertHTML(alert, user) {
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flood Alert</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #DC2626, #B91C1C); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0; font-size: 28px;">🚨 Flood Alert</h1>
+          <p style="margin: 10px 0 0 0; font-size: 18px; opacity: 0.9;">Emergency Notification</p>
+        </div>
+        
+        <div style="background: white; padding: 30px; border: 1px solid #E5E7EB; border-top: none;">
+          <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+            <h2 style="color: #DC2626; margin: 0 0 10px 0; font-size: 20px;">${
+              alert.title
+            }</h2>
+            <p style="margin: 0; font-size: 16px; color: #374151;"><strong>Severity:</strong> ${alert.severity.toUpperCase()}</p>
+          </div>
+          
+          <div style="margin-bottom: 25px;">
+            <h3 style="color: #374151; margin: 0 0 15px 0;">Alert Message</h3>
+            <p style="color: #6B7280; line-height: 1.6; margin: 0;">${
+              alert.message
+            }</p>
+          </div>
+
+          ${
+            alert.instructions && alert.instructions.length > 0
+              ? `
+            <div style="margin-bottom: 25px;">
+              <h3 style="color: #374151; margin: 0 0 15px 0;">Safety Instructions</h3>
+              <ul style="color: #6B7280; line-height: 1.6; padding-left: 20px;">
+                ${alert.instructions
+                  .map(
+                    (instruction) =>
+                      `<li style="margin-bottom: 8px;">${instruction}</li>`
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          `
+              : ""
+          }
+
+          <div style="background: #FEF2F2; border-left: 4px solid #DC2626; padding: 20px; margin: 25px 0;">
+            <h3 style="color: #DC2626; margin: 0 0 15px 0;">Emergency Contacts</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+              <div><strong>Police:</strong> 100</div>
+              <div><strong>Medical:</strong> 108</div>
+              <div><strong>Fire:</strong> 101</div>
+              <div><strong>Disaster Mgmt:</strong> 1070</div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 30px; padding-top: 25px; border-top: 1px solid #E5E7EB;">
+            <p style="color: #6B7280; margin: 0 0 10px 0;">Stay safe, ${
+              user.name
+            }!</p>
+            <p style="color: #9CA3AF; font-size: 14px; margin: 0;">
+              Aqua Assists Team | Protecting India's Communities
+            </p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+  }
+
+  // Welcome email for new users
+  async sendWelcomeEmail(user) {
+    const html = `
+      <h1>Welcome to Aqua Assists, ${user.name}!</h1>
+      <p>Thank you for joining India's largest flood disaster management community.</p>
+      <p>Your account is now active and you can:</p>
+      <ul>
+        <li>Report flood conditions in your area</li>
+        <li>Receive real-time flood alerts</li>
+        <li>Access emergency services</li>
+        <li>Help validate community reports</li>
+      </ul>
+      <p>Stay safe and help protect your community!</p>
+      <p>Best regards,<br>Aqua Assists Team</p>
+    `;
+
+    return this.sendEmail(
+      user.email,
+      "Welcome to Aqua Assists - Your Account is Ready!",
+      html
+    );
+  }
+
+  // Report verification notification
+  async sendReportVerificationEmail(user, report, status) {
+    const statusMessages = {
+      verified: {
+        subject: "✅ Your Flood Report Has Been Verified",
+        message:
+          "Your flood report has been verified by our team and is now visible to the community.",
+      },
+      disputed: {
+        subject: "⚠️ Your Flood Report Needs Review",
+        message:
+          "Your flood report requires additional verification. Please check the details and resubmit if necessary.",
+      },
+    };
+
+    const { subject, message } = statusMessages[status];
+
+    const html = `
+      <h1>${subject}</h1>
+      <p>Hello ${user.name},</p>
+      <p>${message}</p>
+      <p><strong>Report Details:</strong></p>
+      <ul>
+        <li>Location: ${report.location.district}, ${report.location.state}</li>
+        <li>Severity: ${report.severity}</li>
+        <li>Submitted: ${report.createdAt.toLocaleDateString()}</li>
+      </ul>
+      <p>Thank you for helping keep your community safe!</p>
+    `;
+
+    return this.sendEmail(user.email, subject, html);
+  }
+}
+
+module.exports = new NotificationService();
