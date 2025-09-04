@@ -21,7 +21,7 @@ import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
 import Alerts from "./pages/Alerts/Alerts";
-import Emergency from "./pages/Emergency/Emergency";
+import Emergency from "./components/Emergency/Emergency";
 import Profile from "./pages/Profile/Profile";
 import Analytics from "./pages/Analytics/Analytics";
 
