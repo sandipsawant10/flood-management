@@ -78,7 +78,7 @@ const Register = () => {
     const result = await registerUser(registrationData);
 
     if (result.success) {
-      toast.success("Registration successful! Welcome to FloodGuard.");
+      toast.success("Registration successful! Welcome to Aqua Assists.");
       navigate("/dashboard");
     } else {
       toast.error(result.error || "Registration failed");
@@ -134,7 +134,7 @@ const Register = () => {
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Join FloodGuard
+          Join Aqua Assists
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Already have an account?{" "}

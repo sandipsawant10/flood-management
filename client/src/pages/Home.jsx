@@ -71,7 +71,9 @@ const Home = () => {
                 <AlertTriangle className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">FloodGuard</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Aqua Assists
+                </h1>
                 <p className="text-sm text-gray-600">
                   Flood Disaster Management
                 </p>
@@ -197,7 +199,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              How FloodGuard Works
+              How Aqua Assists Works
             </h2>
           </div>
 
@@ -243,7 +245,7 @@ const Home = () => {
       <section className="py-16 bg-primary-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Join the FloodGuard Community Today
+            Join the Aqua Assists Community Today
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
             Help protect your community and save lives through real-time flood
@@ -276,7 +278,7 @@ const Home = () => {
                 <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center mr-2">
                   <AlertTriangle className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">FloodGuard</span>
+                <span className="text-xl font-bold">Aqua Assists</span>
               </div>
               <p className="text-gray-400">
                 Protecting India's communities from flood disasters through
@@ -307,7 +309,7 @@ const Home = () => {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Email: help@floodguard.in</li>
+                <li>Email: help@Aqua Assists.in</li>
                 <li>Emergency: 24/7 Support</li>
                 <li>Community: Join Discord</li>
               </ul>
@@ -316,7 +318,7 @@ const Home = () => {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>
-              &copy; 2025 FloodGuard. Built for India's flood disaster
+              &copy; 2025 Aqua Assists. Built for India's flood disaster
               management.
             </p>
           </div>
