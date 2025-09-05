@@ -9,7 +9,7 @@ import {
   useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   MapPin,
   Droplets,
