@@ -461,4 +461,4 @@ const AlertsPage = () => {
   );
 };
 
-export default AlertsPage;
+export default Alerts;
