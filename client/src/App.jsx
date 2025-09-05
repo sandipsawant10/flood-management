@@ -21,7 +21,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
-import AlertsPage from "./pages/Alerts/AlertsPage";
+// import AlertsPage from "./pages/Alerts/AlertsPage";
 import Alerts from "./pages/Alerts/Alerts";
 import Emergency from "./pages/Emergency/Emergency";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
