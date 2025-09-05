@@ -248,7 +248,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Layout>
-                    <AlertsPage />
+                    <Alerts />
                   </Layout>
                 </ProtectedRoute>
               }
