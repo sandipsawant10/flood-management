@@ -1,6 +1,6 @@
-const CACHE_NAME = "floodguard-v1.0.0";
-const STATIC_CACHE = "floodguard-static-v1.0.0";
-const DYNAMIC_CACHE = "floodguard-dynamic-v1.0.0";
+const CACHE_NAME = "AquaAssist-v1.0.0";
+const STATIC_CACHE = "AquaAssist-static-v1.0.0";
+const DYNAMIC_CACHE = "AquaAssist-dynamic-v1.0.0";
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -266,7 +266,7 @@ self.addEventListener("push", (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification("FloodGuard Alert", options)
+    self.registration.showNotification("AquaAssist Alert", options)
   );
 });
 

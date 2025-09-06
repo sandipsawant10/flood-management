@@ -85,3 +85,23 @@
 {"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.723Z"}
 {"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.723Z"}
 {"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.774Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T16:26:29.103Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T16:26:29.108Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T16:26:29.108Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T16:26:29.130Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T17:24:31.603Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T17:24:31.613Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T17:24:31.615Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T17:24:31.670Z"}
+{"level":"info","message":"User connected: fg0hIJdH5uQK6M1lAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T17:24:35.811Z"}
+{"level":"info","message":"User connected: Afsn2OAJR8a0IObyAAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T17:25:54.198Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:26:22 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 304 - \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:26:22.722Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:26:47 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 200 201 \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:26:47.964Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:26:51 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 200 38 \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:26:51.086Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:28:46 +0000] \"POST /api/auth/login HTTP/1.1\" 200 632 \"http://localhost:5173/login\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:28:46.731Z"}
+{"level":"info","message":"User disconnected: Afsn2OAJR8a0IObyAAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T17:30:34.231Z"}
+{"level":"info","message":"User connected: cpOEi2gjsgdXFg97AAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:04.143Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:31:04 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 200 197 \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:04.150Z"}
+{"level":"info","message":"User disconnected: cpOEi2gjsgdXFg97AAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:09.758Z"}
+{"level":"info","message":"User connected: drPXEH60RpN5tgMBAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:10.109Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:17:31:10 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 304 - \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:10.115Z"}

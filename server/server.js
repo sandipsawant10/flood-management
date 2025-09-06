@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -37,10 +36,17 @@ const weatherRoutes = require("./routes/weather");
 const app = express();
 const server = createServer(app);
 
+// ---------- ALLOWED ORIGINS ----------
+const allowedOrigins = [
+  "http://localhost:5173", // Vite dev
+  "http://localhost:3000", // CRA (if you still use it)
+  process.env.CLIENT_URL, // Production (from .env)
+].filter(Boolean);
+
 // ---------- SOCKET.IO SETUP ----------
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -67,7 +73,7 @@ app.use(compression());
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   })
