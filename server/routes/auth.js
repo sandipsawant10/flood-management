@@ -5,7 +5,7 @@ const User = require("../models/User");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
-// Register new user
+// ---------- REGISTER NEW USER ----------
 router.post(
   "/register",
   [
@@ -100,7 +100,7 @@ router.post(
   }
 );
 
-// User login
+// ---------- USER LOGIN ----------
 router.post(
   "/login",
   [
@@ -116,7 +116,6 @@ router.post(
 
       const { login, password } = req.body;
 
-      // Find user by email or phone
       const user = await User.findOne({
         $or: [{ email: login.toLowerCase() }, { phone: login }],
       });
@@ -125,17 +124,14 @@ router.post(
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      // Check password
       const isMatch = await user.comparePassword(password);
       if (!isMatch) {
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      // Update last active
       user.lastActive = new Date();
       await user.save();
 
-      // Generate JWT token
       const token = jwt.sign(
         { userId: user._id, role: user.role },
         process.env.JWT_SECRET || "fallback-secret",
@@ -163,13 +159,11 @@ router.post(
   }
 );
 
-// Get current user profile
+// ---------- GET CURRENT USER PROFILE ----------
 router.get("/profile", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select("-password");
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    if (!user) return res.status(404).json({ message: "User not found" });
 
     res.json({
       user: {
@@ -193,7 +187,7 @@ router.get("/profile", auth, async (req, res) => {
   }
 });
 
-// Update user profile
+// ---------- UPDATE USER PROFILE ----------
 router.put(
   "/profile",
   auth,
@@ -203,6 +197,7 @@ router.put(
     body("preferences.language")
       .optional()
       .isIn(["en", "hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "or", "as"]),
+    body("avatar").optional().isString(),
   ],
   async (req, res) => {
     try {
@@ -212,18 +207,25 @@ router.put(
       }
 
       const user = await User.findById(req.user.userId);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
+      if (!user) return res.status(404).json({ message: "User not found" });
 
-      const allowedUpdates = ["name", "location", "preferences"];
+      // Only allow specific updates
+      const allowedUpdates = ["name", "location", "preferences", "avatar"];
       const updates = {};
 
-      Object.keys(req.body).forEach((key) => {
-        if (allowedUpdates.includes(key)) {
-          updates[key] = req.body[key];
+      for (const key of allowedUpdates) {
+        if (req.body[key] !== undefined) {
+          // Merge nested objects (like location & preferences)
+          if (
+            typeof req.body[key] === "object" &&
+            !Array.isArray(req.body[key])
+          ) {
+            updates[key] = { ...user[key], ...req.body[key] };
+          } else {
+            updates[key] = req.body[key];
+          }
         }
-      });
+      }
 
       Object.assign(user, updates);
       await user.save();
@@ -239,6 +241,7 @@ router.put(
           trustScore: user.trustScore,
           location: user.location,
           preferences: user.preferences,
+          avatar: user.avatar,
         },
       });
     } catch (error) {
@@ -248,7 +251,7 @@ router.put(
   }
 );
 
-// Verify JWT token
+// ---------- VERIFY JWT TOKEN ----------
 router.get("/verify", auth, (req, res) => {
   res.json({ valid: true, userId: req.user.userId, role: req.user.role });
 });

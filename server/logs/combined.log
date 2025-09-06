@@ -105,3 +105,95 @@
 {"level":"info","message":"User disconnected: cpOEi2gjsgdXFg97AAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:09.758Z"}
 {"level":"info","message":"User connected: drPXEH60RpN5tgMBAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:10.109Z"}
 {"level":"info","message":"::1 - - [06/Sep/2025:17:31:10 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 304 - \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T17:31:10.115Z"}
+{"level":"info","message":"User disconnected: drPXEH60RpN5tgMBAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T17:32:58.347Z"}
+{"level":"info","message":"User disconnected: fg0hIJdH5uQK6M1lAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T17:32:58.390Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T19:11:27.881Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T19:11:27.885Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T19:11:27.886Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T19:11:27.909Z"}
+{"level":"info","message":"User connected: 7EDXo2xYGrNakwV0AAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T19:11:35.279Z"}
+{"exception":{"http_code":401,"message":"Invalid cloud_name flood-management","name":"Error"},"level":"error","message":"Unhandled Rejection at:","service":"Aqua Assists-api","timestamp":"2025-09-06T19:16:11.968Z"}
+{"ip":"::1","level":"error","message":"Invalid cloud_name flood-management","method":"POST","service":"Aqua Assists-api","timestamp":"2025-09-06T19:16:11.973Z","url":"/api/flood-reports","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","userId":"68bb08332d43bb3448e0a7cd"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:16:11 +0000] \"POST /api/flood-reports HTTP/1.1\" 500 104 \"http://localhost:5173/report-flood\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:16:11.980Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:16:33 +0000] \"GET /api/flood-reports HTTP/1.1\" 200 201 \"-\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:16:33.376Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:17:21 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 304 - \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:17:21.638Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:17:23 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 304 - \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:17:23.789Z"}
+{"exception":{"http_code":401,"message":"Invalid cloud_name flood-management","name":"Error"},"level":"error","message":"Unhandled Rejection at:","service":"Aqua Assists-api","timestamp":"2025-09-06T19:18:03.674Z"}
+{"ip":"::1","level":"error","message":"Invalid cloud_name flood-management","method":"POST","service":"Aqua Assists-api","timestamp":"2025-09-06T19:18:03.676Z","url":"/api/flood-reports","userAgent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36","userId":"68bb08332d43bb3448e0a7cd"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:18:03 +0000] \"POST /api/flood-reports HTTP/1.1\" 500 104 \"http://localhost:5173/report-flood\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:18:03.682Z"}
+{"level":"info","message":"User disconnected: 7EDXo2xYGrNakwV0AAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T19:20:51.136Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:22:00 +0000] \"POST /api/auth/login HTTP/1.1\" 400 33 \"http://localhost:5173/login\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:00.241Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:22:12 +0000] \"POST /api/auth/login HTTP/1.1\" 200 632 \"http://localhost:5173/login\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:12.948Z"}
+{"level":"info","message":"User connected: gEIgIGYLI5in5Y75AAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:13.044Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:22:26 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 304 - \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:26.830Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:22:28 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 304 - \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:28.999Z"}
+{"level":"info","message":"User disconnected: gEIgIGYLI5in5Y75AAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:47.927Z"}
+{"level":"info","message":"User connected: XObk9EUmQhTcdZI6AAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T19:22:48.222Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:23:22 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 304 - \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:23:22.150Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:23:24 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 304 - \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:23:24.351Z"}
+{"level":"info","message":"User disconnected: XObk9EUmQhTcdZI6AAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T19:23:56.660Z"}
+{"level":"info","message":"User connected: d-Xa7Z14Lbjdk66FAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T19:23:56.910Z"}
+{"level":"info","message":"User disconnected: d-Xa7Z14Lbjdk66FAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T19:25:07.106Z"}
+{"level":"info","message":"User connected: qLMfB_7_2tLhnJN5AAAJ","service":"Aqua Assists-api","timestamp":"2025-09-06T19:25:07.315Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:25:47 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 304 - \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:25:47.384Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:25:50 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 304 - \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:25:50.464Z"}
+{"level":"info","message":"User disconnected: qLMfB_7_2tLhnJN5AAAJ","service":"Aqua Assists-api","timestamp":"2025-09-06T19:32:50.125Z"}
+{"level":"info","message":"User connected: rYSzlEDPigfpNOlMAAAL","service":"Aqua Assists-api","timestamp":"2025-09-06T19:32:50.763Z"}
+{"level":"info","message":"User disconnected: rYSzlEDPigfpNOlMAAAL","service":"Aqua Assists-api","timestamp":"2025-09-06T19:42:38.915Z"}
+{"level":"info","message":"User connected: jnMblOLD8HtyF5MbAAAN","service":"Aqua Assists-api","timestamp":"2025-09-06T19:42:39.431Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:42:50 +0000] \"PUT /api/auth/profile HTTP/1.1\" 500 43 \"http://localhost:5173/profile\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:42:50.934Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:43:11 +0000] \"PUT /api/auth/profile HTTP/1.1\" 500 43 \"http://localhost:5173/profile\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:43:11.313Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:43:11 +0000] \"PUT /api/auth/profile HTTP/1.1\" 500 43 \"http://localhost:5173/profile\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:43:11.978Z"}
+{"level":"info","message":"User disconnected: jnMblOLD8HtyF5MbAAAN","service":"Aqua Assists-api","timestamp":"2025-09-06T19:43:16.116Z"}
+{"level":"info","message":"User connected: dzKPMYk_7PTY8bV9AAAP","service":"Aqua Assists-api","timestamp":"2025-09-06T19:43:16.600Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:43:24 +0000] \"PUT /api/auth/profile HTTP/1.1\" 500 43 \"http://localhost:5173/profile\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:43:24.600Z"}
+{"level":"info","message":"User disconnected: dzKPMYk_7PTY8bV9AAAP","service":"Aqua Assists-api","timestamp":"2025-09-06T19:55:24.196Z"}
+{"level":"info","message":"User connected: ELO-h71EwWePm6VfAAAR","service":"Aqua Assists-api","timestamp":"2025-09-06T19:55:24.590Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:19:55:46 +0000] \"PUT /api/auth/profile HTTP/1.1\" 500 43 \"http://localhost:5173/profile\" \"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T19:55:46.830Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T19:57:45.740Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T19:57:45.749Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T19:57:45.752Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T19:57:45.814Z"}
+{"level":"info","message":"User connected: KqJP21mUgG8P65IYAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T19:57:46.511Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:01.023Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:01.026Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:01.027Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:01.060Z"}
+{"level":"info","message":"User connected: ioG6hs62ah17FDikAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:01.114Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:08.051Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:08.056Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:08.056Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:08.119Z"}
+{"level":"info","message":"User connected: FikGYeZ9DeMwt8LxAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T20:14:08.125Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T20:16:39.939Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T20:16:39.945Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T20:16:39.946Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T20:16:39.972Z"}
+{"level":"info","message":"User connected: 7GVbtBsNykNtF1J0AAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T20:16:40.788Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-06T20:21:46.898Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-06T20:21:46.902Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-06T20:21:46.903Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-06T20:21:46.930Z"}
+{"level":"info","message":"User connected: sDNc7JKktyOSde1QAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T20:21:47.076Z"}
+{"level":"info","message":"User disconnected: sDNc7JKktyOSde1QAAAB","service":"Aqua Assists-api","timestamp":"2025-09-06T20:24:52.514Z"}
+{"level":"info","message":"User connected: rNsO_lBGYV_bTaDmAAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T20:24:53.049Z"}
+{"level":"info","message":"User disconnected: rNsO_lBGYV_bTaDmAAAD","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:20.596Z"}
+{"level":"info","message":"User connected: n0e9kOZ9EYvlrzMQAAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:21.170Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:20:25:30 +0000] \"PUT /api/auth/profile HTTP/1.1\" 200 - \"http://localhost:5173/profile\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:30.521Z"}
+{"level":"info","message":"User disconnected: n0e9kOZ9EYvlrzMQAAAF","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:37.201Z"}
+{"level":"info","message":"User connected: 9c_MFhK7JYDI-z0AAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:37.412Z"}
+{"level":"info","message":"User disconnected: 9c_MFhK7JYDI-z0AAAAH","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:58.318Z"}
+{"level":"info","message":"User connected: 5voapONpbpI_Ig-uAAAJ","service":"Aqua Assists-api","timestamp":"2025-09-06T20:25:58.602Z"}
+{"level":"info","message":"User disconnected: 5voapONpbpI_Ig-uAAAJ","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:00.262Z"}
+{"level":"info","message":"User connected: foYJ-FOEf1QY-T0nAAAL","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:00.401Z"}
+{"level":"info","message":"User disconnected: foYJ-FOEf1QY-T0nAAAL","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:01.092Z"}
+{"level":"info","message":"User connected: w6V1ljectKRax7hwAAAN","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:01.245Z"}
+{"level":"info","message":"User disconnected: w6V1ljectKRax7hwAAAN","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:01.536Z"}
+{"level":"info","message":"User connected: ofZq8nFoB45RgiWtAAAP","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:01.666Z"}
+{"level":"info","message":"User connected: fHg72GbZ_5w7selAAAAR","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:01.827Z"}
+{"level":"info","message":"User connected: 86ly73P3PHkBCAScAAAT","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:02.061Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:20:26:30 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 304 - \"http://localhost:5173/reports\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:30.023Z"}
+{"level":"info","message":"::1 - - [06/Sep/2025:20:26:31 +0000] \"GET /api/alerts?status=active HTTP/1.1\" 304 - \"http://localhost:5173/alerts\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:31.657Z"}
+{"level":"info","message":"User disconnected: ofZq8nFoB45RgiWtAAAP","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:46.658Z"}
+{"level":"info","message":"User disconnected: fHg72GbZ_5w7selAAAAR","service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:46.815Z"}
+{"level":"info","message":"User disconnected: 86ly73P3PHkBCAScAAAT","service":"Aqua Assists-api","timestamp":"2025-09-06T20:28:08.446Z"}
