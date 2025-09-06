@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -35,17 +36,19 @@ const weatherRoutes = require("./routes/weather");
 
 const app = express();
 const server = createServer(app);
+
+// ---------- SOCKET.IO SETUP ----------
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
-// Trust proxy
+// ---------- EXPRESS MIDDLEWARE ----------
 app.set("trust proxy", 1);
 
-// Security middleware
 app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
@@ -61,14 +64,15 @@ app.use(
 );
 
 app.use(compression());
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
 
-// Request logging
 app.use(
   morgan("combined", {
     stream: {
@@ -77,19 +81,16 @@ app.use(
   })
 );
 
-// Rate limiting
 app.use("/api/", speedLimiter);
 app.use("/api/", apiLimiter);
 app.use("/api/auth", authLimiter);
 
-// Body parsing middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// Input sanitization
 app.use(sanitizeInput);
 
-// MongoDB Connection with retry logic
+// ---------- MONGODB CONNECTION ----------
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
@@ -107,7 +108,6 @@ const connectDB = async () => {
 
 connectDB();
 
-// Handle MongoDB connection events
 mongoose.connection.on("disconnected", () => {
   logger.warn("MongoDB disconnected");
 });
@@ -116,18 +116,18 @@ mongoose.connection.on("reconnected", () => {
   logger.info("MongoDB reconnected");
 });
 
-// Socket.io setup
+// ---------- SOCKET.IO EVENTS ----------
 io.on("connection", (socket) => {
   logger.info(`User connected: ${socket.id}`);
 
-  // Join location-based rooms for targeted alerts
+  // Join location-based rooms
   socket.on("join-location", (locationData) => {
     const roomName = `location-${locationData.state}-${locationData.district}`;
     socket.join(roomName);
     logger.info(`User ${socket.id} joined room: ${roomName}`);
   });
 
-  // Handle emergency SOS
+  // Emergency SOS
   socket.on("emergency-sos", (data) => {
     logger.warn(`Emergency SOS from ${socket.id}:`, data);
     io.to(`location-${data.state}-${data.district}`).emit("emergency-alert", {
@@ -143,15 +143,15 @@ io.on("connection", (socket) => {
   });
 });
 
-// Make io available to routes
+// Make io available in routes
 app.use((req, res, next) => {
   req.io = io;
   next();
 });
 
-// Health check with system info
+// ---------- HEALTH CHECK ----------
 app.get("/api/health", (req, res) => {
-  const healthCheck = {
+  res.json({
     status: "OK",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
@@ -161,12 +161,10 @@ app.get("/api/health", (req, res) => {
       mongoose.connection.readyState === 1 ? "connected" : "disconnected",
     memory: process.memoryUsage(),
     pid: process.pid,
-  };
-
-  res.json(healthCheck);
+  });
 });
 
-// API Documentation
+// ---------- API DOCUMENTATION ----------
 app.use(
   "/api-docs",
   swaggerUi.serve,
@@ -176,7 +174,7 @@ app.use(
   })
 );
 
-// API Routes
+// ---------- API ROUTES ----------
 app.use("/api/auth", authRoutes);
 app.use("/api/flood-reports", floodReportRoutes);
 app.use("/api/alerts", alertRoutes);
@@ -187,13 +185,11 @@ app.use("/api/analytics", analyticsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/weather", weatherRoutes);
 
-// 404 handler
+// ---------- ERROR HANDLING ----------
 app.use(notFoundHandler);
-
-// Global error handler (must be last)
 app.use(errorHandler);
 
-// Graceful shutdown
+// ---------- GRACEFUL SHUTDOWN ----------
 process.on("SIGTERM", () => {
   logger.info("SIGTERM received, shutting down gracefully");
   server.close(() => {

@@ -108,7 +108,7 @@ const MapController = ({ center, zoom }) => {
 
 const FloodMap = ({
   height = "500px",
-  center = [20.5937, 78.9629], // India center
+  center = [20.5937, 78.9629],
   zoom = 5,
   showReports = true,
   showAlerts = true,
@@ -121,31 +121,27 @@ const FloodMap = ({
   const [selectedReport, setSelectedReport] = useState(null);
 
   // Fetch flood reports
-  const { data: reportsData, isLoading: reportsLoading } = useQuery(
-    ["flood-reports-map", filters],
-    () =>
+  const { data: reportsData, isLoading: reportsLoading } = useQuery({
+    queryKey: ["flood-reports-map", filters],
+    queryFn: () =>
       floodReportService.getReports({
         ...filters,
         lat: user?.location?.coordinates?.[1],
         lng: user?.location?.coordinates?.[0],
-        radius: 50, // 50km radius
+        radius: 50,
         limit: 100,
       }),
-    {
-      enabled: showReports,
-      refetchInterval: 60000, // Refetch every minute
-    }
-  );
+    enabled: showReports,
+    refetchInterval: 60000,
+  });
 
   // Fetch active alerts
-  const { data: alertsData, isLoading: alertsLoading } = useQuery(
-    "active-alerts-map",
-    () => alertService.getActiveAlerts(),
-    {
-      enabled: showAlerts,
-      refetchInterval: 30000, // Refetch every 30 seconds
-    }
-  );
+  const { data: alertsData, isLoading: alertsLoading } = useQuery({
+    queryKey: ["active-alerts-map"],
+    queryFn: () => alertService.getActiveAlerts(),
+    enabled: showAlerts,
+    refetchInterval: 30000,
+  });
 
   const reports = reportsData?.reports || [];
   const alerts = alertsData?.alerts || [];
@@ -161,9 +157,7 @@ const FloodMap = ({
 
   const handleMarkerClick = (report) => {
     setSelectedReport(report);
-    if (onMarkerClick) {
-      onMarkerClick(report);
-    }
+    if (onMarkerClick) onMarkerClick(report);
   };
 
   const getSeverityColor = (severity) => {
@@ -189,7 +183,6 @@ const FloodMap = ({
 
   return (
     <div className="relative" style={{ height }}>
-      {/* Loading overlay */}
       {(reportsLoading || alertsLoading) && (
         <div className="absolute top-2 left-2 z-[1000] bg-white px-3 py-1 rounded-lg shadow-lg">
           <div className="flex items-center text-sm text-gray-600">
@@ -199,33 +192,6 @@ const FloodMap = ({
         </div>
       )}
 
-      {/* Map legend */}
-      <div className="absolute top-2 right-2 z-[1000] bg-white p-3 rounded-lg shadow-lg max-w-xs">
-        <h4 className="font-medium text-gray-900 mb-2">Map Legend</h4>
-        <div className="space-y-1 text-xs">
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-            <span>Low Severity</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-            <span>Medium Severity</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
-            <span>High Severity</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-red-700 mr-2"></div>
-            <span>Critical Severity</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-red-600 mr-2 animate-pulse"></div>
-            <span>Active Alerts</span>
-          </div>
-        </div>
-      </div>
-
       <MapContainer
         center={mapCenter}
         zoom={mapZoom}
@@ -233,14 +199,12 @@ const FloodMap = ({
         className="rounded-lg"
       >
         <MapController center={mapCenter} zoom={mapZoom} />
-
-        {/* Base map layer */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* User's location */}
+        {/* User location */}
         {user?.location?.coordinates && (
           <Marker
             position={[
@@ -249,16 +213,7 @@ const FloodMap = ({
             ]}
             icon={
               new L.DivIcon({
-                html: `
-                <div style="
-                  background-color: #3B82F6;
-                  width: 16px;
-                  height: 16px;
-                  border-radius: 50%;
-                  border: 3px solid white;
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-                "></div>
-              `,
+                html: `<div style="background-color:#3B82F6;width:16px;height:16px;border-radius:50%;border:3px solid white;"></div>`,
                 className: "user-location-marker",
                 iconSize: [16, 16],
                 iconAnchor: [8, 8],
@@ -292,13 +247,10 @@ const FloodMap = ({
                 report.severity,
                 report.verificationStatus === "verified"
               )}
-              eventHandlers={{
-                click: () => handleMarkerClick(report),
-              }}
+              eventHandlers={{ click: () => handleMarkerClick(report) }}
             >
               <Popup maxWidth={320}>
                 <div className="p-2">
-                  {/* Header */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
                       <Droplets
@@ -311,89 +263,24 @@ const FloodMap = ({
                     </div>
                     {getVerificationIcon(report.verificationStatus)}
                   </div>
-
-                  {/* Location */}
-                  <div className="mb-3">
-                    <div className="flex items-center text-sm text-gray-600 mb-1">
-                      <MapPin className="w-3 h-3 mr-1" />
-                      {report.location.district}, {report.location.state}
-                    </div>
-                    {report.location.address && (
-                      <p className="text-xs text-gray-500">
-                        {report.location.address}
-                      </p>
-                    )}
+                  <div className="mb-3 text-sm text-gray-600">
+                    <MapPin className="w-3 h-3 mr-1 inline" />{" "}
+                    {report.location.district}, {report.location.state}
                   </div>
-
-                  {/* Description */}
                   <p className="text-sm mb-3 line-clamp-2">
                     {report.description}
                   </p>
-
-                  {/* Details */}
-                  <div className="grid grid-cols-2 gap-2 text-xs text-gray-600 mb-3">
-                    <div className="flex items-center">
-                      <Droplets className="w-3 h-3 mr-1" />
-                      <span className="capitalize">
-                        {report.waterLevel.replace("-", " ")}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="w-3 h-3 mr-1" />
-                      {format(new Date(report.createdAt), "MMM dd, HH:mm")}
-                    </div>
-                    <div className="flex items-center">
-                      <Users className="w-3 h-3 mr-1" />
-                      {report.reportedBy.name}
-                    </div>
-                    <div className="flex items-center">
-                      <Eye className="w-3 h-3 mr-1" />
-                      {report.communityVotes.upvotes} upvotes
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  {report.tags && report.tags.length > 0 && (
-                    <div className="mb-3">
-                      <div className="flex flex-wrap gap-1">
-                        {report.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full"
-                          >
-                            {tag.replace("-", " ")}
-                          </span>
-                        ))}
-                        {report.tags.length > 3 && (
-                          <span className="text-xs text-gray-500">
-                            +{report.tags.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Action button */}
-                  <button
-                    onClick={() =>
-                      window.open(`/reports/${report._id}`, "_blank")
-                    }
-                    className="w-full mt-2 px-3 py-1 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition-colors"
-                  >
-                    View Details
-                  </button>
                 </div>
               </Popup>
             </Marker>
           ))}
 
-        {/* Active alerts - show as circles with markers */}
+        {/* Alerts */}
         {showAlerts &&
           alerts.map((alert) => {
             if (alert.targetArea.type === "Circle") {
               const center = alert.targetArea.coordinates;
-              const radius = alert.targetArea.radius * 1000; // Convert km to meters
-
+              const radius = alert.targetArea.radius * 1000;
               return (
                 <React.Fragment key={alert._id}>
                   <Circle
@@ -415,45 +302,8 @@ const FloodMap = ({
                             {alert.alertType.toUpperCase()}
                           </span>
                         </div>
-
                         <h4 className="font-medium mb-2">{alert.title}</h4>
                         <p className="text-sm mb-3">{alert.message}</p>
-
-                        <div className="text-xs text-gray-600 mb-2">
-                          <p>
-                            Valid until:{" "}
-                            {format(
-                              new Date(alert.validUntil),
-                              "MMM dd, yyyy HH:mm"
-                            )}
-                          </p>
-                          <p>Source: {alert.source.toUpperCase()}</p>
-                        </div>
-
-                        {alert.instructions &&
-                          alert.instructions.length > 0 && (
-                            <div className="mb-2">
-                              <p className="text-sm font-medium mb-1">
-                                Instructions:
-                              </p>
-                              <ul className="text-xs text-gray-600 list-disc list-inside">
-                                {alert.instructions
-                                  .slice(0, 3)
-                                  .map((instruction, index) => (
-                                    <li key={index}>{instruction}</li>
-                                  ))}
-                              </ul>
-                            </div>
-                          )}
-
-                        <button
-                          onClick={() =>
-                            window.open(`/alerts/${alert._id}`, "_blank")
-                          }
-                          className="w-full mt-2 px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
-                        >
-                          View Alert Details
-                        </button>
                       </div>
                     </Popup>
                   </Marker>
@@ -463,63 +313,6 @@ const FloodMap = ({
             return null;
           })}
       </MapContainer>
-
-      {/* Selected report details panel */}
-      {selectedReport && (
-        <div className="absolute bottom-4 left-4 right-4 z-[1000] bg-white p-4 rounded-lg shadow-lg max-w-md">
-          <div className="flex items-center justify-between mb-2">
-            <h4 className="font-medium">Report Details</h4>
-            <button
-              onClick={() => setSelectedReport(null)}
-              className="text-gray-400 hover:text-gray-600"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-gray-600">Severity:</span>
-              <span
-                className={`capitalize font-medium`}
-                style={{ color: getSeverityColor(selectedReport.severity) }}
-              >
-                {selectedReport.severity}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Water Level:</span>
-              <span className="capitalize">
-                {selectedReport.waterLevel.replace("-", " ")}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Reported:</span>
-              <span>
-                {format(new Date(selectedReport.createdAt), "MMM dd, HH:mm")}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Status:</span>
-              <div className="flex items-center">
-                {getVerificationIcon(selectedReport.verificationStatus)}
-                <span className="ml-1 capitalize">
-                  {selectedReport.verificationStatus}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <button
-            onClick={() =>
-              window.open(`/reports/${selectedReport._id}`, "_blank")
-            }
-            className="w-full mt-3 px-3 py-2 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition-colors"
-          >
-            View Full Report
-          </button>
-        </div>
-      )}
     </div>
   );
 };

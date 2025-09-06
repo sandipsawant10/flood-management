@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -21,7 +22,6 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
-// import AlertsPage from "./pages/Alerts/AlertsPage";
 import Alerts from "./pages/Alerts/Alerts";
 import Emergency from "./pages/Emergency/Emergency";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
@@ -39,47 +39,40 @@ import { useAuthStore } from "./store/authStore";
 // Services
 import { initializeSocket } from "./services/socketService";
 
-// Enhanced Query Client with offline support
+// React Query client with offline-friendly options
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: (failureCount, error) => {
-        // Don't retry if offline
-        if (!navigator.onLine) return false;
-        return failureCount < 3;
-      },
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      cacheTime: 10 * 60 * 1000, // 10 minutes
-      // Enable background refetch when back online
+      retry: (failureCount) => (!navigator.onLine ? false : failureCount < 3),
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000,
       refetchOnReconnect: true,
     },
     mutations: {
-      retry: (failureCount, error) => {
-        // Don't retry mutations if offline
-        if (!navigator.onLine) return false;
-        return failureCount < 2;
-      },
+      retry: (failureCount) => (!navigator.onLine ? false : failureCount < 2),
     },
   },
 });
 
 function App() {
-  const { token, initializeAuth, user } = useAuthStore();
+  // ✅ Correct way to use Zustand
+  const token = useAuthStore((state) => state.token);
+  const user = useAuthStore((state) => state.user);
+  const initializeAuth = useAuthStore((state) => state.initializeAuth);
 
+  // Initialize auth and socket
   useEffect(() => {
-    // Initialize authentication from localStorage
     initializeAuth();
 
-    // Initialize socket connection if authenticated
     if (token) {
       initializeSocket(token);
     }
   }, [token, initializeAuth]);
 
-  // Register Service Worker
+  // Service Worker registration (production only) + online/offline
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
+    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/sw.js")
@@ -89,7 +82,7 @@ function App() {
               registration.scope
             );
 
-            // Check for updates
+            // Listen for updates
             registration.addEventListener("updatefound", () => {
               const newWorker = registration.installing;
               newWorker.addEventListener("statechange", () => {
@@ -97,7 +90,6 @@ function App() {
                   newWorker.state === "installed" &&
                   navigator.serviceWorker.controller
                 ) {
-                  // New content is available
                   if (
                     confirm(
                       "FloodGuard has been updated! Reload to get the latest version?"
@@ -109,46 +101,38 @@ function App() {
               });
             });
           })
-          .catch((error) => {
-            console.error("❌ Service Worker registration failed:", error);
-          });
-      });
-
-      // Handle offline/online status
-      window.addEventListener("online", () => {
-        console.log("🌐 Back online - syncing data");
-        document.body.classList.remove("offline");
-        // Refetch all queries when back online
-        queryClient.refetchQueries();
-      });
-
-      window.addEventListener("offline", () => {
-        console.log("📵 Gone offline");
-        document.body.classList.add("offline");
+          .catch((error) =>
+            console.error("❌ Service Worker registration failed:", error)
+          );
       });
     }
 
-    // Request notification permission for PWA
-    if ("Notification" in window && "serviceWorker" in navigator) {
-      if (Notification.permission === "default") {
-        Notification.requestPermission().then((permission) => {
-          console.log("Notification permission:", permission);
-        });
-      }
-    }
+    const handleOnline = () => {
+      console.log("🌐 Back online - syncing data");
+      document.body.classList.remove("offline");
+      queryClient.refetchQueries();
+    };
+    const handleOffline = () => {
+      console.log("📵 Gone offline");
+      document.body.classList.add("offline");
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
   }, []);
 
-  // PWA Install Prompt
+  // PWA install prompt
   useEffect(() => {
     let deferredPrompt;
 
     const handleBeforeInstallPrompt = (e) => {
-      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
-      // Stash the event so it can be triggered later
       deferredPrompt = e;
-
-      // Show install button/prompt in your UI if needed
       console.log("PWA install prompt available");
     };
 
@@ -169,11 +153,21 @@ function App() {
     };
   }, []);
 
+  // Notification permission for PWA
+  useEffect(() => {
+    if ("Notification" in window && "serviceWorker" in navigator) {
+      if (Notification.permission === "default") {
+        Notification.requestPermission().then((permission) =>
+          console.log("Notification permission:", permission)
+        );
+      }
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <div className="App min-h-screen bg-gray-50">
-          {/* Offline Status Indicator */}
           <OfflineStatus />
 
           {/* Header */}
@@ -294,11 +288,10 @@ function App() {
               }
             />
 
-            {/* Catch all route */}
+            {/* Catch-all */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 
-          {/* Enhanced Toast Notifications */}
           <Toaster
             position="top-right"
             reverseOrder={false}
@@ -315,54 +308,11 @@ function App() {
                 maxWidth: "500px",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
               },
-
-              // Success toast styling
-              success: {
-                duration: 3000,
-                style: {
-                  background: "#10B981",
-                  color: "#fff",
-                },
-                iconTheme: {
-                  primary: "#fff",
-                  secondary: "#10B981",
-                },
-              },
-
-              // Error toast styling
-              error: {
-                duration: 5000,
-                style: {
-                  background: "#EF4444",
-                  color: "#fff",
-                },
-                iconTheme: {
-                  primary: "#fff",
-                  secondary: "#EF4444",
-                },
-              },
-
-              // Loading toast styling
-              loading: {
-                duration: Infinity,
-                style: {
-                  background: "#3B82F6",
-                  color: "#fff",
-                },
-                iconTheme: {
-                  primary: "#fff",
-                  secondary: "#3B82F6",
-                },
-              },
-
-              // Emergency/Warning toast styling
+              success: { style: { background: "#10B981" } },
+              error: { style: { background: "#EF4444" } },
+              loading: { style: { background: "#3B82F6" } },
               custom: {
-                duration: 6000,
-                style: {
-                  background: "#DC2626",
-                  color: "#fff",
-                  border: "2px solid #FEE2E2",
-                },
+                style: { background: "#DC2626", border: "2px solid #FEE2E2" },
               },
             }}
           />

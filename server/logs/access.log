@@ -29,3 +29,31 @@ info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api
 info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.010Z"}
 info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.011Z"}
 info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-04T10:22:07.050Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-05T11:09:04.804Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T11:09:04.809Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T11:09:04.811Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T11:09:04.855Z"}
+info: ::1 - - [05/Sep/2025:13:03:19 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T13:03:19.667Z"}
+info: ::1 - - [05/Sep/2025:13:19:05 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T13:19:05.923Z"}
+info: ::1 - - [05/Sep/2025:13:23:55 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T13:23:55.897Z"}
+info: ::1 - - [05/Sep/2025:13:23:59 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T13:23:59.808Z"}
+info: ::1 - - [05/Sep/2025:13:48:21 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T13:48:21.565Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:53:37.308Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:53:37.313Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:53:37.314Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:53:37.343Z"}
+info: ::1 - - [05/Sep/2025:15:54:39 +0000] "POST /api/auth/login HTTP/1.1" 400 97 "http://localhost:5173/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:54:39.430Z"}
+info: ::1 - - [05/Sep/2025:15:56:35 +0000] "POST /api/auth/register HTTP/1.1" 201 535 "http://localhost:5173/register" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T15:56:35.939Z"}
+info: ::1 - - [05/Sep/2025:16:11:40 +0000] "GET /api/analytics/dashboard?timeRange=7d HTTP/1.1" 200 197 "http://localhost:5173/dashboard" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:11:40.121Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:21:36.813Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:21:36.820Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:21:36.821Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:21:36.863Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:36:38.085Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:36:38.088Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:36:38.089Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T16:36:38.113Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.782Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.786Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.787Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.817Z"}
