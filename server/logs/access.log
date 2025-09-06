@@ -57,3 +57,7 @@ info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api
 info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.786Z"}
 info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.787Z"}
 info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-05T18:46:47.817Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.716Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.723Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.723Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-06T08:40:07.774Z"}
