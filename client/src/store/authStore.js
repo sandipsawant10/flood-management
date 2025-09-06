@@ -1,3 +1,4 @@
+// src/store/authStore.js
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import axios from "axios";
@@ -32,11 +33,15 @@ const useAuthStore = create(
       },
 
       // Login function
-      login: async (credentials) => {
+      login: async ({ email, phone, password }) => {
         set({ isLoading: true, error: null });
 
         try {
-          const response = await axios.post("/api/auth/login", credentials);
+          const response = await axios.post("/api/auth/login", {
+            login: email || phone,
+            password,
+          });
+
           const { token, user } = response.data;
 
           // Store in localStorage
@@ -46,20 +51,12 @@ const useAuthStore = create(
           // Set axios default header
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-          set({
-            user,
-            token,
-            isLoading: false,
-            error: null,
-          });
+          set({ user, token, isLoading: false, error: null });
 
           return { success: true };
         } catch (error) {
           const errorMessage = error.response?.data?.message || "Login failed";
-          set({
-            isLoading: false,
-            error: errorMessage,
-          });
+          set({ isLoading: false, error: errorMessage });
           return { success: false, error: errorMessage };
         }
       },
@@ -79,21 +76,13 @@ const useAuthStore = create(
           // Set axios default header
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-          set({
-            user,
-            token,
-            isLoading: false,
-            error: null,
-          });
+          set({ user, token, isLoading: false, error: null });
 
           return { success: true };
         } catch (error) {
           const errorMessage =
             error.response?.data?.message || "Registration failed";
-          set({
-            isLoading: false,
-            error: errorMessage,
-          });
+          set({ isLoading: false, error: errorMessage });
           return { success: false, error: errorMessage };
         }
       },
@@ -109,39 +98,24 @@ const useAuthStore = create(
           // Update localStorage
           localStorage.setItem("user", JSON.stringify(user));
 
-          set({
-            user,
-            isLoading: false,
-            error: null,
-          });
+          set({ user, isLoading: false, error: null });
 
           return { success: true };
         } catch (error) {
           const errorMessage =
             error.response?.data?.message || "Profile update failed";
-          set({
-            isLoading: false,
-            error: errorMessage,
-          });
+          set({ isLoading: false, error: errorMessage });
           return { success: false, error: errorMessage };
         }
       },
 
       // Logout function
       logout: () => {
-        // Clear localStorage
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-
-        // Clear axios default header
         delete axios.defaults.headers.common["Authorization"];
 
-        set({
-          user: null,
-          token: null,
-          isLoading: false,
-          error: null,
-        });
+        set({ user: null, token: null, isLoading: false, error: null });
       },
 
       // Clear error
@@ -149,10 +123,7 @@ const useAuthStore = create(
     }),
     {
       name: "flood-auth-storage",
-      partialize: (state) => ({
-        user: state.user,
-        token: state.token,
-      }),
+      partialize: (state) => ({ user: state.user, token: state.token }),
     }
   )
 );

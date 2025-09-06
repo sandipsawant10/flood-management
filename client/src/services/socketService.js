@@ -4,7 +4,9 @@ let socket = null;
 
 export const initializeSocket = (token) => {
   if (!socket) {
-    socket = io(process.env.REACT_APP_SOCKET_URL || "http://localhost:5000", {
+    const url = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+
+    socket = io(url, {
       auth: { token },
     });
 

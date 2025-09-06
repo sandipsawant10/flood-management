@@ -12,4 +12,16 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
     },
   },
+  server: {
+    port: 5173, // Vite dev server port
+    strictPort: true, // fail if port is busy
+    hmr: {
+      host: "localhost", // explicit HMR host
+      protocol: "ws", // or "wss" if using HTTPS
+      port: 5173,
+    },
+    proxy: {
+      "/api": "http://localhost:5000", // backend API proxy
+    },
+  },
 });
