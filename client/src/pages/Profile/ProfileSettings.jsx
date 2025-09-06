@@ -426,7 +426,7 @@ const ProfileSettings = () => {
                 </h3>
                 <p className="text-sm text-gray-600 mb-6">
                   Choose how you want to receive alerts and updates from
-                  FloodGuard.
+                  AquaAssist.
                 </p>
               </div>
 

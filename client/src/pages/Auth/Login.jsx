@@ -18,7 +18,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     const result = await login(data);
     if (result.success) {
-      toast.success("Welcome back to FloodGuard!");
+      toast.success("Welcome back to AquaAssist!");
       navigate("/dashboard");
     } else {
       toast.error(result.error || "Login failed");
@@ -34,7 +34,7 @@ const Login = () => {
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign In to FloodGuard
+          Sign In to AquaAssist
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Don&apos;t have an account?{" "}

@@ -1,6 +1,6 @@
 {
-  "name": "FloodGuard - Disaster Management",
-  "short_name": "FloodGuard",
+  "name": "AquaAssist - Disaster Management",
+  "short_name": "AquaAssist",
   "description": "Real-time flood reporting and emergency management system for India",
   "start_url": "/",
   "display": "standalone",

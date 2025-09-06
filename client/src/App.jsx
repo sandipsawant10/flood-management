@@ -1,5 +1,6 @@
 // src/App.jsx
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -58,6 +59,7 @@ const queryClient = new QueryClient({
 function App() {
   // ✅ Correct way to use Zustand
   const token = useAuthStore((state) => state.token);
+  console.log("Auth token:", token);
   const user = useAuthStore((state) => state.user);
   const initializeAuth = useAuthStore((state) => state.initializeAuth);
 
@@ -95,7 +97,7 @@ function App() {
                 ) {
                   if (
                     confirm(
-                      "FloodGuard has been updated! Reload to get the latest version?"
+                      "AquaAssist has been updated! Reload to get the latest version?"
                     )
                   ) {
                     window.location.reload();
@@ -113,7 +115,7 @@ function App() {
     const handleOnline = () => {
       console.log("🌐 Back online - syncing data");
       document.body.classList.remove("offline");
-      queryClient.refetchQueries();
+      queryClient.refetchQueries({ type: "active" });
     };
     const handleOffline = () => {
       console.log("📵 Gone offline");
@@ -140,7 +142,7 @@ function App() {
     };
 
     const handleAppInstalled = () => {
-      console.log("FloodGuard PWA was installed");
+      console.log("AquaAssist PWA was installed");
       deferredPrompt = null;
     };
 
@@ -175,7 +177,7 @@ function App() {
 
           {/* Header */}
           <header className="flex flex-col items-center py-6 bg-white border-b mb-6 w-full shadow-sm">
-            <img src={logo} alt="FloodGuard Logo" className="w-24 h-24 mb-2" />
+            <img src={logo} alt="AquaAssist Logo" className="w-24 h-24 mb-2" />
             <h1 className="text-3xl font-bold text-gray-800">
               Flood<span className="text-blue-500">Guard</span>
             </h1>
