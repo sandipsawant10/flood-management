@@ -92,13 +92,45 @@ const useAuthStore = create(
         set({ isLoading: true, error: null });
 
         try {
-          const response = await axios.put("/api/auth/profile", profileData);
-          const { user } = response.data;
+          const user = get().user;
+          if (!user) throw new Error("User not logged in");
+
+          // Prepare only changed fields
+          const updates = {};
+
+          if (profileData.name && profileData.name !== user.name) {
+            updates.name = profileData.name;
+          }
+
+          if (profileData.location) {
+            updates.location = { ...user.location, ...profileData.location };
+          }
+
+          if (profileData.preferences) {
+            updates.preferences = {
+              ...user.preferences,
+              ...profileData.preferences,
+            };
+          }
+
+          if (profileData.avatar) {
+            updates.avatar = profileData.avatar;
+          }
+
+          // Only send non-empty updates
+          if (Object.keys(updates).length === 0) {
+            set({ isLoading: false });
+            return { success: true, message: "No changes to update" };
+          }
+
+          const response = await axios.put("/api/auth/profile", updates);
+
+          const updatedUser = response.data.user;
 
           // Update localStorage
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("user", JSON.stringify(updatedUser));
 
-          set({ user, isLoading: false, error: null });
+          set({ user: updatedUser, isLoading: false, error: null });
 
           return { success: true };
         } catch (error) {

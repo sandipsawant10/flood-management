@@ -24,7 +24,7 @@ import { useAuthStore } from "../../store/authStore";
 import toast from "react-hot-toast";
 
 const ProfileSettings = () => {
-  const { user, updateUser, isLoading } = useAuthStore();
+  const { user, updateProfile, isLoading } = useAuthStore();
   const [activeTab, setActiveTab] = useState("profile");
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
@@ -61,36 +61,65 @@ const ProfileSettings = () => {
     }
   }, [user, reset]);
 
+  // Submit profile updates
+  // Submit profile updates
   const onSubmitProfile = async (data) => {
-    const profileData = {
-      ...data,
-      location: {
-        district: data.district,
-        state: data.state,
-        address: data.address,
-        coordinates: user?.location?.coordinates || [],
-      },
-    };
+    try {
+      if (!user) {
+        toast.error("User not logged in");
+        return;
+      }
 
-    const result = await updateUser(profileData);
-    if (result.success) {
-      toast.success("Profile updated successfully!");
-    } else {
-      toast.error(result.error || "Failed to update profile");
+      // Build location object only if values exist
+      const location = {};
+      if (data.district) location.district = data.district;
+      if (data.state) location.state = data.state;
+      if (data.address) location.address = data.address;
+      if (user.location?.coordinates)
+        location.coordinates = user.location.coordinates;
+
+      // Build the profileData to send
+      const profileData = {};
+
+      if (data.name && data.name !== user.name) profileData.name = data.name;
+      if (Object.keys(location).length > 0) profileData.location = location;
+      if (profileImage) profileData.avatar = profileImage;
+
+      // Prevent sending empty object
+      if (Object.keys(profileData).length === 0) {
+        toast("No changes to update");
+        return;
+      }
+
+      // Call the store function
+      const result = await updateProfile(profileData);
+
+      if (result.success) {
+        toast.success("Profile updated successfully!");
+      } else {
+        toast.error(result.error || "Failed to update profile");
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred");
+      console.error("Profile update error:", err);
     }
   };
 
+  // Submit notification preferences
   const onSubmitNotifications = async () => {
-    const result = await updateUser({
-      preferences: {
-        notifications: notificationSettings,
-      },
-    });
+    try {
+      const result = await updateProfile({
+        preferences: { notifications: notificationSettings },
+      });
 
-    if (result.success) {
-      toast.success("Notification preferences updated!");
-    } else {
-      toast.error("Failed to update preferences");
+      if (result.success) {
+        toast.success("Notification preferences updated!");
+      } else {
+        toast.error(result.error || "Failed to update preferences");
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred");
+      console.error("Notification update error:", err);
     }
   };
 
@@ -98,14 +127,13 @@ const ProfileSettings = () => {
     const file = event.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        // 5MB limit
         toast.error("Image size should be less than 5MB");
         return;
       }
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        setProfileImage(e.target.result);
+        setProfileImage(e.target.result); // Base64 string
       };
       reader.readAsDataURL(file);
     }

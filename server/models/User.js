@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     governmentId: {
       type: String,
-      sparse: true, // Optional but unique if provided
+      sparse: true,
       unique: true,
     },
     location: {
@@ -66,6 +66,10 @@ const userSchema = new mongoose.Schema(
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    avatar: {
+      type: String, // Base64 string or URL
+      default: null,
     },
     preferences: {
       language: {
@@ -108,14 +112,13 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Create geospatial index for location-based queries
+// Create geospatial index
 userSchema.index({ location: "2dsphere" });
 userSchema.index({ district: 1, state: 1 });
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-
   try {
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);
