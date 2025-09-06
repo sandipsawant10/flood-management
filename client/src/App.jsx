@@ -72,7 +72,10 @@ function App() {
 
   // Service Worker registration (production only) + online/offline
   useEffect(() => {
-    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+    if (
+      import.meta.env.NODE_ENV === "production" &&
+      "serviceWorker" in navigator
+    ) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/sw.js")
