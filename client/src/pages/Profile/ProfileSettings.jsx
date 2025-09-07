@@ -62,7 +62,6 @@ const ProfileSettings = () => {
   }, [user, reset]);
 
   // Submit profile updates
-  // Submit profile updates
   const onSubmitProfile = async (data) => {
     try {
       if (!user) {

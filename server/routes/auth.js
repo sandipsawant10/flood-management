@@ -129,7 +129,17 @@ router.post(
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      user.lastActive = new Date();
+      // Update lastActive safely
+      try {
+        user.lastActive = new Date();
+        if (isNaN(user.lastActive)) {
+          throw new Error("Generated invalid lastActive date");
+        }
+      } catch (err) {
+        console.error("Error setting lastActive:", err);
+        user.lastActive = Date.now(); // fallback
+      }
+
       await user.save();
 
       const token = jwt.sign(
@@ -150,6 +160,7 @@ router.post(
           trustScore: user.trustScore,
           location: user.location,
           preferences: user.preferences,
+          lastActive: user.lastActive,
         },
       });
     } catch (error) {
@@ -198,6 +209,14 @@ router.put(
       .optional()
       .isIn(["en", "hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "or", "as"]),
     body("avatar").optional().isString(),
+    body("lastActive")
+      .optional()
+      .custom((value) => {
+        if (value && isNaN(new Date(value))) {
+          throw new Error("Invalid date format for lastActive");
+        }
+        return true;
+      }),
   ],
   async (req, res) => {
     try {
@@ -210,7 +229,13 @@ router.put(
       if (!user) return res.status(404).json({ message: "User not found" });
 
       // Only allow specific updates
-      const allowedUpdates = ["name", "location", "preferences", "avatar"];
+      const allowedUpdates = [
+        "name",
+        "location",
+        "preferences",
+        "avatar",
+        "lastActive",
+      ];
       const updates = {};
 
       for (const key of allowedUpdates) {
@@ -222,7 +247,12 @@ router.put(
           ) {
             updates[key] = { ...user[key], ...req.body[key] };
           } else {
-            updates[key] = req.body[key];
+            // Special case: lastActive
+            if (key === "lastActive") {
+              updates[key] = new Date(req.body[key]);
+            } else {
+              updates[key] = req.body[key];
+            }
           }
         }
       }
@@ -242,6 +272,7 @@ router.put(
           location: user.location,
           preferences: user.preferences,
           avatar: user.avatar,
+          lastActive: user.lastActive,
         },
       });
     } catch (error) {
