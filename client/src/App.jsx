@@ -179,7 +179,7 @@ function App() {
           <header className="flex flex-col items-center py-6 bg-white border-b mb-6 w-full shadow-sm">
             <img src={logo} alt="AquaAssist Logo" className="w-24 h-24 mb-2" />
             <h1 className="text-3xl font-bold text-gray-800">
-              Flood<span className="text-blue-500">Guard</span>
+              Aqua<span className="text-blue-500">Assists</span>
             </h1>
             {user && (
               <p className="text-sm text-gray-600 mt-1">

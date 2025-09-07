@@ -173,3 +173,52 @@ info: ::1 - - [06/Sep/2025:20:26:31 +0000] "GET /api/alerts?status=active HTTP/1
 info: User disconnected: ofZq8nFoB45RgiWtAAAP {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:46.658Z"}
 info: User disconnected: fHg72GbZ_5w7selAAAAR {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:26:46.815Z"}
 info: User disconnected: 86ly73P3PHkBCAScAAAT {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:28:08.446Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:29:40.310Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:29:40.314Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:29:40.315Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-06T20:29:40.348Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:41:35.175Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:41:35.181Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:41:35.182Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:41:35.212Z"}
+info: User connected: DZiGr1oyKYMZgFJaAAAB {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:41:59.055Z"}
+info: ::1 - - [07/Sep/2025:04:42:25 +0000] "GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1" 304 - "http://localhost:5173/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:42:25.880Z"}
+info: ::1 - - [07/Sep/2025:04:42:27 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:42:27.180Z"}
+info: User disconnected: DZiGr1oyKYMZgFJaAAAB {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:15.105Z"}
+info: User connected: N9317PERoH2l4YQ9AAAD {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:15.271Z"}
+info: User disconnected: N9317PERoH2l4YQ9AAAD {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:16.455Z"}
+info: User connected: 8gtdyGSO5P6X-nxKAAAF {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:16.612Z"}
+info: User disconnected: 8gtdyGSO5P6X-nxKAAAF {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:17.203Z"}
+info: User connected: 18bvSHbmPopVpv3qAAAH {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:17.341Z"}
+info: User disconnected: 18bvSHbmPopVpv3qAAAH {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:17.989Z"}
+info: User connected: v0q7nYG2mPWwue1DAAAJ {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:18.127Z"}
+info: User disconnected: v0q7nYG2mPWwue1DAAAJ {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:18.706Z"}
+info: User connected: 5dA8f1dRyUkpgvWnAAAL {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:18.860Z"}
+info: User disconnected: 5dA8f1dRyUkpgvWnAAAL {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:19.565Z"}
+info: User connected: l0XmOXYEJI2tiJ06AAAN {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:19.712Z"}
+info: User disconnected: l0XmOXYEJI2tiJ06AAAN {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:20.859Z"}
+info: User connected: sdDsrtojcMkoXdmFAAAP {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:20.980Z"}
+info: User disconnected: sdDsrtojcMkoXdmFAAAP {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:21.866Z"}
+info: User connected: Em_kGnxDnvTfiq0-AAAR {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:46:22.015Z"}
+info: ::1 - - [07/Sep/2025:04:48:27 +0000] "GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1" 304 - "http://localhost:5173/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:48:27.125Z"}
+info: ::1 - - [07/Sep/2025:04:48:29 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:48:29.136Z"}
+info: User disconnected: Em_kGnxDnvTfiq0-AAAR {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:54:13.085Z"}
+info: User connected: OLXM13BOGkMEv2YTAAAT {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:54:13.750Z"}
+info: User disconnected: OLXM13BOGkMEv2YTAAAT {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:54:50.147Z"}
+info: User connected: XANg0j4pJEngn9aJAAAV {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:54:50.931Z"}
+info: ::1 - - [07/Sep/2025:04:55:12 +0000] "GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1" 304 - "http://localhost:5173/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:55:12.856Z"}
+info: ::1 - - [07/Sep/2025:04:56:17 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:17.175Z"}
+info: ::1 - - [07/Sep/2025:04:56:20 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:20.765Z"}
+info: ::1 - - [07/Sep/2025:04:56:21 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:21.504Z"}
+info: ::1 - - [07/Sep/2025:04:56:21 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:21.678Z"}
+info: ::1 - - [07/Sep/2025:04:56:21 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:21.824Z"}
+info: ::1 - - [07/Sep/2025:04:56:21 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:21.967Z"}
+info: ::1 - - [07/Sep/2025:04:56:22 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:22.188Z"}
+info: ::1 - - [07/Sep/2025:04:56:22 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:22.491Z"}
+info: ::1 - - [07/Sep/2025:04:56:22 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:22.691Z"}
+info: ::1 - - [07/Sep/2025:04:56:22 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:22.845Z"}
+info: ::1 - - [07/Sep/2025:04:56:22 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:22.994Z"}
+info: ::1 - - [07/Sep/2025:04:56:23 +0000] "GET /api/alerts?status=active HTTP/1.1" 304 - "http://localhost:5173/alerts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:23.225Z"}
+info: ::1 - - [07/Sep/2025:04:56:31 +0000] "GET /api/analytics/dashboard?timeRange=7d HTTP/1.1" 304 - "http://localhost:5173/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:56:31.120Z"}
+info: ::1 - - [07/Sep/2025:04:57:02 +0000] "GET /api/analytics/dashboard?timeRange=7d HTTP/1.1" 304 - "http://localhost:5173/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:57:02.856Z"}
+info: User disconnected: XANg0j4pJEngn9aJAAAV {"service":"Aqua Assists-api","timestamp":"2025-09-07T04:58:49.289Z"}
