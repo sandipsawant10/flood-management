@@ -665,4 +665,14 @@ async function simulateAIValidation({
   });
 }
 
+// Debug route: Get all flood reports
+router.get("/debug/all", async (req, res) => {
+  try {
+    const reports = await FloodReport.find().sort({ createdAt: -1 });
+    res.json(reports);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
