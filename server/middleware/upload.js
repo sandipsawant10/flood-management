@@ -2,16 +2,11 @@ const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+// Let cloudinary use CLOUDINARY_URL from .env
+cloudinary.config();
 
-// Configure Cloudinary storage
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary,
   params: {
     folder: "flood-reports",
     allowed_formats: ["jpg", "jpeg", "png", "gif", "mp4", "avi", "mov"],
@@ -22,22 +17,17 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// Configure multer
 const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
-  },
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
   fileFilter: (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif|mp4|avi|mov/;
     const extname = allowedTypes.test(file.originalname.toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
 
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
+    if (mimetype && extname) cb(null, true);
+    else
       cb(new Error("Invalid file type. Only images and videos are allowed."));
-    }
   },
 });
 
