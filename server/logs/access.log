@@ -624,3 +624,7 @@ info: User disconnected: rh8qG1IiyofBTu4xAAAB {"service":"Aqua Assists-api","tim
 warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:47:54.334Z"}
 info: User connected: B3wRO1Px0bTmX2cpAAAD {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:47:56.767Z"}
 info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:48:39.185Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:58:33.793Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:58:33.797Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:58:33.797Z"}
+info: User connected: WSS6Yiv8acH-_5cKAAAB {"service":"Aqua Assists-api","timestamp":"2025-09-08T16:58:33.855Z"}
