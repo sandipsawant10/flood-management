@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Alert = require("../models/Alert");
+const User = require("../models/User");
 const auth = require("../middleware/auth");
+const notificationService = require("../services/notificationService");
 
 // Get all alerts
 router.get("/", auth, async (req, res) => {
@@ -79,6 +81,22 @@ router.post("/", auth, async (req, res) => {
     const alert = await Alert.create(alertData);
     await alert.populate("createdBy", "name role");
 
+    // Find users in the target area to notify
+    const targetUsers = await User.find({
+      "location.state": alert.targetArea.state,
+      ...(alert.targetArea.district && { "location.district": alert.targetArea.district }),
+    });
+
+    // Send notifications to affected users
+    if (targetUsers.length > 0) {
+      try {
+        await notificationService.createAlertNotification(targetUsers, alert);
+      } catch (notificationError) {
+        console.error("Error sending notifications:", notificationError);
+        // Continue with the response even if notifications fail
+      }
+    }
+
     res.status(201).json({
       success: true,
       message: "Alert created successfully",
@@ -113,6 +131,27 @@ router.put("/:id", auth, async (req, res) => {
         success: false,
         message: "Alert not found",
       });
+    }
+
+    // If alert was updated to active status or severity increased, notify users
+    if (req.body.status === "active" || 
+        (req.body.severity && ["high", "critical"].includes(req.body.severity))) {
+      
+      // Find users in the target area to notify
+      const targetUsers = await User.find({
+        "location.state": alert.targetArea.state,
+        ...(alert.targetArea.district && { "location.district": alert.targetArea.district }),
+      });
+
+      // Send notifications to affected users
+      if (targetUsers.length > 0) {
+        try {
+          await notificationService.createAlertNotification(targetUsers, alert);
+        } catch (notificationError) {
+          console.error("Error sending notifications:", notificationError);
+          // Continue with the response even if notifications fail
+        }
+      }
     }
 
     res.json({

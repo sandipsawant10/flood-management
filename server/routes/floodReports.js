@@ -5,6 +5,7 @@ const User = require("../models/User");
 const auth = require("../middleware/auth");
 const upload = require("../middleware/upload");
 const weatherService = require("../services/weatherService");
+const notificationService = require("../services/notificationService");
 const router = express.Router();
 
 // Submit new flood report
@@ -562,6 +563,22 @@ router.put(
         if (req.body.status === "verified" && previousStatus !== "verified") {
           reporter.trustScore = Math.min(1000, reporter.trustScore + 15);
           reporter.verifiedReports += 1;
+          
+          // Send notification to the reporter about verification
+          try {
+            await notificationService.sendReportVerificationEmail(reporter, report, "verified");
+          } catch (notificationError) {
+            console.error("Error sending verification notification:", notificationError);
+            // Continue with the response even if notification fails
+          }
+        } else if (req.body.status === "disputed") {
+          // Send notification to the reporter about disputed report
+          try {
+            await notificationService.sendReportVerificationEmail(reporter, report, "disputed");
+          } catch (notificationError) {
+            console.error("Error sending disputed notification:", notificationError);
+            // Continue with the response even if notification fails
+          }
         } else if (req.body.status === "false") {
           reporter.trustScore = Math.max(0, reporter.trustScore - 25);
         }

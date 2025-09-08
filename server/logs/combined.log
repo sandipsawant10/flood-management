@@ -497,3 +497,18 @@
 {"level":"info","message":"User disconnected: Mg7MXs8TthFs2-AHAAAH","service":"Aqua Assists-api","timestamp":"2025-09-07T16:42:37.265Z"}
 {"level":"info","message":"User connected: m-yrm2Qi0x7vEkbaAAAJ","service":"Aqua Assists-api","timestamp":"2025-09-07T16:42:37.804Z"}
 {"level":"info","message":"::1 - - [07/Sep/2025:16:52:31 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 304 - \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-07T16:52:31.568Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:15.182Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:15.186Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:15.187Z"}
+{"level":"info","message":"User connected: vbZto06na1Aj3VcVAAAB","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:15.273Z"}
+{"level":"info","message":"User disconnected: vbZto06na1Aj3VcVAAAB","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:16.633Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:17.246Z"}
+{"level":"info","message":"User connected: 7AqvBMdy_kq0njpYAAAD","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:17.358Z"}
+{"level":"info","message":"::1 - - [08/Sep/2025:08:38:26 +0000] \"GET /api/analytics/dashboard?timeRange=7d HTTP/1.1\" 304 - \"http://localhost:5173/dashboard\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:26.879Z"}
+{"level":"info","message":"::1 - - [08/Sep/2025:08:38:33 +0000] \"GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1\" 200 201 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:33.849Z"}
+{"level":"info","message":"::1 - - [08/Sep/2025:08:38:46 +0000] \"GET /api/flood-reports?state=Maharashtra&sortBy=newest&limit=20 HTTP/1.1\" 200 201 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-08T08:38:46.417Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-08T09:03:33.335Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-08T09:03:33.344Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-08T09:03:33.346Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-08T09:03:34.530Z"}
+{"level":"info","message":"User connected: ahPDih1gKrUhaYgNAAAB","service":"Aqua Assists-api","timestamp":"2025-09-08T09:03:34.823Z"}
