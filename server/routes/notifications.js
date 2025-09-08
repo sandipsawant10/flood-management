@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Notification = require("../models/Notification");
-const { authenticateToken } = require("../middleware/auth");
+const authenticateToken = require("../middleware/auth");
 
 // Get all notifications for the authenticated user
 router.get("/", authenticateToken, async (req, res) => {
+  // Check if user exists in request
+  if (!req.user) {
+    return res.status(401).json({ message: "User not authenticated" });
+  }
   try {
     const { type, search, unreadOnly, page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;

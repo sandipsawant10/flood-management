@@ -24,6 +24,8 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     governmentId: {
       type: String,
       sparse: true,
@@ -118,11 +120,10 @@ userSchema.index({ district: 1, state: 1 });
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password") || this.password.trim() === "") return next();
   try {
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
   } catch (error) {
     next(error);
   }

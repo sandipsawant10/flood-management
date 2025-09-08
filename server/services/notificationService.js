@@ -6,7 +6,7 @@ const Notification = require("../models/Notification");
 class NotificationService {
   constructor() {
     // Email setup
-    this.emailTransporter = nodemailer.createTransporter({
+    this.emailTransporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE || "gmail",
       auth: {
         user: process.env.EMAIL_USER,
@@ -26,7 +26,7 @@ class NotificationService {
     for (const user of users) {
       try {
         // Send email notification
-        if (user.preferences?.notifications?.email !== false) {
+        if (user.preferences?.notifications?.email === true) {
           await this.sendEmail(
             user.email,
             `🚨 Flood Alert: ${alert.title}`,
@@ -39,7 +39,7 @@ class NotificationService {
         if (
           alert.severity === "critical" &&
           user.phone &&
-          user.preferences?.notifications?.sms !== false
+          user.preferences?.notifications?.sms === true
         ) {
           await this.sendSMS(
             user.phone,
@@ -59,6 +59,9 @@ class NotificationService {
           success: false,
           error: error.message,
         });
+        // Update user's last notification time even if notification fails
+        user.lastNotificationAt = new Date();
+        await user.save();
       }
     }
 
@@ -299,4 +302,4 @@ class NotificationService {
   }
 }
 
-module.exports = new NotificationService();
+module.exports = NotificationService;
