@@ -7,6 +7,8 @@ const morgan = require("morgan");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 require("dotenv").config();
+const User = require("./models/User");
+const notificationService = require("./services/notificationService");
 
 // Import middleware
 const {
@@ -32,6 +34,7 @@ const userRoutes = require("./routes/users");
 const analyticsRoutes = require("./routes/analytics");
 const adminRoutes = require("./routes/admin");
 const weatherRoutes = require("./routes/weather");
+const notificationRoutes = require("./routes/notifications");
 
 const app = express();
 const server = createServer(app);
@@ -134,14 +137,46 @@ io.on("connection", (socket) => {
   });
 
   // Emergency SOS
-  socket.on("emergency-sos", (data) => {
+  socket.on("emergency-sos", async (data) => {
     logger.warn(`Emergency SOS from ${socket.id}:`, data);
+    
+    // Emit real-time alert to users in the same location
     io.to(`location-${data.state}-${data.district}`).emit("emergency-alert", {
       type: "SOS",
       location: data.location,
       message: "Emergency SOS signal received",
       timestamp: new Date(),
     });
+    
+    // Create notifications for nearby users and officials
+    try {
+      // Find users in the affected area (officials and admins first)
+      const nearbyUsers = await User.find({
+        'location.state': data.state,
+        'location.district': data.district,
+        role: { $in: ['official', 'admin'] }
+      }).limit(20);
+      
+      if (nearbyUsers.length > 0) {
+        // Create emergency notification
+        const notificationData = {
+          title: "🆘 Emergency SOS Alert",
+          message: `Emergency SOS signal received from ${data.location.address || 'your area'}. Emergency services have been notified.`,
+          type: "emergency",
+          metadata: {
+            location: data.location,
+            userId: data.userId || 'anonymous'
+          }
+        };
+        
+        // Send notifications to officials and admins
+        const recipients = nearbyUsers.map(user => user._id);
+        await notificationService.createBulkInAppNotifications(recipients, notificationData);
+      }
+    } catch (error) {
+      logger.error("Failed to create emergency notifications:", error);
+      // Continue execution even if notification creation fails
+    }
   });
 
   socket.on("disconnect", () => {
@@ -190,6 +225,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/weather", weatherRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // ---------- ERROR HANDLING ----------
 app.use(notFoundHandler);

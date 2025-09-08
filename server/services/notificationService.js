@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const twilio = require("twilio");
 const { logger } = require("../middleware/errorHandler");
+const Notification = require("../models/Notification");
 
 class NotificationService {
   constructor() {
@@ -218,7 +219,83 @@ class NotificationService {
       <p>Thank you for helping keep your community safe!</p>
     `;
 
+    // Create in-app notification
+    await this.createInAppNotification({
+      recipient: user._id,
+      title: statusMessages[status].subject,
+      message: statusMessages[status].message,
+      type: status === "verified" ? "success" : "info",
+      relatedItem: {
+        type: "floodReport",
+        id: report._id
+      }
+    });
+
     return this.sendEmail(user.email, subject, html);
+  }
+
+  // Create in-app notification
+  async createInAppNotification(notificationData) {
+    try {
+      const notification = new Notification(notificationData);
+      await notification.save();
+      logger.info(`In-app notification created for user ${notificationData.recipient}`);
+      return notification;
+    } catch (error) {
+      logger.error(`Failed to create in-app notification:`, error);
+      throw error;
+    }
+  }
+
+  // Create in-app notification for multiple users
+  async createBulkInAppNotifications(recipients, notificationData) {
+    try {
+      const notifications = [];
+      
+      for (const recipient of recipients) {
+        const notification = new Notification({
+          ...notificationData,
+          recipient
+        });
+        notifications.push(notification);
+      }
+      
+      await Notification.insertMany(notifications);
+      logger.info(`Bulk in-app notifications created for ${recipients.length} users`);
+      return notifications;
+    } catch (error) {
+      logger.error(`Failed to create bulk in-app notifications:`, error);
+      throw error;
+    }
+  }
+
+  // Create alert notification (email, SMS, and in-app)
+  async createAlertNotification(users, alert) {
+    try {
+      // Send email and SMS notifications
+      const deliveryResults = await this.sendFloodAlert(users, alert);
+      
+      // Create in-app notifications
+      const recipients = users.map(user => user._id);
+      await this.createBulkInAppNotifications(recipients, {
+        title: `🚨 Flood Alert: ${alert.title}`,
+        message: alert.message,
+        type: "alert",
+        relatedItem: {
+          type: "alert",
+          id: alert._id
+        },
+        metadata: {
+          severity: alert.severity,
+          location: alert.location
+        }
+      });
+      
+      return deliveryResults;
+    } catch (error) {
+      logger.error(`Failed to create alert notifications:`, error);
+      throw error;
+    }
   }
 }
 
