@@ -13,6 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
+import { floodReportService } from "../../services/floodReportService";
 import toast from "react-hot-toast";
 
 const ReportFlood = () => {
@@ -154,19 +155,14 @@ const ReportFlood = () => {
         formData.append("media", file);
       });
 
-      const response = await fetch("/api/flood-reports", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      });
+      // Use floodReportService instead of direct fetch
+      const response = await floodReportService.submitReport(formData);
 
-      if (!response.ok) throw new Error("Failed to submit report");
       toast.success("Flood report submitted successfully!");
       navigate("/reports");
     } catch (error) {
-      toast.error(error.message || "Failed to submit report");
+      console.error("Error submitting report:", error);
+      toast.error(error.response?.data?.message || error.message || "Failed to submit report");
     } finally {
       setIsSubmitting(false);
     }
