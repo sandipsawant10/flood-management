@@ -227,6 +227,10 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/weather", weatherRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+// Import and use notification test routes
+const notificationTestRoutes = require('./routes/notificationTest');
+app.use("/api/notification-test", notificationTestRoutes);
+
 // ---------- ERROR HANDLING ----------
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -19,6 +19,8 @@ import OfflineStatus from "./components/OfflineStatus";
 import Home from "./pages/Home";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import ForgotPassword from "./pages/Auth/ForgotPassword";
+import ResetPassword from "./pages/Auth/ResetPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
@@ -29,6 +31,7 @@ import ProfileSettings from "./pages/Profile/ProfileSettings";
 import Analytics from "./pages/Analytics/Analytics";
 import FloodMap from "./pages/Map/FloodMap";
 import NotificationCenter from "./pages/Notifications/NotificationCenter";
+import NotificationTest from "./pages/NotificationTest";
 
 // Assets
 import "./App.css";
@@ -199,6 +202,14 @@ function App() {
               path="/register"
               element={token ? <Navigate to="/dashboard" /> : <Register />}
             />
+            <Route
+              path="/forgot-password"
+              element={token ? <Navigate to="/dashboard" /> : <ForgotPassword />}
+            />
+            <Route
+              path="/reset-password/:token"
+              element={token ? <Navigate to="/dashboard" /> : <ResetPassword />}
+            />
             <Route path="/emergency" element={<Emergency />} />
 
             {/* Protected Routes */}
@@ -268,6 +279,16 @@ function App() {
                 <ProtectedRoute>
                   <Layout>
                     <NotificationCenter />
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notification-test"
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <NotificationTest />
                   </Layout>
                 </ProtectedRoute>
               }

@@ -3,7 +3,20 @@ const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const auth = require("../middleware/auth");
+const crypto = require("crypto");
 const router = express.Router();
+
+// For email sending
+const nodemailer = require("nodemailer");
+
+// Configure nodemailer
+const transporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE || "gmail",
+  auth: {
+    user: process.env.EMAIL_USER || "floodmanagement@example.com",
+    pass: process.env.EMAIL_PASSWORD || "password",
+  },
+});
 
 // ---------- REGISTER NEW USER ----------
 router.post(
@@ -286,5 +299,128 @@ router.put(
 router.get("/verify", auth, (req, res) => {
   res.json({ valid: true, userId: req.user.userId, role: req.user.role });
 });
+
+// ---------- FORGOT PASSWORD ----------
+router.post(
+  "/forgot-password",
+  [
+    body("email")
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("Please provide a valid email"),
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { email } = req.body;
+
+      // Find user by email
+      const user = await User.findOne({ email });
+      if (!user) {
+        // For security reasons, don't reveal that the email doesn't exist
+        return res.status(200).json({
+          message: "If your email is registered, you will receive a password reset link",
+        });
+      }
+
+      // Generate reset token
+      const resetToken = crypto.randomBytes(32).toString("hex");
+      const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
+
+      // Save token to user
+      user.resetPasswordToken = resetToken;
+      user.resetPasswordExpires = resetTokenExpiry;
+      await user.save();
+
+      // Create reset URL
+      const resetUrl = `${req.protocol}://${req.get(
+        "host"
+      )}/reset-password/${resetToken}`;
+
+      // Send email
+      const mailOptions = {
+        from: process.env.EMAIL_USER || "floodmanagement@example.com",
+        to: user.email,
+        subject: "AquaAssist Password Reset",
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #3b82f6;">AquaAssist Password Reset</h2>
+            <p>Hello ${user.name},</p>
+            <p>You requested a password reset for your AquaAssist account.</p>
+            <p>Please click the button below to reset your password. This link is valid for 1 hour.</p>
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${resetUrl}" style="background-color: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">Reset Password</a>
+            </div>
+            <p>If you didn't request this, please ignore this email and your password will remain unchanged.</p>
+            <p>Thank you,<br>The AquaAssist Team</p>
+          </div>
+        `,
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      res.status(200).json({
+        message: "If your email is registered, you will receive a password reset link",
+      });
+    } catch (error) {
+      console.error("Password reset error:", error);
+      res.status(500).json({ message: "Server error during password reset" });
+    }
+  }
+);
+
+// ---------- RESET PASSWORD ----------
+router.post(
+  "/reset-password/:token",
+  [
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters"),
+    body("confirmPassword").custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Passwords do not match");
+      }
+      return true;
+    }),
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { token } = req.params;
+      const { password } = req.body;
+
+      // Find user with valid reset token
+      const user = await User.findOne({
+        resetPasswordToken: token,
+        resetPasswordExpires: { $gt: Date.now() },
+      });
+
+      if (!user) {
+        return res
+          .status(400)
+          .json({ message: "Password reset token is invalid or has expired" });
+      }
+
+      // Update password and clear reset token fields
+      user.password = password;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+      await user.save();
+
+      res.status(200).json({ message: "Password has been reset successfully" });
+    } catch (error) {
+      console.error("Password reset error:", error);
+      res.status(500).json({ message: "Server error during password reset" });
+    }
+  }
+);
 
 module.exports = router;
