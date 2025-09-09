@@ -43,6 +43,20 @@ const emergencyService = {
       }, 500);
     });
   },
+
+  getEmergencyContacts: async () => {
+    try {
+      const response = await fetch('/api/emergency/contacts');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data.contacts;
+    } catch (error) {
+      console.error("Error fetching emergency contacts:", error);
+      return [];
+    }
+  },
 };
 
 export { emergencyService };

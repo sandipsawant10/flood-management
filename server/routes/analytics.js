@@ -4,12 +4,14 @@ const FloodReport = require("../models/FloodReport");
 const User = require("../models/User");
 const Alert = require("../models/Alert");
 const auth = require("../middleware/auth");
+const { authorize } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
 
 // Get dashboard analytics
 router.get(
   "/dashboard",
   auth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { timeRange = "30d" } = req.query;
 
@@ -125,6 +127,7 @@ router.get(
 router.get(
   "/predictions",
   auth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { state, district, lat, lng } = req.query;
 
@@ -157,6 +160,7 @@ router.get(
 router.get(
   "/export/:format",
   auth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { format } = req.params;
     const { startDate, endDate, type = "reports" } = req.query;
