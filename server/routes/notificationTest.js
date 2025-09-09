@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authenticateToken = require('../middleware/auth');
+const { auth: authenticateToken } = require('../middleware/auth');
 const notificationService = require('../services/notificationService');
 const User = require('../models/User');
 const { logger } = require('../middleware/errorHandler');

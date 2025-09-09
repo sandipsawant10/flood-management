@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Alert = require("../models/Alert");
 const User = require("../models/User");
-const auth = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
 const notificationService = require("../services/notificationService");
 
 // Get all alerts

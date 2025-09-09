@@ -15,8 +15,8 @@ import {
   WifiOff,
 } from "lucide-react";
 
-import { emergencyService } from "../../services/emergencyService";
-import { useAuthStore } from "../../store/authStore";
+import emergencyService from "../../../services/emergencyService";
+import { useAuthStore } from "../../../store/authStore";
 
 // Reusable components
 const ResourceCard = ({ resource, type, handleCall }) => (

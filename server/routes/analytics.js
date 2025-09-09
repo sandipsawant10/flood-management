@@ -3,8 +3,7 @@ const router = express.Router();
 const FloodReport = require("../models/FloodReport");
 const User = require("../models/User");
 const Alert = require("../models/Alert");
-const auth = require("../middleware/auth");
-const { authorize } = require("../middleware/auth");
+const { auth, authorize } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
 
 // Get dashboard analytics
