@@ -11,6 +11,8 @@ import {
   X,
   LogOut,
   MapPin,
+  Users,
+  ShieldAlert,
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
 
@@ -20,7 +22,7 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
 
-  const navigation = [
+  const baseNavigation = [
     { name: "Dashboard", href: "/dashboard", icon: Home },
     { name: "Report Flood", href: "/report-flood", icon: FileText },
     { name: "View Reports", href: "/reports", icon: MapPin },
@@ -30,6 +32,16 @@ const Layout = ({ children }) => {
     { name: "Notifications", href: "/notifications", icon: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg> },
     { name: "Notification Test", href: "/notification-test", icon: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path><circle cx="18" cy="8" r="3" fill="currentColor"/></svg> },
     { name: "Profile", href: "/profile", icon: User },
+  ];
+
+  const adminNavigation = [
+    { name: "User Management", href: "/admin/users", icon: Users },
+    { name: "Report Moderation", href: "/admin/reports", icon: ShieldAlert },
+  ];
+
+  const navigation = [
+    ...baseNavigation,
+    ...(user?.role === "admin" || user?.role === "official" ? adminNavigation : []),
   ];
 
   const handleLogout = () => {

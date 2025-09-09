@@ -6,6 +6,19 @@ import axios from "axios";
 const useAuthStore = create(
   persist(
     (set, get) => ({
+      // Role-based helper functions
+      isAdmin: () => {
+        const user = get().user;
+        return user?.role === "admin";
+      },
+      hasRole: (role) => {
+        const user = get().user;
+        return user?.role === role;
+      },
+      hasAnyRole: (roles) => {
+        const user = get().user;
+        return roles.includes(user?.role);
+      },
       user: null,
       token: null,
       isLoading: false,
@@ -152,6 +165,23 @@ const useAuthStore = create(
 
       // Clear error
       clearError: () => set({ error: null }),
+
+      // Update user role
+      updateRole: async (userId, newRole) => {
+        set({ isLoading: true, error: null });
+        try {
+          const response = await axios.put(`/api/admin/users/${userId}/role`, { role: newRole });
+          if (userId === get().user?._id) {
+            set({ user: { ...get().user, role: newRole } });
+          }
+          set({ isLoading: false });
+          return { success: true };
+        } catch (error) {
+          const errorMessage = error.response?.data?.message || "Failed to update role";
+          set({ isLoading: false, error: errorMessage });
+          return { success: false, error: errorMessage };
+        }
+      },
     }),
     {
       name: "flood-auth-storage",

@@ -3,25 +3,14 @@ const router = express.Router();
 const FloodReport = require("../models/FloodReport");
 const User = require("../models/User");
 const Alert = require("../models/Alert");
-const auth = require("../middleware/auth");
+const { auth, authorize } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
-
-// Admin middleware
-const adminAuth = (req, res, next) => {
-  if (!["admin", "official"].includes(req.user.role)) {
-    return res.status(403).json({
-      success: false,
-      message: "Admin access required",
-    });
-  }
-  next();
-};
 
 // Get system stats for admin dashboard
 router.get(
   "/stats",
   auth,
-  adminAuth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const [userStats, reportStats, systemHealth] = await Promise.all([
       // User statistics
@@ -87,7 +76,7 @@ router.get(
 router.put(
   "/reports/:id/moderate",
   auth,
-  adminAuth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { action, reason, notes } = req.body;
     const reportId = req.params.id;
@@ -143,7 +132,7 @@ router.put(
 router.get(
   "/users",
   auth,
-  adminAuth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { page = 1, limit = 20, search, role, verified } = req.query;
 
@@ -183,7 +172,7 @@ router.get(
 router.put(
   "/users/:id",
   auth,
-  adminAuth,
+  authorize(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { role, isVerified, trustScore, isActive } = req.body;
 

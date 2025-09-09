@@ -25,6 +25,9 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
+import AdminRoute from "./components/Auth/AdminRoute";
+import UserManagement from "./pages/admin/UserManagement";
+import ReportModeration from "./pages/admin/ReportModeration";
 import Alerts from "./pages/Alerts/Alerts";
 import Emergency from "./pages/Emergency/Emergency";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
@@ -303,6 +306,28 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+          {/* Admin Routes */}
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <UserManagement />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/reports"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <ReportModeration />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
             <Route
               path="/analytics"
               element={
