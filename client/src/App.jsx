@@ -22,6 +22,7 @@ import Register from "./pages/Auth/Register";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Emergency from "./pages/Dashboard/Emergency/Emergency";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
@@ -29,7 +30,6 @@ import AdminRoute from "./components/Auth/AdminRoute";
 import UserManagement from "./pages/admin/UserManagement";
 import ReportModeration from "./pages/admin/ReportModeration";
 import Alerts from "./pages/Alerts/Alerts";
-import Emergency from "./pages/Emergency/Emergency";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
 import Analytics from "./pages/Analytics/Analytics";
 import FloodMap from "./pages/Map/FloodMap";
@@ -213,8 +213,16 @@ function App() {
               path="/reset-password/:token"
               element={token ? <Navigate to="/dashboard" /> : <ResetPassword />}
             />
-            <Route path="/emergency" element={<Emergency />} />
-
+            <Route
+              path="/emergency"
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <Emergency />
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
             {/* Protected Routes */}
             <Route
               path="/dashboard"

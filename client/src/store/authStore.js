@@ -1,7 +1,7 @@
 // src/store/authStore.js
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import axios from "axios";
+import axiosInstance from "../services/axiosConfig";
 
 const useAuthStore = create(
   persist(
@@ -50,7 +50,7 @@ const useAuthStore = create(
         set({ isLoading: true, error: null });
 
         try {
-          const response = await axios.post("/api/auth/login", {
+          const response = await axiosInstance.post("/auth/login", {
             login: email || phone,
             password,
           });
@@ -60,9 +60,6 @@ const useAuthStore = create(
           // Store in localStorage
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-
-          // Set axios default header
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
           set({ user, token, isLoading: false, error: null });
 

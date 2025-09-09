@@ -113,6 +113,9 @@ const Analytics = () => {
     );
   }
 
+  const chartData = data?.reportsByDay || [];
+  const pieData = data?.reportsBySeverity || [];
+  const predictionData = data?.alertTrends || [];
   const renderLineChart = (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={chartData}>
@@ -203,7 +206,7 @@ const Analytics = () => {
         <div className="bg-white rounded-lg shadow p-4">
           <h3 className="text-lg font-semibold text-gray-800">Total Reports</h3>
           <p className="text-3xl font-bold text-blue-600">
-            {analyticsData?.totalReports}
+            {data?.stats?.totalReports}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-4">
@@ -211,7 +214,7 @@ const Analytics = () => {
             Verified Reports
           </h3>
           <p className="text-3xl font-bold text-green-600">
-            {analyticsData?.verifiedReports}
+            {data?.stats?.verifiedReports}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-4">
@@ -219,15 +222,15 @@ const Analytics = () => {
             Active Alerts
           </h3>
           <p className="text-3xl font-bold text-red-600">
-            {analyticsData?.activeAlerts}
+            {data?.stats?.activeAlerts}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-4">
           <h3 className="text-lg font-semibold text-gray-800">
-            Average Flood Level (cm)
+            Average Response Time (min)
           </h3>
           <p className="text-3xl font-bold text-purple-600">
-            {analyticsData?.averageFloodLevel?.toFixed(1)}
+            {data?.stats?.avgResponseTime}
           </p>
         </div>
       </div>
