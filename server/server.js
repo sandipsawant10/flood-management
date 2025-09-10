@@ -25,16 +25,18 @@ const {
 const { specs, swaggerUi } = require("./swagger/swagger");
 
 // Import routes
-const authRoutes = require("./routes/auth");
-const floodReportRoutes = require("./routes/floodReports");
-const alertRoutes = require("./routes/alerts");
-const emergencyRoutes = require("./routes/emergency");
-const predictionRoutes = require("./routes/predictions");
-const userRoutes = require("./routes/users");
-const analyticsRoutes = require("./routes/analytics");
-const adminRoutes = require("./routes/admin");
-const weatherRoutes = require("./routes/weather");
-const notificationRoutes = require("./routes/notifications");
+const authRoutes = require('./routes/auth');
+const floodReportRoutes = require('./routes/floodReports');
+const alertRoutes = require('./routes/alerts');
+const emergencyRoutes = require('./routes/emergency');
+const predictionRoutes = require('./routes/predictions');
+const userRoutes = require('./routes/users');
+const analyticsRoutes = require('./routes/analytics');
+const adminRoutes = require('./routes/admin');
+const adminMunicipalityRoutes = require('./routes/adminMunicipality');
+const adminRescuersRoutes = require('./routes/adminRescuers');
+const weatherRoutes = require('./routes/weather');
+const notificationRoutes = require('./routes/notifications');
 
 const app = express();
 const server = createServer(app);
@@ -216,16 +218,18 @@ app.use(
 );
 
 // ---------- API ROUTES ----------
-app.use("/api/auth", authRoutes);
-app.use("/api/flood-reports", floodReportRoutes);
-app.use("/api/alerts", alertRoutes);
-app.use("/api/emergency", emergencyRoutes);
-app.use("/api/predictions", predictionRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/analytics", analyticsRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/weather", weatherRoutes);
-app.use("/api/notifications", notificationRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/flood-reports', floodReportRoutes);
+app.use('/api/alerts', alertRoutes);
+app.use('/api/emergency', emergencyRoutes);
+app.use('/api/predictions', predictionRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/admin/municipality', adminMunicipalityRoutes);
+app.use('/api/admin/rescuers', adminRescuersRoutes);
+app.use('/api/weather', weatherRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Import and use notification test routes
 const notificationTestRoutes = require('./routes/notificationTest');

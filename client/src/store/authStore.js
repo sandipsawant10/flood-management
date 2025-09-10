@@ -9,15 +9,23 @@ const useAuthStore = create(
       // Role-based helper functions
       isAdmin: () => {
         const user = get().user;
-        return user?.role === "admin";
+        return user?.roles?.includes('admin') || user?.role === 'admin';
+      },
+      isMunicipality: () => {
+        const user = get().user;
+        return user?.roles?.includes('municipality') || user?.role === 'municipality';
+      },
+      isRescuer: () => {
+        const user = get().user;
+        return user?.roles?.includes('rescuer') || user?.role === 'rescuer';
       },
       hasRole: (role) => {
         const user = get().user;
-        return user?.role === role;
+        return user?.roles?.includes(role) || user?.role === role;
       },
       hasAnyRole: (roles) => {
         const user = get().user;
-        return roles.includes(user?.role);
+        return roles.some(role => user?.roles?.includes(role) || user?.role === role);
       },
       user: null,
       token: null,

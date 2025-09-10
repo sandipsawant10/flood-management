@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout/Layout";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import OfflineStatus from "./components/OfflineStatus";
+import adminRoutes from './routes/adminRoutes';
 
 // Pages
 import Home from "./pages/Home";
@@ -26,9 +27,9 @@ import Emergency from "./pages/Dashboard/Emergency/Emergency";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
-import AdminRoute from "./components/Auth/AdminRoute";
-import UserManagement from "./pages/admin/UserManagement";
-import ReportModeration from "./pages/admin/ReportModeration";
+// import AdminRoute from "./components/Auth/AdminRoute"; // No longer needed as adminRoutes handles this
+// import UserManagement from "./pages/admin/UserManagement"; // Moved to adminRoutes
+// import ReportModeration from "./pages/admin/ReportModeration"; // Moved to adminRoutes
 import Alerts from "./pages/Alerts/Alerts";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
 import Analytics from "./pages/Analytics/Analytics";
@@ -180,201 +181,52 @@ function App() {
       <Router>
         <div className="App min-h-screen bg-gray-50">
           <OfflineStatus />
+          <Layout>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
 
-          {/* Header */}
-          <header className="flex flex-col items-center py-6 bg-white border-b mb-6 w-full shadow-sm">
-            <img src={logo} alt="AquaAssist Logo" className="w-24 h-24 mb-2" />
-            <h1 className="text-3xl font-bold text-gray-800">
-              Aqua<span className="text-blue-500">Assists</span>
-            </h1>
-            {user && (
-              <p className="text-sm text-gray-600 mt-1">
-                Welcome back, {user.name}!
-              </p>
-            )}
-          </header>
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/emergency" element={<Emergency />} />
+                <Route path="/report-flood" element={<ReportFlood />} />
+                <Route path="/view-reports" element={<ViewReports />} />
+                <Route path="/report/:id" element={<ReportDetail />} />
+                <Route path="/alerts" element={<Alerts />} />
+                <Route path="/notification-center" element={<NotificationCenter />} />
+                <Route path="/profile" element={<ProfileSettings />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/map" element={<FloodMap />} />
+                <Route path="/notifications" element={<NotificationCenter />} />
+              </Route>
 
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/login"
-              element={token ? <Navigate to="/dashboard" /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={token ? <Navigate to="/dashboard" /> : <Register />}
-            />
-            <Route
-              path="/forgot-password"
-              element={token ? <Navigate to="/dashboard" /> : <ForgotPassword />}
-            />
-            <Route
-              path="/reset-password/:token"
-              element={token ? <Navigate to="/dashboard" /> : <ResetPassword />}
-            />
-            <Route
-              path="/emergency"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Emergency />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            {/* Protected Routes */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Dashboard />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/report-flood"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <ReportFlood />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/reports"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <ViewReports />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/reports/:id"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <ReportDetail />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/alerts"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Alerts />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/map"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <FloodMap />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/notifications"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <NotificationCenter />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/notification-test"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <NotificationTest />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <ProfileSettings />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
+              {/* Admin Routes */}
+              {adminRoutes.map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.element}
+                >
+                  {route.children && route.children.map((childRoute, childIndex) => (
+                    <Route
+                      key={childIndex}
+                      path={childRoute.path}
+                      element={childRoute.element}
+                    />
+                  ))}
+                </Route>
+              ))}
 
-          {/* Admin Routes */}
-          <Route
-            path="/admin/users"
-            element={
-              <ProtectedRoute>
-                <AdminRoute>
-                  <UserManagement />
-                </AdminRoute>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/reports"
-            element={
-              <ProtectedRoute>
-                <AdminRoute>
-                  <ReportModeration />
-                </AdminRoute>
-              </ProtectedRoute>
-            }
-          />
-            <Route
-              path="/analytics"
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Analytics />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Catch-all */}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-
-          <Toaster
-            position="top-right"
-            reverseOrder={false}
-            gutter={8}
-            toastOptions={{
-              className: "",
-              duration: 4000,
-              style: {
-                background: "#363636",
-                color: "#fff",
-                padding: "16px",
-                borderRadius: "8px",
-                fontSize: "14px",
-                maxWidth: "500px",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              },
-              success: { style: { background: "#10B981" } },
-              error: { style: { background: "#EF4444" } },
-              loading: { style: { background: "#3B82F6" } },
-              custom: {
-                style: { background: "#DC2626", border: "2px solid #FEE2E2" },
-              },
-            }}
-          />
+              {/* Fallback */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+          <Toaster position="top-right" />
         </div>
       </Router>
     </QueryClientProvider>

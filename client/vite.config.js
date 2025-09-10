@@ -4,9 +4,10 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  define: {
-    "process.env": process.env,
-  },
+// Removed 'define' option for process.env to mitigate security risk
+  // define: {
+  //   "process.env": process.env,
+  // },
   resolve: {
     alias: {
       "@components": path.resolve(__dirname, "./src/components"),
@@ -17,12 +18,14 @@ export default defineConfig({
   },
   server: {
     port: 5173, // Vite dev server port
-    strictPort: true, // fail if port is busy
-    hmr: {
-      host: "localhost", // explicit HMR host
-      protocol: "ws", // or "wss" if using HTTPS
-      port: 5173,
-    },
+    // strictPort: true, // fail if port is busy
+    // Removed explicit HMR host and port configuration
+    // hmr: {
+    //   host: "localhost", // explicit HMR host
+    //   protocol: "ws", // or "wss" if using HTTPS
+    //   port: 5173,
+    // },
+
     proxy: {
       "/api": "http://localhost:5000", // backend API proxy
     },

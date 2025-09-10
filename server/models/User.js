@@ -48,9 +48,27 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["citizen", "volunteer", "official", "admin"],
+      enum: ["citizen", "volunteer", "official", "admin", "municipality", "rescuer"],
       default: "citizen",
     },
+    roles: {
+      type: [String],
+      enum: ["citizen", "volunteer", "official", "admin", "municipality", "rescuer"],
+      default: ["citizen"],
+    },
+    rescueTeam: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'RescueTeam',
+      default: null
+    },
+    isTeamLeader: {
+      type: Boolean,
+      default: false
+    },
+    specializations: [{
+      type: String,
+      enum: ['medical', 'firefighting', 'waterRescue', 'search', 'evacuation', 'logistics']
+    }],
     trustScore: {
       type: Number,
       default: 100,
