@@ -27,9 +27,7 @@ import Emergency from "./pages/Dashboard/Emergency/Emergency";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import ReportDetail from "./pages/Reports/ReportDetail";
-// import AdminRoute from "./components/Auth/AdminRoute"; // No longer needed as adminRoutes handles this
-// import UserManagement from "./pages/admin/UserManagement"; // Moved to adminRoutes
-// import ReportModeration from "./pages/admin/ReportModeration"; // Moved to adminRoutes
+import RescuerDashboard from "./pages/rescuer/RescuerDashboard";
 import Alerts from "./pages/Alerts/Alerts";
 import ProfileSettings from "./pages/Profile/ProfileSettings";
 import Analytics from "./pages/Analytics/Analytics";
@@ -197,6 +195,7 @@ function App() {
                 <Route path="/report-flood" element={<ReportFlood />} />
                 <Route path="/view-reports" element={<ViewReports />} />
                 <Route path="/report/:id" element={<ReportDetail />} />
+                <Route path="/rescuer" element={<RescuerDashboard />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/notification-center" element={<NotificationCenter />} />
                 <Route path="/profile" element={<ProfileSettings />} />

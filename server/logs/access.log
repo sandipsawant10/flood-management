@@ -778,3 +778,53 @@ info: ::1 - - [10/Sep/2025:18:00:43 +0000] "GET /api-docs/swagger-ui-standalone-
 info: ::1 - - [10/Sep/2025:18:00:43 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Trae/1.100.3 Chrome/132.0.6834.210 Electron/34.5.1 Safari/537.36" {"service":"Aqua Assists-api","timestamp":"2025-09-10T18:00:43.410Z"}
 warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-10T18:04:39.573Z"}
 info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-10T18:05:03.422Z"}
+info: 🚀 Aqua Assists Server running on port 5000 {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.292Z"}
+info: 📚 API Documentation: http://localhost:5000/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.296Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.297Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:21.078Z"}
+info: User connected: 2-GkPCu1AWaH5r_PAAAB {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:30:24.935Z"}
+info: User disconnected: 2-GkPCu1AWaH5r_PAAAB {"service":"Aqua Assists-api","timestamp":"2025-09-11T07:54:18.440Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:30:58.272Z"}
+info: User connected: Zc3-7QYeU0UUGd2lAAAD {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:30:58.576Z"}
+info: User disconnected: Zc3-7QYeU0UUGd2lAAAD {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:00.690Z"}
+info: User connected: 0RloJzabwBsBPYKMAAAF {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:01.814Z"}
+info: User disconnected: 0RloJzabwBsBPYKMAAAF {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:03.242Z"}
+info: User connected: ITTI9qxpHCwukB0tAAAH {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:05.126Z"}
+info: User connected: roWxqePwg5DQppADAAAJ {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:05.921Z"}
+info: User disconnected: ITTI9qxpHCwukB0tAAAH {"service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:50.146Z"}
+info: User disconnected: roWxqePwg5DQppADAAAJ {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:04.241Z"}
+info: User connected: tbZ7xLfaQ8rfhkruAAAL {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:07.268Z"}
+info: User disconnected: tbZ7xLfaQ8rfhkruAAAL {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:07.307Z"}
+info: User connected: 2aRtxNX5WCHHl7nuAAAN {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:08.564Z"}
+info: User disconnected: 2aRtxNX5WCHHl7nuAAAN {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:33.031Z"}
+info: User connected: Z5WJhQNqssnsyHiVAAAP {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.155Z"}
+info: User disconnected: Z5WJhQNqssnsyHiVAAAP {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.168Z"}
+info: User connected: I57cnXYcFKSPyGfYAAAR {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.697Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T09:48:45.604Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:20:15.734Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:22:45.142Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:25:02.600Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:27:06.348Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:29:03.744Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:31:36.498Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:34:03.786Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:34:37.019Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:36:14.718Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:36:53.286Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:37:13.096Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:37:32.482Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:38:33.736Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:39:01.501Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:42:04.063Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:42:32.447Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:43:23.666Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:43:40.232Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:44:35.694Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:47:31.971Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T10:48:48.139Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:02:30.860Z"}
+info: User disconnected: I57cnXYcFKSPyGfYAAAR {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:07:47.339Z"}
+info: User connected: yRONfMqku44QWioCAAAT {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:07:49.396Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:31:24.849Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:31:58.199Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-11T11:38:43.710Z"}

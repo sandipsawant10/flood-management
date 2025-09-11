@@ -37,6 +37,7 @@ const adminMunicipalityRoutes = require('./routes/adminMunicipality');
 const adminRescuersRoutes = require('./routes/adminRescuers');
 const weatherRoutes = require('./routes/weather');
 const notificationRoutes = require('./routes/notifications');
+const financialAidRoutes = require('./routes/financialAid');
 
 const app = express();
 const server = createServer(app);
@@ -192,31 +193,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// ---------- HEALTH CHECK ----------
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    version: process.env.npm_package_version || "1.0.0",
-    environment: process.env.NODE_ENV || "development",
-    database:
-      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
-    memory: process.memoryUsage(),
-    pid: process.pid,
-  });
-});
-
-// ---------- API DOCUMENTATION ----------
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(specs, {
-    customSiteTitle: "Aqua Assists API Documentation",
-    customCss: ".swagger-ui .topbar { display: none }",
-  })
-);
-
 // ---------- API ROUTES ----------
 app.use('/api/auth', authRoutes);
 app.use('/api/flood-reports', floodReportRoutes);
@@ -230,6 +206,7 @@ app.use('/api/admin/municipality', adminMunicipalityRoutes);
 app.use('/api/admin/rescuers', adminRescuersRoutes);
 app.use('/api/weather', weatherRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/financial-aid', financialAidRoutes);
 
 // Import and use notification test routes
 const notificationTestRoutes = require('./routes/notificationTest');

@@ -800,3 +800,53 @@
 {"level":"info","message":"::1 - - [10/Sep/2025:18:00:43 +0000] \"GET /api-docs/swagger-ui-bundle.js HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Trae/1.100.3 Chrome/132.0.6834.210 Electron/34.5.1 Safari/537.36\"","service":"Aqua Assists-api","timestamp":"2025-09-10T18:00:43.410Z"}
 {"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-10T18:04:39.573Z"}
 {"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-10T18:05:03.422Z"}
+{"level":"info","message":"🚀 Aqua Assists Server running on port 5000","service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.292Z"}
+{"level":"info","message":"📚 API Documentation: http://localhost:5000/api-docs","service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.296Z"}
+{"level":"info","message":"🌍 Environment: development","service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:19.297Z"}
+{"level":"info","message":"MongoDB Connected","service":"Aqua Assists-api","timestamp":"2025-09-11T07:21:21.078Z"}
+{"level":"info","message":"User connected: 2-GkPCu1AWaH5r_PAAAB","service":"Aqua Assists-api","timestamp":"2025-09-11T07:30:24.935Z"}
+{"level":"info","message":"User disconnected: 2-GkPCu1AWaH5r_PAAAB","service":"Aqua Assists-api","timestamp":"2025-09-11T07:54:18.440Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T08:30:58.272Z"}
+{"level":"info","message":"User connected: Zc3-7QYeU0UUGd2lAAAD","service":"Aqua Assists-api","timestamp":"2025-09-11T08:30:58.576Z"}
+{"level":"info","message":"User disconnected: Zc3-7QYeU0UUGd2lAAAD","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:00.690Z"}
+{"level":"info","message":"User connected: 0RloJzabwBsBPYKMAAAF","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:01.814Z"}
+{"level":"info","message":"User disconnected: 0RloJzabwBsBPYKMAAAF","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:03.242Z"}
+{"level":"info","message":"User connected: ITTI9qxpHCwukB0tAAAH","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:05.126Z"}
+{"level":"info","message":"User connected: roWxqePwg5DQppADAAAJ","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:05.921Z"}
+{"level":"info","message":"User disconnected: ITTI9qxpHCwukB0tAAAH","service":"Aqua Assists-api","timestamp":"2025-09-11T08:31:50.146Z"}
+{"level":"info","message":"User disconnected: roWxqePwg5DQppADAAAJ","service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:04.241Z"}
+{"level":"info","message":"User connected: tbZ7xLfaQ8rfhkruAAAL","service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:07.268Z"}
+{"level":"info","message":"User disconnected: tbZ7xLfaQ8rfhkruAAAL","service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:07.307Z"}
+{"level":"info","message":"User connected: 2aRtxNX5WCHHl7nuAAAN","service":"Aqua Assists-api","timestamp":"2025-09-11T09:35:08.564Z"}
+{"level":"info","message":"User disconnected: 2aRtxNX5WCHHl7nuAAAN","service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:33.031Z"}
+{"level":"info","message":"User connected: Z5WJhQNqssnsyHiVAAAP","service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.155Z"}
+{"level":"info","message":"User disconnected: Z5WJhQNqssnsyHiVAAAP","service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.168Z"}
+{"level":"info","message":"User connected: I57cnXYcFKSPyGfYAAAR","service":"Aqua Assists-api","timestamp":"2025-09-11T09:47:38.697Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T09:48:45.604Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:20:15.734Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:22:45.142Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:25:02.600Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:27:06.348Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:29:03.744Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:31:36.498Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:34:03.786Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:34:37.019Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:36:14.718Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:36:53.286Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:37:13.096Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:37:32.482Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:38:33.736Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:39:01.501Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:42:04.063Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:42:32.447Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:43:23.666Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:43:40.232Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:44:35.694Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:47:31.971Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T10:48:48.139Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T11:02:30.860Z"}
+{"level":"info","message":"User disconnected: I57cnXYcFKSPyGfYAAAR","service":"Aqua Assists-api","timestamp":"2025-09-11T11:07:47.339Z"}
+{"level":"info","message":"User connected: yRONfMqku44QWioCAAAT","service":"Aqua Assists-api","timestamp":"2025-09-11T11:07:49.396Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T11:31:24.849Z"}
+{"level":"info","message":"MongoDB reconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T11:31:58.199Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"Aqua Assists-api","timestamp":"2025-09-11T11:38:43.710Z"}
