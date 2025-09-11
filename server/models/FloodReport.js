@@ -35,14 +35,13 @@ const floodReportSchema = new mongoose.Schema(
     },
     waterLevel: {
       type: String,
-      enum: [
-        "ankle-deep",
-        "knee-deep",
-        "waist-deep",
-        "chest-deep",
-        "above-head",
-      ],
-      required: true,
+      enum: ["low", "medium", "high", "critical"],
+      default: "low",
+    },
+    depth: {
+      type: Number,
+      min: 0,
+      default: 0,
     },
     description: {
       type: String,
@@ -166,5 +165,29 @@ floodReportSchema.methods.checkExpiry = function () {
     return this.save();
   }
 };
+
+
+// Pre-save hook to calculate depth based on waterLevel if depth is not provided
+floodReportSchema.pre('save', function (next) {
+  if (this.isModified('waterLevel') && (this.depth === undefined || this.depth === 0)) {
+    switch (this.waterLevel) {
+      case 'low':
+        this.depth = Math.random() * (0.5 - 0.1) + 0.1; // 0.1 to 0.5 meters
+        break;
+      case 'medium':
+        this.depth = Math.random() * (1.5 - 0.6) + 0.6; // 0.6 to 1.5 meters
+        break;
+      case 'high':
+        this.depth = Math.random() * (3.0 - 1.6) + 1.6; // 1.6 to 3.0 meters
+        break;
+      case 'critical':
+        this.depth = Math.random() * (6.0 - 3.1) + 3.1; // 3.1 to 6.0 meters
+        break;
+      default:
+        this.depth = 0; // Default to 0 if waterLevel is not recognized
+    }
+  }
+  next();
+});
 
 module.exports = mongoose.model("FloodReport", floodReportSchema);

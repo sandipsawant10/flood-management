@@ -10,15 +10,78 @@ const notificationService = require("../services/notificationService");
 const router = express.Router();
 
 // Submit new flood report
-router.post("/", auth, upload.array("media", 5), async (req, res) => {
-  try {
-    // Handler code here (not provided in original; assumed to exist)
-    res.status(200).json({ message: "Flood report submitted" });
-  } catch (error) {
-    console.error("Error submitting flood report:", error);
-    res.status(500).json({ message: "Server error" });
+router.post(
+  "/",
+  auth,
+  upload.array("media", 5),
+  [
+    body("depth")
+      .optional()
+      .isFloat({ min: 0 })
+      .withMessage("Depth must be a non-negative number"),
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { location, severity, waterLevel, description, depth } = req.body;
+      const reportedBy = req.user.userId;
+      const mediaFiles = req.files ? req.files.map((file) => file.path) : [];
+
+      // Fetch weather data for the reported location
+      let weatherConditions = {};
+      try {
+        if (location && location.latitude && location.longitude) {
+          weatherConditions = await weatherService.getCurrentWeather(
+            location.latitude,
+            location.longitude
+          );
+        }
+      } catch (weatherError) {
+        console.warn("Could not fetch weather data:", weatherError.message);
+        // Continue without weather data if service fails
+      }
+
+      const newReport = new FloodReport({
+        reportedBy,
+        location: {
+          type: "Point",
+          coordinates: [location.longitude, location.latitude],
+          address: location.address,
+          district: location.district,
+          state: location.state,
+          landmark: location.landmark,
+        },
+        severity,
+        waterLevel,
+        depth: depth || 0, // Ensure depth is set, default to 0 if not provided
+        description,
+        mediaFiles,
+        weatherConditions,
+        urgencyLevel: calculateUrgencyLevel(severity, waterLevel, {}), // Initial urgency
+      });
+
+      await newReport.save();
+
+      // Send notifications to relevant rescuers/admins
+      notificationService.sendNotificationToRescuers({
+        type: "new_report",
+        message: `New flood report in ${location.district} - ${severity} severity.`,
+        link: `/reports/${newReport._id}`,
+        location: newReport.location.coordinates,
+        severity: newReport.severity,
+      });
+
+      res.status(201).json(newReport);
+    } catch (error) {
+      console.error("Error submitting flood report:", error);
+      res.status(500).json({ message: "Server error" });
+    }
   }
-});
+);
 
 // Get flood reports with optional filters (for admin/moderation)
 router.get(
@@ -72,6 +135,14 @@ router.get(
       .optional()
       .isIn(["asc", "desc"])
       .withMessage("Invalid sort order"),
+    query("minDepth")
+      .optional()
+      .isFloat({ min: 0 })
+      .withMessage("Min depth must be a non-negative number"),
+    query("maxDepth")
+      .optional()
+      .isFloat({ min: 0 })
+      .withMessage("Max depth must be a non-negative number"),
   ],
   async (req, res) => {
     try {
@@ -90,6 +161,8 @@ router.get(
         limit = 10,
         sortBy = "createdAt",
         sortOrder = "desc",
+        minDepth,
+        maxDepth,
       } = req.query;
       const filter = {};
       if (status) filter.verificationStatus = status;
@@ -100,6 +173,11 @@ router.get(
         filter.createdAt = {};
         if (startDate) filter.createdAt.$gte = startDate;
         if (endDate) filter.createdAt.$lte = endDate;
+      }
+      if (minDepth || maxDepth) {
+        filter.depth = {};
+        if (minDepth) filter.depth.$gte = parseFloat(minDepth);
+        if (maxDepth) filter.depth.$lte = parseFloat(maxDepth);
       }
       const sort = {};
       sort[sortBy] = sortOrder === "desc" ? -1 : 1;
@@ -195,6 +273,10 @@ router.put(
         "above-head",
       ])
       .withMessage("Valid water level required"),
+    body("depth")
+      .optional()
+      .isFloat({ min: 0 })
+      .withMessage("Depth must be a non-negative number"),
     body("description")
       .optional()
       .trim()
@@ -234,6 +316,7 @@ router.put(
       const allowedFields = [
         "severity",
         "waterLevel",
+        "depth", // Add depth to allowed fields
         "description",
         "impact",
         "weatherConditions",

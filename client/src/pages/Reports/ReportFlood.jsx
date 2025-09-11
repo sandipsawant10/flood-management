@@ -36,6 +36,7 @@ const ReportFlood = () => {
       },
       severity: "",
       waterLevel: "",
+      depth: "", // Add new depth field
       description: "",
       urgencyLevel: 5,
     },
@@ -49,6 +50,7 @@ const ReportFlood = () => {
   const watchSeverity = watch("severity");
   const watchWaterLevel = watch("waterLevel");
   const watchUrgency = watch("urgencyLevel");
+  const watchDepth = watch("depth");
 
   // Compute urgency automatically
   useEffect(() => {
@@ -67,6 +69,19 @@ const ReportFlood = () => {
 
     setValue("urgencyLevel", urgency);
   }, [watchSeverity, watchWaterLevel, setValue]);
+
+  // Automatically set depth based on waterLevel if depth is not manually entered
+  useEffect(() => {
+    if (!watchDepth) { // Only auto-fill if depth is not already set by the user
+      let newDepth = "";
+      if (watchWaterLevel === "ankle-deep") newDepth = 0.15;
+      else if (watchWaterLevel === "knee-deep") newDepth = 0.5;
+      else if (watchWaterLevel === "waist-deep") newDepth = 1.0;
+      else if (watchWaterLevel === "chest-deep") newDepth = 2.0;
+      else if (watchWaterLevel === "above-head") newDepth = 3.0;
+      setValue("depth", newDepth);
+    }
+  }, [watchWaterLevel, watchDepth, setValue]);
 
   // File uploads
   const onDrop = useCallback((acceptedFiles) => {
@@ -148,6 +163,7 @@ const ReportFlood = () => {
 
       formData.append("severity", data.severity);
       formData.append("waterLevel", data.waterLevel);
+      formData.append("depth", data.depth || ""); // Add depth to form data
       formData.append("description", data.description);
       formData.append("urgencyLevel", data.urgencyLevel);
 
@@ -342,24 +358,39 @@ const ReportFlood = () => {
                 Water Level *
               </label>
               <select
-                {...register("waterLevel", {
-                  required: "Water level is required",
-                })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                id="waterLevel"
+                {...register("waterLevel", { required: true })}
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-                <option value="">Select Water Level</option>
-                <option value="ankle-deep">Ankle Deep (0-15 cm)</option>
-                <option value="knee-deep">Knee Deep (15-50 cm)</option>
-                <option value="waist-deep">Waist Deep (50-100 cm)</option>
-                <option value="chest-deep">Chest Deep (1-2 meters)</option>
-                <option value="above-head">Above Head (2+ meters)</option>
+                <option value="">Select water level</option>
+                <option value="ankle-deep">Ankle-deep</option>
+                <option value="knee-deep">Knee-deep</option>
+                <option value="waist-deep">Waist-deep</option>
+                <option value="chest-deep">Chest-deep</option>
+                <option value="above-head">Above Head</option>
               </select>
               {errors.waterLevel && (
-                <p className="text-red-600 text-sm mt-1">
-                  {errors.waterLevel.message}
-                </p>
+                <p className="mt-2 text-sm text-red-600">Water level is required.</p>
               )}
             </div>
+          </div>
+
+          <div>
+            <label htmlFor="depth" className="block text-sm font-medium text-gray-700">
+              Water Depth (meters)
+            </label>
+            <input
+              type="number"
+              id="depth"
+              step="0.01"
+              min="0"
+              {...register("depth", { valueAsNumber: true, min: 0 })}
+              placeholder="Enter water depth in meters"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            />
+            {errors.depth && (
+              <p className="mt-2 text-sm text-red-600">Depth must be a positive number.</p>
+            )}
           </div>
 
           {/* Urgency Slider */}
