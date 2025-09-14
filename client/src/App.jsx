@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material';
 import HomePage from './pages/HomePage';
 import ReportReviewPage from './pages/ReportReviewPage';
-import PublicDashboardPage from './pages/PublicDashboardPage';
+import DashboardPage from './pages/DashboardPage';
 import ReportFormPage from './pages/ReportFormPage';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/report" element={<ReportFormPage />} />
-            <Route path="/dashboard" element={<PublicDashboardPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/admin/review" element={<ReportReviewPage />} />
           </Routes>
         </Box>

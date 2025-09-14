@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Container, CircularProgress, Alert } from '@mui/material';
 import ReportDetails from '../components/Reports/ReportDetails';
-import * as reportService from '../services/reportService';
+import * as floodReportService from '../services/floodReportService';
 
 const ReportReviewPage = () => {
   const [reports, setReports] = useState([]);
@@ -12,7 +12,7 @@ const ReportReviewPage = () => {
     const fetchReports = async () => {
       try {
         setLoading(true);
-        const data = await reportService.getAllReports();
+        const data = await floodReportService.getAdminFloodReports();
         setReports(data);
       } catch (err) {
         setError('Failed to fetch reports: ' + err.message);
@@ -28,7 +28,7 @@ const ReportReviewPage = () => {
     try {
       // This would typically be an API call to update the report status
       // For now, we'll just update the local state
-      await reportService.updateReportStatus(reportId, 'reviewed');
+      await floodReportService.updateFloodReportStatus(reportId, 'reviewed');
       setReports(reports.map(report => report._id === reportId ? { ...report, status: 'reviewed' } : report));
     } catch (err) {
       setError('Failed to mark report as reviewed: ' + err.message);
@@ -40,7 +40,7 @@ const ReportReviewPage = () => {
     try {
       // This would typically be an API call to update the report status
       // For now, we'll just update the local state
-      await reportService.updateReportStatus(reportId, 'needs_manual_review');
+      await floodReportService.updateFloodReportStatus(reportId, 'needs_manual_review');
       setReports(reports.map(report => report._id === reportId ? { ...report, status: 'needs_manual_review' } : report));
     } catch (err) {
       setError('Failed to mark report as needing manual review: ' + err.message);

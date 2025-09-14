@@ -1074,3 +1074,13 @@ info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2
 info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-12T11:58:01.990Z"}
 warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-12T12:12:45.676Z"}
 info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-12T12:39:21.075Z"}
+info: 🚀 Aqua Assists Server running on port 5003 {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:52:58.570Z"}
+info: 📚 API Documentation: http://localhost:5003/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:52:58.573Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:52:58.574Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:53:19.990Z"}
+info: 🚀 Aqua Assists Server running on port 5003 {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:59:11.867Z"}
+info: 📚 API Documentation: http://localhost:5003/api-docs {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:59:11.870Z"}
+info: 🌍 Environment: development {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:59:11.870Z"}
+info: MongoDB Connected {"service":"Aqua Assists-api","timestamp":"2025-09-14T16:59:30.464Z"}
+warn: MongoDB disconnected {"service":"Aqua Assists-api","timestamp":"2025-09-14T17:11:54.212Z"}
+info: MongoDB reconnected {"service":"Aqua Assists-api","timestamp":"2025-09-14T17:12:07.698Z"}
