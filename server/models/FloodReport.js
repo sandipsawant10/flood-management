@@ -126,6 +126,30 @@ const floodReportSchema = new mongoose.Schema(
       type: String,
       enum: ["low", "medium", "high", "critical"],
     },
+    verification: {
+      status: {
+        type: String,
+        enum: ["pending", "verified", "not-matched", "manual-review"],
+        default: "pending",
+      },
+      summary: String,
+      weather: {
+        status: { type: String, enum: ["pending", "matched", "not-matched"], default: "pending" },
+        snapshot: Object, // Store raw API response or key data
+        message: String, // e.g., "Heavy rain detected"
+      },
+      news: {
+        status: { type: String, enum: ["pending", "matched", "not-matched"], default: "pending" },
+        snapshot: Object, // Store raw API response or key data
+        message: String, // e.g., "News matches report"
+      },
+      social: {
+        // Instagram (Optional, stubbed for future use)
+        status: { type: String, enum: ["pending", "matched", "not-matched", "coming-soon"], default: "coming-soon" },
+        snapshot: Object, // Store raw API response or key data
+        message: String, // e.g., "Social media posts found"
+      },
+    },
   },
   {
     timestamps: true,

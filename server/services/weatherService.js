@@ -1,29 +1,58 @@
 const axios = require("axios");
 
+const OPENWEATHER_API_KEY = process.env.VITE_WEATHER_API_KEY;
+const OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5';
+
 const weatherService = {
-  // Get current weather using Open-Meteo (free, no API key)
   getCurrentWeather: async (latitude, longitude) => {
     try {
+      if (!OPENWEATHER_API_KEY) {
+        console.warn('OpenWeatherMap API key not configured. Using mock data for weather.');
+        return {
+          temperature: 25 + Math.random() * 10, // 25-35°C
+          humidity: 60 + Math.random() * 30, // 60-90%
+          precipitation: Math.random() * 5, // 0-5mm
+          windSpeed: Math.random() * 20, // 0-20 km/h
+          windDirection: Math.random() * 360,
+          dailyPrecipitation: Math.random() * 20, // 0-20mm
+          source: "Mock Data (API Key Missing)",
+          timestamp: new Date().toISOString(),
+        };
+      }
+
       console.log(
         `Fetching weather for coordinates: ${latitude}, ${longitude}`
       );
 
-      const response = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m&daily=precipitation_sum&timezone=auto`,
-        { timeout: 5000 }
-      );
+      const response = await axios.get(`${OPENWEATHER_BASE_URL}/weather`, {
+        params: {
+          lat: latitude,
+          lon: longitude,
+          appid: OPENWEATHER_API_KEY,
+          units: 'metric', // or 'imperial'
+        },
+        timeout: 5000
+      });
 
-      const current = response.data.current;
-      const daily = response.data.daily;
+      const data = response.data;
+      const weather = data.main;
+      const wind = data.wind;
+      const clouds = data.clouds;
 
       return {
-        temperature: Math.round(current.temperature_2m * 10) / 10, // Round to 1 decimal
-        humidity: Math.round(current.relative_humidity_2m),
-        precipitation: current.precipitation || 0,
-        windSpeed: Math.round(current.wind_speed_10m * 10) / 10,
-        windDirection: current.wind_direction_10m || 0,
-        dailyPrecipitation: daily.precipitation_sum?.[0] || 0,
-        source: "Open-Meteo",
+        temperature: weather.temp,
+        humidity: weather.humidity,
+        pressure: weather.pressure,
+        windSpeed: wind.speed,
+        windDirection: wind.deg,
+        description: data.weather[0].description,
+        icon: data.weather[0].icon,
+        // OpenWeatherMap does not directly provide daily precipitation sum in current weather API
+        // This would require a different API endpoint (e.g., One Call API or historical data)
+        // For now, we can approximate or leave it as 0 if not available.
+        precipitation: data.rain?.['1h'] || data.snow?.['1h'] || 0, // Rain/snow in last hour
+        dailyPrecipitation: 0, // Placeholder, needs separate API call for accurate data
+        source: "OpenWeatherMap",
         timestamp: new Date().toISOString(),
       };
     } catch (error) {

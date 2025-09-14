@@ -202,4 +202,51 @@ router.put(
   })
 );
 
+// Get all flood reports with detailed verification data for admin review
+router.get(
+  "/reports",
+  auth,
+  authorize(["admin", "official"]),
+  asyncHandler(async (req, res) => {
+    const {
+      page = 1,
+      limit = 20,
+      status,
+      urgency,
+      location,
+      sortBy = "createdAt",
+      order = "desc",
+    } = req.query;
+
+    let query = {};
+    if (status) query["verification.status"] = status;
+    if (urgency) query.urgencyLevel = { $gte: parseInt(urgency) };
+    if (location) query["location.name"] = { $regex: location, $options: "i" };
+
+    const sortOptions = {};
+    sortOptions[sortBy] = order === "desc" ? -1 : 1;
+
+    const reports = await FloodReport.find(query)
+      .populate("reportedBy", "name email phone trustScore")
+      .sort(sortOptions)
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .lean(); // Use .lean() for faster retrieval if not modifying docs
+
+    const total = await FloodReport.countDocuments(query);
+
+    res.json({
+      success: true,
+      data: {
+        reports,
+        pagination: {
+          page: parseInt(page),
+          pages: Math.ceil(total / limit),
+          total,
+        },
+      },
+    });
+  })
+);
+
 module.exports = router;

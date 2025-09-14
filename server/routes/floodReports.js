@@ -7,6 +7,8 @@ const upload = require("../middleware/upload");
 const roleAuth = require("../middleware/roleAuth");
 const weatherService = require("../services/weatherService");
 const notificationService = require("../services/notificationService");
+const newsService = require("../services/newsService");
+const socialService = require("../services/socialService");
 const router = express.Router();
 
 // Submit new flood report
@@ -33,16 +35,85 @@ router.post(
 
       // Fetch weather data for the reported location
       let weatherConditions = {};
-      try {
-        if (location && location.latitude && location.longitude) {
-          weatherConditions = await weatherService.getCurrentWeather(
+      let weatherVerification = { status: "pending", summary: "N/A" };
+      if (location && location.latitude && location.longitude) {
+        try {
+          const weatherData = await weatherService.getCurrentWeather(
             location.latitude,
             location.longitude
           );
+          weatherConditions = weatherData; // Store full weather data
+
+          // Basic weather verification logic
+          const floodRisk = await weatherService.getFloodRiskAssessment(
+            location.latitude,
+            location.longitude,
+            weatherData
+          );
+          weatherVerification = {
+            status: floodRisk.status,
+            summary: floodRisk.summary,
+            snapshot: weatherData, // Store the raw weather data
+          };
+        } catch (weatherError) {
+          console.warn("Could not fetch weather data:", weatherError.message);
+          weatherVerification = { status: "error", summary: "Failed to fetch weather data" };
         }
-      } catch (weatherError) {
-        console.warn("Could not fetch weather data:", weatherError.message);
-        // Continue without weather data if service fails
+      }
+
+      // Fetch news data for the reported location and time
+      let newsVerification = { status: "pending", summary: "N/A" };
+      try {
+        if (location && location.district && location.state) {
+          const newsData = await newsService.getFloodNews(
+            `${location.district} ${location.state} flood`,
+            location.district,
+            new Date(newReport.createdAt)
+          );
+          if (newsData && newsData.articles && newsData.articles.length > 0) {
+            newsVerification = {
+              status: "verified",
+              summary: `${newsData.articles.length} relevant news articles found.`, // Updated message
+              snapshot: newsData, // Store the raw news data
+            };
+          } else {
+            newsVerification = {
+              status: "not-matched",
+              summary: "No relevant news found.",
+              snapshot: newsData, // Store the raw news data
+            };
+          }
+        }
+      } catch (newsError) {
+        console.warn("Could not fetch news data:", newsError.message);
+        newsVerification = { status: "error", summary: "Failed to fetch news data" };
+      }
+
+      // Fetch social media data (stubbed for Instagram)
+      let socialVerification = { status: "coming-soon", summary: "Coming soon - Optional" };
+      try {
+        // Only call if access token is available and feature is enabled
+        // if (process.env.VITE_INSTAGRAM_ACCESS_TOKEN) {
+        //   const socialData = await socialService.getInstagramPosts(location.latitude, location.longitude);
+        //   socialVerification = {
+        //     status: socialData.status,
+        //     summary: socialData.summary,
+        //     snapshot: socialData.snapshot,
+        //   };
+        // }
+      } catch (socialError) {
+        console.warn("Could not fetch social media data:", socialError.message);
+        socialVerification = { status: "error", summary: "Failed to fetch social media data" };
+      }
+
+      // Determine overall verification status
+      let overallStatus = "pending";
+      if (weatherVerification.status === "verified" || newsVerification.status === "verified") {
+        overallStatus = "verified";
+      } else if (weatherVerification.status === "not-matched" && newsVerification.status === "not-matched") {
+        overallStatus = "not-matched";
+      } else if (weatherVerification.status === "pending" && newsVerification.status === "pending") {
+        overallStatus = "manual-review";
       }
 
       const newReport = new FloodReport({
@@ -61,6 +132,12 @@ router.post(
         description,
         mediaFiles,
         weatherConditions,
+        verification: {
+          overallStatus: overallStatus,
+          weather: weatherVerification,
+          news: newsVerification,
+          social: socialVerification,
+        },
         urgencyLevel: calculateUrgencyLevel(severity, waterLevel, {}), // Initial urgency
       });
 

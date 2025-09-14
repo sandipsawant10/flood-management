@@ -29,4 +29,34 @@ export const floodReportService = {
     });
     return response.data;
   },
+
+  submitFloodReport: async (reportData) => {
+    try {
+      const response = await axios.post(`${API_URL}/flood-reports`, reportData);
+      return response.data;
+    } catch (error) {
+      console.error('Error submitting flood report:', error);
+      throw error;
+    }
+  },
+
+  getAdminFloodReports: async (filters = {}) => {
+    try {
+      const response = await axios.get(`${API_URL}/admin/reports`, { params: filters });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching admin flood reports:', error);
+      throw error;
+    }
+  },
+
+  updateFloodReportStatus: async (reportId, statusUpdate) => {
+    try {
+      const response = await axios.put(`${API_URL}/admin/reports/${reportId}/status`, statusUpdate);
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating report ${reportId} status:`, error);
+      throw error;
+    }
+  },
 };
