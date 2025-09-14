@@ -24,10 +24,13 @@ import {
   Sun,
   Wind,
 } from "lucide-react"; // Added CloudRain, Sun, Wind
-import { format, parseISO } from "date-fns"; // Added parseISO
+import { ambulance, bank, fire_station, hospital, school, police, pharmacy, shelter, community_centre, bus_station, railway_station, public_toilets, drinking_water, fuel, charging_station, assembly_point, college, social_facility } from '../../assets/icons/emergencyResources';
+import { MapControl, withLeaflet } from "react-leaflet";
+
 import { Legend } from "leaflet";
 
 import { floodReportService } from "../../services/floodReportService";
+import { fetchNearbyEmergencyResources } from "../../services/overpassService";
 
 const HeatmapLayer = ({ points, longitudeExtractor, latitudeExtractor, intensityExtractor, ...options }) => {
   const map = useMap();
@@ -45,6 +48,39 @@ const HeatmapLayer = ({ points, longitudeExtractor, latitudeExtractor, intensity
       map.removeLayer(heat);
     };
   }, [map, points, longitudeExtractor, latitudeExtractor, intensityExtractor, options]);
+
+  return null;
+};
+
+const EmergencyResourceLegend = ({ amenityIconMapping }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    const legend = L.control({ position: "topright" });
+
+    legend.onAdd = function () {
+      const div = L.DomUtil.create("div", "info legend");
+      div.innerHTML += "<h4>Emergency Resources</h4>";
+
+      for (const amenityType in amenityIconMapping) {
+        if (amenityIconMapping.hasOwnProperty(amenityType)) {
+          const iconUrl = amenityIconMapping[amenityType].options.iconUrl;
+          const color = amenityIconMapping[amenityType].options.shadowColor;
+
+          div.innerHTML +=
+            `<img src="${iconUrl}" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle; background-color: ${color}; padding: 2px; border-radius: 3px;"/> ` +
+            `${amenityType.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}<br>`;
+        }
+      }
+      return div;
+    };
+
+    legend.addTo(map);
+
+    return () => {
+      legend.remove();
+    };
+  }, [map, amenityIconMapping]);
 
   return null;
 };
@@ -102,6 +138,408 @@ const FloodMap = ({
   const [selectedReport, setSelectedReport] = useState(null);
   const [minDepth, setMinDepth] = useState(''); // New state for min depth filter
   const [maxDepth, setMaxDepth] = useState(''); // New state for max depth filter
+  const [emergencyRadius, setEmergencyRadius] = useState(5000); // Default radius for emergency resources in meters
+
+  const amenityIconMapping = {
+    hospital: new L.Icon({
+      iconUrl: hospital,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#FF5733'
+    }),
+    fire_station: new L.Icon({
+      iconUrl: fire_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#C70039'
+    }),
+    police: new L.Icon({
+      iconUrl: police,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#900C3F'
+    }),
+    ambulance_station: new L.Icon({
+      iconUrl: ambulance,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#581845'
+    }),
+    shelter: new L.Icon({
+      iconUrl: shelter,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#DAF7A6'
+    }),
+    community_centre: new L.Icon({
+      iconUrl: community_centre,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#FFC300'
+    }),
+    pharmacy: new L.Icon({
+      iconUrl: pharmacy,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#FFD700'
+    }),
+    social_facility: new L.Icon({
+      iconUrl: social_facility,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#ADD8E6'
+    }),
+      bus_station: new L.Icon({
+      iconUrl: bus_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#8A2BE2'
+    }),
+    railway_station: new L.Icon({
+      iconUrl: railway_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#4B0082'
+    }),
+    toilets: new L.Icon({
+      iconUrl: public_toilets,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#00CED1'
+    }),
+    drinking_water: new L.Icon({
+      iconUrl: drinking_water,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#20B2AA'
+    }),
+    fuel: new L.Icon({
+      iconUrl: fuel,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#DC143C'
+    }),
+    charging_station: new L.Icon({
+      iconUrl: charging_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#FF4500'
+    }),
+    assembly_point: new L.Icon({
+      iconUrl: assembly_point,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#B8860B'
+    }),
+    school: new L.Icon({
+      iconUrl: school,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#3CB371'
+    }),
+    college: new L.Icon({
+      iconUrl: college,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#2E8B57'
+    })
+  };
+
+  const { data: emergencyResources, isLoading: isLoadingEmergencyResources, error: emergencyResourcesError } = useQuery({
+    queryKey: ['emergencyResources', mapCenter, emergencyRadius],
+    queryFn: () => fetchNearbyEmergencyResources(mapCenter[0], mapCenter[1], emergencyRadius),
+    enabled: !!mapCenter[0] && !!mapCenter[1] && !!emergencyRadius,
+  });
+
+  useEffect(() => {
+    if (emergencyResourcesError) {
+      console.error("Error fetching emergency resources:", emergencyResourcesError);
+    }
+  }, [emergencyResourcesError]);
+
+  function SetViewAndZoom() {
+    const map = useMap();
+    useEffect(() => {
+      map.setView(center, zoom);
+    }, [map, center, zoom]);
+    return null;
+  }
+
+  const depthToColor = (depth) => {
+    if (depth > 5) return "#500000";
+    if (depth > 2) return "#8B0000";
+    if (depth > 1) return "#DC143C";
+    if (depth > 0.5) return "#FF6347";
+    if (depth > 0) return "#FFA07A";
+    return "#FFFFFF"; // No flood
+  };
+
+  const getFloodColor = (depth) => {
+    if (depth > 5) return "#500000";
+    if (depth > 2) return "#8B0000";
+    if (depth > 1) return "#DC143C";
+    if (depth > 0.5) return "#FF6347";
+    if (depth > 0) return "#FFA07A";
+    return "transparent"; // No flood, or very minimal
+  };
+
+  const alertIcon = new L.Icon({
+    iconUrl: AlertTriangle,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
+  const getSentimentColor = (sentiment) => {
+    switch (sentiment) {
+      case 'positive': return '#4CAF50';
+      case 'negative': return '#F44336';
+      case 'neutral': return '#2196F3';
+      default: return '#9E9E9E';
+    }
+  };
+
+  return (
+    <div style={{ position: "relative", height: height }}>
+      <MapContainer
+        center={center}
+        zoom={zoom}
+        style={{ height: "100%", width: "100%" }}
+        whenCreated={map => {
+          map.on('moveend', () => {
+            setMapCenter(Object.values(map.getCenter()));
+            setMapZoom(map.getZoom());
+          });
+        }}
+      >
+        <SetViewAndZoom />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+
+        {showReports &&
+          floodReports?.map((report) => (
+            <Marker
+              key={report._id}
+              position={[report.location.latitude, report.location.longitude]}
+              icon={L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="background-color: ${getFloodColor(report.waterDepth)}; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+              })}
+              eventHandlers={{
+                click: () => {
+                  setSelectedReport(report);
+                  if (onMarkerClick) {
+                    onMarkerClick(report);
+                  }
+                },
+              }}
+            >
+              <Popup>
+                <div>
+                  <h2>Flood Report</h2>
+                  <p>Depth: {report.waterDepth} m</p>
+                  <p>Status: {report.floodStatus}</p>
+                  <p>Timestamp: {new Date(report.timestamp).toLocaleString()}</p>
+                  <p>Reporter: {report.reporter?.username || 'Anonymous'}</p>
+                  {report.images && report.images.length > 0 && (
+                    <div>
+                      <h3>Images:</h3>
+                      {report.images.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image.url}
+                          alt={`Flood image ${index + 1}`}
+                          style={{ width: '100px', height: 'auto', marginRight: '5px' }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {report.sentiment && <p>Sentiment: <span style={{ color: getSentimentColor(report.sentiment) }}>{report.sentiment}</span></p>}
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
+        {showAlerts &&
+          alerts?.map((alert) => (
+            <Marker
+              key={alert._id}
+              position={[alert.location.latitude, alert.location.longitude]}
+              icon={alertIcon}
+            >
+              <Popup>
+                <div>
+                  <h2>Flood Alert</h2>
+                  <p>Severity: {alert.severity}</p>
+                  <p>Description: {alert.description}</p>
+                  <p>Timestamp: {new Date(alert.timestamp).toLocaleString()}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
+        {emergencyResources && emergencyResources.map((resource, index) => (
+          <Marker
+            key={index}
+            position={[resource.lat, resource.lon]}
+            icon={amenityIconMapping[resource.amenity]}
+          >
+            <Popup>
+              <div>
+                <h3>{resource.name}</h3>
+                {resource.address && <p>{resource.address}</p>}
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+
+        {showReports && <MapLegend depthToColor={depthToColor} />}
+        <EmergencyResourceLegend amenityIconMapping={amenityIconMapping} />
+
+        {isLoadingEmergencyResources && (
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            zIndex: 1000,
+            boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+          }}>
+            Loading Emergency Resources...
+          </div>
+        )}
+
+        <div style={{
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          zIndex: 1000,
+          backgroundColor: 'white',
+          padding: '10px',
+          borderRadius: '5px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+        }}>
+          <label htmlFor="emergencyRadius">Emergency Search Radius (m): </label>
+          <input
+            type="number"
+            id="emergencyRadius"
+            value={emergencyRadius}
+            onChange={(e) => setEmergencyRadius(Number(e.target.value))}
+            min="100"
+            max="20000"
+            step="100"
+            style={{ marginLeft: '10px', width: '80px' }}
+          />
+        </div>
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#DAA520'
+    }),
+    college: new L.Icon({
+      iconUrl: college,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#CD853F'
+    }),
+    // ... existing code ...
+  bus_station: new L.Icon({
+      iconUrl: bus_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#87CEEB'
+    }),
+    railway_station: new L.Icon({
+      iconUrl: railway_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#6495ED'
+    }),
+    toilets: new L.Icon({
+      iconUrl: public_toilets,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#4682B4'
+    }),
+    drinking_water: new L.Icon({
+      iconUrl: drinking_water,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#TR2B4'
+    }),
+    fuel: new L.Icon({
+      iconUrl: fuel,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#B0C4DE'
+    }),
+    charging_station: new L.Icon({
+      iconUrl: charging_station,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#778899'
+    }),
+    assembly_point: new L.Icon({
+      iconUrl: assembly_point,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#C0C0C0'
+    }),
+    school: new L.Icon({
+      iconUrl: school,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#D3D3D3'
+    }),
+    college: new L.Icon({
+      iconUrl: college,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#A9A9A9'
+    }),
+    default: new L.Icon({
+      iconUrl: MapPin,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+      shadowColor: '#696969'
+    }),
+  };
 
   // Fetch flood reports
   const { data: reportsData, isLoading: reportsLoading } = useQuery({
@@ -129,6 +567,15 @@ const FloodMap = ({
 
   const floodReports = reportsData?.data || [];
   const floodAlerts = alertsData?.data || [];
+
+  const { data: emergencyResourcesData, isLoading: emergencyResourcesLoading } = useQuery({
+    queryKey: ["emergency-resources", mapCenter, emergencyRadius],
+    queryFn: () =>
+      fetchNearbyEmergencyResources(mapCenter[0], mapCenter[1], emergencyRadius),
+    enabled: !!mapCenter[0] && !!mapCenter[1],
+  });
+
+  const emergencyResources = emergencyResourcesData || [];
 
   // Prepare data for heatmap
   const heatmapData = floodReports.map(report => [

@@ -120,7 +120,7 @@ router.put('/:emergencyId/status', authorize(['rescuer', 'admin']), async (req, 
 });
 
 // Legacy endpoints for backward compatibility
-router.get('/data', authorize(['user']), (req, res) => {
+router.get('/data', (req, res) => {
   const emergencyData = {
     hospitals: [
       {
@@ -144,7 +144,7 @@ router.get('/data', authorize(['user']), (req, res) => {
   res.json(emergencyData);
 });
 
-router.get('/incidents', authorize(['user']), (req, res) => {
+router.get('/incidents', (req, res) => {
   const incidents = [
     {
       id: 1,
@@ -157,7 +157,7 @@ router.get('/incidents', authorize(['user']), (req, res) => {
   res.json(incidents);
 });
 
-router.get('/contacts', authorize(['user']), (req, res) => {
+router.get('/contacts', (req, res) => {
   const emergencyContacts = [
     { name: 'Police', number: '100', type: 'police' },
     { name: 'Fire Services', number: '101', type: 'fire' },

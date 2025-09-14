@@ -33,3 +33,208 @@
     max-width: 400px;
   }
 }
+
+/* Custom CSS for Leaflet markers */
+.leaflet-marker-icon.hospital-icon {
+  background-color: #ff0000; /* Red */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.fire_station-icon {
+  background-color: #ffa500; /* Orange */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.police-icon {
+  background-color: #0000ff; /* Blue */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.ambulance_station-icon {
+  background-color: #800080; /* Purple */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.shelter-icon {
+  background-color: #008000; /* Green */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.community_centre-icon {
+  background-color: #00ffff; /* Cyan */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.pharmacy-icon {
+  background-color: #ffc0cb; /* Pink */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.social_facility-icon {
+  background-color: #a52a2a; /* Brown */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.bus_station-icon,
+.leaflet-marker-icon.railway_station-icon {
+  background-color: #808080; /* Gray */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.toilets-icon {
+  background-color: #ffd700; /* Gold */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.drinking_water-icon {
+  background-color: #add8e6; /* Light Blue */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.fuel-icon,
+.leaflet-marker-icon.charging_station-icon {
+  background-color: #000000; /* Black */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.assembly_point-icon {
+  background-color: #ff4500; /* Orange Red */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.leaflet-marker-icon.school-icon,
+.leaflet-marker-icon.college-icon {
+  background-color: #32cd32; /* Lime Green */
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.legend {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}

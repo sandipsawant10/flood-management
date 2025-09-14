@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-// Removed 'define' option for process.env to mitigate security risk
+  // Removed 'define' option for process.env to mitigate security risk
   // define: {
   //   "process.env": process.env,
   // },
@@ -25,6 +25,10 @@ export default defineConfig({
     //   protocol: "ws", // or "wss" if using HTTPS
     //   port: 5173,
     // },
+
+    headers: {
+      "Cache-Control": "no-store",
+    },
 
     proxy: {
       "/api": "http://localhost:5000", // backend API proxy

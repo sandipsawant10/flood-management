@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from 'react-hot-toast';
+import axiosInstance from '../../services/axiosConfig';
 
 // Components to be created later
 import EmergencyResponseMap from '../../components/Rescuer/EmergencyResponseMap';
@@ -16,9 +17,8 @@ const RescuerDashboard = () => {
   const { data: emergencies, isLoading: emergenciesLoading } = useQuery({
     queryKey: ['active-emergencies'],
     queryFn: async () => {
-      const response = await fetch('/api/emergency/active');
-      if (!response.ok) throw new Error('Failed to fetch emergencies');
-      return response.json();
+      const response = await axiosInstance.get('/emergency/active');
+      return response.data;
     },
   });
 
@@ -26,9 +26,9 @@ const RescuerDashboard = () => {
   const { data: teamMembers, isLoading: teamLoading } = useQuery({
     queryKey: ['team-members'],
     queryFn: async () => {
-      const response = await fetch(`/api/rescuers/team/${user.teamId}/members`);
-      if (!response.ok) throw new Error('Failed to fetch team members');
-      return response.json();
+      if (!user?.teamId) return []; // Return empty array if teamId is undefined
+      const response = await axiosInstance.get(`/rescuers/team/${user.teamId}/members`);
+      return response.data;
     },
   });
 
@@ -36,22 +36,17 @@ const RescuerDashboard = () => {
   const { data: resources, isLoading: resourcesLoading } = useQuery({
     queryKey: ['resources'],
     queryFn: async () => {
-      const response = await fetch(`/api/rescuers/team/${user.teamId}/resources`);
-      if (!response.ok) throw new Error('Failed to fetch resources');
-      return response.json();
+      if (!user?.teamId) return []; // Return empty array if teamId is undefined
+      const response = await axiosInstance.get(`/rescuers/team/${user.teamId}/resources`);
+      return response.data;
     },
   });
 
   // Update team member status mutation
   const updateStatusMutation = useMutation({
     mutationFn: async ({ memberId, status }) => {
-      const response = await fetch(`/api/rescuers/team/member/${memberId}/status`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      if (!response.ok) throw new Error('Failed to update status');
-      return response.json();
+      const response = await axiosInstance.put(`/rescuers/team/member/${memberId}/status`, { status });
+      return response.data;
     },
     onSuccess: () => {
       toast.success('Status updated successfully');
@@ -64,13 +59,8 @@ const RescuerDashboard = () => {
   // Update resource quantity mutation
   const updateResourceMutation = useMutation({
     mutationFn: async ({ resourceId, quantity }) => {
-      const response = await fetch(`/api/rescuers/team/resource/${resourceId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quantity }),
-      });
-      if (!response.ok) throw new Error('Failed to update resource');
-      return response.json();
+      const response = await axiosInstance.put(`/rescuers/team/resource/${resourceId}`, { quantity });
+      return response.data;
     },
     onSuccess: () => {
       toast.success('Resource updated successfully');
