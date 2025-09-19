@@ -5,9 +5,9 @@ import { MapPin, Bell, AlertTriangle, Users, CheckCircle, XCircle, Clock } from 
 // Components to be created later
 import FloodReportTable from '../../components/Admin/FloodReportTable';
 import AlertForm from '../../components/Admin/AlertForm';
-import EvacuationZoneMap from '../../components/Admin/EvacuationZoneMap';
+import EvacuationZoneManager from '../../components/Admin/EvacuationZoneManager';
 import DashboardStats from '../../components/Admin/DashboardStats';
-import ContactList from '../../components/Admin/ContactList';
+
 
 const MunicipalityDashboard = () => {
   const [activeTab, setActiveTab] = useState('reports');
@@ -37,9 +37,9 @@ const MunicipalityDashboard = () => {
       case 'alerts':
         return <AlertForm />;
       case 'zones':
-        return <EvacuationZoneMap />;
+        return <EvacuationZoneManager />;
       case 'contacts':
-        return <ContactList />;
+
       default:
         return null;
     }

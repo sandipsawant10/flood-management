@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
+
 const FloodReport = require("../models/FloodReport");
 const User = require("../models/User");
-const Alert = require("../models/Alert");
-const { auth, authorize } = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
+const roleAuth = require("../middleware/roleAuth");
 const { asyncHandler } = require("../middleware/errorHandler");
 
 // Get system stats for admin dashboard
 router.get(
   "/stats",
   auth,
-  authorize(["admin", "official"]),
+  roleAuth(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const [userStats, reportStats, systemHealth] = await Promise.all([
       // User statistics
@@ -76,7 +77,7 @@ router.get(
 router.put(
   "/reports/:id/moderate",
   auth,
-  authorize(["admin", "official"]),
+  roleAuth(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { action, reason, notes } = req.body;
     const reportId = req.params.id;
@@ -132,7 +133,7 @@ router.put(
 router.get(
   "/users",
   auth,
-  authorize(["admin", "official"]),
+  roleAuth(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { page = 1, limit = 20, search, role, verified } = req.query;
 
@@ -172,7 +173,7 @@ router.get(
 router.put(
   "/users/:id",
   auth,
-  authorize(["admin", "official"]),
+  roleAuth(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const { role, isVerified, trustScore, isActive } = req.body;
 
@@ -206,7 +207,7 @@ router.put(
 router.get(
   "/reports",
   auth,
-  authorize(["admin", "official"]),
+  roleAuth(["admin", "official"]),
   asyncHandler(async (req, res) => {
     const {
       page = 1,
@@ -246,6 +247,87 @@ router.get(
         },
       },
     });
+  })
+);
+
+// Get all flood reports for admin review
+router.get(
+  "/flood-reports",
+  auth,
+  roleAuth(["admin", "municipality_admin"]),
+  asyncHandler(async (req, res) => {
+    try {
+      const { status, verified, page = 1, limit = 10 } = req.query;
+
+      const filter = {};
+      if (status) filter.status = status;
+      if (verified !== undefined) filter.verified = verified === "true";
+
+      const options = {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        sort: { createdAt: -1 },
+        populate: ["reportedBy", "municipality"],
+      };
+
+      const reports = await FloodReport.paginate(filter, options);
+      res.json(reports);
+    } catch (error) {
+      console.error("Error fetching admin flood reports:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  })
+);
+
+// Update flood report status
+router.patch(
+  "/flood-reports/:id/status",
+  auth,
+  roleAuth(["admin", "municipality_admin"]),
+  asyncHandler(async (req, res) => {
+    try {
+      const { status } = req.body;
+      const report = await FloodReport.findByIdAndUpdate(
+        req.params.id,
+        { status, updatedAt: Date.now() },
+        { new: true }
+      ).populate(["reportedBy", "municipality"]);
+
+      if (!report) {
+        return res.status(404).json({ message: "Report not found" });
+      }
+
+      res.json(report);
+    } catch (error) {
+      console.error("Error updating report status:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  })
+);
+
+// Verify flood report
+router.patch(
+  "/flood-reports/:id/verify",
+  auth,
+  roleAuth(["admin", "municipality_admin"]),
+  asyncHandler(async (req, res) => {
+    try {
+      const { verified } = req.body;
+      const report = await FloodReport.findByIdAndUpdate(
+        req.params.id,
+        { verified, verifiedAt: verified ? Date.now() : null },
+        { new: true }
+      ).populate(["reportedBy", "municipality"]);
+
+      if (!report) {
+        return res.status(404).json({ message: "Report not found" });
+      }
+
+      res.json(report);
+    } catch (error) {
+      console.error("Error verifying report:", error);
+      res.status(500).json({ message: "Server error" });
+    }
   })
 );
 

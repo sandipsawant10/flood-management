@@ -27,11 +27,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { SearchIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import adminService from "../../services/adminService";
+import floodReportService from "../../services/floodReportService";
 
-const ReportModeration = () => {
+const ReportReviewPage = () => {
   const [reports, setReports] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,21 +45,12 @@ const ReportModeration = () => {
   const fetchReports = async () => {
     try {
       setLoading(true);
-      const filters = {};
-      if (searchTerm) filters.search = searchTerm;
-      if (statusFilter !== "all") filters.status = statusFilter;
-
-      const response = await adminService.getReports(page, 10, filters);
-      setReports(response.reports);
-      setTotalPages(Math.ceil(response.total / 10));
+      const data = await floodReportService.getAdminFloodReports();
+      setReports(data.docs || data);
+      setTotalPages(Math.ceil(data.total / 10));
     } catch (error) {
-      toast({
-        title: "Error fetching reports",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      console.error("Error fetching reports:", error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -225,4 +217,4 @@ const ReportModeration = () => {
   );
 };
 
-export default ReportModeration;
+export default ReportReviewPage;

@@ -1,19 +1,24 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [react()],
-  // Removed 'define' option for process.env to mitigate security risk
-  // define: {
-  //   "process.env": process.env,
-  // },
   resolve: {
     alias: {
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@pages": path.resolve(__dirname, "./src/pages"),
-      "@services": path.resolve(__dirname, "./src/services"),
-      "@store": path.resolve(__dirname, "./src/store"),
+      "@components": path.resolve(
+        fileURLToPath(new URL("./src/components", import.meta.url))
+      ),
+      "@pages": path.resolve(
+        fileURLToPath(new URL("./src/pages", import.meta.url))
+      ),
+      "@services": path.resolve(
+        fileURLToPath(new URL("./src/services", import.meta.url))
+      ),
+      "@store": path.resolve(
+        fileURLToPath(new URL("./src/store", import.meta.url))
+      ),
     },
   },
   server: {
@@ -31,7 +36,7 @@ export default defineConfig({
     },
 
     proxy: {
-      "/api": "http://localhost:5000", // backend API proxy
+      "/api": "http://localhost:5003", // backend API proxy
     },
   },
 });

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api";
+  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000/api";
 
 export const profileService = {
   getUserProfile: async () => {

@@ -124,15 +124,22 @@ async function handleAPIRequest(request) {
   // Return cached response immediately if available
   if (cachedResponse) {
     // Try to update cache in background
-    fetch(request)
-      .then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
-          cache.put(request, networkResponse.clone());
-        }
-      })
-      .catch(() => {
-        // Network failed, cached version is still valid
-      });
+    // Try to update cache in background, but don't wait for it
+    event.waitUntil(
+      fetch(request)
+        .then(async (networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            console.log("[SW] API cache updated for:", request.url);
+            const cache = await caches.open(DYNAMIC_CACHE);
+            cache.put(request, networkResponse.clone());
+          } else {
+            console.warn("[SW] Failed to update API cache for:", request.url, "Status:", networkResponse.status);
+          }
+        })
+        .catch((error) => {
+          console.error("[SW] Background API cache update failed for:", request.url, error);
+        })
+    );
 
     return cachedResponse;
   }
@@ -148,7 +155,7 @@ async function handleAPIRequest(request) {
     return networkResponse;
   } catch (error) {
     // Network failed and no cache available
-    console.log("[SW] API request failed:", request.url);
+    console.error("[SW] API network request failed for:", request.url, error);
 
     // Return offline response for API calls
     return new Response(

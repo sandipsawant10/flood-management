@@ -2,6 +2,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import axiosInstance from "../services/axiosConfig";
+import axios from "axios";
 
 const useAuthStore = create(
   persist(
@@ -9,15 +10,17 @@ const useAuthStore = create(
       // Role-based helper functions
       isAdmin: () => {
         const user = get().user;
-        return user?.roles?.includes('admin') || user?.role === 'admin';
+        return user?.roles?.includes("admin") || user?.role === "admin";
       },
       isMunicipality: () => {
         const user = get().user;
-        return user?.roles?.includes('municipality') || user?.role === 'municipality';
+        return (
+          user?.roles?.includes("municipality") || user?.role === "municipality"
+        );
       },
       isRescuer: () => {
         const user = get().user;
-        return user?.roles?.includes('rescuer') || user?.role === 'rescuer';
+        return user?.roles?.includes("rescuer") || user?.role === "rescuer";
       },
       hasRole: (role) => {
         const user = get().user;
@@ -25,7 +28,9 @@ const useAuthStore = create(
       },
       hasAnyRole: (roles) => {
         const user = get().user;
-        return roles.some(role => user?.roles?.includes(role) || user?.role === role);
+        return roles.some(
+          (role) => user?.roles?.includes(role) || user?.role === role
+        );
       },
       user: null,
       token: null,
@@ -175,14 +180,17 @@ const useAuthStore = create(
       updateRole: async (userId, newRole) => {
         set({ isLoading: true, error: null });
         try {
-          const response = await axios.put(`/api/admin/users/${userId}/role`, { role: newRole });
+          const response = await axios.put(`/api/admin/users/${userId}/role`, {
+            role: newRole,
+          });
           if (userId === get().user?._id) {
             set({ user: { ...get().user, role: newRole } });
           }
           set({ isLoading: false });
           return { success: true };
         } catch (error) {
-          const errorMessage = error.response?.data?.message || "Failed to update role";
+          const errorMessage =
+            error.response?.data?.message || "Failed to update role";
           set({ isLoading: false, error: errorMessage });
           return { success: false, error: errorMessage };
         }

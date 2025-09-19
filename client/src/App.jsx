@@ -1,45 +1,144 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material';
-import HomePage from './pages/HomePage';
-import ReportReviewPage from './pages/ReportReviewPage';
-import DashboardPage from './pages/DashboardPage';
-import ReportFormPage from './pages/ReportFormPage';
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+import Layout from "./components/Layout/Layout.jsx";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard.jsx";
+import ReportFlood from "./pages/Reports/ReportFlood";
+import ViewReports from "./pages/Reports/ViewReports";
+import QuickActions from "./pages/Emergency/QuickActions";
+import NotificationCenter from "./pages/Notifications/NotificationCenter";
+import AlertsPage from "./pages/Alerts/Alerts.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
+import AdminProfile from "./pages/admin/AdminProfile";
+import AdminSettings from "./pages/admin/AdminSettings";
+import ResourceManagement from "./pages/Municipality/ManageResources.jsx";
+import AdminReports from "./pages/Reports/ViewReports.jsx";
+import Analytics from "./pages/Analytics/Analytics.jsx";
+import DisasterManagement from "./pages/admin/ManageDisasters.jsx";
+import RequestManagement from "./pages/admin/ManageRequests.jsx";
+import MunicipalityDashboard from "./pages/municipality/MunicipalityDashboard";
+import MunicipalityProfile from "./pages/municipality/MunicipalityProfile";
+import MunicipalitySettings from "./pages/municipality/MunicipalitySettings";
+import MunicipalityAnalytics from "./pages/Municipality/Analytics.jsx";
+import MunicipalityReports from "./pages/Reports/ViewReports.jsx";
+import MunicipalityResourceManagement from "./pages/Municipality/ManageResources.jsx";
+import LoginPage from "./pages/Auth/Login.jsx";
+import RegisterPage from "./pages/Auth/Register.jsx";
+import AboutPage from "./pages/Home.jsx";
 
-function App() {
+// Unauthorized page component
+const UnauthorizedPage = () => (
+  <div className="p-8 text-center">
+    <h1 className="text-2xl font-bold text-red-600">Unauthorized Access</h1>
+    <p className="mt-4">You don't have permission to access this page.</p>
+    <Link to="/" className="mt-4 inline-block text-blue-600 hover:underline">
+      Go Home
+    </Link>
+  </div>
+);
+
+const App = () => {
+  const { authInitialized, loading, error } = useAuth();
+
+  // Handle loading and error states more explicitly
+  if (loading) {
+    return <div>Loading Application...</div>;
+  }
+
+  if (error) {
+    console.error("Authentication Error:", error);
+    return (
+      <div>
+        Error: {error.message || "Failed to initialize authentication."}
+      </div>
+    );
+  }
+
+  // Only render the application once authentication is initialized and no errors occurred
+  if (!authInitialized) {
+    return <div>Initializing Authentication...</div>;
+  }
+
   return (
-    <Router>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Flood Disaster Management
-          </Typography>
-          <Button color="inherit" component={Link} to="/">
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/report">
-            Submit Report
-          </Button>
-          <Button color="inherit" component={Link} to="/dashboard">
-            Public Dashboard
-          </Button>
-          <Button color="inherit" component={Link} to="/admin/review">
-            Admin Review
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <Container>
-        <Box mt={4}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/report" element={<ReportFormPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/admin/review" element={<ReportReviewPage />} />
-          </Routes>
-        </Box>
-      </Container>
-    </Router>
-  );
-}
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/emergency" element={<QuickActions />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-export default App;
+      {/* Routes using the Layout component */}
+      <Route element={<Layout />}>
+        {/* Protected Routes */}
+        <Route
+          element={
+            <PrivateRoute
+              allowedRoles={["user", "citizen", "admin", "municipality"]}
+            />
+          }
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/alerts" element={<AlertsPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/report-flood" element={<ReportFlood />} />
+          <Route path="/reports" element={<ViewReports />} />
+          <Route path="/notifications" element={<NotificationCenter />} />
+        </Route>
+        {/* Admin Routes */}
+        <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/profile" element={<AdminProfile />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin/resources" element={<ResourceManagement />} />
+          <Route path="/admin/reports" element={<AdminReports />} />
+          <Route path="/admin/analytics" element={<Analytics />} />
+          <Route path="/admin/disasters" element={<DisasterManagement />} />
+          <Route path="/admin/requests" element={<RequestManagement />} />
+        </Route>
+        {/* Municipality Routes */}
+        <Route element={<PrivateRoute allowedRoles={["municipality"]} />}>
+          <Route
+            path="/municipality/dashboard"
+            element={<MunicipalityDashboard />}
+          />
+          <Route
+            path="/municipality/profile"
+            element={<MunicipalityProfile />}
+          />
+          <Route
+            path="/municipality/settings"
+            element={<MunicipalitySettings />}
+          />
+          <Route
+            path="/municipality/analytics"
+            element={<MunicipalityAnalytics />}
+          />
+          <Route
+            path="/municipality/reports"
+            element={<MunicipalityReports />}
+          />
+          <Route
+            path="/municipality/resources"
+            element={<MunicipalityResourceManagement />}
+          />
+        </Route>
+      </Route>
+    </Routes>
+  );
+};
+
+const AppWrapper = () => (
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);
+
+export default AppWrapper;
+
+// In middleware/security.js
+max: process.env.NODE_ENV === "production" ? 5 : 50;

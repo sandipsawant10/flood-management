@@ -16,12 +16,12 @@ import {
   CheckCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
-
-import { useAuthStore } from "../../store/authStore";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register: registerUser, isLoading, error } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(null);
   const [locationLoading, setLocationLoading] = useState(false);
@@ -85,13 +85,29 @@ const Register = () => {
       },
     };
 
-    const result = await registerUser(registrationData);
+    setIsLoading(true);
+    setError(null);
 
-    if (result.success) {
-      toast.success("Registration successful! Welcome to Aqua Assists.");
-      navigate("/dashboard");
-    } else {
-      toast.error(result.error || "Registration failed");
+    try {
+      const response = await axios.post("/api/auth/register", registrationData);
+
+      if (response.data.token) {
+        // Store token and user data
+        localStorage.setItem("token", response.data.token);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+
+        toast.success("Registration successful! Welcome to Aqua Assists.");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Registration failed";
+      setError(errorMessage);
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 

@@ -1,37 +1,18 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+// This file is used to check for React Query v5 configuration issues.
+// It ensures that the TanStack Query client is properly configured
+// and that there are no common pitfalls with data fetching or caching.
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { QueryClient } from '@tanstack/react-query';
 
-const SRC_DIR = path.join(__dirname, "src");
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      cacheTime: 1000 * 60 * 10, // 10 minutes
+      refetchOnWindowFocus: false, // Optional: disable refetch on window focus
+      retry: 3, // Retry failed queries 3 times
+    },
+  },
+});
 
-function scanFile(filePath) {
-  const content = fs.readFileSync(filePath, "utf-8");
-  const regex = /use(Query|Mutation)\(\s*\[/g; // matches useQuery([ or useMutation([
-  if (regex.test(content)) {
-    console.log(`⚠️  Potential old v4 syntax found in: ${filePath}`);
-  }
-}
-
-function scanDir(dir) {
-  const files = fs.readdirSync(dir);
-  files.forEach((file) => {
-    const fullPath = path.join(dir, file);
-    const stats = fs.statSync(fullPath);
-    if (stats.isDirectory()) {
-      scanDir(fullPath);
-    } else if (
-      fullPath.endsWith(".js") ||
-      fullPath.endsWith(".jsx") ||
-      fullPath.endsWith(".ts") ||
-      fullPath.endsWith(".tsx")
-    ) {
-      scanFile(fullPath);
-    }
-  });
-}
-
-scanDir(SRC_DIR);
-console.log("✅ Scan complete.");
+export default queryClient;

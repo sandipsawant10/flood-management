@@ -1,16 +1,16 @@
 import axios from "axios";
 
 const API_URL =
-  import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api";
+  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000/api";
 
 export const analyticsService = {
   getAnalyticsData: async (timeRange) => {
     // For development, return mock data
     // In production, uncomment the axios call and remove the mock data
-    
+
     // const response = await axios.get(`${API_URL}/analytics/dashboard?timeRange=${timeRange}`);
     // return response.data;
-    
+
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -60,10 +60,10 @@ export const analyticsService = {
   getPredictions: async (location) => {
     // For development, return mock data
     // In production, uncomment the axios call and remove the mock data
-    
+
     // const response = await axios.get(`${API_URL}/analytics/predictions`, { params: location });
     // return response.data;
-    
+
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -91,13 +91,16 @@ export const analyticsService = {
   exportData: async (format, params) => {
     // For development, return mock success
     // In production, uncomment the axios call and remove the mock response
-    
+
     // const response = await axios.get(`${API_URL}/analytics/export/${format}`, { params });
     // return response.data;
-    
+
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve({ success: true, message: `Data exported in ${format} format` });
+        resolve({
+          success: true,
+          message: `Data exported in ${format} format`,
+        });
       }, 500);
     });
   },

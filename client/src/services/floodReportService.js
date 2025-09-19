@@ -1,7 +1,8 @@
 import axios from "axios";
+import api from "./axiosConfig";
 
 const API_URL =
-  import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api";
+  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000/api";
 
 export const floodReportService = {
   submitReport: async (formData) => {
@@ -35,28 +36,105 @@ export const floodReportService = {
       const response = await axios.post(`${API_URL}/flood-reports`, reportData);
       return response.data;
     } catch (error) {
-      console.error('Error submitting flood report:', error);
+      console.error("Error submitting flood report:", error);
       throw error;
     }
   },
 
-  getAdminFloodReports: async (filters = {}) => {
+  // Get all flood reports for admin
+  getAdminFloodReports: async () => {
     try {
-      const response = await axios.get(`${API_URL}/admin/reports`, { params: filters });
+      const response = await api.get("/api/admin/flood-reports");
       return response.data;
     } catch (error) {
-      console.error('Error fetching admin flood reports:', error);
+      console.error("Error fetching admin flood reports:", error);
       throw error;
     }
   },
 
-  updateFloodReportStatus: async (reportId, statusUpdate) => {
+  // Get flood reports with filters
+  getFloodReports: async (filters = {}) => {
     try {
-      const response = await axios.put(`${API_URL}/admin/reports/${reportId}/status`, statusUpdate);
+      const params = new URLSearchParams(filters);
+      const response = await api.get(`/api/flood-reports?${params}`);
       return response.data;
     } catch (error) {
-      console.error(`Error updating report ${reportId} status:`, error);
+      console.error("Error fetching flood reports:", error);
+      throw error;
+    }
+  },
+
+  // Get single flood report by ID
+  getFloodReportById: async (id) => {
+    try {
+      const response = await api.get(`/api/flood-reports/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching flood report:", error);
+      throw error;
+    }
+  },
+
+  // Create new flood report
+  createFloodReport: async (reportData) => {
+    try {
+      const response = await api.post("/api/flood-reports", reportData);
+      return response.data;
+    } catch (error) {
+      console.error("Error creating flood report:", error);
+      throw error;
+    }
+  },
+
+  // Update flood report
+  updateFloodReport: async (id, reportData) => {
+    try {
+      const response = await api.put(`/api/flood-reports/${id}`, reportData);
+      return response.data;
+    } catch (error) {
+      console.error("Error updating flood report:", error);
+      throw error;
+    }
+  },
+
+  // Delete flood report
+  deleteFloodReport: async (id) => {
+    try {
+      const response = await api.delete(`/api/flood-reports/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting flood report:", error);
+      throw error;
+    }
+  },
+
+  // Update report status (for admin)
+  updateReportStatus: async (id, status) => {
+    try {
+      const response = await api.patch(
+        `/api/admin/flood-reports/${id}/status`,
+        { status }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error updating report status:", error);
+      throw error;
+    }
+  },
+
+  // Verify report (for admin)
+  verifyReport: async (id, verified) => {
+    try {
+      const response = await api.patch(
+        `/api/admin/flood-reports/${id}/verify`,
+        { verified }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error verifying report:", error);
       throw error;
     }
   },
 };
+
+export default floodReportService;
