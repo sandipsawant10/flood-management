@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "बाढ़ आपदा प्रबंधन",
-    "tagline": "समुदायों को तैयार करने, प्रतिक्रिया देने और पुनर्प्राप्त करने में सहायता"
+    "tagline": "समुदायों को तैयार करने, प्रतिक्रिया देने और पुनर्प्राप्त करने में मदद करना"
   },
   "navigation": {
     "home": "होम",
@@ -68,16 +68,26 @@
       "walkingTime": "{{minutes}} मिनट पैदल",
       "distance": "{{distance}} किमी",
       "safeShelter": "सुरक्षित आश्रय",
-      "highGround": "ऊंचा स्थान",
+      "highGround": "ऊंचा स्थान क्षेत्र",
       "emergencyCenter": "आपातकालीन केंद्र",
-      "evacuationCenter": "निकासी केंद्र",
-      "reliefCenter": "राहत केंद्र"
+      "evacuationCenter": "सामुदायिक निकासी केंद्र",
+      "reliefCenter": "आपातकालीन राहत केंद्र"
+    },
+    "errors": {
+      "invalidLocation": "अमान्य स्थान",
+      "geocodingServiceUnavailable": "भूकोडिंग सेवा अनुपलब्ध है"
+    },
+    "riskLevels": {
+      "high": "उच्च",
+      "medium": "मध्यम",
+      "low": "निम्न",
+      "unknown": "अज्ञात"
     },
     "risk": {
       "floodRisk": "बाढ़ का खतरा",
       "highRisk": "उच्च जोखिम",
       "mediumRisk": "मध्यम जोखिम",
-      "lowRisk": "कम जोखिम",
+      "lowRisk": "निम्न जोखिम",
       "unknownRisk": "अज्ञात जोखिम",
       "elevationRisk": "ऊंचाई जोखिम"
     }
