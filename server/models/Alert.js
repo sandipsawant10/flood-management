@@ -22,6 +22,20 @@ const alertSchema = new mongoose.Schema(
       enum: ["low", "medium", "high", "critical"],
       required: true,
     },
+    // Center point of the alert for distance calculations
+    location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        default: "Point",
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        index: "2dsphere",
+      },
+      address: String, // Human-readable location
+    },
+    // Area affected by the alert
     targetArea: {
       type: {
         type: String,

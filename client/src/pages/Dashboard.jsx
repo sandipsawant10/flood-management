@@ -1,5 +1,7 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
+import NearbyAlerts from "../components/Alerts/NearbyAlerts";
+import AlertsMap from "../components/Maps/AlertsMap";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -11,6 +13,19 @@ const Dashboard = () => {
         <p className="text-gray-600 mt-2">
           Manage your flood disaster assistance here
         </p>
+      </div>
+
+      {/* Location-based Alerts */}
+      <div className="mb-8">
+        <NearbyAlerts maxAlerts={3} />
+      </div>
+
+      {/* Alerts Map */}
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Alert Map</h2>
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          <AlertsMap height={300} showControls={false} />
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">

@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { useSocket } from "../contexts/SocketContext";
 import { ResourceInventory } from "../components/Rescuer/ResourceInventory";
 import { AlertCircle, Users, Package, MapPin, Bell } from "lucide-react";
+import AlertsMap from "../components/Maps/AlertsMap";
 
 const RescuerDashboard = () => {
   const { user } = useAuth();
@@ -214,6 +215,17 @@ const RescuerDashboard = () => {
               Emergencies
             </button>
             <button
+              onClick={() => setActiveTab("map")}
+              className={`flex items-center gap-2 border-b-2 px-1 py-4 text-sm font-medium ${
+                activeTab === "map"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              }`}
+            >
+              <MapPin className="h-5 w-5" />
+              Alert Map
+            </button>
+            <button
               onClick={() => setActiveTab("team")}
               className={`flex items-center gap-2 border-b-2 px-1 py-4 text-sm font-medium ${
                 activeTab === "team"
@@ -240,6 +252,24 @@ const RescuerDashboard = () => {
 
         <div className="mt-6">
           {activeTab === "emergencies" && renderEmergencies()}
+          {activeTab === "map" && (
+            <div className="p-4">
+              <div className="rounded-lg border bg-white p-4 shadow-sm">
+                <h2 className="mb-4 text-lg font-semibold">
+                  Alert & Emergency Map
+                </h2>
+                <div className="h-[600px] w-full">
+                  <AlertsMap
+                    height={600}
+                    showControls={true}
+                    showEmergencies={true}
+                    showRescueTeams={true}
+                    rescuerView={true}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           {activeTab === "team" && renderTeamMembers()}
           {activeTab === "resources" && <ResourceInventory />}
         </div>

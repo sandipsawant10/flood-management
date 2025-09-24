@@ -12,7 +12,7 @@ import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import QuickActions from "./pages/Emergency/QuickActions";
 import NotificationCenter from "./pages/Notifications/NotificationCenter";
-import AlertsPage from "./pages/Alerts/Alerts.jsx";
+import AlertsPage from "./pages/Alerts/AlertsPage.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import AdminProfile from "./pages/admin/AdminProfile";

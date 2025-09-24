@@ -29,6 +29,7 @@ const { specs, swaggerUi } = require("./swagger/swagger");
 const authRoutes = require("./routes/auth");
 const floodReportRoutes = require("./routes/floodReports");
 const alertRoutes = require("./routes/alerts");
+const geoAlertsRoutes = require("./routes/geoAlerts");
 const emergencyRoutes = require("./routes/emergency");
 const predictionRoutes = require("./routes/predictions");
 const userRoutes = require("./routes/users");
@@ -207,6 +208,7 @@ app.use((req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/flood-reports", floodReportRoutes);
 app.use("/api/alerts", alertRoutes);
+app.use("/api/alerts", geoAlertsRoutes); // Include geo-alerts under alerts route
 app.use("/api/emergency", emergencyRoutes);
 app.use("/api/predictions", predictionRoutes);
 app.use("/api/users", userRoutes);
