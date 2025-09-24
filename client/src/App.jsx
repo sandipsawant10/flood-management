@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout/Layout.jsx";
+import OfflineStatus from "./components/OfflineStatus";
+import { registerServiceWorker } from "./services/serviceWorkerRegistration";
+import { initOfflineService } from "./services/offlineService";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard.jsx";
 import ReportFlood from "./pages/Reports/ReportFlood";
@@ -43,6 +47,25 @@ const UnauthorizedPage = () => (
 const App = () => {
   const { authInitialized, loading, error } = useAuth();
 
+  // Initialize service worker and offline capabilities
+  useEffect(() => {
+    const initApp = async () => {
+      try {
+        // Register service worker for offline capabilities
+        await registerServiceWorker();
+
+        // Initialize offline service for offline data sync
+        initOfflineService();
+
+        console.log("Offline capabilities initialized");
+      } catch (err) {
+        console.error("Failed to initialize offline capabilities:", err);
+      }
+    };
+
+    initApp();
+  }, []);
+
   // Handle loading and error states more explicitly
   if (loading) {
     return <div>Loading Application...</div>;
@@ -63,72 +86,75 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/emergency" element={<QuickActions />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/unauthorized" element={<UnauthorizedPage />} />
+    <>
+      <OfflineStatus />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/emergency" element={<QuickActions />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-      {/* Routes using the Layout component */}
-      <Route element={<Layout />}>
-        {/* Protected Routes */}
-        <Route
-          element={
-            <PrivateRoute
-              allowedRoles={["user", "citizen", "admin", "municipality"]}
+        {/* Routes using the Layout component */}
+        <Route element={<Layout />}>
+          {/* Protected Routes */}
+          <Route
+            element={
+              <PrivateRoute
+                allowedRoles={["user", "citizen", "admin", "municipality"]}
+              />
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/alerts" element={<AlertsPage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/report-flood" element={<ReportFlood />} />
+            <Route path="/reports" element={<ViewReports />} />
+            <Route path="/notifications" element={<NotificationCenter />} />
+          </Route>
+          {/* Admin Routes */}
+          <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/profile" element={<AdminProfile />} />
+            <Route path="/admin/settings" element={<AdminSettings />} />
+            <Route path="/admin/resources" element={<ResourceManagement />} />
+            <Route path="/admin/reports" element={<AdminReports />} />
+            <Route path="/admin/analytics" element={<Analytics />} />
+            <Route path="/admin/disasters" element={<DisasterManagement />} />
+            <Route path="/admin/requests" element={<RequestManagement />} />
+          </Route>
+          {/* Municipality Routes */}
+          <Route element={<PrivateRoute allowedRoles={["municipality"]} />}>
+            <Route
+              path="/municipality/dashboard"
+              element={<MunicipalityDashboard />}
             />
-          }
-        >
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/report-flood" element={<ReportFlood />} />
-          <Route path="/reports" element={<ViewReports />} />
-          <Route path="/notifications" element={<NotificationCenter />} />
+            <Route
+              path="/municipality/profile"
+              element={<MunicipalityProfile />}
+            />
+            <Route
+              path="/municipality/settings"
+              element={<MunicipalitySettings />}
+            />
+            <Route
+              path="/municipality/analytics"
+              element={<MunicipalityAnalytics />}
+            />
+            <Route
+              path="/municipality/reports"
+              element={<MunicipalityReports />}
+            />
+            <Route
+              path="/municipality/resources"
+              element={<MunicipalityResourceManagement />}
+            />
+          </Route>
         </Route>
-        {/* Admin Routes */}
-        <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/profile" element={<AdminProfile />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
-          <Route path="/admin/resources" element={<ResourceManagement />} />
-          <Route path="/admin/reports" element={<AdminReports />} />
-          <Route path="/admin/analytics" element={<Analytics />} />
-          <Route path="/admin/disasters" element={<DisasterManagement />} />
-          <Route path="/admin/requests" element={<RequestManagement />} />
-        </Route>
-        {/* Municipality Routes */}
-        <Route element={<PrivateRoute allowedRoles={["municipality"]} />}>
-          <Route
-            path="/municipality/dashboard"
-            element={<MunicipalityDashboard />}
-          />
-          <Route
-            path="/municipality/profile"
-            element={<MunicipalityProfile />}
-          />
-          <Route
-            path="/municipality/settings"
-            element={<MunicipalitySettings />}
-          />
-          <Route
-            path="/municipality/analytics"
-            element={<MunicipalityAnalytics />}
-          />
-          <Route
-            path="/municipality/reports"
-            element={<MunicipalityReports />}
-          />
-          <Route
-            path="/municipality/resources"
-            element={<MunicipalityResourceManagement />}
-          />
-        </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 };
 
@@ -139,6 +165,3 @@ const AppWrapper = () => (
 );
 
 export default AppWrapper;
-
-// In middleware/security.js
-max: process.env.NODE_ENV === "production" ? 5 : 50;

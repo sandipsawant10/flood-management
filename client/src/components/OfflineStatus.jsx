@@ -1,35 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { WifiOff, Wifi, AlertTriangle } from "lucide-react";
+import { WifiOff, Wifi, AlertTriangle, RefreshCw } from "lucide-react";
+import useOffline from "../hooks/useOffline";
 
 const OfflineStatus = () => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const { online, syncStatus, syncData, offlineCapabilities } = useOffline();
+
   const [showOfflineBanner, setShowOfflineBanner] = useState(false);
+  const [showSyncBanner, setShowSyncBanner] = useState(false);
 
   useEffect(() => {
-    const handleOnline = () => {
-      setIsOnline(true);
-      setShowOfflineBanner(false);
-    };
-
-    const handleOffline = () => {
-      setIsOnline(false);
+    if (!online) {
       setShowOfflineBanner(true);
-    };
+      setShowSyncBanner(false);
+    } else {
+      // When we come back online, show sync banner briefly
+      if (showOfflineBanner) {
+        setShowSyncBanner(true);
+        setShowOfflineBanner(false);
 
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
+        // Hide sync banner after 3 seconds
+        const timer = setTimeout(() => {
+          setShowSyncBanner(false);
+        }, 3000);
 
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [online, showOfflineBanner]);
 
-  if (!showOfflineBanner && isOnline) return null;
+  // Handle manual sync
+  const handleManualSync = () => {
+    syncData().then(() => {
+      // Show feedback briefly
+      setShowSyncBanner(true);
+      setTimeout(() => setShowSyncBanner(false), 3000);
+    });
+  };
+
+  if (!showOfflineBanner && !showSyncBanner && !syncStatus.syncing) return null;
+
+  // Show appropriate banner based on state
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      {!isOnline ? (
+      {showOfflineBanner && (
         <div className="bg-red-600 text-white px-4 py-3 shadow-lg">
           <div className="flex items-center justify-center">
             <WifiOff className="w-5 h-5 mr-3" />
@@ -42,11 +56,28 @@ const OfflineStatus = () => {
             </div>
           </div>
         </div>
-      ) : (
+      )}
+
+      {showSyncBanner && (
         <div className="bg-green-600 text-white px-4 py-2 shadow-lg animate-pulse">
           <div className="flex items-center justify-center">
             <Wifi className="w-4 h-4 mr-2" />
             <p className="text-sm">Back online! Syncing data...</p>
+          </div>
+        </div>
+      )}
+
+      {syncStatus.syncing && !showSyncBanner && (
+        <div className="bg-blue-600 text-white px-4 py-2 shadow-lg">
+          <div className="flex items-center justify-center">
+            <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+            <p className="text-sm">Synchronizing data...</p>
+            <button
+              onClick={handleManualSync}
+              className="ml-2 text-xs bg-blue-700 px-2 py-1 rounded hover:bg-blue-800"
+            >
+              Refresh
+            </button>
           </div>
         </div>
       )}
