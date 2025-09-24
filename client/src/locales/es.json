@@ -1,0 +1,85 @@
+{
+  "app": {
+    "name": "Gestión de Desastres por Inundaciones",
+    "tagline": "Ayudando a las comunidades a prepararse, responder y recuperarse"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "reports": "Informes",
+    "alerts": "Alertas",
+    "map": "Mapa",
+    "notifications": "Notificaciones",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpiar",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "yes": "Sí",
+    "no": "No",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "continue": "Continuar",
+    "view": "Ver",
+    "details": "Detalles",
+    "moreInfo": "Más información",
+    "showMore": "Mostrar más",
+    "showLess": "Mostrar menos"
+  },
+  "geolocation": {
+    "unknownLocation": "Ubicación desconocida",
+    "currentLocation": "Ubicación Actual",
+    "locationFormat": "Lat: {{latitude}}, Long: {{longitude}}",
+    "accessDenied": "Se denegó el acceso a la ubicación",
+    "locationUnavailable": "La información de ubicación no está disponible",
+    "timeoutError": "La solicitud para obtener la ubicación del usuario expiró",
+    "unsupportedError": "Tu navegador no admite la geolocalización",
+    "accuracy": "Precisión: {{meters}} metros",
+    "updatedAt": "Actualizado: {{time}}",
+    "directions": {
+      "north": "norte",
+      "northeast": "noreste",
+      "east": "este",
+      "southeast": "sureste",
+      "south": "sur",
+      "southwest": "suroeste",
+      "west": "oeste",
+      "northwest": "noroeste",
+      "headingDirection": "Dirígete al {{direction}} por aproximadamente {{distance}}km para llegar a {{destination}}."
+    },
+    "evacuationRoutes": {
+      "title": "Rutas de Evacuación",
+      "findSafeRoutes": "Encontrar Rutas Seguras",
+      "safeRouteFound": "Ruta segura encontrada",
+      "noRoutesFound": "No se encontraron rutas seguras",
+      "walkingTime": "{{minutes}} min caminando",
+      "distance": "{{distance}} km",
+      "safeShelter": "Refugio Seguro",
+      "highGround": "Terreno Elevado",
+      "emergencyCenter": "Centro de Emergencia",
+      "evacuationCenter": "Centro de Evacuación",
+      "reliefCenter": "Centro de Ayuda"
+    },
+    "risk": {
+      "floodRisk": "Riesgo de Inundación",
+      "highRisk": "Alto Riesgo",
+      "mediumRisk": "Riesgo Medio",
+      "lowRisk": "Bajo Riesgo",
+      "unknownRisk": "Riesgo Desconocido",
+      "elevationRisk": "Riesgo de Elevación"
+    }
+  }
+}

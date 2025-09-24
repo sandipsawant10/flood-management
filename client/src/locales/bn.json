@@ -1,0 +1,95 @@
+{
+  "app": {
+    "name": "বন্যা দুর্যোগ ব্যবস্থাপনা",
+    "tagline": "সম্প্রদায়কে প্রস্তুত, প্রতিক্রিয়া এবং পুনরুদ্ধার করতে সহায়তা করা"
+  },
+  "navigation": {
+    "home": "হোম",
+    "dashboard": "ড্যাশবোর্ড",
+    "reports": "প্রতিবেদন",
+    "alerts": "সতর্কতা",
+    "map": "মানচিত্র",
+    "notifications": "বিজ্ঞপ্তি",
+    "profile": "প্রোফাইল",
+    "settings": "সেটিংস",
+    "logout": "লগআউট",
+    "login": "লগইন"
+  },
+  "common": {
+    "loading": "লোড হচ্ছে...",
+    "error": "একটি ত্রুটি ঘটেছে",
+    "retry": "পুনরায় চেষ্টা করুন",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ",
+    "edit": "সম্পাদনা",
+    "delete": "মুছে ফেলুন",
+    "search": "অনুসন্ধান",
+    "filter": "ফিল্টার",
+    "clear": "পরিষ্কার",
+    "submit": "জমা দিন",
+    "close": "বন্ধ",
+    "yes": "হ্যাঁ",
+    "no": "না",
+    "back": "পেছনে",
+    "next": "পরবর্তী",
+    "continue": "চালিয়ে যান",
+    "view": "দেখুন",
+    "details": "বিস্তারিত",
+    "moreInfo": "আরও তথ্য",
+    "showMore": "আরও দেখান",
+    "showLess": "কম দেখান"
+  },
+  "geolocation": {
+    "unknownLocation": "অজানা অবস্থান",
+    "currentLocation": "বর্তমান অবস্থান",
+    "locationFormat": "অক্ষাংশ: {{latitude}}, দ্রাঘিমাংশ: {{longitude}}",
+    "accessDenied": "অবস্থান অ্যাক্সেস অস্বীকার করা হয়েছে",
+    "locationUnavailable": "অবস্থান তথ্য অনুপলব্ধ",
+    "timeoutError": "ব্যবহারকারীর অবস্থান পাওয়ার অনুরোধ সময় শেষ হয়ে গেছে",
+    "unsupportedError": "আপনার ব্রাউজার জিওলোকেশন সমর্থন করে না",
+    "accuracy": "সঠিকতা: {{meters}} মিটার",
+    "updatedAt": "আপডেট করা হয়েছে: {{time}}",
+    "directions": {
+      "north": "উত্তর",
+      "northeast": "উত্তর-পূর্ব",
+      "east": "পূর্ব",
+      "southeast": "দক্ষিণ-পূর্ব",
+      "south": "দক্ষিণ",
+      "southwest": "দক্ষিণ-পশ্চিম",
+      "west": "পশ্চিম",
+      "northwest": "উত্তর-পশ্চিম",
+      "headingDirection": "{{destination}} পৌঁছাতে {{direction}} দিকে প্রায় {{distance}} কিমি যান।"
+    },
+    "evacuationRoutes": {
+      "title": "অপসারণ পথ",
+      "findSafeRoutes": "নিরাপদ রুট খুঁজুন",
+      "safeRouteFound": "নিরাপদ রুট পাওয়া গেছে",
+      "noRoutesFound": "কোন নিরাপদ রুট পাওয়া যায়নি",
+      "walkingTime": "{{minutes}} মিনিট হাঁটা",
+      "distance": "{{distance}} কিমি",
+      "safeShelter": "নিরাপদ আশ্রয়",
+      "highGround": "উঁচু জায়গা",
+      "emergencyCenter": "জরুরী কেন্দ্র",
+      "evacuationCenter": "কমিউনিটি অপসারণ কেন্দ্র",
+      "reliefCenter": "জরুরী ত্রাণ কেন্দ্র"
+    },
+    "errors": {
+      "invalidLocation": "অবৈধ অবস্থান",
+      "geocodingServiceUnavailable": "জিওকোডিং পরিষেবা অনুপলব্ধ"
+    },
+    "riskLevels": {
+      "high": "উচ্চ",
+      "medium": "মধ্যম",
+      "low": "নিম্ন",
+      "unknown": "অজানা"
+    },
+    "risk": {
+      "floodRisk": "বন্যার ঝুঁকি",
+      "highRisk": "উচ্চ ঝুঁকি",
+      "mediumRisk": "মধ্যম ঝুঁকি",
+      "lowRisk": "নিম্ন ঝুঁকি",
+      "unknownRisk": "অজানা ঝুঁকি",
+      "elevationRisk": "উচ্চতা ঝুঁকি"
+    }
+  }
+}

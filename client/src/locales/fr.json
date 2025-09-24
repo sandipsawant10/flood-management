@@ -1,0 +1,85 @@
+{
+  "app": {
+    "name": "Gestion des Catastrophes d'Inondation",
+    "tagline": "Aider les communautés à se préparer, répondre et se rétablir"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "reports": "Rapports",
+    "alerts": "Alertes",
+    "map": "Carte",
+    "notifications": "Notifications",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "login": "Connexion"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "clear": "Effacer",
+    "submit": "Soumettre",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "back": "Retour",
+    "next": "Suivant",
+    "continue": "Continuer",
+    "view": "Voir",
+    "details": "Détails",
+    "moreInfo": "Plus d'informations",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins"
+  },
+  "geolocation": {
+    "unknownLocation": "Emplacement inconnu",
+    "currentLocation": "Emplacement Actuel",
+    "locationFormat": "Lat: {{latitude}}, Long: {{longitude}}",
+    "accessDenied": "L'accès à la localisation a été refusé",
+    "locationUnavailable": "Les informations de localisation ne sont pas disponibles",
+    "timeoutError": "La demande de localisation de l'utilisateur a expiré",
+    "unsupportedError": "Votre navigateur ne prend pas en charge la géolocalisation",
+    "accuracy": "Précision: {{meters}} mètres",
+    "updatedAt": "Mis à jour: {{time}}",
+    "directions": {
+      "north": "nord",
+      "northeast": "nord-est",
+      "east": "est",
+      "southeast": "sud-est",
+      "south": "sud",
+      "southwest": "sud-ouest",
+      "west": "ouest",
+      "northwest": "nord-ouest",
+      "headingDirection": "Dirigez-vous vers le {{direction}} sur environ {{distance}}km pour atteindre {{destination}}."
+    },
+    "evacuationRoutes": {
+      "title": "Itinéraires d'Évacuation",
+      "findSafeRoutes": "Trouver des Itinéraires Sûrs",
+      "safeRouteFound": "Itinéraire sûr trouvé",
+      "noRoutesFound": "Aucun itinéraire sûr trouvé",
+      "walkingTime": "{{minutes}} min à pied",
+      "distance": "{{distance}} km",
+      "safeShelter": "Abri Sûr",
+      "highGround": "Terrain Élevé",
+      "emergencyCenter": "Centre d'Urgence",
+      "evacuationCenter": "Centre d'Évacuation",
+      "reliefCenter": "Centre de Secours"
+    },
+    "risk": {
+      "floodRisk": "Risque d'Inondation",
+      "highRisk": "Risque Élevé",
+      "mediumRisk": "Risque Moyen",
+      "lowRisk": "Risque Faible",
+      "unknownRisk": "Risque Inconnu",
+      "elevationRisk": "Risque d'Élévation"
+    }
+  }
+}

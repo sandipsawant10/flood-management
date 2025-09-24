@@ -1,0 +1,85 @@
+{
+  "app": {
+    "name": "बाढ़ आपदा प्रबंधन",
+    "tagline": "समुदायों को तैयार करने, प्रतिक्रिया देने और पुनर्प्राप्त करने में सहायता"
+  },
+  "navigation": {
+    "home": "होम",
+    "dashboard": "डैशबोर्ड",
+    "reports": "रिपोर्ट",
+    "alerts": "अलर्ट",
+    "map": "नक्शा",
+    "notifications": "सूचनाएं",
+    "profile": "प्रोफाइल",
+    "settings": "सेटिंग्स",
+    "logout": "लॉग आउट",
+    "login": "लॉग इन"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "एक त्रुटि हुई",
+    "retry": "पुनः प्रयास करें",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "edit": "संपादित करें",
+    "delete": "हटाएं",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "clear": "साफ़ करें",
+    "submit": "सबमिट करें",
+    "close": "बंद करें",
+    "yes": "हां",
+    "no": "नहीं",
+    "back": "वापस",
+    "next": "अगला",
+    "continue": "जारी रखें",
+    "view": "देखें",
+    "details": "विवरण",
+    "moreInfo": "अधिक जानकारी",
+    "showMore": "और दिखाएं",
+    "showLess": "कम दिखाएं"
+  },
+  "geolocation": {
+    "unknownLocation": "अज्ञात स्थान",
+    "currentLocation": "वर्तमान स्थान",
+    "locationFormat": "अक्षांश: {{latitude}}, देशांतर: {{longitude}}",
+    "accessDenied": "स्थान तक पहुंच अस्वीकृत की गई",
+    "locationUnavailable": "स्थान जानकारी उपलब्ध नहीं है",
+    "timeoutError": "उपयोगकर्ता के स्थान को प्राप्त करने का अनुरोध समय समाप्त हो गया",
+    "unsupportedError": "आपका ब्राउज़र जियोलोकेशन का समर्थन नहीं करता है",
+    "accuracy": "सटीकता: {{meters}} मीटर",
+    "updatedAt": "अपडेटेड: {{time}}",
+    "directions": {
+      "north": "उत्तर",
+      "northeast": "उत्तर पूर्व",
+      "east": "पूर्व",
+      "southeast": "दक्षिण पूर्व",
+      "south": "दक्षिण",
+      "southwest": "दक्षिण पश्चिम",
+      "west": "पश्चिम",
+      "northwest": "उत्तर पश्चिम",
+      "headingDirection": "{{destination}} तक पहुंचने के लिए लगभग {{distance}} किमी तक {{direction}} की ओर जाएं।"
+    },
+    "evacuationRoutes": {
+      "title": "निकासी मार्ग",
+      "findSafeRoutes": "सुरक्षित मार्ग खोजें",
+      "safeRouteFound": "सुरक्षित मार्ग मिला",
+      "noRoutesFound": "कोई सुरक्षित मार्ग नहीं मिला",
+      "walkingTime": "{{minutes}} मिनट पैदल",
+      "distance": "{{distance}} किमी",
+      "safeShelter": "सुरक्षित आश्रय",
+      "highGround": "ऊंचा स्थान",
+      "emergencyCenter": "आपातकालीन केंद्र",
+      "evacuationCenter": "निकासी केंद्र",
+      "reliefCenter": "राहत केंद्र"
+    },
+    "risk": {
+      "floodRisk": "बाढ़ का खतरा",
+      "highRisk": "उच्च जोखिम",
+      "mediumRisk": "मध्यम जोखिम",
+      "lowRisk": "कम जोखिम",
+      "unknownRisk": "अज्ञात जोखिम",
+      "elevationRisk": "ऊंचाई जोखिम"
+    }
+  }
+}

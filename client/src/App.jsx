@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import LanguageProvider from "./contexts/LanguageContext";
 import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout/Layout.jsx";
@@ -180,7 +181,9 @@ const App = () => {
 
 const AppWrapper = () => (
   <AuthProvider>
-    <App />
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
   </AuthProvider>
 );
 

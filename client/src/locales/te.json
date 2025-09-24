@@ -1,0 +1,95 @@
+{
+  "app": {
+    "name": "వరద విపత్తు నిర్వహణ",
+    "tagline": "సమాజాలు సిద్ధం కావడానికి, స్పందించడానికి మరియు కోలుకోవడానికి సహాయం చేస్తోంది"
+  },
+  "navigation": {
+    "home": "హోమ్",
+    "dashboard": "డాష్‌బోర్డ్",
+    "reports": "నివేదికలు",
+    "alerts": "హెచ్చరికలు",
+    "map": "మ్యాప్",
+    "notifications": "నోటిఫికేషన్లు",
+    "profile": "ప్రొఫైల్",
+    "settings": "సెట్టింగులు",
+    "logout": "లాగ్ అవుట్",
+    "login": "లాగిన్"
+  },
+  "common": {
+    "loading": "లోడ్ అవుతోంది...",
+    "error": "లోపం సంభవించింది",
+    "retry": "మళ్ళీ ప్రయత్నించండి",
+    "cancel": "రద్దు",
+    "save": "సేవ్",
+    "edit": "సవరించు",
+    "delete": "తొలగించు",
+    "search": "శోధన",
+    "filter": "ఫిల్టర్",
+    "clear": "క్లియర్",
+    "submit": "సమర్పించండి",
+    "close": "మూసివేయండి",
+    "yes": "అవును",
+    "no": "కాదు",
+    "back": "వెనుకకు",
+    "next": "తదుపరి",
+    "continue": "కొనసాగించండి",
+    "view": "చూడండి",
+    "details": "వివరాలు",
+    "moreInfo": "మరింత సమాచారం",
+    "showMore": "మరింత చూపించు",
+    "showLess": "తక్కువ చూపించు"
+  },
+  "geolocation": {
+    "unknownLocation": "తెలియని స్థానం",
+    "currentLocation": "ప్రస్తుత స్థానం",
+    "locationFormat": "అక్షాంశం: {{latitude}}, రేఖాంశం: {{longitude}}",
+    "accessDenied": "స్థాన ప్రాప్తి నిరాకరించబడింది",
+    "locationUnavailable": "స్థాన సమాచారం అందుబాటులో లేదు",
+    "timeoutError": "వినియోగదారు స్థానాన్ని పొందడానికి అభ్యర్థన సమయం ముగిసింది",
+    "unsupportedError": "మీ బ్రౌజర్ జియోలొకేషన్‌కి మద్దతు ఇవ్వదు",
+    "accuracy": "ఖచ్చితత్వం: {{meters}} మీటర్లు",
+    "updatedAt": "నవీకరించబడింది: {{time}}",
+    "directions": {
+      "north": "ఉత్తరం",
+      "northeast": "ఈశాన్యం",
+      "east": "తూర్పు",
+      "southeast": "ఆగ్నేయం",
+      "south": "దక్షిణం",
+      "southwest": "నైరుతి",
+      "west": "పశ్చిమం",
+      "northwest": "వాయవ్యం",
+      "headingDirection": "{{destination}}కి చేరుకోవడానికి {{direction}} వైపు సుమారు {{distance}}కిమీ వెళ్ళండి."
+    },
+    "evacuationRoutes": {
+      "title": "ఖాళీ చేయు మార్గాలు",
+      "findSafeRoutes": "సురక్షిత మార్గాలను కనుగొనండి",
+      "safeRouteFound": "సురక్షిత మార్గం కనుగొనబడింది",
+      "noRoutesFound": "సురక్షిత మార్గాలు కనుగొనబడలేదు",
+      "walkingTime": "{{minutes}} నిమిషాల నడక",
+      "distance": "{{distance}} కిమీ",
+      "safeShelter": "సురక్షిత ఆశ్రయం",
+      "highGround": "ఎత్తైన ప్రదేశం",
+      "emergencyCenter": "అత్యవసర కేంద్రం",
+      "evacuationCenter": "కమ్యూనిటీ ఎవాక్యుయేషన్ సెంటర్",
+      "reliefCenter": "అత్యవసర సహాయ కేంద్రం"
+    },
+    "errors": {
+      "invalidLocation": "చెల్లని స్థానం",
+      "geocodingServiceUnavailable": "జియోకోడింగ్ సేవ అందుబాటులో లేదు"
+    },
+    "riskLevels": {
+      "high": "అధిక",
+      "medium": "మధ్యస్థం",
+      "low": "తక్కువ",
+      "unknown": "తెలియని"
+    },
+    "risk": {
+      "floodRisk": "వరద ప్రమాదం",
+      "highRisk": "అధిక ప్రమాదం",
+      "mediumRisk": "మధ్యస్థ ప్రమాదం",
+      "lowRisk": "తక్కువ ప్రమాదం",
+      "unknownRisk": "తెలియని ప్రమాదం",
+      "elevationRisk": "ఎత్తు ప్రమాదం"
+    }
+  }
+}

@@ -14,6 +14,7 @@ const MAX_LOCATION_AGE = 24 * 60 * 60 * 1000; // 24 hours
  * @param {Object} currentLocation - User's current location
  * @param {Array} alertZones - Array of active alert zones
  * @param {Object} options - Additional options
+ * @param {Function} options.translate - Translation function for multilingual support
  * @returns {Promise} Resolves with suggested routes
  */
 export const findSafeEvacuationRoutes = async (
@@ -30,6 +31,8 @@ export const findSafeEvacuationRoutes = async (
       throw new Error("Invalid current location");
     }
 
+    const { translate = null } = options;
+
     // In a real application, this would call routing services like MapBox, Google Maps, etc.
     // For this demo, we'll simulate some evacuation routes
 
@@ -37,19 +40,25 @@ export const findSafeEvacuationRoutes = async (
     const safeDestinations = [
       // Simulated shelter locations - in a real app, these would come from a database
       {
-        name: "Community Evacuation Center",
+        name: translate
+          ? translate("geolocation.evacuationRoutes.evacuationCenter")
+          : "Community Evacuation Center",
         latitude: currentLocation.latitude + 0.02,
         longitude: currentLocation.longitude + 0.01,
         type: "shelter",
       },
       {
-        name: "High Ground Zone",
+        name: translate
+          ? translate("geolocation.evacuationRoutes.highGround")
+          : "High Ground Zone",
         latitude: currentLocation.latitude - 0.01,
         longitude: currentLocation.longitude + 0.02,
         type: "high_ground",
       },
       {
-        name: "Emergency Relief Center",
+        name: translate
+          ? translate("geolocation.evacuationRoutes.reliefCenter")
+          : "Emergency Relief Center",
         latitude: currentLocation.latitude + 0.01,
         longitude: currentLocation.longitude - 0.02,
         type: "shelter",
@@ -81,18 +90,34 @@ export const findSafeEvacuationRoutes = async (
           (distance / 1000 / walkingSpeedKmh) * 60
         );
 
+        // Get direction with translation if available
+        const direction = getCardinalDirection(
+          currentLocation,
+          waypoints[0],
+          translate
+        );
+
+        // Format the directions text
+        let directions;
+        if (translate) {
+          directions = translate("geolocation.directions.headingDirection", {
+            direction,
+            distance: (distance / 1000).toFixed(1),
+            destination: destination.name,
+          });
+        } else {
+          directions = `Head ${direction} for approximately ${(
+            distance / 1000
+          ).toFixed(1)}km to reach ${destination.name}.`;
+        }
+
         return {
           destination,
           distance,
           estimatedMinutes,
           waypoints,
           isSafe: true, // In a real implementation, determine if route avoids all danger areas
-          directions: `Head ${getCardinalDirection(
-            currentLocation,
-            waypoints[0]
-          )} for approximately ${(distance / 1000).toFixed(1)}km to reach ${
-            destination.name
-          }.`,
+          directions,
         };
       })
     );
@@ -118,8 +143,11 @@ export const findSafeEvacuationRoutes = async (
 /**
  * Generate a simulated path between two points avoiding alert zones
  * Note: In a real app, this would use actual routing APIs
+ * @param {Object} start - Start position with latitude and longitude
+ * @param {Object} end - End position with latitude and longitude
+ * @returns {Array} Array of waypoints
  */
-const generateSimulatedPath = (start, end, alertZones) => {
+const generateSimulatedPath = (start, end) => {
   // Create a simple path with waypoints that would avoid alert zones
   const waypoints = [];
 
@@ -147,9 +175,13 @@ const generateSimulatedPath = (start, end, alertZones) => {
 
 /**
  * Get cardinal direction between two points
+ * @param {Object} from - Start position with latitude and longitude
+ * @param {Object} to - End position with latitude and longitude
+ * @param {Function} translate - Optional translation function, if provided translates direction
+ * @returns {string} Cardinal direction
  */
-const getCardinalDirection = (from, to) => {
-  const directions = [
+const getCardinalDirection = (from, to, translate = null) => {
+  const directionKeys = [
     "north",
     "northeast",
     "east",
@@ -166,7 +198,14 @@ const getCardinalDirection = (from, to) => {
   const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
   const index = Math.round(((angle + 360) % 360) / 45) % 8;
 
-  return directions[index];
+  const direction = directionKeys[index];
+
+  // If translation function is provided, translate the direction
+  if (translate && typeof translate === "function") {
+    return translate(`geolocation.directions.${direction}`);
+  }
+
+  return direction;
 };
 
 /**
@@ -673,13 +712,28 @@ export const calculateDistanceToLine = (point, lineStart, lineEnd) => {
 /**
  * Format location as address string
  * @param {Object} location - Location object
+ * @param {Object} options - Additional options
+ * @param {Function} options.translate - Translation function
  * @returns {string} Formatted address
  */
-export const formatLocationAsAddress = (location) => {
-  if (!location) return "Unknown location";
+export const formatLocationAsAddress = (location, options = {}) => {
+  const { translate = null } = options;
+
+  if (!location) {
+    return translate
+      ? translate("geolocation.unknownLocation")
+      : "Unknown location";
+  }
 
   if (location.address) {
     return location.address;
+  }
+
+  if (translate) {
+    return translate("geolocation.locationFormat", {
+      latitude: location.latitude.toFixed(6),
+      longitude: location.longitude.toFixed(6),
+    });
   }
 
   return `Lat: ${location.latitude.toFixed(
@@ -690,12 +744,20 @@ export const formatLocationAsAddress = (location) => {
 /**
  * Reverse geocode a location
  * @param {Object} location - Location with lat/long
+ * @param {Object} options - Additional options
+ * @param {Function} options.translate - Translation function
  * @returns {Promise} Resolves with location with address
  */
-export const reverseGeocode = async (location) => {
+export const reverseGeocode = async (location, options = {}) => {
+  const { translate = null } = options;
+
   try {
     if (!location || !location.latitude || !location.longitude) {
-      throw new Error("Invalid location");
+      const errorMessage = translate
+        ? translate("geolocation.errors.invalidLocation")
+        : "Invalid location";
+
+      throw new Error(errorMessage);
     }
 
     const response = await fetch(
@@ -708,7 +770,11 @@ export const reverseGeocode = async (location) => {
     );
 
     if (!response.ok) {
-      throw new Error("Geocoding service unavailable");
+      const errorMessage = translate
+        ? translate("geolocation.errors.geocodingServiceUnavailable")
+        : "Geocoding service unavailable";
+
+      throw new Error(errorMessage);
     }
 
     const data = await response.json();
@@ -727,15 +793,22 @@ export const reverseGeocode = async (location) => {
 /**
  * Calculate elevation risk for a location
  * @param {Object} location - Location with lat/long
+ * @param {Object} options - Additional options
+ * @param {Function} options.translate - Translation function
  * @returns {Promise} Resolves with risk assessment
  */
-export const calculateElevationRisk = async (location) => {
+export const calculateElevationRisk = async (location, options = {}) => {
+  const { translate = null } = options;
+
   // Note: In a real implementation, this would call an elevation API service
   // For this demo, we'll use a simulated response based on coordinates
-
   try {
     if (!location || !location.latitude || !location.longitude) {
-      throw new Error("Invalid location");
+      const errorMessage = translate
+        ? translate("geolocation.errors.invalidLocation")
+        : "Invalid location";
+
+      throw new Error(errorMessage);
     }
 
     // Simulated elevation check - would call a real elevation API in production
@@ -754,10 +827,11 @@ export const calculateElevationRisk = async (location) => {
       risk = "medium";
     }
 
-    // Return risk assessment
+    // Return risk assessment with translated risk level if translation function is provided
     return {
       elevation: elevation.toFixed(1), // meters
-      risk,
+      risk: translate ? translate(`geolocation.riskLevels.${risk}`) : risk,
+      riskLevel: risk, // Keep original risk level for internal use
       riskFactor: risk === "high" ? 0.8 : risk === "medium" ? 0.4 : 0.1,
       timestamp: new Date().getTime(),
     };
@@ -765,7 +839,8 @@ export const calculateElevationRisk = async (location) => {
     console.error("Error calculating elevation risk:", error);
     return {
       elevation: null,
-      risk: "unknown",
+      risk: translate ? translate("geolocation.riskLevels.unknown") : "unknown",
+      riskLevel: "unknown", // Keep original risk level for internal use
       riskFactor: 0.5,
       error: error.message,
     };
@@ -776,15 +851,19 @@ export const calculateElevationRisk = async (location) => {
  * Calculate real-time flood risk based on location, weather and elevation
  * @param {Object} location - User location
  * @param {Object} options - Additional options
+ * @param {Object} options.weather - Weather data
+ * @param {Function} options.translate - Translation function
  * @returns {Promise} Resolves with risk assessment
  */
 export const calculateFloodRisk = async (location, options = {}) => {
+  const { translate = null, weather = null } = options;
+
   try {
-    // Get elevation risk
-    const elevationRisk = await calculateElevationRisk(location);
+    // Get elevation risk with translation support
+    const elevationRisk = await calculateElevationRisk(location, { translate });
 
     // Get weather data - note: in a real app, call to weather API
-    const weather = options.weather || {
+    const weatherData = weather || {
       precipitation: Math.random() * 10, // mm
       precipitationForecast: Math.random() * 20, // mm in next 24h
       floodWarningsNearby: Math.random() > 0.7, // 30% chance of nearby warnings
@@ -792,16 +871,20 @@ export const calculateFloodRisk = async (location, options = {}) => {
 
     // Calculate combined risk factors
     const weatherRiskFactor =
-      weather.precipitation > 5 ? 0.7 : weather.precipitation > 2 ? 0.4 : 0.2;
+      weatherData.precipitation > 5
+        ? 0.7
+        : weatherData.precipitation > 2
+        ? 0.4
+        : 0.2;
 
     const forecastRiskFactor =
-      weather.precipitationForecast > 15
+      weatherData.precipitationForecast > 15
         ? 0.8
-        : weather.precipitationForecast > 10
+        : weatherData.precipitationForecast > 10
         ? 0.5
         : 0.3;
 
-    const warningFactor = weather.floodWarningsNearby ? 0.9 : 0.3;
+    const warningFactor = weatherData.floodWarningsNearby ? 0.9 : 0.3;
 
     // Combine risk factors with elevation risk
     const combinedRiskFactor =
@@ -821,18 +904,24 @@ export const calculateFloodRisk = async (location, options = {}) => {
     }
 
     return {
-      riskLevel,
+      riskLevel: translate
+        ? translate(`geolocation.riskLevels.${riskLevel}`)
+        : riskLevel,
+      originalRiskLevel: riskLevel, // Keep original risk level for internal use
       riskFactor: combinedRiskFactor,
       elevation: elevationRisk.elevation,
-      precipitation: weather.precipitation,
-      precipitationForecast: weather.precipitationForecast,
-      floodWarningsNearby: weather.floodWarningsNearby,
+      precipitation: weatherData.precipitation,
+      precipitationForecast: weatherData.precipitationForecast,
+      floodWarningsNearby: weatherData.floodWarningsNearby,
       timestamp: new Date().getTime(),
     };
   } catch (error) {
     console.error("Error calculating flood risk:", error);
     return {
-      riskLevel: "unknown",
+      riskLevel: translate
+        ? translate("geolocation.riskLevels.unknown")
+        : "unknown",
+      originalRiskLevel: "unknown",
       riskFactor: 0.5,
       error: error.message,
     };

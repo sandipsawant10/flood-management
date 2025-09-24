@@ -16,6 +16,7 @@ import {
   Box,
 } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
+import LanguageSelector from "../Common/LanguageSelector";
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -269,6 +270,8 @@ const Layout = () => {
             </div>
 
             <div className="flex items-center space-x-4">
+              <LanguageSelector compact />
+
               <Link
                 to="/emergency"
                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-danger-600 hover:bg-danger-700"

@@ -1,0 +1,85 @@
+{
+  "app": {
+    "name": "إدارة كوارث الفيضانات",
+    "tagline": "مساعدة المجتمعات على الاستعداد والاستجابة والتعافي"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "reports": "التقارير",
+    "alerts": "التنبيهات",
+    "map": "الخريطة",
+    "notifications": "الإشعارات",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "search": "بحث",
+    "filter": "تصفية",
+    "clear": "مسح",
+    "submit": "إرسال",
+    "close": "إغلاق",
+    "yes": "نعم",
+    "no": "لا",
+    "back": "رجوع",
+    "next": "التالي",
+    "continue": "متابعة",
+    "view": "عرض",
+    "details": "التفاصيل",
+    "moreInfo": "مزيد من المعلومات",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل"
+  },
+  "geolocation": {
+    "unknownLocation": "موقع غير معروف",
+    "currentLocation": "الموقع الحالي",
+    "locationFormat": "خط العرض: {{latitude}}، خط الطول: {{longitude}}",
+    "accessDenied": "تم رفض الوصول إلى الموقع",
+    "locationUnavailable": "معلومات الموقع غير متوفرة",
+    "timeoutError": "انتهت مهلة طلب الحصول على موقع المستخدم",
+    "unsupportedError": "متصفحك لا يدعم تحديد الموقع الجغرافي",
+    "accuracy": "الدقة: {{meters}} متر",
+    "updatedAt": "تم التحديث: {{time}}",
+    "directions": {
+      "north": "شمالاً",
+      "northeast": "شمال شرق",
+      "east": "شرقاً",
+      "southeast": "جنوب شرق",
+      "south": "جنوباً",
+      "southwest": "جنوب غرب",
+      "west": "غرباً",
+      "northwest": "شمال غرب",
+      "headingDirection": "توجه {{direction}} لمسافة {{distance}} كم تقريبًا للوصول إلى {{destination}}."
+    },
+    "evacuationRoutes": {
+      "title": "مسارات الإخلاء",
+      "findSafeRoutes": "البحث عن مسارات آمنة",
+      "safeRouteFound": "تم العثور على مسار آمن",
+      "noRoutesFound": "لم يتم العثور على مسارات آمنة",
+      "walkingTime": "{{minutes}} دقيقة مشياً",
+      "distance": "{{distance}} كم",
+      "safeShelter": "مأوى آمن",
+      "highGround": "أرض مرتفعة",
+      "emergencyCenter": "مركز طوارئ",
+      "evacuationCenter": "مركز إخلاء",
+      "reliefCenter": "مركز إغاثة"
+    },
+    "risk": {
+      "floodRisk": "خطر الفيضان",
+      "highRisk": "خطر مرتفع",
+      "mediumRisk": "خطر متوسط",
+      "lowRisk": "خطر منخفض",
+      "unknownRisk": "خطر غير معروف",
+      "elevationRisk": "خطر الارتفاع"
+    }
+  }
+}
