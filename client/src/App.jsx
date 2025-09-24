@@ -5,7 +5,6 @@ import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout/Layout.jsx";
 import OfflineStatus from "./components/OfflineStatus";
-import { registerServiceWorker } from "./services/serviceWorkerRegistration";
 import { initOfflineService } from "./services/offlineService";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -51,20 +50,41 @@ const App = () => {
   useEffect(() => {
     const initApp = async () => {
       try {
-        // Register service worker for offline capabilities
-        await registerServiceWorker();
-
         // Initialize offline service for offline data sync
         initOfflineService();
 
-        console.log("Offline capabilities initialized");
+        console.log("Offline service initialized");
       } catch (err) {
-        console.error("Failed to initialize offline capabilities:", err);
+        console.error("Failed to initialize offline service:", err);
       }
     };
 
     initApp();
   }, []);
+
+  // Prefetch essential data for offline use when user is authenticated
+  useEffect(() => {
+    const prefetchData = async () => {
+      // Only prefetch data if user is authenticated
+      if (authInitialized && !loading && !error) {
+        try {
+          // Import dynamically to avoid circular dependencies
+          const { prefetchEssentialData } = await import(
+            "./services/apiCacheService"
+          );
+
+          // Prefetch essential data for offline use
+          await prefetchEssentialData();
+
+          console.log("Essential data prefetched for offline use");
+        } catch (err) {
+          console.error("Failed to prefetch essential data:", err);
+        }
+      }
+    };
+
+    prefetchData();
+  }, [authInitialized, loading, error]);
 
   // Handle loading and error states more explicitly
   if (loading) {
