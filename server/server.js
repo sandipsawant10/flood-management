@@ -14,6 +14,7 @@ const notificationService = require("./services/notificationService");
 const {
   errorHandler,
   notFoundHandler,
+  correlationIdMiddleware,
   logger,
 } = require("./middleware/errorHandler");
 const {
@@ -25,19 +26,19 @@ const {
 const { specs, swaggerUi } = require("./swagger/swagger");
 
 // Import routes
-const authRoutes = require('./routes/auth');
-const floodReportRoutes = require('./routes/floodReports');
-const alertRoutes = require('./routes/alerts');
-const emergencyRoutes = require('./routes/emergency');
-const predictionRoutes = require('./routes/predictions');
-const userRoutes = require('./routes/users');
-const analyticsRoutes = require('./routes/analytics');
-const adminRoutes = require('./routes/admin');
-const adminMunicipalityRoutes = require('./routes/adminMunicipality');
-const adminRescuersRoutes = require('./routes/adminRescuers');
-const weatherRoutes = require('./routes/weather');
-const notificationRoutes = require('./routes/notifications');
-const financialAidRoutes = require('./routes/financialAid');
+const authRoutes = require("./routes/auth");
+const floodReportRoutes = require("./routes/floodReports");
+const alertRoutes = require("./routes/alerts");
+const emergencyRoutes = require("./routes/emergency");
+const predictionRoutes = require("./routes/predictions");
+const userRoutes = require("./routes/users");
+const analyticsRoutes = require("./routes/analytics");
+const adminRoutes = require("./routes/admin");
+const adminMunicipalityRoutes = require("./routes/adminMunicipality");
+const adminRescuersRoutes = require("./routes/adminRescuers");
+const weatherRoutes = require("./routes/weather");
+const notificationRoutes = require("./routes/notifications");
+const financialAidRoutes = require("./routes/financialAid");
 
 const app = express();
 const server = createServer(app);
@@ -80,10 +81,14 @@ app.use(compression());
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
+    exposedHeaders: ["X-Correlation-ID"],
   })
 );
+
+// Add correlation ID middleware
+app.use(correlationIdMiddleware);
 
 app.use(
   morgan("combined", {
@@ -93,9 +98,11 @@ app.use(
   })
 );
 
+// Rate limiting middleware with path-specific configurations
 app.use("/api/", speedLimiter);
 app.use("/api/", apiLimiter);
 app.use("/api/auth", authLimiter);
+app.use("/api/emergency", emergencyLimiter);
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -140,7 +147,7 @@ io.on("connection", (socket) => {
   // Emergency SOS
   socket.on("emergency-sos", async (data) => {
     logger.warn(`Emergency SOS from ${socket.id}:`, data);
-    
+
     // Emit real-time alert to users in the same location
     io.to(`location-${data.state}-${data.district}`).emit("emergency-alert", {
       type: "SOS",
@@ -148,31 +155,36 @@ io.on("connection", (socket) => {
       message: "Emergency SOS signal received",
       timestamp: new Date(),
     });
-    
+
     // Create notifications for nearby users and officials
     try {
       // Find users in the affected area (officials and admins first)
       const nearbyUsers = await User.find({
-        'location.state': data.state,
-        'location.district': data.district,
-        role: { $in: ['official', 'admin'] }
+        "location.state": data.state,
+        "location.district": data.district,
+        role: { $in: ["official", "admin"] },
       }).limit(20);
-      
+
       if (nearbyUsers.length > 0) {
         // Create emergency notification
         const notificationData = {
           title: "🆘 Emergency SOS Alert",
-          message: `Emergency SOS signal received from ${data.location.address || 'your area'}. Emergency services have been notified.`,
+          message: `Emergency SOS signal received from ${
+            data.location.address || "your area"
+          }. Emergency services have been notified.`,
           type: "emergency",
           metadata: {
             location: data.location,
-            userId: data.userId || 'anonymous'
-          }
+            userId: data.userId || "anonymous",
+          },
         };
-        
+
         // Send notifications to officials and admins
-        const recipients = nearbyUsers.map(user => user._id);
-        await notificationService.createBulkInAppNotifications(recipients, notificationData);
+        const recipients = nearbyUsers.map((user) => user._id);
+        await notificationService.createBulkInAppNotifications(
+          recipients,
+          notificationData
+        );
       }
     } catch (error) {
       logger.error("Failed to create emergency notifications:", error);
@@ -192,22 +204,22 @@ app.use((req, res, next) => {
 });
 
 // ---------- API ROUTES ----------
-app.use('/api/auth', authRoutes);
-app.use('/api/flood-reports', floodReportRoutes);
-app.use('/api/alerts', alertRoutes);
-app.use('/api/emergency', emergencyRoutes);
-app.use('/api/predictions', predictionRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/admin/municipality', adminMunicipalityRoutes);
-app.use('/api/admin/rescuers', adminRescuersRoutes);
-app.use('/api/weather', weatherRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/financial-aid', financialAidRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/flood-reports", floodReportRoutes);
+app.use("/api/alerts", alertRoutes);
+app.use("/api/emergency", emergencyRoutes);
+app.use("/api/predictions", predictionRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/analytics", analyticsRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/admin/municipality", adminMunicipalityRoutes);
+app.use("/api/admin/rescuers", adminRescuersRoutes);
+app.use("/api/weather", weatherRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/financial-aid", financialAidRoutes);
 
 // Import and use notification test routes
-const notificationTestRoutes = require('./routes/notificationTest');
+const notificationTestRoutes = require("./routes/notificationTest");
 app.use("/api/notification-test", notificationTestRoutes);
 
 // ---------- ERROR HANDLING ----------

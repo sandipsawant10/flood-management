@@ -48,27 +48,50 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["citizen", "volunteer", "official", "admin", "municipality", "rescuer"],
+      enum: [
+        "citizen",
+        "volunteer",
+        "official",
+        "admin",
+        "municipality",
+        "rescuer",
+      ],
       default: "citizen",
     },
     roles: {
       type: [String],
-      enum: ["citizen", "volunteer", "official", "admin", "municipality", "rescuer"],
+      enum: [
+        "citizen",
+        "volunteer",
+        "official",
+        "admin",
+        "municipality",
+        "rescuer",
+      ],
       default: ["citizen"],
     },
     rescueTeam: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'RescueTeam',
-      default: null
+      ref: "RescueTeam",
+      default: null,
     },
     isTeamLeader: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    specializations: [{
-      type: String,
-      enum: ['medical', 'firefighting', 'waterRescue', 'search', 'evacuation', 'logistics']
-    }],
+    specializations: [
+      {
+        type: String,
+        enum: [
+          "medical",
+          "firefighting",
+          "waterRescue",
+          "search",
+          "evacuation",
+          "logistics",
+        ],
+      },
+    ],
     trustScore: {
       type: Number,
       default: 100,
@@ -126,6 +149,22 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    refreshToken: {
+      type: String,
+    },
+    refreshTokenExpiry: {
+      type: Date,
+    },
+    deviceInfo: [
+      {
+        deviceId: String,
+        deviceName: String,
+        browser: String,
+        os: String,
+        lastLogin: Date,
+        lastIp: String,
+      },
+    ],
   },
   {
     timestamps: true,
@@ -138,7 +177,8 @@ userSchema.index({ district: 1, state: 1 });
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password") || this.password.trim() === "") return next();
+  if (!this.isModified("password") || this.password.trim() === "")
+    return next();
   try {
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);

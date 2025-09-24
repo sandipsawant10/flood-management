@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState } from "react";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
 import {
   Box,
   Button,
@@ -19,24 +19,29 @@ import {
   Typography,
   Alert,
   CircularProgress,
-} from '@mui/material';
-import { Email as EmailIcon, Sms as SmsIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
+} from "@mui/material";
+import {
+  Email as EmailIcon,
+  Sms as SmsIcon,
+  Notifications as NotificationsIcon,
+} from "@mui/icons-material";
 
 const NotificationTester = () => {
-  const { user } = useAuth();
+  const { user } = useAuth(); // Used for userId
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  
+
   const [notificationData, setNotificationData] = useState({
     channels: {
       email: true,
       sms: false,
       inApp: true,
     },
-    title: 'Test Notification',
-    message: 'This is a test notification from the Flood Disaster Management System.',
-    type: 'info',
+    title: "Test Notification",
+    message:
+      "This is a test notification from the Flood Disaster Management System.",
+    type: "info",
   });
 
   const handleChannelChange = (channel) => {
@@ -61,16 +66,18 @@ const NotificationTester = () => {
     setLoading(true);
     setError(null);
     setResult(null);
-    
+
     try {
-      const response = await axios.post('/api/notification-test/test', {
-        userId: currentUser._id,
+      const response = await axios.post("/api/notification-test/test", {
+        userId: user._id,
         ...notificationData,
       });
-      
+
       setResult(response.data);
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'An error occurred');
+      setError(
+        err.response?.data?.message || err.message || "An error occurred"
+      );
     } finally {
       setLoading(false);
     }
@@ -78,8 +85,8 @@ const NotificationTester = () => {
 
   return (
     <Card>
-      <CardHeader 
-        title="Notification System Tester" 
+      <CardHeader
+        title="Notification System Tester"
         subheader="Test notification delivery across different channels"
       />
       <Divider />
@@ -94,7 +101,7 @@ const NotificationTester = () => {
                 control={
                   <Checkbox
                     checked={notificationData.channels.email}
-                    onChange={() => handleChannelChange('email')}
+                    onChange={() => handleChannelChange("email")}
                     icon={<EmailIcon />}
                     checkedIcon={<EmailIcon color="primary" />}
                   />
@@ -105,7 +112,7 @@ const NotificationTester = () => {
                 control={
                   <Checkbox
                     checked={notificationData.channels.sms}
-                    onChange={() => handleChannelChange('sms')}
+                    onChange={() => handleChannelChange("sms")}
                     icon={<SmsIcon />}
                     checkedIcon={<SmsIcon color="primary" />}
                   />
@@ -116,7 +123,7 @@ const NotificationTester = () => {
                 control={
                   <Checkbox
                     checked={notificationData.channels.inApp}
-                    onChange={() => handleChannelChange('inApp')}
+                    onChange={() => handleChannelChange("inApp")}
                     icon={<NotificationsIcon />}
                     checkedIcon={<NotificationsIcon color="primary" />}
                   />
@@ -125,7 +132,7 @@ const NotificationTester = () => {
               />
             </FormGroup>
           </Grid>
-          
+
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
@@ -136,7 +143,7 @@ const NotificationTester = () => {
               margin="normal"
             />
           </Grid>
-          
+
           <Grid item xs={12} md={6}>
             <FormControl fullWidth margin="normal">
               <Typography variant="body2" gutterBottom>
@@ -153,7 +160,7 @@ const NotificationTester = () => {
               </Select>
             </FormControl>
           </Grid>
-          
+
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -166,30 +173,37 @@ const NotificationTester = () => {
               rows={4}
             />
           </Grid>
-          
+
           <Grid item xs={12}>
             <Button
               variant="contained"
               color="primary"
               onClick={sendTestNotification}
-              disabled={loading || (!notificationData.channels.email && !notificationData.channels.sms && !notificationData.channels.inApp)}
-              startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
+              disabled={
+                loading ||
+                (!notificationData.channels.email &&
+                  !notificationData.channels.sms &&
+                  !notificationData.channels.inApp)
+              }
+              startIcon={
+                loading ? <CircularProgress size={20} color="inherit" /> : null
+              }
             >
-              {loading ? 'Sending...' : 'Send Test Notification'}
+              {loading ? "Sending..." : "Send Test Notification"}
             </Button>
           </Grid>
-          
+
           {error && (
             <Grid item xs={12}>
               <Alert severity="error">{error}</Alert>
             </Grid>
           )}
-          
+
           {result && (
             <Grid item xs={12}>
               <Alert severity="success">
                 <Typography variant="subtitle2">Test Results:</Typography>
-                <pre style={{ whiteSpace: 'pre-wrap', marginTop: 8 }}>
+                <pre style={{ whiteSpace: "pre-wrap", marginTop: 8 }}>
                   {JSON.stringify(result, null, 2)}
                 </pre>
               </Alert>

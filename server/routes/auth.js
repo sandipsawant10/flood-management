@@ -124,7 +124,12 @@ router.post(
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({
+          status: "error",
+          code: "ERR_VALIDATION",
+          message: "Validation failed",
+          errors: errors.array(),
+        });
       }
 
       const { login, password } = req.body;
@@ -134,12 +139,20 @@ router.post(
       });
 
       if (!user) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res.status(401).json({
+          status: "error",
+          code: "ERR_INVALID_CREDENTIALS",
+          message: "Invalid credentials",
+        });
       }
 
       const isMatch = await user.comparePassword(password);
       if (!isMatch) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res.status(401).json({
+          status: "error",
+          code: "ERR_INVALID_CREDENTIALS",
+          message: "Invalid credentials",
+        });
       }
 
       // Update lastActive safely
@@ -153,17 +166,46 @@ router.post(
         user.lastActive = Date.now(); // fallback
       }
 
+      // Generate refresh token
+      const refreshToken = crypto.randomBytes(40).toString("hex");
+
+      // Store refresh token with user (hashed for security)
+      user.refreshToken = crypto
+        .createHash("sha256")
+        .update(refreshToken)
+        .digest("hex");
+      user.refreshTokenExpiry = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
+
       await user.save();
 
+      // Generate access token with shorter expiry
       const token = jwt.sign(
-        { userId: user._id, role: user.role },
+        {
+          userId: user._id,
+          role: user.role,
+          email: user.email,
+          name: user.name,
+        },
         process.env.JWT_SECRET || "fallback-secret",
-        { expiresIn: "7d" }
+        { expiresIn: "1h" } // Shorter expiry for better security
       );
 
+      // Set cookies for enhanced security
+      if (process.env.NODE_ENV === "production") {
+        res.cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+      }
+
       res.json({
+        status: "success",
         message: "Login successful",
         token,
+        refreshToken:
+          process.env.NODE_ENV !== "production" ? refreshToken : undefined,
         user: {
           id: user._id,
           name: user.name,
@@ -174,11 +216,17 @@ router.post(
           location: user.location,
           preferences: user.preferences,
           lastActive: user.lastActive,
+          isVerified: user.isVerified || false,
         },
+        expiresIn: 3600, // 1 hour in seconds
       });
     } catch (error) {
       console.error("Login error:", error);
-      res.status(500).json({ message: "Server error during login" });
+      res.status(500).json({
+        status: "error",
+        code: "ERR_SERVER",
+        message: "Server error during login",
+      });
     }
   }
 );
@@ -297,7 +345,108 @@ router.put(
 
 // ---------- VERIFY JWT TOKEN ----------
 router.get("/verify", auth, (req, res) => {
-  res.json({ valid: true, userId: req.user.userId, role: req.user.role });
+  res.json({
+    status: "success",
+    valid: true,
+    userId: req.user.userId,
+    role: req.user.role,
+  });
+});
+
+// ---------- REFRESH TOKEN ----------
+router.post("/refresh-token", async (req, res) => {
+  try {
+    // Get refresh token from cookie in production or body in development
+    const refreshToken =
+      (process.env.NODE_ENV === "production" && req.cookies.refreshToken) ||
+      req.body.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({
+        status: "error",
+        code: "ERR_REFRESH_TOKEN_MISSING",
+        message: "Refresh token is required",
+      });
+    }
+
+    // Hash token to compare with stored hash
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
+
+    // Find user with matching refresh token that hasn't expired
+    const user = await User.findOne({
+      refreshToken: hashedToken,
+      refreshTokenExpiry: { $gt: new Date() },
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        status: "error",
+        code: "ERR_REFRESH_TOKEN_INVALID",
+        message: "Invalid or expired refresh token",
+      });
+    }
+
+    // Generate new tokens
+    const newToken = jwt.sign(
+      {
+        userId: user._id,
+        role: user.role,
+        email: user.email,
+        name: user.name,
+      },
+      process.env.JWT_SECRET || "fallback-secret",
+      { expiresIn: "1h" }
+    );
+
+    // Generate new refresh token if it's close to expiry (within 7 days)
+    let newRefreshToken = refreshToken;
+    const REFRESH_TOKEN_RENEWAL_THRESHOLD = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+
+    if (
+      user.refreshTokenExpiry.getTime() - Date.now() <
+      REFRESH_TOKEN_RENEWAL_THRESHOLD
+    ) {
+      newRefreshToken = crypto.randomBytes(40).toString("hex");
+      user.refreshToken = crypto
+        .createHash("sha256")
+        .update(newRefreshToken)
+        .digest("hex");
+      user.refreshTokenExpiry = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
+      await user.save();
+
+      if (process.env.NODE_ENV === "production") {
+        res.cookie("refreshToken", newRefreshToken, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+      }
+    }
+
+    // Update lastActive
+    user.lastActive = new Date();
+    await user.save();
+
+    res.json({
+      status: "success",
+      message: "Token refreshed successfully",
+      token: newToken,
+      refreshToken:
+        process.env.NODE_ENV !== "production" ? newRefreshToken : undefined,
+      expiresIn: 3600, // 1 hour in seconds
+    });
+  } catch (error) {
+    console.error("Token refresh error:", error);
+    res.status(500).json({
+      status: "error",
+      code: "ERR_SERVER",
+      message: "Server error during token refresh",
+    });
+  }
 });
 
 // ---------- FORGOT PASSWORD ----------
@@ -323,7 +472,8 @@ router.post(
       if (!user) {
         // For security reasons, don't reveal that the email doesn't exist
         return res.status(200).json({
-          message: "If your email is registered, you will receive a password reset link",
+          message:
+            "If your email is registered, you will receive a password reset link",
         });
       }
 
@@ -364,7 +514,8 @@ router.post(
       await transporter.sendMail(mailOptions);
 
       res.status(200).json({
-        message: "If your email is registered, you will receive a password reset link",
+        message:
+          "If your email is registered, you will receive a password reset link",
       });
     } catch (error) {
       console.error("Password reset error:", error);

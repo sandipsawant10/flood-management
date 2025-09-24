@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../../contexts/AuthContext";
+import useAuth from "../../hooks/useAuth";
 import CustomButton from "../../components/Common/CustomButton";
 import InputField from "../../components/Common/InputField";
 

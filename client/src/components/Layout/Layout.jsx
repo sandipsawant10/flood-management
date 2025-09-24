@@ -15,7 +15,7 @@ import {
   ShieldAlert,
   Box,
 } from "lucide-react";
-import { useAuth } from "../../contexts/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
