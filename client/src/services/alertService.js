@@ -2,6 +2,8 @@ import axiosInstance from "./axiosConfig";
 import {
   checkLocationWithinAlertAreas,
   getCurrentLocation,
+  calculateFloodRisk,
+  findSafeEvacuationRoutes,
 } from "./geolocationService";
 import { getLocalAlerts, storeAlerts } from "./offlineService";
 
@@ -98,16 +100,25 @@ export const alertService = {
           const location = options.location || (await getCurrentLocation());
           const allAlerts = await alertService.getAlerts({ status: "active" });
 
-          // Filter alerts based on location
-          const nearbyAlerts = checkLocationWithinAlertAreas(
-            location,
-            allAlerts.alerts
-          );
+          // Filter alerts based on location with enhanced checking
+          const { matchingAlerts, nearbyAlerts } =
+            checkLocationWithinAlertAreas(location, allAlerts.alerts);
+
+          // Combine direct matches and nearby alerts for better user awareness
+          const combinedAlerts = [
+            ...matchingAlerts,
+            ...nearbyAlerts.filter(
+              (nearby) =>
+                !matchingAlerts.some((match) => match.id === nearby.id)
+            ),
+          ];
 
           return {
             success: true,
-            count: nearbyAlerts.length,
-            alerts: nearbyAlerts,
+            count: combinedAlerts.length,
+            alerts: combinedAlerts,
+            directMatches: matchingAlerts.length,
+            nearbyMatches: nearbyAlerts.length,
             location,
             locallyFiltered: true,
           };
@@ -132,13 +143,20 @@ export const alertService = {
       // Fetch active alerts
       const { alerts } = await alertService.getAlerts({ status: "active" });
 
-      // Check if location is within any alert areas
-      const affectedAlerts = checkLocationWithinAlertAreas(location, alerts);
+      // Check if location is within any alert areas with enhanced checking
+      const { matchingAlerts, nearbyAlerts, distanceToAlerts } =
+        checkLocationWithinAlertAreas(location, alerts);
+
+      // Calculate flood risk for the current location
+      const floodRisk = await calculateFloodRisk(location);
 
       return {
-        inAlertZone: affectedAlerts.length > 0,
-        affectedAlerts,
+        inAlertZone: matchingAlerts.length > 0,
+        affectedAlerts: matchingAlerts,
+        nearbyAlerts,
+        distanceToAlerts,
         location,
+        floodRisk,
       };
     } catch (error) {
       console.error("Error checking if user is in alert zone:", error);
@@ -236,5 +254,63 @@ export const alertService = {
       stop: stopMonitoring,
       checkNow: checkAlertZones,
     };
+  },
+
+  /**
+   * Get evacuation routes based on current location and active alerts
+   * @param {Object} options - Options for route finding
+   * @returns {Promise} Promise resolving to evacuation routes
+   */
+  getEvacuationRoutes: async (options = {}) => {
+    try {
+      // Get user's current location
+      const location = options.location || (await getCurrentLocation());
+
+      // Get active alert zones
+      const { inAlertZone, affectedAlerts } =
+        await alertService.checkUserInAlertZone();
+
+      // Calculate routes
+      const routesResult = await findSafeEvacuationRoutes(
+        location,
+        affectedAlerts,
+        {
+          includeHighGroundRoutes: options.includeHighGroundRoutes || true,
+          includeShelterRoutes: options.includeShelterRoutes || true,
+        }
+      );
+
+      return {
+        ...routesResult,
+        inAlertZone,
+        alertCount: affectedAlerts.length,
+      };
+    } catch (error) {
+      console.error("Error getting evacuation routes:", error);
+      throw error;
+    }
+  },
+
+  /**
+   * Get real-time flood risk assessment for a location
+   * @param {Object} options - Options for risk assessment
+   * @returns {Promise} Promise resolving to flood risk data
+   */
+  getFloodRiskAssessment: async (options = {}) => {
+    try {
+      // Get user's current location
+      const location = options.location || (await getCurrentLocation());
+
+      // Calculate flood risk
+      const riskAssessment = await calculateFloodRisk(location);
+
+      return {
+        ...riskAssessment,
+        location,
+      };
+    } catch (error) {
+      console.error("Error getting flood risk assessment:", error);
+      throw error;
+    }
   },
 };

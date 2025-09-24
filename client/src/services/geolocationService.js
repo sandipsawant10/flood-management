@@ -10,6 +10,166 @@ const LOCATION_STORAGE_KEY = "userGeolocationData";
 const MAX_LOCATION_AGE = 24 * 60 * 60 * 1000; // 24 hours
 
 /**
+ * Find safe evacuation routes from current location
+ * @param {Object} currentLocation - User's current location
+ * @param {Array} alertZones - Array of active alert zones
+ * @param {Object} options - Additional options
+ * @returns {Promise} Resolves with suggested routes
+ */
+export const findSafeEvacuationRoutes = async (
+  currentLocation,
+  alertZones,
+  options = {}
+) => {
+  try {
+    if (
+      !currentLocation ||
+      !currentLocation.latitude ||
+      !currentLocation.longitude
+    ) {
+      throw new Error("Invalid current location");
+    }
+
+    // In a real application, this would call routing services like MapBox, Google Maps, etc.
+    // For this demo, we'll simulate some evacuation routes
+
+    // Find safe destinations (emergency shelters, high ground)
+    const safeDestinations = [
+      // Simulated shelter locations - in a real app, these would come from a database
+      {
+        name: "Community Evacuation Center",
+        latitude: currentLocation.latitude + 0.02,
+        longitude: currentLocation.longitude + 0.01,
+        type: "shelter",
+      },
+      {
+        name: "High Ground Zone",
+        latitude: currentLocation.latitude - 0.01,
+        longitude: currentLocation.longitude + 0.02,
+        type: "high_ground",
+      },
+      {
+        name: "Emergency Relief Center",
+        latitude: currentLocation.latitude + 0.01,
+        longitude: currentLocation.longitude - 0.02,
+        type: "shelter",
+      },
+    ];
+
+    // Calculate routes to each destination that avoid alert zones
+    const routes = await Promise.all(
+      safeDestinations.map(async (destination) => {
+        // Calculate direct path distance
+        const distance = calculateDistance(
+          currentLocation.latitude,
+          currentLocation.longitude,
+          destination.latitude,
+          destination.longitude
+        );
+
+        // In a real implementation, we would use routing APIs to find paths avoiding flood zones
+        // Here we'll just simulate a path with waypoints
+        const waypoints = generateSimulatedPath(
+          currentLocation,
+          destination,
+          alertZones
+        );
+
+        // Calculate estimated time based on walking speed (4 km/h)
+        const walkingSpeedKmh = 4;
+        const estimatedMinutes = Math.round(
+          (distance / 1000 / walkingSpeedKmh) * 60
+        );
+
+        return {
+          destination,
+          distance,
+          estimatedMinutes,
+          waypoints,
+          isSafe: true, // In a real implementation, determine if route avoids all danger areas
+          directions: `Head ${getCardinalDirection(
+            currentLocation,
+            waypoints[0]
+          )} for approximately ${(distance / 1000).toFixed(1)}km to reach ${
+            destination.name
+          }.`,
+        };
+      })
+    );
+
+    // Sort routes by estimated time
+    routes.sort((a, b) => a.estimatedMinutes - b.estimatedMinutes);
+
+    return {
+      routes,
+      currentLocation,
+      generatedAt: new Date().getTime(),
+    };
+  } catch (error) {
+    console.error("Error finding safe evacuation routes:", error);
+    return {
+      routes: [],
+      error: error.message,
+      currentLocation,
+    };
+  }
+};
+
+/**
+ * Generate a simulated path between two points avoiding alert zones
+ * Note: In a real app, this would use actual routing APIs
+ */
+const generateSimulatedPath = (start, end, alertZones) => {
+  // Create a simple path with waypoints that would avoid alert zones
+  const waypoints = [];
+
+  // Create a few intermediate points
+  const totalPoints = 5;
+
+  for (let i = 1; i < totalPoints; i++) {
+    // Linear interpolation with small random variations
+    const ratio = i / totalPoints;
+
+    // Add slight variations to avoid a straight line
+    const jitterLat = (Math.random() - 0.5) * 0.005;
+    const jitterLng = (Math.random() - 0.5) * 0.005;
+
+    waypoints.push({
+      latitude:
+        start.latitude + (end.latitude - start.latitude) * ratio + jitterLat,
+      longitude:
+        start.longitude + (end.longitude - start.longitude) * ratio + jitterLng,
+    });
+  }
+
+  return waypoints;
+};
+
+/**
+ * Get cardinal direction between two points
+ */
+const getCardinalDirection = (from, to) => {
+  const directions = [
+    "north",
+    "northeast",
+    "east",
+    "southeast",
+    "south",
+    "southwest",
+    "west",
+    "northwest",
+  ];
+
+  const dx = to.longitude - from.longitude;
+  const dy = to.latitude - from.latitude;
+
+  const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+  const index = Math.round(((angle + 360) % 360) / 45) % 8;
+
+  return directions[index];
+};
+
+/**
  * Initialize geolocation tracking
  * @param {Object} options - Configuration options
  * @param {boolean} options.highAccuracy - Use high accuracy mode (more battery usage)
@@ -354,31 +514,160 @@ export const getCurrentLocation = (options = {}) => {
  */
 export const checkLocationWithinAlertAreas = (location, alerts) => {
   if (!location || !alerts || !Array.isArray(alerts) || alerts.length === 0) {
-    return [];
+    return {
+      matchingAlerts: [],
+      nearbyAlerts: [],
+      distanceToAlerts: new Map(),
+    };
   }
+
+  // Track distances to all alerts for proximity warnings
+  const distanceToAlerts = new Map();
+  const proximityThreshold = 1000; // 1 kilometer as nearby alert threshold
+  const nearbyAlerts = [];
 
   const matchingAlerts = alerts.filter((alert) => {
     // Skip if no target area
     if (!alert.targetArea) return false;
 
+    let isInside = false;
+    let distance = Number.POSITIVE_INFINITY;
+
     // Check by geometry type
     if (alert.targetArea.type === "Circle") {
-      return isPointInCircle(
-        [location.latitude, location.longitude],
-        [alert.targetArea.coordinates[0], alert.targetArea.coordinates[1]],
-        alert.targetArea.radius
+      // Calculate distance to the center
+      distance = calculateDistance(
+        location.latitude,
+        location.longitude,
+        alert.targetArea.coordinates[0],
+        alert.targetArea.coordinates[1]
       );
+
+      // Inside if distance is less than radius
+      isInside = distance <= alert.targetArea.radius;
+
+      // Store the distance for proximity alerts
+      distanceToAlerts.set(alert.id, distance);
+
+      // Check if approaching alert zone (within proximityThreshold of border)
+      if (
+        !isInside &&
+        distance <= alert.targetArea.radius + proximityThreshold
+      ) {
+        nearbyAlerts.push({
+          ...alert,
+          distance,
+          distanceToEdge: distance - alert.targetArea.radius,
+        });
+      }
     } else if (alert.targetArea.type === "Polygon") {
-      return isPointInPolygon(
+      // Check if point is inside polygon
+      isInside = isPointInPolygon(
         [location.latitude, location.longitude],
         alert.targetArea.coordinates
       );
+
+      // Calculate minimum distance to polygon edge if not inside
+      if (!isInside) {
+        // Find shortest distance to any edge
+        distance = calculateDistanceToPolygon(
+          [location.latitude, location.longitude],
+          alert.targetArea.coordinates
+        );
+
+        // Store the distance for proximity alerts
+        distanceToAlerts.set(alert.id, distance);
+
+        // Check if approaching alert zone
+        if (distance <= proximityThreshold) {
+          nearbyAlerts.push({
+            ...alert,
+            distance,
+            distanceToEdge: distance,
+          });
+        }
+      } else {
+        // Inside the polygon, distance to edge is 0
+        distanceToAlerts.set(alert.id, 0);
+      }
     }
 
-    return false;
+    return isInside;
   });
 
-  return matchingAlerts;
+  return {
+    matchingAlerts,
+    nearbyAlerts,
+    distanceToAlerts,
+  };
+};
+
+/**
+ * Calculate minimum distance from a point to a polygon
+ * @param {Array} point - Point as [latitude, longitude]
+ * @param {Array} polygon - Array of [latitude, longitude] points
+ * @returns {number} Minimum distance in meters
+ */
+export const calculateDistanceToPolygon = (point, polygon) => {
+  if (!polygon || polygon.length < 3) return Number.POSITIVE_INFINITY;
+
+  // If point is inside polygon, distance is 0
+  if (isPointInPolygon(point, polygon)) return 0;
+
+  let minDistance = Number.POSITIVE_INFINITY;
+
+  // Check distance to each edge
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const distance = calculateDistanceToLine(point, polygon[i], polygon[j]);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+    }
+  }
+
+  return minDistance;
+};
+
+/**
+ * Calculate distance from a point to a line segment
+ * @param {Array} point - Point as [latitude, longitude]
+ * @param {Array} lineStart - Line start as [latitude, longitude]
+ * @param {Array} lineEnd - Line end as [latitude, longitude]
+ * @returns {number} Distance in meters
+ */
+export const calculateDistanceToLine = (point, lineStart, lineEnd) => {
+  // Calculate distance from point to line segment
+  const x = point[0];
+  const y = point[1];
+  const x1 = lineStart[0];
+  const y1 = lineStart[1];
+  const x2 = lineEnd[0];
+  const y2 = lineEnd[1];
+
+  // Calculate the length of the line segment
+  const lineLength = calculateDistance(x1, y1, x2, y2);
+
+  if (lineLength === 0) {
+    // If line segment is actually a point
+    return calculateDistance(x, y, x1, y1);
+  }
+
+  // Calculate projection of point onto line
+  const t =
+    ((x - x1) * (x2 - x1) + (y - y1) * (y2 - y1)) / (lineLength * lineLength);
+
+  if (t < 0) {
+    // Closest to lineStart
+    return calculateDistance(x, y, x1, y1);
+  } else if (t > 1) {
+    // Closest to lineEnd
+    return calculateDistance(x, y, x2, y2);
+  } else {
+    // Closest to some point on the line segment
+    const projX = x1 + t * (x2 - x1);
+    const projY = y1 + t * (y2 - y1);
+    return calculateDistance(x, y, projX, projY);
+  }
 };
 
 /**
@@ -432,5 +721,120 @@ export const reverseGeocode = async (location) => {
   } catch (error) {
     console.error("Error reverse geocoding:", error);
     return location;
+  }
+};
+
+/**
+ * Calculate elevation risk for a location
+ * @param {Object} location - Location with lat/long
+ * @returns {Promise} Resolves with risk assessment
+ */
+export const calculateElevationRisk = async (location) => {
+  // Note: In a real implementation, this would call an elevation API service
+  // For this demo, we'll use a simulated response based on coordinates
+
+  try {
+    if (!location || !location.latitude || !location.longitude) {
+      throw new Error("Invalid location");
+    }
+
+    // Simulated elevation check - would call a real elevation API in production
+    // This is placeholder logic that generates a "realistic" response based on coordinates
+    const elevationSeed =
+      Math.sin(location.latitude * 0.1) * Math.cos(location.longitude * 0.1);
+    const baseElevation = Math.abs(elevationSeed * 100) + 5;
+
+    // Simple risk calculation based on simulated elevation
+    let risk = "low";
+    let elevation = baseElevation;
+
+    if (baseElevation < 10) {
+      risk = "high";
+    } else if (baseElevation < 20) {
+      risk = "medium";
+    }
+
+    // Return risk assessment
+    return {
+      elevation: elevation.toFixed(1), // meters
+      risk,
+      riskFactor: risk === "high" ? 0.8 : risk === "medium" ? 0.4 : 0.1,
+      timestamp: new Date().getTime(),
+    };
+  } catch (error) {
+    console.error("Error calculating elevation risk:", error);
+    return {
+      elevation: null,
+      risk: "unknown",
+      riskFactor: 0.5,
+      error: error.message,
+    };
+  }
+};
+
+/**
+ * Calculate real-time flood risk based on location, weather and elevation
+ * @param {Object} location - User location
+ * @param {Object} options - Additional options
+ * @returns {Promise} Resolves with risk assessment
+ */
+export const calculateFloodRisk = async (location, options = {}) => {
+  try {
+    // Get elevation risk
+    const elevationRisk = await calculateElevationRisk(location);
+
+    // Get weather data - note: in a real app, call to weather API
+    const weather = options.weather || {
+      precipitation: Math.random() * 10, // mm
+      precipitationForecast: Math.random() * 20, // mm in next 24h
+      floodWarningsNearby: Math.random() > 0.7, // 30% chance of nearby warnings
+    };
+
+    // Calculate combined risk factors
+    const weatherRiskFactor =
+      weather.precipitation > 5 ? 0.7 : weather.precipitation > 2 ? 0.4 : 0.2;
+
+    const forecastRiskFactor =
+      weather.precipitationForecast > 15
+        ? 0.8
+        : weather.precipitationForecast > 10
+        ? 0.5
+        : 0.3;
+
+    const warningFactor = weather.floodWarningsNearby ? 0.9 : 0.3;
+
+    // Combine risk factors with elevation risk
+    const combinedRiskFactor =
+      elevationRisk.riskFactor * 0.4 +
+      weatherRiskFactor * 0.3 +
+      forecastRiskFactor * 0.2 +
+      warningFactor * 0.1;
+
+    // Determine risk level
+    let riskLevel;
+    if (combinedRiskFactor >= 0.7) {
+      riskLevel = "high";
+    } else if (combinedRiskFactor >= 0.4) {
+      riskLevel = "medium";
+    } else {
+      riskLevel = "low";
+    }
+
+    return {
+      riskLevel,
+      riskFactor: combinedRiskFactor,
+      elevation: elevationRisk.elevation,
+      precipitation: weather.precipitation,
+      precipitationForecast: weather.precipitationForecast,
+      floodWarningsNearby: weather.floodWarningsNearby,
+      timestamp: new Date().getTime(),
+    };
+  } catch (error) {
+    console.error("Error calculating flood risk:", error);
+    return {
+      riskLevel: "unknown",
+      riskFactor: 0.5,
+      error: error.message,
+    };
   }
 };

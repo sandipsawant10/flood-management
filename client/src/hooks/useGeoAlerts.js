@@ -1,16 +1,34 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { alertService } from "../services/alertService";
 import { useLocation } from "./useLocation";
 
 /**
  * Custom hook for geolocation-based alerts
  * Provides functionality to monitor for alerts based on user's location
+ * Enhanced with proximity warnings, flood risk assessment, and evacuation routing
  *
  * @param {Object} options - Configuration options
  * @param {boolean} options.autoStart - Whether to start monitoring automatically
  * @param {number} options.monitoringInterval - Interval in milliseconds for checking alerts
  * @param {boolean} options.showNotifications - Whether to show browser notifications
- * @returns {Object} Alert monitoring state and control functions
+ * @param {boolean} options.includeRiskAssessment - Whether to include flood risk assessment
+ * @param {boolean} options.trackApproachingZones - Whether to track alerts the user is approaching
+ * @returns {Object} Alert monitoring state and control functions including:
+ *   - isMonitoring: Whether alert monitoring is active
+ *   - alertZones: Array of alert zones the user is currently in
+ *   - nearbyAlerts: Array of alerts near the user's location
+ *   - approachingAlerts: Array of alerts the user is approaching but not yet in
+ *   - floodRisk: Current flood risk assessment for user's location
+ *   - evacuationRoutes: Available evacuation routes if in high risk area
+ *   - location: User's current location
+ *   - loading: Whether data is being loaded
+ *   - error: Any error that occurred
+ *   - startMonitoring: Function to start alert monitoring
+ *   - stopMonitoring: Function to stop alert monitoring
+ *   - checkNow: Function to manually check alert zones
+ *   - loadNearbyAlerts: Function to load alerts near user's location
+ *   - findEvacuationRoutes: Function to find evacuation routes from current location
+ *   - getFloodRisk: Function to get current flood risk assessment
  */
 export const useGeoAlerts = (options = {}) => {
   const {
@@ -32,6 +50,9 @@ export const useGeoAlerts = (options = {}) => {
   const [isMonitoring, setIsMonitoring] = useState(false);
   const [alertZones, setAlertZones] = useState([]);
   const [nearbyAlerts, setNearbyAlerts] = useState([]);
+  const [approachingAlerts, setApproachingAlerts] = useState([]);
+  const [floodRisk, setFloodRisk] = useState(null);
+  const [evacuationRoutes, setEvacuationRoutes] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [monitoringController, setMonitoringController] = useState(null);
@@ -63,7 +84,7 @@ export const useGeoAlerts = (options = {}) => {
    * Handle entering an alert zone
    */
   const handleEnterAlertZone = useCallback(
-    (alerts, location) => {
+    async (alerts, location) => {
       console.log("Entered alert zone(s):", alerts);
       setAlertZones((prev) => [...prev, ...alerts]);
 
@@ -71,6 +92,24 @@ export const useGeoAlerts = (options = {}) => {
       alerts.forEach((alert) => {
         showAlertNotification(alert);
       });
+
+      // Get flood risk assessment for current location
+      try {
+        const riskAssessment = await alertService.getFloodRiskAssessment({
+          location,
+        });
+        setFloodRisk(riskAssessment);
+
+        // If risk is high, also fetch evacuation routes
+        if (riskAssessment.riskLevel === "high") {
+          const routesResult = await alertService.getEvacuationRoutes({
+            location,
+          });
+          setEvacuationRoutes(routesResult);
+        }
+      } catch (err) {
+        console.error("Error getting risk assessment:", err);
+      }
 
       // Dispatch custom event that components can listen for
       window.dispatchEvent(
@@ -109,6 +148,54 @@ export const useGeoAlerts = (options = {}) => {
     setError(error);
   }, []);
 
+  // Forward declaration for loadNearbyAlerts to avoid circular reference
+  const loadNearbyAlertsImpl = async (options = {}) => {
+    try {
+      setLoading(true);
+
+      const result = await alertService.getNearbyAlerts({
+        location,
+        includeLocationParams: true,
+        ...options,
+      });
+
+      // Handle different result formats based on where data comes from
+      if (result.nearbyMatches) {
+        // Local filtering result format
+        setNearbyAlerts(result.alerts);
+        if (result.approachingAlerts) {
+          setApproachingAlerts(result.approachingAlerts);
+        }
+      } else {
+        // Standard API result format
+        setNearbyAlerts(result.alerts);
+      }
+
+      // Update flood risk if available
+      if (options.includeRiskAssessment) {
+        try {
+          const riskAssessment = await alertService.getFloodRiskAssessment({
+            location,
+          });
+          setFloodRisk(riskAssessment);
+        } catch (riskErr) {
+          console.error("Error getting risk assessment:", riskErr);
+        }
+      }
+
+      return result;
+    } catch (err) {
+      console.error("Error loading nearby alerts:", err);
+      setError(err);
+      return { alerts: [], error: err };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Store implementation in ref to avoid dependency cycles
+  loadNearbyAlertsRef.current = loadNearbyAlertsImpl;
+
   /**
    * Start alert monitoring
    */
@@ -138,7 +225,9 @@ export const useGeoAlerts = (options = {}) => {
       console.log("Started geo-alert monitoring");
 
       // Load nearby alerts initially
-      loadNearbyAlerts();
+      if (loadNearbyAlertsRef.current) {
+        loadNearbyAlertsRef.current();
+      }
 
       return controller;
     } catch (err) {
@@ -156,7 +245,6 @@ export const useGeoAlerts = (options = {}) => {
     handleEnterAlertZone,
     handleLeaveAlertZone,
     handleMonitoringError,
-    loadNearbyAlerts,
   ]);
 
   /**
@@ -222,27 +310,17 @@ export const useGeoAlerts = (options = {}) => {
    */
   const loadNearbyAlerts = useCallback(
     async (options = {}) => {
-      try {
-        setLoading(true);
-
-        const result = await alertService.getNearbyAlerts({
-          location,
-          includeLocationParams: true,
-          ...options,
-        });
-
-        setNearbyAlerts(result.alerts);
-        return result;
-      } catch (err) {
-        console.error("Error loading nearby alerts:", err);
-        setError(err);
-        return { alerts: [], error: err };
-      } finally {
-        setLoading(false);
+      // Use the implementation stored in the ref to avoid circular references
+      if (loadNearbyAlertsRef.current) {
+        return loadNearbyAlertsRef.current(options);
       }
+      return { alerts: [], error: new Error("Alert loader not initialized") };
     },
-    [location]
+    [loadNearbyAlertsRef]
   );
+
+  // Fix for React hooks rules - loadNearbyAlerts reference needed before definition
+  const loadNearbyAlertsRef = useRef(null);
 
   // Auto-start monitoring if configured
   useEffect(() => {
@@ -258,11 +336,62 @@ export const useGeoAlerts = (options = {}) => {
     };
   }, [autoStart, isMonitoring, loading, startMonitoring, stopMonitoring]);
 
+  /**
+   * Find evacuation routes from current location
+   */
+  const findEvacuationRoutes = useCallback(
+    async (options = {}) => {
+      try {
+        setLoading(true);
+
+        const routesResult = await alertService.getEvacuationRoutes({
+          location,
+          ...options,
+        });
+
+        setEvacuationRoutes(routesResult);
+        return routesResult;
+      } catch (err) {
+        console.error("Error finding evacuation routes:", err);
+        setError(err);
+        return { routes: [], error: err };
+      } finally {
+        setLoading(false);
+      }
+    },
+    [location]
+  );
+
+  /**
+   * Get current flood risk assessment
+   */
+  const getFloodRisk = useCallback(async () => {
+    try {
+      setLoading(true);
+
+      const riskAssessment = await alertService.getFloodRiskAssessment({
+        location,
+      });
+
+      setFloodRisk(riskAssessment);
+      return riskAssessment;
+    } catch (err) {
+      console.error("Error getting flood risk assessment:", err);
+      setError(err);
+      return { riskLevel: "unknown", error: err };
+    } finally {
+      setLoading(false);
+    }
+  }, [location]);
+
   return {
     // State
     isMonitoring,
     alertZones,
     nearbyAlerts,
+    approachingAlerts,
+    floodRisk,
+    evacuationRoutes,
     location,
     loading,
     error: error || locationError,
@@ -272,6 +401,8 @@ export const useGeoAlerts = (options = {}) => {
     stopMonitoring,
     checkNow,
     loadNearbyAlerts,
+    findEvacuationRoutes,
+    getFloodRisk,
   };
 };
 
