@@ -12,7 +12,7 @@ const FinancialAidRequests = lazy(() =>
   import("../pages/admin/FinancialAidRequests")
 );
 const AdvancedAnalyticsDashboard = lazy(() =>
-  import("../pages/AdminDashboard/AdvancedAnalyticsDashboard")
+  import("../pages/Analytics/AdvancedAnalyticsDashboard")
 );
 const UserManagement = lazy(() =>
   import("../pages/AdminDashboard/UserManagement")

@@ -16,8 +16,10 @@ import {
   RefreshCcw,
   Download,
   HelpCircle,
+  Map,
 } from "lucide-react";
-import adminService from "../../services/adminService";
+import { analyticsService } from "../../services/analyticsService";
+import AdvancedPredictiveModeling from "../../components/Analytics/AdvancedPredictiveModeling";
 
 // Mock data for charts until backend is implemented
 const mockPredictionData = {
@@ -60,7 +62,7 @@ const AdvancedAnalyticsDashboard = () => {
   } = useQuery({
     queryKey: ["admin-analytics", selectedTimeframe, selectedRegion],
     queryFn: () =>
-      adminService.getAdvancedAnalytics(selectedTimeframe, selectedRegion),
+      analyticsService.getAdvancedAnalytics(selectedTimeframe, selectedRegion),
     // Use mock data until backend implementation
     placeholderData: {
       predictiveAnalysis: {
@@ -241,10 +243,30 @@ const AdvancedAnalyticsDashboard = () => {
               <button
                 onClick={() => refetch()}
                 className="text-gray-500 hover:text-gray-700"
+                title="Refresh Data"
               >
                 <RefreshCcw className="w-5 h-5" />
               </button>
-              <button className="text-gray-500 hover:text-gray-700">
+              <button
+                onClick={() => {
+                  analyticsService
+                    .exportData("json", {
+                      timeframe: selectedTimeframe,
+                      region: selectedRegion,
+                      riskThreshold: riskThreshold,
+                    })
+                    .then((data) => {
+                      console.log("Exported data:", data);
+                      alert(
+                        `Data exported successfully. ${
+                          data.count || ""
+                        } records exported.`
+                      );
+                    });
+                }}
+                className="text-gray-500 hover:text-gray-700"
+                title="Export Data"
+              >
                 <Download className="w-5 h-5" />
               </button>
             </div>
@@ -438,6 +460,31 @@ const AdvancedAnalyticsDashboard = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Advanced Predictive Modeling Component */}
+              <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
+                <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Map className="w-5 h-5 text-blue-600 mr-2" />
+                    <h3 className="font-medium text-gray-800">
+                      Advanced Predictive Modeling
+                    </h3>
+                  </div>
+                </div>
+                <div className="p-0">
+                  <AdvancedPredictiveModeling
+                    filters={{
+                      timeRange: selectedTimeframe,
+                      region: selectedRegion,
+                      riskThreshold: riskThreshold,
+                    }}
+                    onOptimizationRequest={(data) => {
+                      // We could handle this in the future
+                      console.log("Optimization requested", data);
+                    }}
+                  />
                 </div>
               </div>
 
@@ -653,7 +700,23 @@ const AdvancedAnalyticsDashboard = () => {
                     </p>
                   </div>
                   <div className="mt-3">
-                    <button className="w-full py-1 px-2 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-200">
+                    <button
+                      onClick={() => {
+                        analyticsService
+                          .getOptimizedResourceAllocation({
+                            region: selectedRegion,
+                            riskThreshold: riskThreshold,
+                          })
+                          .then((data) => {
+                            console.log("Optimization data:", data);
+                            // In a real app, we would update state with this data
+                            alert(
+                              "Resource optimization recommendations generated."
+                            );
+                          });
+                      }}
+                      className="w-full py-1 px-2 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-200"
+                    >
                       View Recommendations
                     </button>
                   </div>
@@ -710,7 +773,18 @@ const AdvancedAnalyticsDashboard = () => {
                     </p>
                   </div>
                   <div className="mt-3">
-                    <button className="w-full py-1 px-2 bg-red-50 text-red-700 text-xs font-medium rounded border border-red-200">
+                    <button
+                      onClick={() => {
+                        // In a real app, we'd fetch critical shortage data from analytics service
+                        analyticsService
+                          .getHistoricalData(1, selectedRegion)
+                          .then((data) => {
+                            console.log("Historical data for shortages:", data);
+                            alert("Retrieving critical shortage data...");
+                          });
+                      }}
+                      className="w-full py-1 px-2 bg-red-50 text-red-700 text-xs font-medium rounded border border-red-200"
+                    >
                       Address Critical Shortages
                     </button>
                   </div>

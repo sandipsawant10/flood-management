@@ -9,6 +9,7 @@ import {
   ShieldExclamationIcon,
   BanknotesIcon,
   CheckCircleIcon,
+  PresentationChartLineIcon,
 } from "@heroicons/react/24/outline";
 
 const AdminPortal = () => {
@@ -39,8 +40,8 @@ const AdminPortal = () => {
                     "/admin/analytics"
                   )} font-medium mx-2`}
                 >
-                  <ChartPieIcon className="w-5 h-5 mr-2" />
-                  Analytics Dashboard
+                  <PresentationChartLineIcon className="w-5 h-5 mr-2" />
+                  Advanced Analytics
                 </Link>
               </li>
             )}

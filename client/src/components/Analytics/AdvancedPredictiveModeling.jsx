@@ -17,6 +17,15 @@ import {
   Legend,
   Cell,
   ComposedChart,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  PieChart,
+  Pie,
+  RadialBarChart,
+  RadialBar,
 } from "recharts";
 import {
   AlertTriangle,
@@ -36,6 +45,15 @@ import {
   Sliders,
   Download,
   RefreshCw,
+  BarChart2,
+  PieChart as PieChartIcon,
+  Share2,
+  Layers,
+  Target,
+  ShieldAlert,
+  Activity,
+  ArrowUpDown,
+  GanttChart,
 } from "lucide-react";
 import { analyticsService } from "../../services/analyticsService";
 
@@ -49,14 +67,19 @@ const AdvancedPredictiveModeling = ({ filters, onOptimizationRequest }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [predictionData, setPredictionData] = useState(null);
+  const [modelData, setModelData] = useState(null); // For the advanced model data
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [timeframe, setTimeframe] = useState("7d");
-  const [modelType, setModelType] = useState("ml");
+  const [modelType, setModelType] = useState("ensemble");
   const [confidenceInterval, setConfidenceInterval] = useState(95);
   const [showOptimizations, setShowOptimizations] = useState(false);
   const [optimizations, setOptimizations] = useState(null);
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [exportFormat, setExportFormat] = useState("json");
+  const [activeTab, setActiveTab] = useState("forecast"); // To toggle between different visualizations
+  const [showFeatureImportance, setShowFeatureImportance] = useState(false);
+  const [showScenarios, setShowScenarios] = useState(false);
+  const [loadingAdvancedData, setLoadingAdvancedData] = useState(false);
 
   // List of available regions to select for prediction
   const regions = useMemo(
@@ -158,6 +181,52 @@ const AdvancedPredictiveModeling = ({ filters, onOptimizationRequest }) => {
           predictionFilters
         );
         setPredictionData(data);
+
+        // Also fetch the advanced predictive model data
+        setLoadingAdvancedData(true);
+
+        try {
+          // Convert timeframe to days for the advanced model
+          let timeHorizonDays = 7;
+          switch (timeframe) {
+            case "1d":
+              timeHorizonDays = 1;
+              break;
+            case "3d":
+              timeHorizonDays = 3;
+              break;
+            case "7d":
+              timeHorizonDays = 7;
+              break;
+            case "14d":
+              timeHorizonDays = 14;
+              break;
+            case "30d":
+              timeHorizonDays = 30;
+              break;
+            default:
+              timeHorizonDays = 7;
+          }
+
+          const advancedModelData =
+            await analyticsService.getPredictiveModelData({
+              region: `${selectedRegion.state} - ${selectedRegion.district}`,
+              confidenceLevel: confidenceInterval,
+              timeHorizon: timeHorizonDays,
+              modelType: modelType,
+              includeHistorical: true,
+              thresholdLevel: 70, // Default threshold level
+              features:
+                "rainfall,waterLevel,soilSaturation,topology,urbanDensity,riverFlow",
+            });
+
+          setModelData(advancedModelData);
+        } catch (advErr) {
+          console.error("Failed to fetch advanced model data:", advErr);
+          // We don't set the main error state here to allow the basic prediction to still show
+        } finally {
+          setLoadingAdvancedData(false);
+        }
       } catch (err) {
         console.error("Failed to fetch prediction data:", err);
         setError("Failed to load prediction data. Please try again.");
@@ -932,6 +1001,1235 @@ const AdvancedPredictiveModeling = ({ filters, onOptimizationRequest }) => {
               </div>
             )}
           </div>
+
+          {/* Advanced Analytics Tabs */}
+          <div className="mb-4 border-b border-gray-200">
+            <nav className="flex space-x-4" aria-label="Advanced Analytics">
+              <button
+                onClick={() => setActiveTab("forecast")}
+                className={`py-2 px-3 text-sm font-medium border-b-2 ${
+                  activeTab === "forecast"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                aria-current={activeTab === "forecast" ? "page" : undefined}
+              >
+                <TrendingUp className="inline-block h-4 w-4 mr-1" />
+                Flood Forecast
+              </button>
+              <button
+                onClick={() => setActiveTab("waterLevel")}
+                className={`py-2 px-3 text-sm font-medium border-b-2 ${
+                  activeTab === "waterLevel"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                aria-current={activeTab === "waterLevel" ? "page" : undefined}
+              >
+                <Droplet className="inline-block h-4 w-4 mr-1" />
+                Water Levels
+              </button>
+              <button
+                onClick={() => setActiveTab("scenarios")}
+                className={`py-2 px-3 text-sm font-medium border-b-2 ${
+                  activeTab === "scenarios"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                aria-current={activeTab === "scenarios" ? "page" : undefined}
+              >
+                <Share2 className="inline-block h-4 w-4 mr-1" />
+                Scenarios
+              </button>
+              <button
+                onClick={() => setActiveTab("features")}
+                className={`py-2 px-3 text-sm font-medium border-b-2 ${
+                  activeTab === "features"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                aria-current={activeTab === "features" ? "page" : undefined}
+              >
+                <Layers className="inline-block h-4 w-4 mr-1" />
+                Features
+              </button>
+              <button
+                onClick={() => setActiveTab("performance")}
+                className={`py-2 px-3 text-sm font-medium border-b-2 ${
+                  activeTab === "performance"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                aria-current={activeTab === "performance" ? "page" : undefined}
+              >
+                <Target className="inline-block h-4 w-4 mr-1" />
+                Model Metrics
+              </button>
+            </nav>
+          </div>
+
+          {/* Advanced Analytics Content */}
+          {activeTab === "forecast" && modelData && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium text-gray-800">
+                  Advanced Flood Risk Forecast
+                </h4>
+                <div className="text-sm">
+                  <span className="font-medium text-gray-700">
+                    Risk Score:{" "}
+                  </span>
+                  <span
+                    className={`font-bold ${
+                      modelData.currentRisk.overallRiskScore >= 70
+                        ? "text-red-600"
+                        : modelData.currentRisk.overallRiskScore >= 50
+                        ? "text-orange-600"
+                        : "text-yellow-600"
+                    }`}
+                  >
+                    {modelData.currentRisk.overallRiskScore}/100
+                  </span>
+                </div>
+              </div>
+              <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+                <div className="flex flex-col md:flex-row mb-4">
+                  <div className="md:w-2/3 mb-4 md:mb-0 md:pr-4">
+                    <div className="h-72">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <ComposedChart data={modelData.predictions}>
+                          <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                          <XAxis
+                            dataKey="day"
+                            label={{
+                              value: "Days from now",
+                              position: "insideBottomRight",
+                              offset: -10,
+                            }}
+                          />
+                          <YAxis
+                            yAxisId="probability"
+                            domain={[0, 100]}
+                            label={{
+                              value: "Probability (%)",
+                              angle: -90,
+                              position: "insideLeft",
+                            }}
+                          />
+                          <YAxis
+                            yAxisId="rainfall"
+                            orientation="right"
+                            domain={[
+                              0,
+                              Math.max(
+                                ...modelData.predictions.map((p) => p.rainfall)
+                              ) * 1.2,
+                            ]}
+                            label={{
+                              value: "Rainfall (mm)",
+                              angle: 90,
+                              position: "insideRight",
+                            }}
+                          />
+                          <Tooltip />
+                          <Legend />
+                          <Area
+                            yAxisId="probability"
+                            type="monotone"
+                            dataKey="probability"
+                            stroke="#8884d8"
+                            fill="#8884d8"
+                            fillOpacity={0.3}
+                            activeDot={{ r: 6 }}
+                            name="Flood Probability"
+                          />
+                          <Line
+                            yAxisId="probability"
+                            type="monotone"
+                            dataKey="threshold"
+                            stroke="#ff7300"
+                            strokeWidth={2}
+                            strokeDasharray="5 5"
+                            activeDot={false}
+                            name="Warning Threshold"
+                          />
+                          <Line
+                            yAxisId="probability"
+                            type="monotone"
+                            dataKey="criticalThreshold"
+                            stroke="#ff0000"
+                            strokeWidth={2}
+                            strokeDasharray="5 5"
+                            activeDot={false}
+                            name="Critical Threshold"
+                          />
+                          <Bar
+                            yAxisId="rainfall"
+                            dataKey="rainfall"
+                            barSize={20}
+                            fill="#82ca9d"
+                            name="Rainfall (mm)"
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="mt-2 text-xs text-gray-600">
+                      {modelData.insights.predictionInsight}
+                    </div>
+                  </div>
+                  <div className="md:w-1/3">
+                    <div className="bg-gray-50 p-3 rounded-lg h-full">
+                      <h5 className="text-sm font-medium text-gray-800 mb-3">
+                        Key Metrics
+                      </h5>
+                      <div className="space-y-3">
+                        <div className="bg-white p-2 rounded shadow-sm">
+                          <div className="text-xs text-gray-500">
+                            Peak Risk Day
+                          </div>
+                          <div className="flex items-center">
+                            <AlertOctagon className="h-4 w-4 text-red-500 mr-2" />
+                            <span className="font-semibold">
+                              Day {modelData.peakRiskDay}
+                            </span>
+                            <span className="ml-2 text-sm">
+                              ({modelData.peakRiskLevel}% probability)
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-2 rounded shadow-sm">
+                          <div className="text-xs text-gray-500">
+                            Sustained High Risk
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="h-4 w-4 text-orange-500 mr-2" />
+                            <span className="font-semibold">
+                              {modelData.sustainedHighRiskDays} Days
+                            </span>
+                            <span className="ml-2 text-sm">
+                              above threshold
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-2 rounded shadow-sm">
+                          <div className="text-xs text-gray-500">
+                            Recovery Period
+                          </div>
+                          <div className="flex items-center">
+                            <Activity className="h-4 w-4 text-blue-500 mr-2" />
+                            <span className="font-semibold">
+                              {modelData.recoveryPeriod} Days
+                            </span>
+                            <span className="ml-2 text-sm">after peak</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-2 rounded shadow-sm">
+                          <div className="text-xs text-gray-500">
+                            Population at Risk
+                          </div>
+                          <div className="flex items-center">
+                            <Users className="h-4 w-4 text-purple-500 mr-2" />
+                            <span className="font-semibold">
+                              {modelData.totalPopulationAtRisk.toLocaleString()}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-2 rounded shadow-sm">
+                          <div className="text-xs text-gray-500">
+                            Model Confidence
+                          </div>
+                          <div className="flex items-center">
+                            <Target className="h-4 w-4 text-green-500 mr-2" />
+                            <span className="font-semibold">
+                              {modelData.modelInfo.confidenceLevel}%
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+                  <div className="bg-blue-50 p-2 rounded">
+                    <h6 className="text-xs font-medium text-blue-800 mb-1">
+                      Highest Risk Areas
+                    </h6>
+                    <ul className="text-xs space-y-1">
+                      {modelData.riskByArea.slice(0, 3).map((area, idx) => (
+                        <li key={idx} className="flex justify-between">
+                          <span>{area.area}</span>
+                          <span className="font-medium">{area.riskLevel}%</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-amber-50 p-2 rounded">
+                    <h6 className="text-xs font-medium text-amber-800 mb-1">
+                      Best Interventions
+                    </h6>
+                    <ul className="text-xs space-y-1">
+                      {modelData.interventionEffectiveness
+                        .slice(0, 3)
+                        .map((item, idx) => (
+                          <li key={idx} className="flex justify-between">
+                            <span>{item.intervention}</span>
+                            <span className="font-medium">
+                              {item.effectiveness}%
+                            </span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 p-2 rounded">
+                    <h6 className="text-xs font-medium text-green-800 mb-1">
+                      Flood Extents
+                    </h6>
+                    <ul className="text-xs space-y-1">
+                      <li className="flex justify-between">
+                        <span>Total Area</span>
+                        <span className="font-medium">
+                          {modelData.floodExtents.totalAreaKm2} km²
+                        </span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span>Urban Area</span>
+                        <span className="font-medium">
+                          {modelData.floodExtents.urbanAreaKm2} km²
+                        </span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span>Max Depth</span>
+                        <span className="font-medium">
+                          {modelData.floodExtents.maxDepthMeters}m
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "waterLevel" && modelData && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium text-gray-800">
+                  Water Level Forecast
+                </h4>
+                <div className="flex items-center text-xs text-gray-600">
+                  <span className="inline-block h-2 w-2 bg-blue-500 rounded-full mr-1"></span>{" "}
+                  Actual
+                  <span className="inline-block h-2 w-2 bg-purple-500 rounded-full ml-3 mr-1"></span>{" "}
+                  Forecast
+                  <span className="inline-block h-2 w-4 bg-purple-200 rounded-full ml-3 mr-1"></span>{" "}
+                  Confidence Interval
+                </div>
+              </div>
+              <div className="bg-white border border-gray-200 rounded-lg p-4 h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={modelData.waterLevelForecast}>
+                    <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                    <XAxis
+                      dataKey="timestamp"
+                      tickFormatter={(value) =>
+                        new Date(value).toLocaleDateString()
+                      }
+                      label={{
+                        value: "Date",
+                        position: "insideBottomRight",
+                        offset: -10,
+                      }}
+                    />
+                    <YAxis
+                      domain={[0, "auto"]}
+                      label={{
+                        value: "Water Level (m)",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
+                    />
+                    <Tooltip
+                      labelFormatter={(value) =>
+                        `Date: ${new Date(value).toLocaleDateString()}`
+                      }
+                      formatter={(value, name) => {
+                        if (name === "Forecast CI") return null;
+                        return [value ? `${value} m` : "N/A", name];
+                      }}
+                    />
+                    <Legend />
+                    <Area
+                      type="monotone"
+                      dataKey="upper"
+                      stroke="transparent"
+                      fill="#d8b4fe"
+                      fillOpacity={0.2}
+                      name="Forecast CI"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="lower"
+                      stroke="transparent"
+                      fill="#d8b4fe"
+                      fillOpacity={0.2}
+                      name="Forecast CI"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="actual"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                      name="Actual"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="forecast"
+                      stroke="#a855f7"
+                      strokeWidth={2}
+                      strokeDasharray={[0, 0]}
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                      name="Forecast"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="warningLevel"
+                      stroke="#f59e0b"
+                      strokeWidth={2}
+                      strokeDasharray="5 5"
+                      name="Warning Level"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="criticalLevel"
+                      stroke="#ef4444"
+                      strokeWidth={2}
+                      strokeDasharray="5 5"
+                      name="Critical Level"
+                    />
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="mt-3 p-3 bg-blue-50 rounded-lg text-sm">
+                <div className="font-medium mb-1 text-blue-800">
+                  Forecast Analysis:
+                </div>
+                <p className="text-blue-700 text-xs">
+                  {modelData.insights.timeSeriesInsight}
+                </p>
+                <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+                  <div className="bg-white p-2 rounded shadow-sm">
+                    <div className="text-xs text-gray-500">Peak Level</div>
+                    <div className="font-semibold">
+                      {modelData.forecastStats.peakLevel}m
+                    </div>
+                  </div>
+                  <div className="bg-white p-2 rounded shadow-sm">
+                    <div className="text-xs text-gray-500">Time to Peak</div>
+                    <div className="font-semibold">
+                      {modelData.forecastStats.timeToPeak}
+                    </div>
+                  </div>
+                  <div className="bg-white p-2 rounded shadow-sm">
+                    <div className="text-xs text-gray-500">Above Warning</div>
+                    <div className="font-semibold">
+                      {modelData.forecastStats.durationAboveWarning} hrs
+                    </div>
+                  </div>
+                  <div className="bg-white p-2 rounded shadow-sm">
+                    <div className="text-xs text-gray-500">
+                      Forecast Accuracy
+                    </div>
+                    <div className="font-semibold">
+                      {modelData.forecastStats.accuracy}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "scenarios" && modelData && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium text-gray-800">
+                  Scenario Comparison
+                </h4>
+                <div className="flex items-center text-xs text-gray-600">
+                  <span className="inline-block h-2 w-2 bg-blue-500 rounded-full mr-1"></span>{" "}
+                  Baseline
+                  <span className="inline-block h-2 w-2 bg-red-500 rounded-full ml-3 mr-1"></span>{" "}
+                  Worst Case
+                  <span className="inline-block h-2 w-2 bg-green-500 rounded-full ml-3 mr-1"></span>{" "}
+                  Best Case
+                  <span className="inline-block h-2 w-2 bg-amber-500 rounded-full ml-3 mr-1"></span>{" "}
+                  With Intervention
+                </div>
+              </div>
+              <div className="bg-white border border-gray-200 rounded-lg p-4">
+                <div className="h-72 mb-4">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={modelData.scenarioComparison}>
+                      <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                      <XAxis
+                        dataKey="day"
+                        label={{
+                          value: "Days from now",
+                          position: "insideBottomRight",
+                          offset: -10,
+                        }}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        label={{
+                          value: "Flood Probability (%)",
+                          angle: -90,
+                          position: "insideLeft",
+                        }}
+                      />
+                      <Tooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="baseline"
+                        stroke="#3b82f6"
+                        strokeWidth={2}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        name="Baseline Scenario"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="worstCase"
+                        stroke="#ef4444"
+                        strokeWidth={2}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        name="Worst Case"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="bestCase"
+                        stroke="#22c55e"
+                        strokeWidth={2}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        name="Best Case"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="withIntervention"
+                        stroke="#f59e0b"
+                        strokeWidth={2}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        name="With Intervention"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="bg-blue-50 p-3 rounded">
+                    <h6 className="text-xs font-medium text-blue-800 mb-1">
+                      Baseline Scenario
+                    </h6>
+                    <div className="text-xs text-blue-700">
+                      <div className="flex justify-between mb-1">
+                        <span>Peak Risk:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.baseline.peakRisk}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Population:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.baseline.population.toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-red-50 p-3 rounded">
+                    <h6 className="text-xs font-medium text-red-800 mb-1">
+                      Worst Case
+                    </h6>
+                    <div className="text-xs text-red-700">
+                      <div className="flex justify-between mb-1">
+                        <span>Peak Risk:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.worstCase.peakRisk}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Population:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.worstCase.population.toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-green-50 p-3 rounded">
+                    <h6 className="text-xs font-medium text-green-800 mb-1">
+                      Best Case
+                    </h6>
+                    <div className="text-xs text-green-700">
+                      <div className="flex justify-between mb-1">
+                        <span>Peak Risk:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.bestCase.peakRisk}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Population:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.bestCase.population.toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-amber-50 p-3 rounded">
+                    <h6 className="text-xs font-medium text-amber-800 mb-1">
+                      With Intervention
+                    </h6>
+                    <div className="text-xs text-amber-700">
+                      <div className="flex justify-between mb-1">
+                        <span>Peak Risk:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.withIntervention.peakRisk}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Population:</span>
+                        <span className="font-medium">
+                          {modelData.scenarioDetails.withIntervention.population.toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-2">
+                    Intervention Effectiveness
+                  </h5>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={modelData.interventionEffectiveness}>
+                        <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                        <XAxis dataKey="intervention" />
+                        <YAxis
+                          domain={[0, 100]}
+                          label={{
+                            value: "Effectiveness (%)",
+                            angle: -90,
+                            position: "insideLeft",
+                          }}
+                        />
+                        <Tooltip />
+                        <Legend />
+                        <Bar
+                          dataKey="effectiveness"
+                          name="Effectiveness"
+                          fill="#3b82f6"
+                        >
+                          {modelData.interventionEffectiveness.map(
+                            (entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={
+                                  entry.effectiveness > 70
+                                    ? "#22c55e"
+                                    : entry.effectiveness > 50
+                                    ? "#f59e0b"
+                                    : "#3b82f6"
+                                }
+                              />
+                            )
+                          )}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "features" && modelData && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium text-gray-800">
+                  Feature Importance
+                </h4>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Model Feature Importance
+                  </h5>
+                  <div className="h-72">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={Object.entries(modelData.featureImportance)
+                          .map(([feature, value]) => ({
+                            feature,
+                            importance: value,
+                          }))
+                          .sort((a, b) => b.importance - a.importance)}
+                        layout="vertical"
+                        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+                      >
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          opacity={0.3}
+                          horizontal={false}
+                        />
+                        <XAxis type="number" domain={[0, 100]} />
+                        <YAxis type="category" dataKey="feature" width={90} />
+                        <Tooltip
+                          formatter={(value) => [`${value}%`, "Importance"]}
+                        />
+                        <Bar dataKey="importance" fill="#8884d8">
+                          {Object.entries(modelData.featureImportance).map(
+                            ([feature, value]) => (
+                              <Cell
+                                key={`cell-${feature}`}
+                                fill={
+                                  value > 25
+                                    ? "#8884d8"
+                                    : value > 15
+                                    ? "#82ca9d"
+                                    : "#ffc658"
+                                }
+                              />
+                            )
+                          )}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="mt-3 text-xs text-gray-600">
+                    Feature importance shows which factors most significantly
+                    impact flood risk in the model.
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Soil Saturation Analysis
+                  </h5>
+                  <div className="h-72">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={modelData.soilSaturation}>
+                        <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                        <XAxis
+                          dataKey="day"
+                          label={{
+                            value: "Days from now",
+                            position: "insideBottomRight",
+                            offset: -10,
+                          }}
+                        />
+                        <YAxis
+                          domain={[0, 100]}
+                          label={{
+                            value: "Saturation (%)",
+                            angle: -90,
+                            position: "insideLeft",
+                          }}
+                        />
+                        <Tooltip
+                          formatter={(value) => [
+                            `${value}%`,
+                            "Soil Saturation",
+                          ]}
+                        />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="saturation"
+                          stroke="#8884d8"
+                          strokeWidth={2}
+                          name="Soil Saturation"
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="threshold"
+                          stroke="#ff7300"
+                          strokeWidth={2}
+                          strokeDasharray="5 5"
+                          name="Saturation Threshold"
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="mt-3 text-xs text-gray-600">
+                    Soil saturation levels above threshold indicate high flood
+                    risk due to reduced absorption capacity.
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Rainfall Forecast
+                  </h5>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={modelData.rainfallForecast}>
+                        <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                        <XAxis
+                          dataKey="day"
+                          label={{
+                            value: "Days from now",
+                            position: "insideBottomRight",
+                            offset: -10,
+                          }}
+                        />
+                        <YAxis
+                          label={{
+                            value: "Rainfall (mm)",
+                            angle: -90,
+                            position: "insideLeft",
+                          }}
+                        />
+                        <Tooltip
+                          formatter={(value) => [`${value} mm`, "Rainfall"]}
+                        />
+                        <Legend />
+                        <Bar dataKey="rainfall" name="Rainfall" fill="#3b82f6">
+                          {modelData.rainfallForecast.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={
+                                entry.rainfall > 30
+                                  ? "#ef4444"
+                                  : entry.rainfall > 15
+                                  ? "#f59e0b"
+                                  : "#3b82f6"
+                              }
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Flood Depth Distribution
+                  </h5>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={modelData.floodExtents.depthDistribution}
+                          nameKey="depthRange"
+                          dataKey="area"
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={80}
+                          fill="#8884d8"
+                          label={({ depthRange, area }) =>
+                            `${depthRange}: ${area} km²`
+                          }
+                        >
+                          {modelData.floodExtents.depthDistribution.map(
+                            (entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={
+                                  [
+                                    "#22c55e",
+                                    "#84cc16",
+                                    "#facc15",
+                                    "#f97316",
+                                    "#ef4444",
+                                  ][index % 5]
+                                }
+                              />
+                            )
+                          )}
+                        </Pie>
+                        <Tooltip
+                          formatter={(value) => [`${value} km²`, "Area"]}
+                        />
+                        <Legend />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "performance" && modelData && (
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="text-sm font-medium text-gray-800">
+                  Model Performance Metrics
+                </h4>
+                <div className="text-xs text-gray-600">
+                  Model Type: {modelData.modelInfo.type} | Last Updated:{" "}
+                  {new Date(
+                    modelData.modelInfo.lastTrained
+                  ).toLocaleDateString()}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Performance Metrics
+                  </h5>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500">Accuracy</div>
+                      <div className="flex items-center mt-1">
+                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                          <div
+                            className="bg-blue-600 h-2.5 rounded-full"
+                            style={{
+                              width: `${modelData.modelPerformance.accuracy}%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="ml-2 font-medium">
+                          {modelData.modelPerformance.accuracy}%
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500">Precision</div>
+                      <div className="flex items-center mt-1">
+                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                          <div
+                            className="bg-green-600 h-2.5 rounded-full"
+                            style={{
+                              width: `${modelData.modelPerformance.precision}%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="ml-2 font-medium">
+                          {modelData.modelPerformance.precision}%
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500">Recall</div>
+                      <div className="flex items-center mt-1">
+                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                          <div
+                            className="bg-purple-600 h-2.5 rounded-full"
+                            style={{
+                              width: `${modelData.modelPerformance.recall}%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="ml-2 font-medium">
+                          {modelData.modelPerformance.recall}%
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500">F1 Score</div>
+                      <div className="flex items-center mt-1">
+                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                          <div
+                            className="bg-amber-600 h-2.5 rounded-full"
+                            style={{
+                              width: `${modelData.modelPerformance.f1Score}%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="ml-2 font-medium">
+                          {modelData.modelPerformance.f1Score}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <h6 className="text-xs font-medium text-gray-700 mb-2">
+                      AUC-ROC Curve
+                    </h6>
+                    <div className="h-48">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart
+                          data={[
+                            { x: 0, y: 0 },
+                            { x: 0.2, y: 0.4 },
+                            { x: 0.4, y: 0.7 },
+                            { x: 0.6, y: 0.85 },
+                            { x: 0.8, y: 0.95 },
+                            { x: 1, y: 1 },
+                          ]}
+                          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                          <XAxis
+                            dataKey="x"
+                            type="number"
+                            domain={[0, 1]}
+                            label={{
+                              value: "False Positive Rate",
+                              position: "insideBottom",
+                              offset: -5,
+                            }}
+                          />
+                          <YAxis
+                            type="number"
+                            domain={[0, 1]}
+                            label={{
+                              value: "True Positive Rate",
+                              angle: -90,
+                              position: "insideLeft",
+                            }}
+                          />
+                          <Tooltip
+                            formatter={(value) => [
+                              value.toFixed(2),
+                              value === 0
+                                ? "False Positive Rate"
+                                : "True Positive Rate",
+                            ]}
+                          />
+                          <defs>
+                            <linearGradient
+                              id="colorUv"
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop
+                                offset="5%"
+                                stopColor="#8884d8"
+                                stopOpacity={0.8}
+                              />
+                              <stop
+                                offset="95%"
+                                stopColor="#8884d8"
+                                stopOpacity={0.2}
+                              />
+                            </linearGradient>
+                          </defs>
+                          <Area
+                            type="monotone"
+                            dataKey="y"
+                            stroke="#8884d8"
+                            fillOpacity={1}
+                            fill="url(#colorUv)"
+                          />
+                          <Line
+                            type="monotone"
+                            dataKey="y"
+                            stroke="#8884d8"
+                            dot={{
+                              stroke: "#8884d8",
+                              strokeWidth: 1,
+                              r: 4,
+                              fill: "white",
+                            }}
+                          />
+                          <Line
+                            type="monotone"
+                            data={[
+                              { x: 0, y: 0 },
+                              { x: 1, y: 1 },
+                            ]}
+                            dataKey="y"
+                            stroke="#dddddd"
+                            strokeDasharray="5 5"
+                            dot={false}
+                          />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="text-center text-xs text-gray-600 mt-1">
+                      AUC: {modelData.modelPerformance.auc}%
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h5 className="text-sm font-medium text-gray-700 mb-3">
+                    Model Details
+                  </h5>
+                  <div className="space-y-3">
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500 mb-1">
+                        Model Information
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span>Type:</span>
+                          <span className="font-medium">
+                            {modelData.modelInfo.type}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>Confidence Level:</span>
+                          <span className="font-medium">
+                            {modelData.modelInfo.confidenceLevel}%
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>Time Horizon:</span>
+                          <span className="font-medium">
+                            {modelData.modelInfo.timeHorizon} days
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>Training Data Points:</span>
+                          <span className="font-medium">
+                            {modelData.modelInfo.trainingDataPoints.toLocaleString()}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>Training Period:</span>
+                          <span className="font-medium">
+                            {modelData.modelInfo.trainingPeriod}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500 mb-1">
+                        Critical Infrastructure at Risk
+                      </div>
+                      <div className="mt-2 space-y-2">
+                        {modelData.floodExtents.criticalInfrastructure.map(
+                          (infra, idx) => (
+                            <div
+                              key={idx}
+                              className="flex justify-between text-sm"
+                            >
+                              <span>{infra.type}:</span>
+                              <span
+                                className={`font-medium ${
+                                  infra.count > 2
+                                    ? "text-red-600"
+                                    : "text-gray-700"
+                                }`}
+                              >
+                                {infra.count}
+                              </span>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 p-3 rounded">
+                      <div className="text-xs text-gray-500 mb-1">
+                        Cost-Benefit Analysis
+                      </div>
+                      <div className="h-48">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <ScatterChart
+                            margin={{
+                              top: 10,
+                              right: 10,
+                              bottom: 10,
+                              left: 10,
+                            }}
+                          >
+                            <CartesianGrid
+                              strokeDasharray="3 3"
+                              opacity={0.3}
+                            />
+                            <XAxis
+                              type="number"
+                              dataKey="cost"
+                              name="Cost"
+                              domain={["auto", "auto"]}
+                              tickFormatter={(value) =>
+                                `$${(value / 1000).toFixed(0)}k`
+                              }
+                              label={{
+                                value: "Cost ($)",
+                                position: "insideBottom",
+                                offset: -5,
+                              }}
+                            />
+                            <YAxis
+                              type="number"
+                              dataKey="effectiveness"
+                              name="Effectiveness"
+                              domain={[0, 100]}
+                              label={{
+                                value: "Effectiveness (%)",
+                                angle: -90,
+                                position: "insideLeft",
+                              }}
+                            />
+                            <ZAxis
+                              type="number"
+                              dataKey="roi"
+                              range={[50, 400]}
+                              name="ROI"
+                            />
+                            <Tooltip
+                              cursor={{ strokeDasharray: "3 3" }}
+                              formatter={(value, name) => {
+                                if (name === "Cost")
+                                  return [`$${value.toLocaleString()}`, name];
+                                if (name === "Effectiveness")
+                                  return [`${value}%`, name];
+                                if (name === "ROI")
+                                  return [`${value.toFixed(2)}x`, name];
+                                return [value, name];
+                              }}
+                            />
+                            <Legend />
+                            <Scatter
+                              name="Interventions"
+                              data={modelData.costBenefitAnalysis}
+                              fill="#8884d8"
+                            >
+                              {modelData.costBenefitAnalysis.map(
+                                (entry, index) => (
+                                  <Cell
+                                    key={`cell-${index}`}
+                                    fill={
+                                      entry.roi > 1.5
+                                        ? "#22c55e"
+                                        : entry.roi > 1
+                                        ? "#f59e0b"
+                                        : "#ef4444"
+                                    }
+                                  />
+                                )
+                              )}
+                            </Scatter>
+                          </ScatterChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="text-center text-xs text-gray-600 mt-1">
+                        Bubble size represents Return on Investment (ROI)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="mt-4 text-xs text-gray-500 flex items-center justify-between">
             <div className="flex items-center">
