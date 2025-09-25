@@ -272,13 +272,36 @@ const Layout = () => {
             <div className="flex items-center space-x-4">
               <LanguageSelector compact />
 
-              <Link
-                to="/emergency"
-                className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-danger-600 hover:bg-danger-700"
-              >
-                <Phone className="w-4 h-4 mr-1" />
-                Emergency
-              </Link>
+              <div className="flex space-x-2">
+                <Link
+                  to="/emergency"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-danger-600 hover:bg-danger-700"
+                >
+                  <Phone className="w-4 h-4 mr-1" />
+                  Emergency
+                </Link>
+                <Link
+                  to="/emergency-services"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-1"
+                  >
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                  </svg>
+                  Services
+                </Link>
+              </div>
 
               <Link
                 to="/profile"

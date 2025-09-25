@@ -31,6 +31,7 @@ const floodReportRoutes = require("./routes/floodReports");
 const alertRoutes = require("./routes/alerts");
 const geoAlertsRoutes = require("./routes/geoAlerts");
 const emergencyRoutes = require("./routes/emergency");
+const emergencyServicesRoutes = require("./routes/emergencyServices");
 const predictionRoutes = require("./routes/predictions");
 const userRoutes = require("./routes/users");
 const analyticsRoutes = require("./routes/analytics");
@@ -103,7 +104,6 @@ app.use(
 app.use("/api/", speedLimiter);
 app.use("/api/", apiLimiter);
 app.use("/api/auth", authLimiter);
-app.use("/api/emergency", emergencyLimiter);
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -210,6 +210,7 @@ app.use("/api/flood-reports", floodReportRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/alerts", geoAlertsRoutes); // Include geo-alerts under alerts route
 app.use("/api/emergency", emergencyRoutes);
+app.use("/api/emergency-services", emergencyServicesRoutes);
 app.use("/api/predictions", predictionRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/analytics", analyticsRoutes);

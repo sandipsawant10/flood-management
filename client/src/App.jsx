@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import ReportFlood from "./pages/Reports/ReportFlood";
 import ViewReports from "./pages/Reports/ViewReports";
 import QuickActions from "./pages/Emergency/QuickActions";
+import EmergencyServicesPage from "./pages/Emergency/EmergencyServicesPage";
 import NotificationCenter from "./pages/Notifications/NotificationCenter";
 import AlertsPage from "./pages/Alerts/AlertsPage.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
@@ -115,6 +116,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/emergency" element={<QuickActions />} />
+        <Route path="/emergency-services" element={<EmergencyServicesPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 

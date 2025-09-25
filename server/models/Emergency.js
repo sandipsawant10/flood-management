@@ -106,6 +106,26 @@ const emergencySchema = new mongoose.Schema(
         },
       },
     ],
+    // External emergency service references
+    externalReferences: [
+      {
+        service: {
+          type: String,
+          required: true,
+          enum: ["police", "ambulance", "fire", "ndrf", "other"],
+        },
+        referenceId: {
+          type: String,
+          required: true,
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
+        status: String,
+        notes: String,
+      },
+    ],
     priority: {
       type: Number,
       required: true,

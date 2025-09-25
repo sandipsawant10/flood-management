@@ -13,7 +13,8 @@
     "profile": "प्रोफाइल",
     "settings": "सेटिंग्स",
     "logout": "लॉग आउट",
-    "login": "लॉग इन"
+    "login": "लॉग इन",
+    "emergency": "आपातकालीन सेवाएं"
   },
   "common": {
     "loading": "लोड हो रहा है...",
@@ -91,5 +92,27 @@
       "unknownRisk": "अज्ञात जोखिम",
       "elevationRisk": "ऊंचाई जोखिम"
     }
+  },
+  "emergency": {
+    "emergencyServices": "आपातकालीन सेवाएं",
+    "emergencyContacts": "आपातकालीन संपर्क",
+    "nearbyResources": "पास के आपातकालीन संसाधन",
+    "reportEmergency": "आपातकालीन स्थिति की रिपोर्ट करें",
+    "callNow": "अभी कॉल करें",
+    "call": "कॉल",
+    "emergencyCall": "आपातकालीन कॉल",
+    "confirmEmergencyCall": "क्या आप वाकई कॉल करना चाहते हैं",
+    "onlyUseForEmergencies": "कृपया आपातकालीन सेवाओं का उपयोग केवल वास्तविक आपात स्थिति के लिए करें।",
+    "reportEmergencyPrompt": "कृपया आपातकालीन स्थिति के बारे में विवरण प्रदान करें।",
+    "locationRequired": "आपातकालीन स्थिति की रिपोर्ट करने के लिए स्थान का एक्सेस आवश्यक है।",
+    "hospitals": "अस्पताल",
+    "shelters": "आपातकालीन आश्रय",
+    "policeStations": "पुलिस स्टेशन",
+    "fireStations": "अग्निशमन केंद्र",
+    "bedsAvailable": "उपलब्ध बेड",
+    "availableSpace": "उपलब्ध जगह",
+    "noResourcesFound": "आपके क्षेत्र में कोई आपातकालीन संसाधन नहीं मिले।",
+    "errorFetchingContacts": "आपातकालीन संपर्क प्राप्त करने में विफल रहा।",
+    "errorFetchingResources": "आपातकालीन संसाधन प्राप्त करने में विफल रहा।"
   }
 }

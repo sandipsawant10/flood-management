@@ -13,7 +13,8 @@
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Logout",
-    "login": "Login"
+    "login": "Login",
+    "emergency": "Emergency Services"
   },
   "common": {
     "loading": "Loading...",
@@ -91,5 +92,27 @@
       "unknownRisk": "Unknown Risk",
       "elevationRisk": "Elevation Risk"
     }
+  },
+  "emergency": {
+    "emergencyServices": "Emergency Services",
+    "emergencyContacts": "Emergency Contacts",
+    "nearbyResources": "Nearby Emergency Resources",
+    "reportEmergency": "Report Emergency",
+    "callNow": "Call Now",
+    "call": "Call",
+    "emergencyCall": "Emergency Call",
+    "confirmEmergencyCall": "Are you sure you want to call",
+    "onlyUseForEmergencies": "Please only use emergency services for genuine emergencies.",
+    "reportEmergencyPrompt": "Please provide details about the emergency situation.",
+    "locationRequired": "Location access is required to report an emergency.",
+    "hospitals": "Hospitals",
+    "shelters": "Emergency Shelters",
+    "policeStations": "Police Stations",
+    "fireStations": "Fire Stations",
+    "bedsAvailable": "Beds Available",
+    "availableSpace": "Available Space",
+    "noResourcesFound": "No emergency resources found in your area.",
+    "errorFetchingContacts": "Failed to fetch emergency contacts.",
+    "errorFetchingResources": "Failed to fetch emergency resources."
   }
 }

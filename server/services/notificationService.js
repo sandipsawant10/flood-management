@@ -230,8 +230,8 @@ class NotificationService {
       type: status === "verified" ? "success" : "info",
       relatedItem: {
         type: "floodReport",
-        id: report._id
-      }
+        id: report._id,
+      },
     });
 
     return this.sendEmail(user.email, subject, html);
@@ -242,7 +242,9 @@ class NotificationService {
     try {
       const notification = new Notification(notificationData);
       await notification.save();
-      logger.info(`In-app notification created for user ${notificationData.recipient}`);
+      logger.info(
+        `In-app notification created for user ${notificationData.recipient}`
+      );
       return notification;
     } catch (error) {
       logger.error(`Failed to create in-app notification:`, error);
@@ -254,17 +256,19 @@ class NotificationService {
   async createBulkInAppNotifications(recipients, notificationData) {
     try {
       const notifications = [];
-      
+
       for (const recipient of recipients) {
         const notification = new Notification({
           ...notificationData,
-          recipient
+          recipient,
         });
         notifications.push(notification);
       }
-      
+
       await Notification.insertMany(notifications);
-      logger.info(`Bulk in-app notifications created for ${recipients.length} users`);
+      logger.info(
+        `Bulk in-app notifications created for ${recipients.length} users`
+      );
       return notifications;
     } catch (error) {
       logger.error(`Failed to create bulk in-app notifications:`, error);
@@ -277,27 +281,179 @@ class NotificationService {
     try {
       // Send email and SMS notifications
       const deliveryResults = await this.sendFloodAlert(users, alert);
-      
+
       // Create in-app notifications
-      const recipients = users.map(user => user._id);
+      const recipients = users.map((user) => user._id);
       await this.createBulkInAppNotifications(recipients, {
         title: `🚨 Flood Alert: ${alert.title}`,
         message: alert.message,
         type: "alert",
         relatedItem: {
           type: "alert",
-          id: alert._id
+          id: alert._id,
         },
         metadata: {
           severity: alert.severity,
-          location: alert.location
-        }
+          location: alert.location,
+        },
       });
-      
+
       return deliveryResults;
     } catch (error) {
       logger.error(`Failed to create alert notifications:`, error);
       throw error;
+    }
+  }
+
+  /**
+   * Send emergency status update notifications
+   * @param {Object} emergency - Emergency document
+   * @returns {Object} Result of notification creation
+   */
+  async sendEmergencyStatusUpdate(emergency) {
+    try {
+      // Get the latest status update
+      const latestStatus =
+        emergency.statusHistory[emergency.statusHistory.length - 1];
+
+      // Format message based on status
+      const statusMessages = {
+        reported: "An emergency has been reported",
+        assigned: "Emergency services have been assigned",
+        in_progress: "Emergency services are responding",
+        resolved: "The emergency has been resolved",
+        cancelled: "The emergency alert has been cancelled",
+      };
+
+      const statusEmojis = {
+        reported: "🚨",
+        assigned: "🚑",
+        in_progress: "🔴",
+        resolved: "✅",
+        cancelled: "⚠️",
+      };
+
+      const title = `${
+        statusEmojis[emergency.status] || "🔔"
+      } Emergency Update`;
+      const message = `${
+        statusMessages[emergency.status] || "Status updated"
+      }: ${emergency.description}`;
+
+      // Find users who need to be notified (reporter, assigned team, and admins)
+      let notificationUsers = [];
+
+      // Always notify the person who reported the emergency
+      if (emergency.reportedBy) {
+        notificationUsers.push(emergency.reportedBy);
+      }
+
+      // If there's an assigned team, notify team members
+      if (emergency.assignedTeam) {
+        const rescueTeam = await mongoose
+          .model("RescueTeam")
+          .findById(emergency.assignedTeam);
+        if (rescueTeam && rescueTeam.leader) {
+          notificationUsers.push(rescueTeam.leader);
+        }
+      }
+
+      // Create in-app notifications
+      if (notificationUsers.length > 0) {
+        await this.createBulkInAppNotifications(notificationUsers, {
+          title,
+          message,
+          type: "emergency_update",
+          relatedItem: {
+            type: "emergency",
+            id: emergency._id,
+          },
+          metadata: {
+            status: emergency.status,
+            severity: emergency.severity,
+            updatedAt: latestStatus.timestamp,
+          },
+        });
+      }
+
+      // For critical emergencies, also send email notifications
+      if (emergency.severity === "critical" || emergency.severity === "high") {
+        const users = await mongoose.model("User").find({
+          _id: { $in: notificationUsers },
+        });
+
+        for (const user of users) {
+          if (user.preferences?.notifications?.email) {
+            const html = `
+              <h2>${title}</h2>
+              <p>${message}</p>
+              <p><strong>Status:</strong> ${emergency.status}</p>
+              <p><strong>Severity:</strong> ${emergency.severity}</p>
+              <p><strong>Location:</strong> ${
+                emergency.coordinates?.address || "Not specified"
+              }</p>
+              <p><strong>Updated:</strong> ${latestStatus.timestamp}</p>
+            `;
+
+            await this.sendEmail(user.email, title, html);
+          }
+        }
+      }
+
+      return { success: true, recipientCount: notificationUsers.length };
+    } catch (error) {
+      logger.error(
+        `Failed to send emergency status update notifications:`,
+        error
+      );
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Send notification for low resource alert
+   * @param {Object} resource - Resource document
+   * @returns {Object} Result of notification creation
+   */
+  async sendLowResourceAlert(resource) {
+    try {
+      const title = `⚠️ Low Resource Alert: ${resource.name}`;
+      const message = `${resource.name} is running low (${resource.quantity} remaining). Please restock soon.`;
+
+      // Find admins and rescuers to notify
+      const adminUsers = await mongoose
+        .model("User")
+        .find({
+          role: { $in: ["admin", "rescuer"] },
+        })
+        .limit(10);
+
+      if (!adminUsers || adminUsers.length === 0) {
+        return { success: false, message: "No admin users found to notify" };
+      }
+
+      // Create in-app notifications
+      const recipients = adminUsers.map((user) => user._id);
+      await this.createBulkInAppNotifications(recipients, {
+        title,
+        message,
+        type: "resource_alert",
+        relatedItem: {
+          type: "resource",
+          id: resource._id,
+        },
+        metadata: {
+          resourceName: resource.name,
+          quantity: resource.quantity,
+          threshold: resource.threshold,
+          team: resource.team,
+        },
+      });
+
+      return { success: true, recipientCount: recipients.length };
+    } catch (error) {
+      logger.error(`Failed to send low resource alert notifications:`, error);
+      return { success: false, error: error.message };
     }
   }
 }
