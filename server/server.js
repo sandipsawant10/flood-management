@@ -41,6 +41,8 @@ const adminRescuersRoutes = require("./routes/adminRescuers");
 const weatherRoutes = require("./routes/weather");
 const notificationRoutes = require("./routes/notifications");
 const financialAidRoutes = require("./routes/financialAid");
+const resourcesRoutes = require("./routes/resources");
+const aiVerificationRoutes = require("./routes/aiVerification");
 
 const app = express();
 const server = createServer(app);
@@ -220,6 +222,8 @@ app.use("/api/admin/rescuers", adminRescuersRoutes);
 app.use("/api/weather", weatherRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/financial-aid", financialAidRoutes);
+app.use("/api/resources", resourcesRoutes);
+app.use("/api/verification", aiVerificationRoutes);
 
 // Import and use notification test routes
 const notificationTestRoutes = require("./routes/notificationTest");

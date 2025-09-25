@@ -10,7 +10,27 @@ import { getLocalAlerts, storeAlerts } from "./offlineService";
 const API_URL =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000/api";
 
+// Toast notification functions
+const showToast = (message, type = "info", duration = 3000) => {
+  const toast = {
+    id: Date.now(),
+    message,
+    type,
+    duration,
+  };
+
+  // Dispatch event for toast component to catch
+  document.dispatchEvent(new CustomEvent("show-toast", { detail: toast }));
+  return toast;
+};
+
 export const alertService = {
+  // Toast notification methods
+  showSuccess: (message, duration) => showToast(message, "success", duration),
+  showError: (message, duration) => showToast(message, "error", duration),
+  showInfo: (message, duration) => showToast(message, "info", duration),
+  showWarning: (message, duration) => showToast(message, "warning", duration),
+
   /**
    * Get alerts with optional filtering
    * @param {Object} params - Query parameters
