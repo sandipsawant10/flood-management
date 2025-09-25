@@ -43,6 +43,7 @@ const notificationRoutes = require("./routes/notifications");
 const financialAidRoutes = require("./routes/financialAid");
 const resourcesRoutes = require("./routes/resources");
 const aiVerificationRoutes = require("./routes/aiVerification");
+const waterIssuesRoutes = require("./routes/waterIssues");
 
 const app = express();
 const server = createServer(app);
@@ -224,6 +225,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/financial-aid", financialAidRoutes);
 app.use("/api/resources", resourcesRoutes);
 app.use("/api/verification", aiVerificationRoutes);
+app.use("/api/water-issues", waterIssuesRoutes);
 
 // Import and use notification test routes
 const notificationTestRoutes = require("./routes/notificationTest");

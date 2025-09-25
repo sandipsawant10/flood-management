@@ -16,6 +16,9 @@ import EmergencyServicesPage from "./pages/Emergency/EmergencyServicesPage";
 import NotificationCenter from "./pages/Notifications/NotificationCenter";
 import AlertsPage from "./pages/Alerts/AlertsPage.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import WaterIssuesList from "./pages/WaterIssues/WaterIssuesList";
+import WaterIssueReport from "./pages/WaterIssues/WaterIssueReport";
+import WaterIssueDetail from "./pages/WaterIssues/WaterIssueDetail";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import AdminProfile from "./pages/admin/AdminProfile";
 import AdminSettings from "./pages/admin/AdminSettings";
@@ -136,6 +139,9 @@ const App = () => {
             <Route path="/report-flood" element={<ReportFlood />} />
             <Route path="/reports" element={<ViewReports />} />
             <Route path="/notifications" element={<NotificationCenter />} />
+            <Route path="/water-issues" element={<WaterIssuesList />} />
+            <Route path="/report-water-issue" element={<WaterIssueReport />} />
+            <Route path="/water-issues/:id" element={<WaterIssueDetail />} />
           </Route>
           {/* Admin Routes */}
           <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
@@ -144,6 +150,11 @@ const App = () => {
             <Route path="/admin/settings" element={<AdminSettings />} />
             <Route path="/admin/resources" element={<ResourceManagement />} />
             <Route path="/admin/reports" element={<AdminReports />} />
+            <Route path="/admin/water-issues" element={<WaterIssuesList />} />
+            <Route
+              path="/admin/water-issues/:id"
+              element={<WaterIssueDetail />}
+            />
             <Route path="/admin/analytics" element={<Analytics />} />
             <Route path="/admin/disasters" element={<DisasterManagement />} />
             <Route path="/admin/requests" element={<RequestManagement />} />
@@ -169,6 +180,14 @@ const App = () => {
             <Route
               path="/municipality/reports"
               element={<MunicipalityReports />}
+            />
+            <Route
+              path="/municipality/water-issues"
+              element={<WaterIssuesList />}
+            />
+            <Route
+              path="/municipality/water-issues/:id"
+              element={<WaterIssueDetail />}
             />
             <Route
               path="/municipality/resources"

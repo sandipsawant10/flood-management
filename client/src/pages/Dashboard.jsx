@@ -40,6 +40,12 @@ const Dashboard = () => {
               Report Flood Incident
             </button>
             <button
+              onClick={() => (window.location.href = "/report-water-issue")}
+              className="w-full bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+            >
+              Report Water Issue
+            </button>
+            <button
               onClick={() => (window.location.href = "/emergency")}
               className="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >

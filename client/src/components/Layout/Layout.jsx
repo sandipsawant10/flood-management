@@ -14,6 +14,7 @@ import {
   Users,
   ShieldAlert,
   Box,
+  Droplet,
 } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 import LanguageSelector from "../Common/LanguageSelector";
@@ -27,7 +28,9 @@ const Layout = () => {
   const userNavigation = [
     { name: "Dashboard", href: "/dashboard", icon: Home },
     { name: "Report Flood", href: "/report-flood", icon: FileText },
+    { name: "Report Water Issue", href: "/report-water-issue", icon: Droplet },
     { name: "View Reports", href: "/reports", icon: MapPin },
+    { name: "Water Issues", href: "/water-issues", icon: Droplet },
     { name: "Alerts", href: "/alerts", icon: AlertTriangle },
     { name: "Emergency", href: "/emergency", icon: Phone },
     {
@@ -98,7 +101,8 @@ const Layout = () => {
       ),
     },
     { name: "User Management", href: "/admin/users", icon: Users },
-    { name: "Report Moderation", href: "/admin/reports", icon: ShieldAlert },
+    { name: "Flood Reports", href: "/admin/reports", icon: ShieldAlert },
+    { name: "Water Issues", href: "/admin/water-issues", icon: Droplet },
     { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
   ];
 
@@ -108,7 +112,8 @@ const Layout = () => {
       href: "/municipality/dashboard",
       icon: Home,
     },
-    { name: "View Reports", href: "/municipality/reports", icon: MapPin },
+    { name: "Flood Reports", href: "/municipality/reports", icon: MapPin },
+    { name: "Water Issues", href: "/municipality/water-issues", icon: Droplet },
     {
       name: "Manage Alerts",
       href: "/municipality/alerts",
