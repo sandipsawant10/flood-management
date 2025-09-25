@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
 const { cloudinaryUpload } = require("../middleware/upload");
-const auth = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
 const roleAuth = require("../middleware/roleAuth");
 const WaterIssue = require("../models/WaterIssue");
 

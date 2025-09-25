@@ -1,4 +1,5 @@
 const { body, param, query } = require("express-validator");
+const Joi = require("joi");
 
 const validateFloodReport = [
   body("location.coordinates")
@@ -41,7 +42,38 @@ const validateUserRegistration = [
     ),
 ];
 
+// Joi-based generic validator used by some routes (returns middleware)
+const validateRequest = (schema) => {
+  return (req, res, next) => {
+    // allow passing either a Joi schema that validates req.body directly
+    // or a schema that validates an object { body, params, query }
+    const data = {
+      body: req.body,
+      params: req.params,
+      query: req.query,
+    };
+
+    const { error } = schema.validate
+      ? schema.validate(data, { allowUnknown: true, abortEarly: false })
+      : { error: null };
+
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        errors: error.details.map((d) => ({
+          message: d.message,
+          path: d.path,
+        })),
+      });
+    }
+
+    next();
+  };
+};
+
 module.exports = {
   validateFloodReport,
   validateUserRegistration,
 };
+
+module.exports.validateRequest = validateRequest;

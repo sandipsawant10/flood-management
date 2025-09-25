@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { body, query, validationResult } = require("express-validator");
-const auth = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
 const roleAuth = require("../middleware/roleAuth");
 const Alert = require("../models/Alert");
 
@@ -169,51 +169,34 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 }
 
 /**
+ * Temporarily commenting out affected-area route due to issues
+ *
  * @route   GET /api/alerts/affected-area
  * @desc    Get users in affected area for an alert
  * @access  Private (Admin only)
  */
-router.get(
-  "/affected-area/:alertId",
-  [auth, roleAuth(["admin"])],
-  async (req, res) => {
-    try {
-      const alertId = req.params.alertId;
-
-      // Get the alert
-      const alert = await Alert.findById(alertId);
-      if (!alert) {
-        return res.status(404).json({
-          success: false,
-          message: "Alert not found",
-        });
-      }
-
-      // This endpoint would typically query a user locations collection
-      // to find users in the affected area, but for now we'll return
-      // a placeholder response
-
-      return res.json({
-        success: true,
-        message: "This endpoint would return users in the affected area",
-        affectedAreaDetails: {
-          alertId: alertId,
-          alertTitle: alert.title,
-          targetArea: alert.targetArea,
-          // In a real implementation, we would include:
-          // estimatedUsersInArea: 25,
-          // usersNotified: 18,
-        },
-      });
-    } catch (err) {
-      console.error("Error getting affected area details:", err);
-      return res.status(500).json({
-        success: false,
-        message: "Server error while fetching affected area details",
-        error: err.message,
-      });
-    }
+/* 
+// Will implement this route properly in a future update
+router.get("/affected-area/:alertId", auth, roleAuth(["admin"]), async (req, res) => {
+  try {
+    const alertId = req.params.alertId;
+    
+    return res.json({
+      success: true,
+      message: "This endpoint is temporarily disabled for maintenance",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
-);
+});
+*/
+
+// Additional failsafe route for testing
+router.get("/test", (req, res) => {
+  res.json({ success: true, message: "GeoAlerts route working" });
+});
 
 module.exports = router;

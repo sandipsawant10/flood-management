@@ -1,0 +1,32 @@
+2025-09-25T18:30:43.536Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-25T18:30:43.548Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-25T18:30:43.550Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-25T18:30:45.555Z [info]: MongoDB Connected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}

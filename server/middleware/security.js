@@ -4,6 +4,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const { logger } = require("./errorHandler");
 const Redis = require("ioredis");
+const { ipKeyGenerator } = require("express-rate-limit");
 
 // Setup Redis client for rate limiting if available
 let redisClient;
@@ -55,7 +56,12 @@ const dynamicRateLimiter = (options = {}) => {
     store: createStore(),
     keyGenerator: (req) => {
       // Use user ID if available, otherwise IP
-      return req.user ? `user-${req.user._id}` : req.ip;
+      if (req.user) {
+        return `user-${req.user._id}`;
+      } else {
+        // Use the ipKeyGenerator helper function to safely handle IPv6 addresses
+        return `ip-${ipKeyGenerator(req)}`;
+      }
     },
     // Log rate limit hits
     handler: (req, res, next, options) => {
@@ -112,7 +118,14 @@ const speedLimiter = slowDown({
     return 3000; // over 70: 3s delay
   },
   validate: { delayMs: false }, // disable the warning message
-  keyGenerator: (req) => (req.user ? `user-${req.user._id}` : req.ip),
+  keyGenerator: (req) => {
+    if (req.user) {
+      return `user-${req.user._id}`;
+    } else {
+      // Use the ipKeyGenerator helper function to safely handle IPv6 addresses
+      return `ip-${ipKeyGenerator(req)}`;
+    }
+  },
   store: createStore(), // Use Redis if available
 });
 

@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const resourceController = require("../controllers/resourceController");
-const authMiddleware = require("../middleware/auth");
+const { auth: protect, authorize: restrictTo } = require("../middleware/auth");
 const { validateRequest } = require("../middleware/validation");
 const { resourceValidation } = require("../validations");
 
 // Protect all resource routes
-router.use(authMiddleware.protect);
+router.use(protect);
 
 // Routes accessible by admin and municipality roles
-router.use(authMiddleware.restrictTo("admin", "municipality"));
+router.use(restrictTo("admin", "municipality"));
 
 // Resource management endpoints
 router.get(
