@@ -2,6 +2,37 @@ const express = require("express");
 const weatherService = require("../services/weatherService");
 const router = express.Router();
 
+// Get weather forecast (public endpoint for prefetching)
+router.get("/forecast", async (req, res) => {
+  try {
+    const { lat, lon } = req.query;
+    if (!lat || !lon) {
+      return res.status(400).json({
+        success: false,
+        message: "Latitude and longitude are required",
+      });
+    }
+
+    // For now, return current weather as forecast
+    // TODO: Implement actual forecast service
+    const weather = await weatherService.getCurrentWeather(
+      parseFloat(lat),
+      parseFloat(lon)
+    );
+
+    res.json({
+      success: true,
+      forecast: weather,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch weather forecast",
+      error: error.message,
+    });
+  }
+});
+
 // Get current weather for coordinates
 router.get("/current/:lat/:lng", async (req, res) => {
   try {

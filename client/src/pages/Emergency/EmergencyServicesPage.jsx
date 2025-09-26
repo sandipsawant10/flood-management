@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container, Paper, Typography, Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import EmergencyServices from "../components/Emergency/EmergencyServices";
+import EmergencyServices from "../../components/Emergency/EmergencyServices";
 
 const EmergencyServicesPage = () => {
   const { t } = useTranslation();

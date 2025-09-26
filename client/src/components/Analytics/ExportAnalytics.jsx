@@ -3,7 +3,7 @@ import {
   Download,
   FileText,
   FileJson,
-  FilePdf,
+  File,
   CheckCircle2,
   AlertCircle,
   Loader2,
@@ -88,7 +88,7 @@ const ExportAnalytics = ({ filters, onSuccess, onError }) => {
   const formatIcons = {
     csv: <FileText className="mr-2 h-4 w-4" />,
     json: <FileJson className="mr-2 h-4 w-4" />,
-    pdf: <FilePdf className="mr-2 h-4 w-4" />,
+    pdf: <File className="mr-2 h-4 w-4" />,
   };
 
   return (

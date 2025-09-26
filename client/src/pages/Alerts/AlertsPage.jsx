@@ -40,8 +40,8 @@ import {
   FormatListBulleted as ListIcon,
 } from "@mui/icons-material";
 
-import { useGeoAlerts } from "../hooks/useGeoAlerts";
-import AlertsMap from "../components/Maps/AlertsMap";
+import { useGeoAlerts } from "../../hooks/useGeoAlerts";
+import AlertsMap from "../../components/Maps/AlertsMap";
 
 const AlertsPage = () => {
   const {

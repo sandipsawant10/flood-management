@@ -40,12 +40,23 @@ export const alertService = {
     try {
       const response = await axiosInstance.get(`/alerts`, { params });
 
+      // Normalize alerts to ensure they have both _id and id fields
+      const normalizedAlerts =
+        response.data.alerts?.map((alert) => ({
+          ...alert,
+          id: alert._id || alert.id, // Ensure id field exists for client code
+          _id: alert._id || alert.id, // Preserve _id for API consistency
+        })) || [];
+
       // Store alerts for offline access
-      if (response.data.alerts && response.data.alerts.length > 0) {
-        await storeAlerts(response.data.alerts);
+      if (normalizedAlerts.length > 0) {
+        await storeAlerts(normalizedAlerts);
       }
 
-      return response.data;
+      return {
+        ...response.data,
+        alerts: normalizedAlerts,
+      };
     } catch (error) {
       // If offline, try to get alerts from local storage
       if (!navigator.onLine) {
@@ -64,6 +75,16 @@ export const alertService = {
 
   getAlertById: async (id) => {
     const response = await axiosInstance.get(`/alerts/${id}`);
+
+    // Normalize alert to ensure it has both _id and id fields
+    if (response.data.alert) {
+      response.data.alert = {
+        ...response.data.alert,
+        id: response.data.alert._id || response.data.alert.id,
+        _id: response.data.alert._id || response.data.alert.id,
+      };
+    }
+
     return response.data;
   },
 
@@ -104,13 +125,22 @@ export const alertService = {
 
       const response = await axiosInstance.get(`/alerts/nearby`, { params });
 
+      // Normalize alerts to ensure they have both _id and id fields
+      const normalizedAlerts =
+        response.data.alerts?.map((alert) => ({
+          ...alert,
+          id: alert._id || alert.id, // Ensure id field exists for client code
+          _id: alert._id || alert.id, // Preserve _id for API consistency
+        })) || [];
+
       // Store alerts for offline access
-      if (response.data.alerts && response.data.alerts.length > 0) {
-        await storeAlerts(response.data.alerts);
+      if (normalizedAlerts.length > 0) {
+        await storeAlerts(normalizedAlerts);
       }
 
       return {
         ...response.data,
+        alerts: normalizedAlerts,
         location,
       };
     } catch (error) {

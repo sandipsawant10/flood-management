@@ -210,8 +210,8 @@ app.use((req, res, next) => {
 // ---------- API ROUTES ----------
 app.use("/api/auth", authRoutes);
 app.use("/api/flood-reports", floodReportRoutes);
+app.use("/api/alerts", geoAlertsRoutes); // Include geo-alerts under alerts route FIRST
 app.use("/api/alerts", alertRoutes);
-app.use("/api/alerts", geoAlertsRoutes); // Include geo-alerts under alerts route
 app.use("/api/emergency", emergencyRoutes);
 app.use("/api/emergency-services", emergencyServicesRoutes);
 app.use("/api/predictions", predictionRoutes);
@@ -230,6 +230,10 @@ app.use("/api/water-issues", waterIssuesRoutes);
 // Import and use notification test routes
 const notificationTestRoutes = require("./routes/notificationTest");
 app.use("/api/notification-test", notificationTestRoutes);
+
+// Import and use public data routes
+const publicDataRoutes = require("./routes/publicData");
+app.use("/api", publicDataRoutes);
 
 // ---------- ERROR HANDLING ----------
 app.use(notFoundHandler);

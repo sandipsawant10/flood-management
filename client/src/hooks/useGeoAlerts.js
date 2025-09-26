@@ -57,6 +57,9 @@ export const useGeoAlerts = (options = {}) => {
   const [error, setError] = useState(null);
   const [monitoringController, setMonitoringController] = useState(null);
 
+  // Ref for loadNearbyAlerts to avoid circular dependencies
+  const loadNearbyAlertsRef = useRef(null);
+
   /**
    * Show browser notification for alert
    */
@@ -316,11 +319,8 @@ export const useGeoAlerts = (options = {}) => {
       }
       return { alerts: [], error: new Error("Alert loader not initialized") };
     },
-    [loadNearbyAlertsRef]
+    [] // No dependencies needed since we're using a ref
   );
-
-  // Fix for React hooks rules - loadNearbyAlerts reference needed before definition
-  const loadNearbyAlertsRef = useRef(null);
 
   // Auto-start monitoring if configured
   useEffect(() => {

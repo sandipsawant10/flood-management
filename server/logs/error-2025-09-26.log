@@ -1,0 +1,1933 @@
+2025-09-26T04:01:17.375Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T09:19:11.539Z [error]: ipKeyGenerator is not a function [36817ea7-6199-47fb-adb1-ad0139f37591]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "36817ea7-6199-47fb-adb1-ad0139f37591",
+    "url": "/api/notifications/vapid-public-key",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "TypeError",
+      "message": "ipKeyGenerator is not a function",
+      "stack": "TypeError: ipKeyGenerator is not a function\n    at Object.keyGenerator (S:\\flood-disaster-management\\server\\middleware\\security.js:126:20)\n    at S:\\flood-disaster-management\\server\\node_modules\\express-slow-down\\node_modules\\express-rate-limit\\dist\\index.cjs:766:32\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async S:\\flood-disaster-management\\server\\node_modules\\express-slow-down\\node_modules\\express-rate-limit\\dist\\index.cjs:747:5"
+    }
+  }
+}
+2025-09-26T09:19:11.580Z [error]: ipKeyGenerator is not a function [63b93ed1-9517-4fab-96f2-6756de9a71b9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "63b93ed1-9517-4fab-96f2-6756de9a71b9",
+    "url": "/api/emergency/contacts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "TypeError",
+      "message": "ipKeyGenerator is not a function",
+      "stack": "TypeError: ipKeyGenerator is not a function\n    at Object.keyGenerator (S:\\flood-disaster-management\\server\\middleware\\security.js:126:20)\n    at S:\\flood-disaster-management\\server\\node_modules\\express-slow-down\\node_modules\\express-rate-limit\\dist\\index.cjs:766:32\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async S:\\flood-disaster-management\\server\\node_modules\\express-slow-down\\node_modules\\express-rate-limit\\dist\\index.cjs:747:5"
+    }
+  }
+}
+2025-09-26T09:32:52.850Z [error]: No authentication token provided. Please log in to access this resource [d51ff7aa-edfe-4033-a661-d18a6a958789]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d51ff7aa-edfe-4033-a661-d18a6a958789",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:35:13.757Z [error]: No authentication token provided. Please log in to access this resource [2298ab7f-1c75-46e5-9c9d-9feab67a243c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2298ab7f-1c75-46e5-9c9d-9feab67a243c",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:38:05.844Z [error]: No authentication token provided. Please log in to access this resource [93274e0d-7222-459b-91df-f759974ef127]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "93274e0d-7222-459b-91df-f759974ef127",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:38:05.856Z [error]: Route not found with ID: /api/disaster-prone-areas [29e3f03d-672b-42db-8ad1-bbe36c747d77]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "29e3f03d-672b-42db-8ad1-bbe36c747d77",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:39:01.842Z [error]: No authentication token provided. Please log in to access this resource [2c4cf2cc-010a-4cfd-b8fd-355744ccea63]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2c4cf2cc-010a-4cfd-b8fd-355744ccea63",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:39:01.856Z [error]: Route not found with ID: /api/disaster-prone-areas [48d2b7b7-6dfc-4bba-b19a-6e813b074ca3]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "48d2b7b7-6dfc-4bba-b19a-6e813b074ca3",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:39:07.244Z [error]: No authentication token provided. Please log in to access this resource [7fd7085b-b716-4c81-803b-f5d3c6563e8e]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7fd7085b-b716-4c81-803b-f5d3c6563e8e",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:39:07.256Z [error]: Route not found with ID: /api/disaster-prone-areas [0d0251c0-78b1-4025-8e0f-19424b724e09]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "0d0251c0-78b1-4025-8e0f-19424b724e09",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:40:29.175Z [error]: Route not found with ID: /api/api/auth/login [9f58822d-1438-4e50-9350-3f5bf9541382]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9f58822d-1438-4e50-9350-3f5bf9541382",
+    "url": "/api/api/auth/login",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {
+      "login": "sandipsawant503@gmail.com",
+      "password": "[REDACTED]"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/auth/login",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/auth/login\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:40:35.770Z [error]: No authentication token provided. Please log in to access this resource [a1763e90-87cf-42af-bb64-385482299c52]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "a1763e90-87cf-42af-bb64-385482299c52",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:40:35.814Z [error]: Route not found with ID: /api/disaster-prone-areas [d32ca3da-ea01-40ab-b86a-590ff4e7450b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d32ca3da-ea01-40ab-b86a-590ff4e7450b",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:40:35.948Z [error]: Route not found with ID: /api/evacuation-centers [bcc2e1af-ed9d-4c39-9c43-0b4410b645e8]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "bcc2e1af-ed9d-4c39-9c43-0b4410b645e8",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:40:36.055Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [20795b7f-342e-48d5-b698-6f8bc08ce100]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "20795b7f-342e-48d5-b698-6f8bc08ce100",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:27.839Z [error]: No authentication token provided. Please log in to access this resource [d8718a02-5500-487c-9375-009a34e53e52]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d8718a02-5500-487c-9375-009a34e53e52",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:41:27.851Z [error]: Route not found with ID: /api/disaster-prone-areas [1ed24451-f81d-44ed-a4a3-0ba272d67eeb]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "1ed24451-f81d-44ed-a4a3-0ba272d67eeb",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:27.879Z [error]: Route not found with ID: /api/evacuation-centers [b7919ef5-0b31-484c-b3ad-0c4ed9936e86]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b7919ef5-0b31-484c-b3ad-0c4ed9936e86",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:27.897Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [895d0e86-b827-4d4e-b3a1-6a77924ee90e]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "895d0e86-b827-4d4e-b3a1-6a77924ee90e",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:54.557Z [error]: No authentication token provided. Please log in to access this resource [83de2fee-7353-425f-a538-213874502265]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "83de2fee-7353-425f-a538-213874502265",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:41:54.569Z [error]: Route not found with ID: /api/disaster-prone-areas [9b26781e-298a-4803-9908-c6d2fc243522]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9b26781e-298a-4803-9908-c6d2fc243522",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:54.582Z [error]: Route not found with ID: /api/evacuation-centers [736bc9ec-c603-49ec-84bb-29c3d7efae8e]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "736bc9ec-c603-49ec-84bb-29c3d7efae8e",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:41:54.599Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [4cdf0e2a-6b6b-41dc-a9c4-31b4ddd314c4]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4cdf0e2a-6b6b-41dc-a9c4-31b4ddd314c4",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:42:01.443Z [error]: No authentication token provided. Please log in to access this resource [8beef8b4-f03b-4752-8774-95dac264fc85]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8beef8b4-f03b-4752-8774-95dac264fc85",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:42:01.471Z [error]: Route not found with ID: /api/disaster-prone-areas [17a3852e-4d65-499f-bc32-777193a95c81]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "17a3852e-4d65-499f-bc32-777193a95c81",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:42:01.502Z [error]: Route not found with ID: /api/evacuation-centers [133062ef-d504-4be4-abc0-5b54dd2be7fe]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "133062ef-d504-4be4-abc0-5b54dd2be7fe",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:42:01.521Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [9aaade47-7516-497f-8d7d-7a349e7c0686]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9aaade47-7516-497f-8d7d-7a349e7c0686",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:50:02.782Z [error]: No authentication token provided. Please log in to access this resource [32d2e4e1-2e84-425c-b248-d96ced0e6b0a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "32d2e4e1-2e84-425c-b248-d96ced0e6b0a",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:50:02.793Z [error]: Route not found with ID: /api/disaster-prone-areas [7843babe-83ba-4672-96cf-b694bd13d6b1]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7843babe-83ba-4672-96cf-b694bd13d6b1",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:50:02.808Z [error]: Route not found with ID: /api/evacuation-centers [cccd600f-48b5-41b7-adae-1f7bb94080e1]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "cccd600f-48b5-41b7-adae-1f7bb94080e1",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:50:02.820Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [52b721d6-08a3-48f2-a5c7-8b6647e59966]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "52b721d6-08a3-48f2-a5c7-8b6647e59966",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:53:16.099Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T09:54:42.273Z [error]: No authentication token provided. Please log in to access this resource [380136ec-2bf2-44b0-9fda-74f926ad3b46]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "380136ec-2bf2-44b0-9fda-74f926ad3b46",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:54:42.287Z [error]: Route not found with ID: /api/disaster-prone-areas [7248807d-4daf-4c97-9776-48e2bb8fdfb8]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7248807d-4daf-4c97-9776-48e2bb8fdfb8",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:54:42.298Z [error]: Route not found with ID: /api/evacuation-centers [e462af53-17ff-4aa2-9f7d-727c6ad254ab]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "e462af53-17ff-4aa2-9f7d-727c6ad254ab",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:54:42.314Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [3ddfb4a4-116a-4906-a43a-6f5d0a4f9c23]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3ddfb4a4-116a-4906-a43a-6f5d0a4f9c23",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:55:26.055Z [error]: No authentication token provided. Please log in to access this resource [ca7f7cfc-17af-40dc-a55b-d79f06c6f39d]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "ca7f7cfc-17af-40dc-a55b-d79f06c6f39d",
+    "url": "/api/alerts/active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T09:55:26.090Z [error]: Route not found with ID: /api/disaster-prone-areas [53bb403a-859f-463f-9d72-7ac7cc376964]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "53bb403a-859f-463f-9d72-7ac7cc376964",
+    "url": "/api/disaster-prone-areas",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/disaster-prone-areas",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/disaster-prone-areas\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:55:26.112Z [error]: Route not found with ID: /api/evacuation-centers [8c3d03bc-9c9f-48a0-8807-850c6837309f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8c3d03bc-9c9f-48a0-8807-850c6837309f",
+    "url": "/api/evacuation-centers",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/evacuation-centers",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/evacuation-centers\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:55:26.141Z [error]: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629 [d391840b-e427-490b-a0dd-ed52812c67e6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d391840b-e427-490b-a0dd-ed52812c67e6",
+    "url": "/api/weather/forecast?lat=20.5937&lon=78.9629",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "lat": "20.5937",
+      "lon": "78.9629"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/weather/forecast?lat=20.5937&lon=78.9629\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T09:58:42.050Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:255:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Fri Sep 26 2025 15:28:42 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 19448,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 116092928,
+        "heapTotal": 71536640,
+        "heapUsed": 49391984,
+        "external": 21718800,
+        "arrayBuffers": 18345090
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 4865.265
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 255,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T09:58:42.061Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-26T10:31:03.739Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:255:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Fri Sep 26 2025 16:01:03 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 1732,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 113438720,
+        "heapTotal": 71798784,
+        "heapUsed": 49448032,
+        "external": 21718800,
+        "arrayBuffers": 18345090
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 6806.953
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 255,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T10:31:03.744Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-26T10:52:25.308Z [error]: No authentication token provided. Please log in to access this resource [05115e75-d614-4928-9bc2-c5acfa03fa4f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "05115e75-d614-4928-9bc2-c5acfa03fa4f",
+    "url": "/api/alerts/nearby?status=active&lat=17.6700736&lng=75.9010467&radius=50",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active",
+      "lat": "17.6700736",
+      "lng": "75.9010467",
+      "radius": "50"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T10:52:47.391Z [error]: Route not found with ID: /health [574ab8c6-37cf-434e-a4f0-20c2f1b112ea]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "574ab8c6-37cf-434e-a4f0-20c2f1b112ea",
+    "url": "/health",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /health",
+      "stack": "ResourceNotFoundError: Route not found with ID: /health\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:207:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T10:52:57.864Z [error]: No authentication token provided. Please log in to access this resource [d619dc9f-7422-4361-b5b7-d89ab55af8a9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d619dc9f-7422-4361-b5b7-d89ab55af8a9",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:06:27.140Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:255:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Fri Sep 26 2025 16:36:27 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 17696,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 122720256,
+        "heapTotal": 77565952,
+        "heapUsed": 50081656,
+        "external": 21695967,
+        "arrayBuffers": 18344906
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 8930.359
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 255,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T11:06:27.145Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:255:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-26T11:08:09.419Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [6163c55f-042f-4ed5-8cde-f12911c981c6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "6163c55f-042f-4ed5-8cde-f12911c981c6",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T11:08:10.440Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [9fc203d6-8116-403d-8a85-239d38b3da33]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9fc203d6-8116-403d-8a85-239d38b3da33",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T11:08:51.133Z [error]: Invalid authentication token [0fe2c0c3-4c64-4941-851f-410a68c1f721]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "0fe2c0c3-4c64-4941-851f-410a68c1f721",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:08:52.678Z [error]: Invalid authentication token [c0506787-cea1-4427-a538-6397f01a3b85]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "c0506787-cea1-4427-a538-6397f01a3b85",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:08:54.799Z [error]: Invalid authentication token [9f7ad60d-b450-45f4-af42-42c73d2c77f9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9f7ad60d-b450-45f4-af42-42c73d2c77f9",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:23:23.978Z [error]: Invalid authentication token [651b4c7f-6176-4695-a943-fd6280b4094b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "651b4c7f-6176-4695-a943-fd6280b4094b",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:33:33.555Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [87d9c9c8-afb5-4e8e-83e5-8edfd907690f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "87d9c9c8-afb5-4e8e-83e5-8edfd907690f",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T11:33:34.568Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [a87d5be9-059e-40c9-bdc3-00eece5ff02c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "a87d5be9-059e-40c9-bdc3-00eece5ff02c",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T11:42:53.511Z [error]: No authentication token provided. Please log in to access this resource [e930e8db-9915-4a0a-9bce-fa7b6559c54b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "e930e8db-9915-4a0a-9bce-fa7b6559c54b",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {},
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:43:04.794Z [error]: No authentication token provided. Please log in to access this resource [53eadbab-b4e3-47ba-99fe-602586180f00]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "53eadbab-b4e3-47ba-99fe-602586180f00",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {},
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:43:06.811Z [error]: No authentication token provided. Please log in to access this resource [4ae5ca94-2023-47a8-b359-2d3e886f93b4]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4ae5ca94-2023-47a8-b359-2d3e886f93b4",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {},
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:45:49.711Z [error]: No authentication token provided. Please log in to access this resource [6ddcb09b-1bc5-4fc3-a8e7-33683e3a6e5a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "6ddcb09b-1bc5-4fc3-a8e7-33683e3a6e5a",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "requestBody": {
+      "description": "test"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T11:50:21.385Z [error]: unhandledRejection: (no error message)
+  No stack trace
+{
+  "metadata": {
+    "error": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    },
+    "rejection": true,
+    "date": "Fri Sep 26 2025 17:20:21 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 18928,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 91348992,
+        "heapTotal": 43225088,
+        "heapUsed": 41078808,
+        "external": 22081965,
+        "arrayBuffers": 18579779
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 11564.609
+    },
+    "trace": [],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T11:50:21.387Z [error]: UNHANDLED REJECTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "promise": "[object Promise]",
+    "reason": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    }
+  }
+}
+2025-09-26T11:50:21.391Z [error]: Request Timeout [2b535934-a00c-4d91-a2b7-9a300f83731f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2b535934-a00c-4d91-a2b7-9a300f83731f",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "68cd02e081693953a94248ff",
+    "requestBody": {
+      "location": {
+        "district": "Pune",
+        "state": "Maharashtra",
+        "address": "pune is near",
+        "landmark": "",
+        "coordinates": [
+          "75.9010467",
+          "17.6700736"
+        ]
+      },
+      "severity": "low",
+      "waterLevel": "ankle-deep",
+      "depth": "0.15",
+      "description": "water is there ",
+      "urgencyLevel": "3"
+    },
+    "error": {
+      "name": "TimeoutError",
+      "message": "Request Timeout"
+    }
+  }
+}
+2025-09-26T11:53:11.015Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T11:54:37.435Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T11:55:53.544Z [error]: Invalid authentication token [78b6db4b-b066-4dd1-a769-c6dbbaeedc0c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "78b6db4b-b066-4dd1-a769-c6dbbaeedc0c",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "requestBody": {
+      "location": {
+        "latitude": 28.6139,
+        "longitude": 77.209,
+        "address": "New Delhi"
+      },
+      "severity": "low",
+      "description": "Test flood report"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T12:01:37.049Z [error]: unhandledRejection: (no error message)
+  No stack trace
+{
+  "metadata": {
+    "error": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    },
+    "rejection": true,
+    "date": "Fri Sep 26 2025 17:31:37 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 21384,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 91058176,
+        "heapTotal": 44011520,
+        "heapUsed": 41328528,
+        "external": 22019629,
+        "arrayBuffers": 18517443
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 12240.265
+    },
+    "trace": [],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T12:01:37.052Z [error]: UNHANDLED REJECTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "promise": "[object Promise]",
+    "reason": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    }
+  }
+}
+2025-09-26T12:01:37.056Z [error]: Request Timeout [2e00d003-b427-4baa-9a16-e63f1e710c01]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2e00d003-b427-4baa-9a16-e63f1e710c01",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "68cd02e081693953a94248ff",
+    "requestBody": {
+      "location": {
+        "district": "Pune",
+        "state": "Maharashtra",
+        "address": "there is so mch water",
+        "landmark": "",
+        "coordinates": [
+          "75.9010467",
+          "17.6700736"
+        ]
+      },
+      "severity": "low",
+      "waterLevel": "ankle-deep",
+      "depth": "0.15",
+      "description": "there is so mch water",
+      "urgencyLevel": "3"
+    },
+    "error": {
+      "name": "TimeoutError",
+      "message": "Request Timeout"
+    }
+  }
+}
+2025-09-26T12:04:18.587Z [error]: Invalid authentication token [3e611acb-c527-4ac8-ab7d-09b22eb3a88f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3e611acb-c527-4ac8-ab7d-09b22eb3a88f",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "requestBody": {
+      "location": {
+        "latitude": 28.6139,
+        "longitude": 77.209,
+        "address": "New Delhi",
+        "district": "Delhi",
+        "state": "Delhi"
+      },
+      "severity": "low",
+      "description": "Test flood report"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}

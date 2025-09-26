@@ -5,6 +5,28 @@ const User = require("../models/User");
 const { auth } = require("../middleware/auth");
 const notificationService = require("../services/notificationService");
 
+// Get active alerts (public endpoint for prefetching)
+router.get("/active", async (req, res) => {
+  try {
+    const alerts = await Alert.find({ status: "active" })
+      .sort({ priority: -1, createdAt: -1 })
+      .select("title message severity priority targetArea createdAt updatedAt")
+      .limit(50);
+
+    res.json({
+      success: true,
+      count: alerts.length,
+      alerts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server error fetching active alerts",
+      error: error.message,
+    });
+  }
+});
+
 // Get all alerts
 router.get("/", auth, async (req, res) => {
   try {
@@ -84,7 +106,9 @@ router.post("/", auth, async (req, res) => {
     // Find users in the target area to notify
     const targetUsers = await User.find({
       "location.state": alert.targetArea.state,
-      ...(alert.targetArea.district && { "location.district": alert.targetArea.district }),
+      ...(alert.targetArea.district && {
+        "location.district": alert.targetArea.district,
+      }),
     });
 
     // Send notifications to affected users
@@ -134,13 +158,16 @@ router.put("/:id", auth, async (req, res) => {
     }
 
     // If alert was updated to active status or severity increased, notify users
-    if (req.body.status === "active" || 
-        (req.body.severity && ["high", "critical"].includes(req.body.severity))) {
-      
+    if (
+      req.body.status === "active" ||
+      (req.body.severity && ["high", "critical"].includes(req.body.severity))
+    ) {
       // Find users in the target area to notify
       const targetUsers = await User.find({
         "location.state": alert.targetArea.state,
-        ...(alert.targetArea.district && { "location.district": alert.targetArea.district }),
+        ...(alert.targetArea.district && {
+          "location.district": alert.targetArea.district,
+        }),
       });
 
       // Send notifications to affected users

@@ -68,30 +68,60 @@ export const prefetchEssentialData = async () => {
 export const prefetchEmergencyContacts = async () => {
   try {
     const response = await axiosInstance.get("/emergency/contacts");
-    const contacts = response.data.contacts;
+    // The server may return either an array ([]) or an object { contacts: [] }
+    let contacts = [];
+    if (Array.isArray(response.data)) {
+      contacts = response.data;
+    } else if (response.data && Array.isArray(response.data.contacts)) {
+      contacts = response.data.contacts;
+    } else {
+      console.warn(
+        "Unexpected /emergency/contacts response shape:",
+        response.data
+      );
+      contacts = [];
+    }
 
-    // Cache each contact
-    for (const contact of contacts) {
-      await updateItem(STORES_ENUM.EMERGENCY_CONTACTS, {
+    if (!contacts || contacts.length === 0) {
+      console.log("No emergency contacts to cache");
+      return [];
+    }
+
+    // Cache each contact, ensure required keyPath 'id' exists; tolerate per-item failures
+    for (let i = 0; i < contacts.length; i++) {
+      const contact = contacts[i] || {};
+      const id =
+        contact.id ||
+        contact._id ||
+        contact.number ||
+        contact.name ||
+        `contact-${Date.now()}-${i}`;
+
+      const item = {
         ...contact,
+        id,
         cachedAt: new Date().toISOString(),
         expires: new Date(
           Date.now() + CACHE_EXPIRATION.EMERGENCY_CONTACTS
         ).toISOString(),
-      });
+      };
+
+      try {
+        await updateItem(STORES_ENUM.EMERGENCY_CONTACTS, item);
+      } catch (err) {
+        console.warn(`Failed to cache emergency contact ${id}:`, err);
+        // continue caching remaining contacts
+      }
     }
 
     console.log(`Cached ${contacts.length} emergency contacts for offline use`);
     return contacts;
   } catch (error) {
     console.error("Failed to prefetch emergency contacts:", error);
-    throw error;
+    // Don't throw so the overall prefetch flow can continue
+    return [];
   }
 };
-
-/**
- * Prefetch active alerts
- */
 export const prefetchActiveAlerts = async () => {
   try {
     const response = await axiosInstance.get("/alerts/active");
@@ -104,7 +134,8 @@ export const prefetchActiveAlerts = async () => {
     return alerts;
   } catch (error) {
     console.error("Failed to prefetch active alerts:", error);
-    throw error;
+    // If unauthorized or any other error, return empty array so prefetch continues
+    return [];
   }
 };
 
@@ -127,7 +158,8 @@ export const prefetchDisasterProneAreas = async () => {
     return areas;
   } catch (error) {
     console.error("Failed to prefetch disaster-prone areas:", error);
-    throw error;
+    // Return empty list so overall prefetch continues when endpoint missing or unauthorized
+    return [];
   }
 };
 
@@ -150,7 +182,7 @@ export const prefetchEvacuationCenters = async () => {
     return centers;
   } catch (error) {
     console.error("Failed to prefetch evacuation centers:", error);
-    throw error;
+    return [];
   }
 };
 
@@ -184,7 +216,8 @@ export const prefetchWeatherForecast = async (location = null) => {
     return forecast;
   } catch (error) {
     console.error("Failed to prefetch weather forecast:", error);
-    throw error;
+    // Return null to indicate forecast not available
+    return null;
   }
 };
 

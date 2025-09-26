@@ -65,6 +65,17 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// (fetch listener above handles routing; helper below used by caching functions)
+
+// Helper to check if a request URL uses http(s) protocol
+function isHttpScheme(url) {
+  try {
+    return /^(https?:)$/.test(new URL(url).protocol);
+  } catch {
+    return false;
+  }
+}
+
 // Fetch event - serve cached content, implement caching strategies
 self.addEventListener("fetch", (event) => {
   const { request } = event;
@@ -97,13 +108,25 @@ async function handleDocumentRequest(request) {
     const networkResponse = await fetch(request);
 
     // Cache successful responses
-    if (networkResponse && networkResponse.status === 200) {
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      isHttpScheme(request.url)
+    ) {
       const cache = await caches.open(DYNAMIC_CACHE);
-      cache.put(request, networkResponse.clone());
+      try {
+        await cache.put(request, networkResponse.clone());
+      } catch (err) {
+        console.warn(
+          "[SW] Skipping cache.put for document (unsupported request):",
+          request.url,
+          err
+        );
+      }
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch {
     console.log("[SW] Network failed for document, serving from cache");
 
     const cachedResponse = await caches.match(request);
@@ -123,23 +146,42 @@ async function handleAPIRequest(request) {
 
   // Return cached response immediately if available
   if (cachedResponse) {
-    // Try to update cache in background
-    // Try to update cache in background, but don't wait for it
-    event.waitUntil(
-      fetch(request)
-        .then(async (networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            console.log("[SW] API cache updated for:", request.url);
-            const cache = await caches.open(DYNAMIC_CACHE);
-            cache.put(request, networkResponse.clone());
-          } else {
-            console.warn("[SW] Failed to update API cache for:", request.url, "Status:", networkResponse.status);
+    // Try to update cache in background, but don't block the response
+    (async () => {
+      try {
+        const networkResponse = await fetch(request);
+        if (
+          networkResponse &&
+          networkResponse.status === 200 &&
+          isHttpScheme(request.url)
+        ) {
+          console.log("[SW] API cache updated for:", request.url);
+          const cacheUpdate = await caches.open(DYNAMIC_CACHE);
+          try {
+            await cacheUpdate.put(request, networkResponse.clone());
+          } catch (err) {
+            console.warn(
+              "[SW] Skipping cache.put for API (unsupported request):",
+              request.url,
+              err
+            );
           }
-        })
-        .catch((error) => {
-          console.error("[SW] Background API cache update failed for:", request.url, error);
-        })
-    );
+        } else {
+          console.warn(
+            "[SW] Failed to update API cache for:",
+            request.url,
+            "Status:",
+            networkResponse && networkResponse.status
+          );
+        }
+      } catch (err) {
+        console.error(
+          "[SW] Background API cache update failed for:",
+          request.url,
+          err
+        );
+      }
+    })();
 
     return cachedResponse;
   }
@@ -148,14 +190,26 @@ async function handleAPIRequest(request) {
   try {
     const networkResponse = await fetch(request);
 
-    if (networkResponse && networkResponse.status === 200) {
-      cache.put(request, networkResponse.clone());
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      isHttpScheme(request.url)
+    ) {
+      try {
+        await cache.put(request, networkResponse.clone());
+      } catch (err) {
+        console.warn(
+          "[SW] Skipping cache.put for API fetch (unsupported request):",
+          request.url,
+          err
+        );
+      }
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch {
     // Network failed and no cache available
-    console.error("[SW] API network request failed for:", request.url, error);
+    console.error("[SW] API network request failed for:", request.url);
 
     // Return offline response for API calls
     return new Response(
@@ -187,12 +241,24 @@ async function handleImageRequest(request) {
   try {
     const networkResponse = await fetch(request);
 
-    if (networkResponse && networkResponse.status === 200) {
-      cache.put(request, networkResponse.clone());
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      isHttpScheme(request.url)
+    ) {
+      try {
+        await cache.put(request, networkResponse.clone());
+      } catch (err) {
+        console.warn(
+          "[SW] Skipping cache.put for image (unsupported request):",
+          request.url,
+          err
+        );
+      }
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch {
     // Return placeholder image for offline
     return new Response(
       '<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" text-anchor="middle" fill="#9ca3af">Image Unavailable</text></svg>',
@@ -217,12 +283,24 @@ async function handleStaticRequest(request) {
   try {
     const networkResponse = await fetch(request);
 
-    if (networkResponse && networkResponse.status === 200) {
-      cache.put(request, networkResponse.clone());
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      isHttpScheme(request.url)
+    ) {
+      try {
+        await cache.put(request, networkResponse.clone());
+      } catch (err) {
+        console.warn(
+          "[SW] Skipping cache.put for static asset (unsupported request):",
+          request.url,
+          err
+        );
+      }
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch {
     console.log("[SW] Static asset failed:", request.url);
     return new Response("Asset unavailable offline", { status: 404 });
   }
@@ -284,6 +362,8 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close();
 
   if (event.action === "view") {
-    event.waitUntil(clients.openWindow(event.notification.data.url || "/"));
+    event.waitUntil(
+      self.clients.openWindow(event.notification.data.url || "/")
+    );
   }
 });

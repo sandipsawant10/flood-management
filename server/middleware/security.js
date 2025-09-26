@@ -5,6 +5,17 @@ const xss = require("xss-clean");
 const { logger } = require("./errorHandler");
 const Redis = require("ioredis");
 const { ipKeyGenerator } = require("express-rate-limit");
+// Provide a safe fallback if express-rate-limit doesn't export ipKeyGenerator
+const ipKeyGeneratorFn = (req) => {
+  try {
+    if (typeof ipKeyGenerator === "function") return ipKeyGenerator(req);
+  } catch (e) {
+    // ignore and fallback
+  }
+  // Fallback: normalize IP (replace colon/dot) to produce a safe key
+  if (req && req.ip) return String(req.ip).replace(/[:.]/g, "-");
+  return "unknown-ip";
+};
 
 // Setup Redis client for rate limiting if available
 let redisClient;
@@ -60,7 +71,7 @@ const dynamicRateLimiter = (options = {}) => {
         return `user-${req.user._id}`;
       } else {
         // Use the ipKeyGenerator helper function to safely handle IPv6 addresses
-        return `ip-${ipKeyGenerator(req)}`;
+        return `ip-${ipKeyGeneratorFn(req)}`;
       }
     },
     // Log rate limit hits
@@ -123,7 +134,7 @@ const speedLimiter = slowDown({
       return `user-${req.user._id}`;
     } else {
       // Use the ipKeyGenerator helper function to safely handle IPv6 addresses
-      return `ip-${ipKeyGenerator(req)}`;
+      return `ip-${ipKeyGeneratorFn(req)}`;
     }
   },
   store: createStore(), // Use Redis if available

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { handleApiError, ERROR_TYPES } from "../utils/errorHandler";
+import { getAuthToken } from "../utils/tokenUtils";
 
 const API_URL =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:5000/api";
@@ -20,7 +21,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Add auth token if available
-    const token = localStorage.getItem("token");
+    const token = getAuthToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -62,6 +63,21 @@ axiosInstance.interceptors.request.use(
       startTime: new Date().getTime(),
       correlationId,
     };
+
+    // Normalize URL to avoid duplicate /api when baseURL already contains /api
+    try {
+      const base = axiosInstance.defaults.baseURL || "";
+      if (config.url && typeof config.url === "string") {
+        // If baseURL ends with /api and request url also starts with /api, remove the leading /api from url
+        if (base.endsWith("/api") && config.url.startsWith("/api")) {
+          config.url = config.url.replace(/^\/api/, "");
+        }
+      }
+    } catch (e) {
+      // Swallow any normalization errors to avoid breaking requests
+      // (logging to console for debug)
+      console.debug("URL normalization skipped due to error:", e);
+    }
 
     return config;
   },

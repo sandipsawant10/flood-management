@@ -310,6 +310,14 @@ export const storeAlerts = async (alerts) => {
     // Process each alert
     await Promise.all(
       alerts.map(async (alert) => {
+        // Use _id if it exists (MongoDB), otherwise use id
+        const alertId = alert._id || alert.id;
+
+        if (!alertId) {
+          console.warn("Alert missing both _id and id fields:", alert);
+          return; // Skip this alert
+        }
+
         // Check if alert already exists
         try {
           const existingAlert = await openDatabase().then((db) => {
@@ -319,7 +327,7 @@ export const storeAlerts = async (alerts) => {
                 "readonly"
               );
               const store = transaction.objectStore(STORES_ENUM.ALERTS);
-              const request = store.get(alert.id);
+              const request = store.get(alertId);
 
               request.onsuccess = () => resolve(request.result);
               request.onerror = () => reject(request.error);
@@ -328,23 +336,30 @@ export const storeAlerts = async (alerts) => {
             });
           });
 
+          // Normalize alert data - ensure it has an 'id' field for IndexedDB
+          const normalizedAlert = {
+            ...alert,
+            id: alertId, // Ensure id field exists
+            _id: alert._id || alertId, // Preserve _id if it exists
+          };
+
           // If alert exists, update it
           if (existingAlert) {
             await updateItem(STORES_ENUM.ALERTS, {
               ...existingAlert,
-              ...alert,
+              ...normalizedAlert,
               updatedAt: new Date().toISOString(),
             });
           } else {
             // Otherwise, add it
             await addItem(STORES_ENUM.ALERTS, {
-              ...alert,
+              ...normalizedAlert,
               timestamp: new Date().toISOString(),
               read: false,
             });
           }
         } catch (error) {
-          console.error(`Error processing alert ${alert.id}:`, error);
+          console.error(`Error processing alert ${alertId}:`, error);
           throw error;
         }
       })

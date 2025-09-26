@@ -33,23 +33,41 @@ router.post(
       const reportedBy = req.user.userId;
       const mediaFiles = req.files ? req.files.map((file) => file.path) : [];
 
-      // Fetch weather data for the reported location
+      // Fetch weather data for the reported location (with timeout)
       let weatherConditions = {};
       let weatherVerification = { status: "pending", summary: "N/A" };
       if (location && location.latitude && location.longitude) {
         try {
-          const weatherData = await weatherService.getCurrentWeather(
-            location.latitude,
-            location.longitude
-          );
+          // Add timeout to prevent hanging
+          const weatherPromise = Promise.race([
+            weatherService.getCurrentWeather(
+              location.latitude,
+              location.longitude
+            ),
+            new Promise((_, reject) =>
+              setTimeout(() => reject(new Error("Weather API timeout")), 5000)
+            ),
+          ]);
+
+          const weatherData = await weatherPromise;
           weatherConditions = weatherData; // Store full weather data
 
-          // Basic weather verification logic
-          const floodRisk = await weatherService.getFloodRiskAssessment(
-            location.latitude,
-            location.longitude,
-            weatherData
-          );
+          // Basic weather verification logic (with timeout)
+          const floodRiskPromise = Promise.race([
+            weatherService.getFloodRiskAssessment(
+              location.latitude,
+              location.longitude,
+              weatherData
+            ),
+            new Promise((_, reject) =>
+              setTimeout(
+                () => reject(new Error("Flood risk API timeout")),
+                3000
+              )
+            ),
+          ]);
+
+          const floodRisk = await floodRiskPromise;
           weatherVerification = {
             status: floodRisk.status,
             summary: floodRisk.summary,
@@ -57,19 +75,30 @@ router.post(
           };
         } catch (weatherError) {
           console.warn("Could not fetch weather data:", weatherError.message);
-          weatherVerification = { status: "error", summary: "Failed to fetch weather data" };
+          weatherVerification = {
+            status: "error",
+            summary: "Failed to fetch weather data",
+          };
         }
       }
 
-      // Fetch news data for the reported location and time
+      // Fetch news data for the reported location and time (with timeout)
       let newsVerification = { status: "pending", summary: "N/A" };
       try {
         if (location && location.district && location.state) {
-          const newsData = await newsService.getFloodNews(
-            `${location.district} ${location.state} flood`,
-            location.district,
-            new Date(newReport.createdAt)
-          );
+          // Add timeout to prevent hanging
+          const newsPromise = Promise.race([
+            newsService.getFloodNews(
+              `${location.district} ${location.state} flood`,
+              location.district,
+              new Date()
+            ),
+            new Promise((_, reject) =>
+              setTimeout(() => reject(new Error("News API timeout")), 5000)
+            ),
+          ]);
+
+          const newsData = await newsPromise;
           if (newsData && newsData.articles && newsData.articles.length > 0) {
             newsVerification = {
               status: "verified",
@@ -86,11 +115,17 @@ router.post(
         }
       } catch (newsError) {
         console.warn("Could not fetch news data:", newsError.message);
-        newsVerification = { status: "error", summary: "Failed to fetch news data" };
+        newsVerification = {
+          status: "error",
+          summary: "Failed to fetch news data",
+        };
       }
 
       // Fetch social media data (stubbed for Instagram)
-      let socialVerification = { status: "coming-soon", summary: "Coming soon - Optional" };
+      let socialVerification = {
+        status: "coming-soon",
+        summary: "Coming soon - Optional",
+      };
       try {
         // Only call if access token is available and feature is enabled
         // if (process.env.VITE_INSTAGRAM_ACCESS_TOKEN) {
@@ -103,16 +138,28 @@ router.post(
         // }
       } catch (socialError) {
         console.warn("Could not fetch social media data:", socialError.message);
-        socialVerification = { status: "error", summary: "Failed to fetch social media data" };
+        socialVerification = {
+          status: "error",
+          summary: "Failed to fetch social media data",
+        };
       }
 
       // Determine overall verification status
       let overallStatus = "pending";
-      if (weatherVerification.status === "verified" || newsVerification.status === "verified") {
+      if (
+        weatherVerification.status === "verified" ||
+        newsVerification.status === "verified"
+      ) {
         overallStatus = "verified";
-      } else if (weatherVerification.status === "not-matched" && newsVerification.status === "not-matched") {
+      } else if (
+        weatherVerification.status === "not-matched" &&
+        newsVerification.status === "not-matched"
+      ) {
         overallStatus = "not-matched";
-      } else if (weatherVerification.status === "pending" && newsVerification.status === "pending") {
+      } else if (
+        weatherVerification.status === "pending" &&
+        newsVerification.status === "pending"
+      ) {
         overallStatus = "manual-review";
       }
 
@@ -144,13 +191,9 @@ router.post(
       await newReport.save();
 
       // Send notifications to relevant rescuers/admins
-      notificationService.sendNotificationToRescuers({
-        type: "new_report",
-        message: `New flood report in ${location.district} - ${severity} severity.`,
-        link: `/reports/${newReport._id}`,
-        location: newReport.location.coordinates,
-        severity: newReport.severity,
-      });
+      // TODO: Implement proper notification service for new flood reports
+      // Currently commented out to prevent timeout issues
+      // notificationService.sendNotificationToRescuers({...});
 
       res.status(201).json(newReport);
     } catch (error) {
@@ -316,12 +359,10 @@ router.put(
           item: floodReport._id,
         },
       });
-      res
-        .status(200)
-        .json({
-          message: `Report ${id} status updated to ${status}`,
-          floodReport,
-        });
+      res.status(200).json({
+        message: `Report ${id} status updated to ${status}`,
+        floodReport,
+      });
     } catch (error) {
       console.error("Error moderating flood report:", error);
       res.status(500).json({ message: "Server error" });
@@ -606,12 +647,10 @@ router.post(
         mockReports.push(newReport);
       }
       await FloodReport.insertMany(mockReports);
-      res
-        .status(201)
-        .json({
-          message: `${count} mock flood reports generated successfully.`,
-          generatedCount: mockReports.length,
-        });
+      res.status(201).json({
+        message: `${count} mock flood reports generated successfully.`,
+        generatedCount: mockReports.length,
+      });
     } catch (error) {
       console.error("Error generating mock flood reports:", error);
       res.status(500).json({ message: "Server error" });

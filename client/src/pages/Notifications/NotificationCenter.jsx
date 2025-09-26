@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { getAuthToken } from "../../utils/tokenUtils";
 import {
   Bell,
   BellOff,
@@ -38,7 +39,7 @@ const NotificationCenter = () => {
 
       const response = await fetch(`/api/notifications?${params}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${getAuthToken()}`,
         },
       });
 
@@ -55,7 +56,7 @@ const NotificationCenter = () => {
     try {
       const res = await fetch(`/api/notifications/${id}/read`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
       });
       if (!res.ok) throw new Error("Failed to mark as read");
       refetch();
@@ -69,7 +70,7 @@ const NotificationCenter = () => {
     try {
       const res = await fetch("/api/notifications/mark-all-read", {
         method: "POST",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
       });
       if (!res.ok) throw new Error("Failed to mark all as read");
       refetch();
@@ -83,7 +84,7 @@ const NotificationCenter = () => {
     try {
       const res = await fetch(`/api/notifications/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
       });
       if (!res.ok) throw new Error("Failed to delete notification");
       refetch();

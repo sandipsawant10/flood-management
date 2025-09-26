@@ -7,13 +7,15 @@ import {
   Alert,
   Button,
 } from "@mui/material";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { useGeoAlerts } from "../../hooks/useGeoAlerts";
 import { getCurrentLocation } from "../../services/geolocationService";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 // Check if Leaflet is available
-const hasLeaflet = typeof window !== "undefined" && "L" in window;
+const hasLeaflet = typeof L !== "undefined";
 
 // This component will be loaded only if Leaflet is loaded
 const AlertsMap = ({
@@ -85,8 +87,6 @@ const AlertsMap = ({
     try {
       // Create map instance if it doesn't exist
       if (!mapInstanceRef.current) {
-        const L = window.L;
-
         // Create map
         mapInstanceRef.current = L.map(mapRef.current).setView(
           [20.5937, 78.9629],
@@ -127,8 +127,6 @@ const AlertsMap = ({
   useEffect(() => {
     if (!mapInstanceRef.current || !location || !mapLoaded) return;
 
-    const L = window.L;
-
     try {
       // Remove existing marker
       if (userMarkerRef.current) {
@@ -166,8 +164,6 @@ const AlertsMap = ({
   // Update alert markers
   useEffect(() => {
     if (!mapInstanceRef.current || !mapLoaded || !nearbyAlerts) return;
-
-    const L = window.L;
 
     try {
       // Remove existing markers
@@ -272,8 +268,6 @@ const AlertsMap = ({
     )
       return;
 
-    const L = window.L;
-
     try {
       // Remove existing markers
       emergencyMarkersRef.current.forEach((marker) => marker.remove());
@@ -349,8 +343,6 @@ const AlertsMap = ({
     )
       return;
 
-    const L = window.L;
-
     try {
       // Remove existing markers
       teamMarkersRef.current.forEach((marker) => marker.remove());
@@ -418,7 +410,7 @@ const AlertsMap = ({
 
           // Add pulsing effect to the alert zone
           if (alert.targetArea.type === "Circle" && alert.location) {
-            const pulse = window.L.circle(
+            const pulse = L.circle(
               [alert.location.latitude, alert.location.longitude],
               {
                 radius: alert.targetArea.radius || 5000,

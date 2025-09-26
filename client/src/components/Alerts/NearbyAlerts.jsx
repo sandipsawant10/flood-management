@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import { useGeoAlerts } from "../hooks/useGeoAlerts";
+import { useGeoAlerts } from "../../hooks/useGeoAlerts";
 
 /**
  * Component that displays alerts based on user's geolocation

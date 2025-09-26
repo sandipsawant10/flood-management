@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 import axiosInstance from "../services/axiosConfig";
 import { handleApiError } from "../utils/errorHandler";
+import { setAuthToken, clearAuthToken } from "../utils/tokenUtils";
 
 const AuthContext = createContext(null);
 
@@ -38,7 +39,6 @@ export const AuthProvider = ({ children }) => {
   const [authInitialized, setAuthInitialized] = useState(false);
   const [error, setError] = useState(null);
   const [tokenExpiry, setTokenExpiry] = useState(null);
-  const [refreshTimer, setRefreshTimer] = useState(null);
 
   // Handle logout function declaration (defined before it's used)
   const handleLogout = useCallback(() => {
@@ -46,43 +46,17 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("sessionData");
     sessionStorage.removeItem("sessionData");
 
+    // Clear auth token from all storage locations
+    clearAuthToken();
+
     // Clear auth header
     delete axiosInstance.defaults.headers.common["Authorization"];
 
     // Reset states
     setUser(null);
     setTokenExpiry(null);
-
-    // Clear any scheduled refresh
-    if (refreshTimer) {
-      clearTimeout(refreshTimer);
-      setRefreshTimer(null);
-    }
-  }, [refreshTimer]);
-
-  // Schedule token refresh before expiry
-  const scheduleTokenRefresh = useCallback(
-    (expiryTime) => {
-      if (refreshTimer) {
-        clearTimeout(refreshTimer);
-      }
-
-      if (!expiryTime) return;
-
-      const timeUntilExpiry = expiryTime - Date.now();
-
-      // Refresh token when 90% of its lifetime has passed
-      const refreshTime = timeUntilExpiry * 0.9;
-
-      // Only schedule if refresh time is positive and reasonable
-      if (refreshTime > 0 && refreshTime < 2147483647) {
-        // Max setTimeout value
-        const timer = setTimeout(() => refreshAuthToken(), refreshTime);
-        setRefreshTimer(timer);
-      }
-    },
-    [refreshTimer]
-  );
+    setError(null);
+  }, []);
 
   // Function to refresh token before it expires
   const refreshAuthToken = useCallback(async () => {
@@ -93,7 +67,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error("No refresh token available");
       }
 
-      const response = await axiosInstance.post("/api/auth/refresh-token", {
+      const response = await axiosInstance.post("/auth/refresh-token", {
         refreshToken: sessionData.refreshToken,
       });
 
@@ -115,9 +89,8 @@ export const AuthProvider = ({ children }) => {
         "Authorization"
       ] = `Bearer ${response.data.token}`;
 
-      // Set new token expiry and schedule next refresh
+      // Set new token expiry
       setTokenExpiry(newSessionData.tokenExpiry);
-      scheduleTokenRefresh(newSessionData.tokenExpiry);
 
       return true;
     } catch (err) {
@@ -126,24 +99,19 @@ export const AuthProvider = ({ children }) => {
       handleLogout();
       return false;
     }
-  }, [handleLogout, scheduleTokenRefresh]);
+  }, [handleLogout]);
 
-  // Load user data from API using token
-  const loadUserProfile = useCallback(async () => {
-    try {
-      const response = await axiosInstance.get("/api/auth/profile");
-      setUser(response.data.user);
-      return response.data.user;
-    } catch (error) {
-      setError(handleApiError(error, { showToast: false }).message);
-      return null;
-    }
-  }, []);
-
-  // Initialize auth state from stored session
+  // Initialize auth state from stored session - run only once
   useEffect(() => {
+    let isMounted = true;
+
     const initAuth = async () => {
       try {
+        if (!isMounted) return;
+
+        setLoading(true);
+        setError(null);
+
         const storedSession = getStoredSessionData();
 
         if (storedSession?.data?.token) {
@@ -160,57 +128,109 @@ export const AuthProvider = ({ children }) => {
 
           if (isExpired && refreshToken) {
             // Token expired, try to refresh
-            const refreshed = await refreshAuthToken();
-            if (!refreshed) {
+            try {
+              const refreshResponse = await axiosInstance.post(
+                "/auth/refresh-token",
+                {
+                  refreshToken: storedSession.data.refreshToken,
+                }
+              );
+              if (!isMounted) return;
+
+              // Update tokens in storage
+              const newSessionData = {
+                ...storedSession.data,
+                token: refreshResponse.data.token,
+                refreshToken: refreshResponse.data.refreshToken || refreshToken,
+                tokenExpiry: Date.now() + refreshResponse.data.expiresIn * 1000,
+              };
+
+              const storageMethod = storedSession.data.rememberMe
+                ? localStorage
+                : sessionStorage;
+              storageMethod.setItem(
+                "sessionData",
+                JSON.stringify(newSessionData)
+              );
+
+              // Update axios headers
+              axiosInstance.defaults.headers.common[
+                "Authorization"
+              ] = `Bearer ${refreshResponse.data.token}`;
+
+              // Set token expiry
+              setTokenExpiry(newSessionData.tokenExpiry);
+            } catch (refreshError) {
+              console.error("Token refresh failed:", refreshError);
+              // Clear invalid session
+              localStorage.removeItem("sessionData");
+              sessionStorage.removeItem("sessionData");
+              delete axiosInstance.defaults.headers.common["Authorization"];
+              if (!isMounted) return;
+              setUser(null);
               setLoading(false);
               setAuthInitialized(true);
               return;
             }
           } else if (isExpired) {
-            // Token expired and no refresh token, log out
-            handleLogout();
+            // Token expired and no refresh token, clear session
+            localStorage.removeItem("sessionData");
+            sessionStorage.removeItem("sessionData");
+            delete axiosInstance.defaults.headers.common["Authorization"];
+            if (!isMounted) return;
+            setUser(null);
             setLoading(false);
             setAuthInitialized(true);
             return;
           } else {
-            // Token still valid, schedule refresh
+            // Token still valid
             setTokenExpiry(tokenExpiry);
-            scheduleTokenRefresh(tokenExpiry);
           }
 
           // Load user profile
-          await loadUserProfile();
+          try {
+            const response = await axiosInstance.get("/auth/profile");
+            if (!isMounted) return;
+            setUser(response.data.user);
+          } catch (profileError) {
+            console.error("Profile loading failed:", profileError);
+            // Clear invalid session
+            localStorage.removeItem("sessionData");
+            sessionStorage.removeItem("sessionData");
+            delete axiosInstance.defaults.headers.common["Authorization"];
+            if (!isMounted) return;
+            setUser(null);
+          }
+        } else {
+          // No stored session found
+          if (!isMounted) return;
+          setUser(null);
         }
       } catch (err) {
         console.error("Auth initialization error:", err);
+        if (!isMounted) return;
         setError("Failed to initialize authentication");
+        setUser(null);
       } finally {
-        setLoading(false);
-        setAuthInitialized(true);
+        if (isMounted) {
+          setLoading(false);
+          setAuthInitialized(true);
+        }
       }
     };
 
     initAuth();
 
-    // Cleanup refresh timer on unmount
     return () => {
-      if (refreshTimer) {
-        clearTimeout(refreshTimer);
-      }
+      isMounted = false;
     };
-  }, [
-    loadUserProfile,
-    refreshAuthToken,
-    refreshTimer,
-    scheduleTokenRefresh,
-    handleLogout,
-  ]);
+  }, []); // Empty dependency array - run only once on mount
 
   // Handle login process
   const login = async (email, password, rememberMe = false) => {
     try {
-      const response = await axiosInstance.post("/api/auth/login", {
-        login: email, // Backend expects 'login' field, not 'email'
+      const response = await axiosInstance.post("/auth/login", {
+        login: email,
         password,
       });
 
@@ -231,6 +251,9 @@ export const AuthProvider = ({ children }) => {
       const storageMethod = rememberMe ? localStorage : sessionStorage;
       storageMethod.setItem("sessionData", JSON.stringify(sessionData));
 
+      // Also store token directly for backward compatibility
+      setAuthToken(token);
+
       // Set axios auth header
       axiosInstance.defaults.headers.common[
         "Authorization"
@@ -239,9 +262,6 @@ export const AuthProvider = ({ children }) => {
       // Set user state
       setUser(user);
       setTokenExpiry(tokenExpiry);
-
-      // Schedule token refresh
-      scheduleTokenRefresh(tokenExpiry);
 
       return { success: true, user };
     } catch (error) {

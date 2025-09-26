@@ -3,8 +3,9 @@ import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import "./index.css";
-import App from "./App.jsx";
-import { AuthProvider } from "./contexts/AuthContext";
+// Import Leaflet CSS globally
+import "leaflet/dist/leaflet.css";
+import AppWrapper from "./App.jsx";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "../checkReactQueryV5";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -32,11 +33,9 @@ initOfflineCapabilities();
 createRoot(document.getElementById("root")).render(
   <Router>
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <AppWrapper />
+      </ThemeProvider>
     </QueryClientProvider>
   </Router>
 );

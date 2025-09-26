@@ -34,8 +34,8 @@ import {
   DirectionsCar as VehicleIcon,
 } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
-import { useGeolocation } from "../hooks/useGeolocation";
-import emergencyServiceClient from "../services/emergencyServiceClient";
+import { useGeolocation } from "../../hooks/useGeolocation";
+import emergencyServiceClient from "../../services/emergencyServiceClient";
 
 // Helper component to display emergency contacts
 const EmergencyContactCard = ({ contacts, onCallEmergency }) => {

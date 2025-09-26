@@ -57,30 +57,62 @@ export const subscribeToPushNotifications = async (registration) => {
     let subscription = await registration.pushManager.getSubscription();
 
     if (!subscription) {
-      // Get the server's public key for VAPID
-      // In a real application, this would come from your server
-      const response = await fetch("/api/notifications/vapid-public-key");
-      const vapidPublicKey = await response.text();
+      try {
+        // Get the server's public key for VAPID
+        const response = await fetch("/api/notifications/vapid-public-key");
 
-      // Convert the public key to the format required by the browser
-      const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+        if (!response.ok) {
+          console.warn(
+            "VAPID public key endpoint returned non-OK status:",
+            response.status
+          );
+          return null; // skip subscription when server cannot provide key
+        }
 
-      // Subscribe the user
-      subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true, // Required for Chrome
-        applicationServerKey: convertedVapidKey,
-      });
+        const vapidPublicKey = await response.text();
 
-      // Send the subscription to the server
-      await fetch("/api/notifications/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(subscription),
-      });
+        if (!vapidPublicKey || typeof vapidPublicKey !== "string") {
+          console.warn("VAPID public key is empty or invalid");
+          return null;
+        }
 
-      console.log("Push notification subscription successful");
+        // Convert the public key to the format required by the browser
+        let convertedVapidKey;
+        try {
+          convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+        } catch (e) {
+          console.warn("Failed to decode VAPID public key:", e.message);
+          return null;
+        }
+
+        // Subscribe the user
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true, // Required for Chrome
+          applicationServerKey: convertedVapidKey,
+        });
+
+        // Send the subscription to the server
+        try {
+          await fetch("/api/notifications/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(subscription),
+          });
+        } catch (postErr) {
+          console.warn(
+            "Failed to POST subscription to server:",
+            postErr.message
+          );
+          // don't fail the whole flow if server cannot accept subscription
+        }
+
+        console.log("Push notification subscription successful");
+      } catch (error) {
+        console.error("Failed to subscribe to push notifications:", error);
+        return null;
+      }
     } else {
       console.log("Already subscribed to push notifications");
     }

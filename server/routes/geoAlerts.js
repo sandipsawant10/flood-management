@@ -39,51 +39,29 @@ router.get("/nearby", validateNearbyAlertRequest, async (req, res) => {
 
     const { lat, lng, radius = 50, status = "active" } = req.query;
 
-    let query = { status };
+    // Build base query based on status
+    let baseQuery = {};
+    if (status === "active") {
+      baseQuery.isActive = true;
+      baseQuery.validUntil = { $gte: new Date() }; // Only include alerts that haven't expired
+    } else if (status === "expired") {
+      baseQuery.$or = [
+        { isActive: false },
+        { validUntil: { $lt: new Date() } },
+      ];
+    } else if (status === "resolved") {
+      baseQuery.isActive = false;
+    }
 
-    // If coordinates are provided, use them for geo-filtering
+    let alerts = [];
+
+    // If coordinates are provided, try geospatial query first
     if (lat && lng) {
-      // Find alerts with targetArea containing the point or within radius
-      query.$or = [
-        // Circle areas that contain the point
-        {
-          "targetArea.type": "Circle",
-          $expr: {
-            $lte: [
-              {
-                $sqrt: {
-                  $add: [
-                    {
-                      $pow: [
-                        {
-                          $subtract: [
-                            { $arrayElemAt: ["$targetArea.coordinates", 0] },
-                            parseFloat(lat),
-                          ],
-                        },
-                        2,
-                      ],
-                    },
-                    {
-                      $pow: [
-                        {
-                          $subtract: [
-                            { $arrayElemAt: ["$targetArea.coordinates", 1] },
-                            parseFloat(lng),
-                          ],
-                        },
-                        2,
-                      ],
-                    },
-                  ],
-                },
-              },
-              { $divide: ["$targetArea.radius", 111000] }, // Convert meters to rough degrees
-            ],
-          },
-        },
-        // For alerts with defined center point, check if within radius
-        {
+      try {
+        // Query for alerts with location data
+        const geoQuery = {
+          ...baseQuery,
+          "location.coordinates": { $exists: true, $ne: null },
           location: {
             $near: {
               $geometry: {
@@ -93,31 +71,51 @@ router.get("/nearby", validateNearbyAlertRequest, async (req, res) => {
               $maxDistance: parseInt(radius) * 1000, // Convert km to meters
             },
           },
-        },
-      ];
+        };
+
+        alerts = await Alert.find(geoQuery)
+          .sort({ priority: -1, createdAt: -1 })
+          .limit(50)
+          .lean();
+      } catch (geoError) {
+        console.log(
+          "Geospatial query failed, falling back to basic query:",
+          geoError.message
+        );
+        // Fallback to basic query without geospatial filtering
+        alerts = await Alert.find(baseQuery)
+          .sort({ priority: -1, createdAt: -1 })
+          .limit(100)
+          .lean();
+      }
+    } else {
+      // No coordinates provided, get all alerts matching status
+      alerts = await Alert.find(baseQuery)
+        .sort({ priority: -1, createdAt: -1 })
+        .limit(100)
+        .lean();
     }
 
-    // Execute query with limit for performance
-    const alerts = await Alert.find(query)
-      .sort({ severity: 1, createdAt: -1 })
-      .limit(100)
-      .lean();
-
-    // Calculate distances for each alert
+    // Calculate distances for each alert if coordinates were provided
     const alertsWithDistance = alerts.map((alert) => {
       if (lat && lng && alert.location && alert.location.coordinates) {
-        // Calculate distance using Haversine formula
-        const distance = calculateDistance(
-          parseFloat(lat),
-          parseFloat(lng),
-          alert.location.coordinates[1], // lat
-          alert.location.coordinates[0] // lng
-        );
+        try {
+          // Calculate distance using Haversine formula
+          const distance = calculateDistance(
+            parseFloat(lat),
+            parseFloat(lng),
+            alert.location.coordinates[1], // lat
+            alert.location.coordinates[0] // lng
+          );
 
-        return {
-          ...alert,
-          distance: distance,
-        };
+          return {
+            ...alert,
+            distance: Math.round(distance), // Distance in meters
+          };
+        } catch (distanceError) {
+          console.log("Error calculating distance for alert:", alert._id);
+          return alert;
+        }
       }
       return alert;
     });
@@ -125,15 +123,23 @@ router.get("/nearby", validateNearbyAlertRequest, async (req, res) => {
     // Sort by distance if coordinates were provided
     const sortedAlerts =
       lat && lng
-        ? alertsWithDistance.sort(
-            (a, b) => (a.distance || Infinity) - (b.distance || Infinity)
-          )
+        ? alertsWithDistance
+            .filter((alert) => alert.distance !== undefined)
+            .sort((a, b) => (a.distance || Infinity) - (b.distance || Infinity))
         : alertsWithDistance;
 
     return res.json({
       success: true,
       count: sortedAlerts.length,
       alerts: sortedAlerts,
+      location:
+        lat && lng
+          ? {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+              radius: parseInt(radius),
+            }
+          : null,
     });
   } catch (err) {
     console.error("Error getting nearby alerts:", err);
