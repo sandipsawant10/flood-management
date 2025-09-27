@@ -17,6 +17,7 @@ import {
   Droplet,
 } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
+import ThemeToggle from "../Common/ThemeToggle";
 import LanguageSelector from "../Common/LanguageSelector";
 
 const Layout = () => {
@@ -166,7 +167,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-app-base text-app-text transition-colors">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
@@ -177,41 +178,41 @@ const Layout = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-app-surface shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-app-border">
           <Link to="/dashboard" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-xl font-bold text-app-text">
               Aqua Assists
             </span>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-1 rounded-md hover:bg-gray-100"
+            className="lg:hidden p-1 rounded-md hover:bg-app-surface/70"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* User info */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-app-border">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-primary-600" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-              <p className="text-xs text-gray-500 capitalize">
+              <p className="text-sm font-medium text-app-text">{user?.name}</p>
+              <p className="text-xs text-app-muted capitalize">
                 {user?.role || "citizen"}
               </p>
               <div className="flex items-center mt-1">
                 <div className="w-2 h-2 bg-success-500 rounded-full mr-1"></div>
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-app-muted">
                   Trust: {user?.trustScore || 100}
                 </span>
               </div>
@@ -230,8 +231,8 @@ const Layout = () => {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center px-3 py-2 mb-1 text-sm font-medium rounded-lg transition-colors ${
                   isActive
-                    ? "bg-primary-100 text-primary-700 border-r-2 border-primary-700"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                    ? "bg-primary-100/60 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 border-r-2 border-primary-700 dark:border-primary-400"
+                    : "text-app-muted hover:bg-app-surface/70 hover:text-app-text"
                 }`}
               >
                 <item.icon className="w-5 h-5 mr-3" />
@@ -245,7 +246,7 @@ const Layout = () => {
         <div className="absolute bottom-4 left-0 right-0 px-2">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="w-full flex items-center px-3 py-2 text-sm font-medium text-app-muted rounded-lg hover:bg-app-surface/70 hover:text-app-text transition-colors"
           >
             <LogOut className="w-5 h-5 mr-3" />
             Logout
@@ -256,18 +257,18 @@ const Layout = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
+        <header className="bg-app-surface shadow-sm border-b border-app-border transition-colors">
           <div className="flex items-center justify-between h-16 px-4">
             <div className="flex items-center">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md hover:bg-gray-100"
+                className="lg:hidden p-2 rounded-md hover:bg-app-surface/70"
               >
                 <Menu className="w-5 h-5" />
               </button>
 
               <div className="ml-4 lg:ml-0">
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-app-text">
                   {navigation.find((item) => item.href === location.pathname)
                     ?.name || "Dashboard"}
                 </h1>
@@ -275,6 +276,7 @@ const Layout = () => {
             </div>
 
             <div className="flex items-center space-x-4">
+              <ThemeToggle />
               <LanguageSelector compact />
 
               <div className="flex space-x-2">
@@ -287,7 +289,7 @@ const Layout = () => {
                 </Link>
                 <Link
                   to="/emergency-services"
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-app-text bg-app-surface hover:bg-app-surface/70"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -310,7 +312,7 @@ const Layout = () => {
 
               <Link
                 to="/profile"
-                className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100"
+                className="flex items-center space-x-2 p-2 rounded-md hover:bg-app-surface/70"
               >
                 <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-primary-600" />
@@ -321,7 +323,7 @@ const Layout = () => {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto bg-gray-50">
+        <main className="flex-1 overflow-auto bg-app-base transition-colors">
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Outlet />

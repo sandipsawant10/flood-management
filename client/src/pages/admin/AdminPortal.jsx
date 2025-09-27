@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
+import useAuth from "../../hooks/useAuth";
 import {
   ChartPieIcon,
   UserGroupIcon,
@@ -13,13 +13,28 @@ import {
 } from "@heroicons/react/24/outline";
 
 const AdminPortal = () => {
-  const { hasAnyRole } = useAuthStore();
-  const location = useLocation();
+  const { user } = useAuth();
+  const location = useLocation(); // Helper function to check if user has any of the required roles
+  const hasAnyRole = (roles) => {
+    if (!user) return false;
+    return roles.some(
+      (role) => user.roles?.includes(role) || user.role === role
+    );
+  };
 
   const isActive = (path) => {
+    // Special handling for dashboard route
+    if (
+      path === "/admin" &&
+      (location.pathname === "/admin" ||
+        location.pathname === "/admin/dashboard")
+    ) {
+      return "bg-blue-50 text-blue-700 border-r-2 border-blue-700";
+    }
+
     return location.pathname === path
-      ? "bg-primary-50 text-primary-700"
-      : "hover:bg-blue-50 text-blue-600";
+      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+      : "hover:bg-gray-50 text-gray-700";
   };
 
   return (
@@ -32,6 +47,18 @@ const AdminPortal = () => {
         </div>
         <nav className="mt-4">
           <ul className="space-y-1">
+            <li>
+              <Link
+                to="/admin"
+                className={`flex items-center px-4 py-2 rounded-md ${isActive(
+                  "/admin"
+                )} font-medium mx-2`}
+              >
+                <ChartPieIcon className="w-5 h-5 mr-2" />
+                Dashboard
+              </Link>
+            </li>
+
             {hasAnyRole(["admin"]) && (
               <li>
                 <Link

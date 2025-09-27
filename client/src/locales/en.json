@@ -3,6 +3,13 @@
     "name": "Flood Disaster Management",
     "tagline": "Helping communities prepare, respond, and recover"
   },
+  "hero": {
+    "title": "Faster Flood Intelligence.",
+    "titleHighlight": "Stronger Response.",
+    "subtitle": "Real-time community reporting, validation and decision support so emergency teams act sooner and citizens stay safer.",
+    "getStarted": "Get Started",
+    "signIn": "Sign In"
+  },
   "navigation": {
     "home": "Home",
     "dashboard": "Dashboard",

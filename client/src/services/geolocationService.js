@@ -731,14 +731,14 @@ export const formatLocationAsAddress = (location, options = {}) => {
 
   if (translate) {
     return translate("geolocation.locationFormat", {
-      latitude: location.latitude.toFixed(6),
-      longitude: location.longitude.toFixed(6),
+      latitude: location.latitude.toFixed(7),
+      longitude: location.longitude.toFixed(7),
     });
   }
 
   return `Lat: ${location.latitude.toFixed(
-    6
-  )}, Long: ${location.longitude.toFixed(6)}`;
+    7
+  )}, Long: ${location.longitude.toFixed(7)}`;
 };
 
 /**

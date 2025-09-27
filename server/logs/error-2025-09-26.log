@@ -1931,3 +1931,397 @@ Error: listen EADDRINUSE: address already in use :::5003
     }
   }
 }
+2025-09-26T12:06:12.925Z [error]: unhandledRejection: (no error message)
+  No stack trace
+{
+  "metadata": {
+    "error": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    },
+    "rejection": true,
+    "date": "Fri Sep 26 2025 17:36:12 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 21040,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 89427968,
+        "heapTotal": 41652224,
+        "heapUsed": 39750368,
+        "external": 22299813,
+        "arrayBuffers": 18795579
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 12516.14
+    },
+    "trace": [],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T12:06:12.927Z [error]: UNHANDLED REJECTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "promise": "[object Promise]",
+    "reason": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    }
+  }
+}
+2025-09-26T12:06:12.930Z [error]: Request Timeout [3190f64c-1cec-4d5f-8864-aab8cd498fe9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3190f64c-1cec-4d5f-8864-aab8cd498fe9",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68cd02e081693953a94248ff",
+    "requestBody": {
+      "location": {
+        "district": "Pune",
+        "state": "Maharashtra",
+        "address": "there is so mch water",
+        "landmark": "",
+        "coordinates": [
+          "75.9010467",
+          "17.6700736"
+        ]
+      },
+      "severity": "low",
+      "waterLevel": "ankle-deep",
+      "depth": "0.15",
+      "description": "there is so mch water",
+      "urgencyLevel": "3"
+    },
+    "error": {
+      "name": "TimeoutError",
+      "message": "Request Timeout"
+    }
+  }
+}
+2025-09-26T15:52:38.415Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [04ab312d-dafa-426e-990d-82de1a162215]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "04ab312d-dafa-426e-990d-82de1a162215",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T15:52:39.446Z [error]: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20 [555f5516-a27b-4dd9-abdb-ec75bbdc4e68]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "555f5516-a27b-4dd9-abdb-ec75bbdc4e68",
+    "url": "/api/flood-reports?sortBy=newest&limit=20",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "sortBy": "newest",
+      "limit": "20"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/flood-reports?sortBy=newest&limit=20",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/flood-reports?sortBy=newest&limit=20\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T16:30:33.674Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T16:33:43.094Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T16:38:00.414Z [error]: Invalid authentication token [fe8f2b3b-ed9b-45b3-85b8-8410494384bd]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "fe8f2b3b-ed9b-45b3-85b8-8410494384bd",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T16:42:03.234Z [error]: Invalid authentication token [8197abd4-5237-4b0a-a52f-65d5aef62ee9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8197abd4-5237-4b0a-a52f-65d5aef62ee9",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "curl/8.14.1",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Invalid authentication token",
+      "stack": "AuthenticationError: Invalid authentication token\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:81:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-26T17:53:07.345Z [error]: unhandledRejection: (no error message)
+  No stack trace
+{
+  "metadata": {
+    "error": {
+      "error": {
+        "errno": -4077,
+        "code": "ECONNRESET",
+        "syscall": "write"
+      }
+    },
+    "rejection": true,
+    "date": "Fri Sep 26 2025 23:23:07 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 15528,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 89391104,
+        "heapTotal": 43749376,
+        "heapUsed": 41117312,
+        "external": 22362014,
+        "arrayBuffers": 18857785
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 33330.562
+    },
+    "trace": [],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-26T17:53:07.351Z [error]: UNHANDLED REJECTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "promise": "[object Promise]",
+    "reason": {
+      "error": {
+        "errno": -4077,
+        "code": "ECONNRESET",
+        "syscall": "write"
+      }
+    }
+  }
+}
+2025-09-26T17:53:07.361Z [error]: write ECONNRESET [9ae6647b-a387-4bc7-8676-7d65a107df0d]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9ae6647b-a387-4bc7-8676-7d65a107df0d",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "68cd02e081693953a94248ff",
+    "requestBody": {
+      "location": {
+        "district": "Pune",
+        "state": "Maharashtra",
+        "address": "hdsjhuidghahs",
+        "landmark": "",
+        "coordinates": [
+          "75.9010467",
+          "17.6700736"
+        ]
+      },
+      "severity": "low",
+      "waterLevel": "ankle-deep",
+      "depth": "0.15",
+      "description": "efjkwahaejhahageh",
+      "urgencyLevel": "3"
+    },
+    "error": {
+      "name": "Error",
+      "message": "write ECONNRESET",
+      "stack": "Error: write ECONNRESET\n    at WriteWrap.onWriteComplete [as oncomplete] (node:internal/stream_base_commons:95:16)",
+      "code": "ECONNRESET"
+    }
+  }
+}
+2025-09-26T18:14:23.669Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T18:17:27.286Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-26T18:19:29.226Z [error]: MongoDB Connection Error: Server selection timed out after 5000 ms
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": 30
+    },
+    "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}

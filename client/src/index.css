@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Semantic design tokens (light + dark) */
+:root {
+  --app-base: 255 255 255; /* white */
+  --app-surface: 248 250 252; /* slate-50 */
+  --app-border: 226 232 240; /* slate-200 */
+  --app-text: 15 23 42; /* slate-900 */
+  --app-muted: 100 116 139; /* slate-500 */
+  --app-accent: 37 99 235; /* primary-600 */
+  --app-accent-foreground: 255 255 255; /* white */
+}
+
+.dark {
+  --app-base: 15 23 42; /* slate-900 */
+  --app-surface: 30 41 59; /* slate-800 */
+  --app-border: 51 65 85; /* slate-600 */
+  --app-text: 226 232 240; /* slate-200 */
+  --app-muted: 148 163 184; /* slate-400 */
+  --app-accent: 56 189 248; /* sky-400 */
+  --app-accent-foreground: 15 23 42; /* slate-900 */
+}
+
+@layer base {
+  body {
+    @apply bg-app-base text-app-text transition-colors;
+  }
+}
+
 /* Offline styles */
 .offline {
   filter: grayscale(50%);
@@ -221,7 +248,7 @@
 }
 
 .legend {
-  background: white;
+  background: rgb(var(--app-surface));
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);

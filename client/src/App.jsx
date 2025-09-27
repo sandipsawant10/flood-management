@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import LanguageProvider from "./contexts/LanguageContext";
+import { ThemeProvider as CustomThemeProvider } from "./context/ThemeContext";
 import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout/Layout.jsx";
@@ -22,6 +23,9 @@ import WaterIssueDetail from "./pages/WaterIssues/WaterIssueDetail";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import AdminProfile from "./pages/admin/AdminProfile";
 import AdminSettings from "./pages/admin/AdminSettings";
+import ManageUsers from "./pages/admin/ManageUsers";
+import ManageMunicipalities from "./pages/admin/ManageMunicipalities";
+import ManageRescuers from "./pages/admin/ManageRescuers";
 import ResourceManagement from "./pages/Municipality/ManageResources.jsx";
 import AdminReports from "./pages/Reports/ViewReports.jsx";
 import Analytics from "./pages/Analytics/Analytics.jsx";
@@ -36,6 +40,9 @@ import MunicipalityResourceManagement from "./pages/Municipality/ManageResources
 import LoginPage from "./pages/Auth/Login.jsx";
 import RegisterPage from "./pages/Auth/Register.jsx";
 import AboutPage from "./pages/Home.jsx";
+import ConnectivityTest from "./components/Debug/ConnectivityTest.jsx";
+import adminRoutes from "./routes/adminRoutes";
+import SmartDashboardRouter from "./components/Auth/SmartDashboardRouter.jsx";
 
 // Unauthorized page component
 const UnauthorizedPage = () => (
@@ -48,24 +55,9 @@ const UnauthorizedPage = () => (
   </div>
 );
 
-const App = () => {
+// Create a separate component for authentication-dependent logic
+const AuthenticatedApp = () => {
   const { authInitialized, loading, error } = useAuth();
-
-  // Initialize service worker and offline capabilities
-  useEffect(() => {
-    const initApp = async () => {
-      try {
-        // Initialize offline service for offline data sync
-        initOfflineService();
-
-        console.log("Offline service initialized");
-      } catch (err) {
-        console.error("Failed to initialize offline service:", err);
-      }
-    };
-
-    initApp();
-  }, []);
 
   // Prefetch essential data for offline use when user is authenticated
   useEffect(() => {
@@ -110,8 +102,13 @@ const App = () => {
     return <div>Initializing Authentication...</div>;
   }
 
+  return <AppRoutes />;
+};
+
+const AppRoutes = () => {
   return (
     <>
+      <ConnectivityTest />
       <OfflineStatus />
       <Routes>
         {/* Public Routes */}
@@ -123,17 +120,28 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
+        {/* Admin Routes - Outside Layout to avoid citizen UI wrapping */}
+        {adminRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children?.map((child, childIndex) => (
+              <Route
+                key={childIndex}
+                path={child.path}
+                element={child.element}
+              />
+            ))}
+          </Route>
+        ))}
+
         {/* Routes using the Layout component */}
         <Route element={<Layout />}>
           {/* Protected Routes */}
-          <Route
-            element={
-              <PrivateRoute
-                allowedRoles={["user", "citizen", "admin", "municipality"]}
-              />
-            }
-          >
-            <Route path="/dashboard" element={<Dashboard />} />
+          {/* Smart Dashboard Router - redirects based on user role */}
+          <Route path="/dashboard" element={<SmartDashboardRouter />} />
+
+          {/* Citizen Routes */}
+          <Route element={<PrivateRoute allowedRoles={["user", "citizen"]} />}>
+            <Route path="/citizen-dashboard" element={<Dashboard />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/report-flood" element={<ReportFlood />} />
@@ -143,22 +151,7 @@ const App = () => {
             <Route path="/report-water-issue" element={<WaterIssueReport />} />
             <Route path="/water-issues/:id" element={<WaterIssueDetail />} />
           </Route>
-          {/* Admin Routes */}
-          <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/profile" element={<AdminProfile />} />
-            <Route path="/admin/settings" element={<AdminSettings />} />
-            <Route path="/admin/resources" element={<ResourceManagement />} />
-            <Route path="/admin/reports" element={<AdminReports />} />
-            <Route path="/admin/water-issues" element={<WaterIssuesList />} />
-            <Route
-              path="/admin/water-issues/:id"
-              element={<WaterIssueDetail />}
-            />
-            <Route path="/admin/analytics" element={<Analytics />} />
-            <Route path="/admin/disasters" element={<DisasterManagement />} />
-            <Route path="/admin/requests" element={<RequestManagement />} />
-          </Route>
+
           {/* Municipality Routes */}
           <Route element={<PrivateRoute allowedRoles={["municipality"]} />}>
             <Route
@@ -200,12 +193,34 @@ const App = () => {
   );
 };
 
+const App = () => {
+  // Initialize service worker and offline capabilities
+  useEffect(() => {
+    const initApp = async () => {
+      try {
+        // Initialize offline service for offline data sync
+        initOfflineService();
+
+        console.log("Offline service initialized");
+      } catch (err) {
+        console.error("Failed to initialize offline service:", err);
+      }
+    };
+
+    initApp();
+  }, []);
+
+  return <AuthenticatedApp />;
+};
+
 const AppWrapper = () => (
-  <AuthProvider>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
-  </AuthProvider>
+  <CustomThemeProvider>
+    <AuthProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </AuthProvider>
+  </CustomThemeProvider>
 );
 
 export default AppWrapper;

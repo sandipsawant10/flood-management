@@ -1,13 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const multer = require("multer");
-const { cloudinaryUpload } = require("../middleware/upload");
+const upload = require("../middleware/upload");
 const { auth } = require("../middleware/auth");
 const roleAuth = require("../middleware/roleAuth");
 const WaterIssue = require("../models/WaterIssue");
-
-const upload = multer({ storage: multer.memoryStorage() });
 
 /**
  * @route   POST /api/water-issues
@@ -16,15 +13,9 @@ const upload = multer({ storage: multer.memoryStorage() });
  */
 router.post("/", auth, upload.array("media", 5), async (req, res) => {
   try {
-    let mediaUrls = [];
-
-    // Upload images to Cloudinary if any
-    if (req.files && req.files.length > 0) {
-      const uploadPromises = req.files.map((file) => {
-        return cloudinaryUpload(file.buffer, "water_issues");
-      });
-      mediaUrls = await Promise.all(uploadPromises);
-    }
+    // Files are automatically uploaded to Cloudinary by the middleware
+    // The file paths are available in req.files[].path
+    const mediaUrls = req.files ? req.files.map((file) => file.path) : [];
 
     // Create GeoJSON point from coordinates
     let locationObj = JSON.parse(JSON.stringify(req.body.location || {}));
@@ -44,7 +35,7 @@ router.post("/", auth, upload.array("media", 5), async (req, res) => {
 
     // Create water issue report
     const waterIssue = new WaterIssue({
-      reportedBy: req.user.id,
+      reportedBy: req.user.id || req.user._id,
       location: {
         type: "Point",
         coordinates: locationObj.coordinates || [0, 0],
@@ -226,6 +217,14 @@ router.get("/", async (req, res) => {
  */
 router.get("/:id", async (req, res) => {
   try {
+    // Validate MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid water issue ID format",
+      });
+    }
+
     const issue = await WaterIssue.findById(req.params.id)
       .populate("reportedBy", "name email trustScore")
       .populate("verifiedBy", "name role")

@@ -2,7 +2,7 @@ const express = require("express");
 const weatherService = require("../services/weatherService");
 const router = express.Router();
 
-// Get weather forecast (public endpoint for prefetching)
+// Get weather forecast (public endpoint for prefetching) - OPTIMIZED
 router.get("/forecast", async (req, res) => {
   try {
     const { lat, lon } = req.query;
@@ -13,22 +13,25 @@ router.get("/forecast", async (req, res) => {
       });
     }
 
-    // For now, return current weather as forecast
-    // TODO: Implement actual forecast service
-    const weather = await weatherService.getCurrentWeather(
+    // Use the new optimized method that fetches all weather data efficiently
+    const forecast = await weatherService.getWeatherForecast(
       parseFloat(lat),
       parseFloat(lon)
     );
 
     res.json({
       success: true,
-      forecast: weather,
+      ...forecast,
     });
   } catch (error) {
+    console.error("Weather forecast error:", error.message);
     res.status(500).json({
       success: false,
       message: "Failed to fetch weather forecast",
-      error: error.message,
+      error:
+        process.env.NODE_ENV === "development"
+          ? error.message
+          : "Internal server error",
     });
   }
 });
@@ -97,6 +100,18 @@ router.get("/alerts/:lat/:lng", async (req, res) => {
       error: error.message,
     });
   }
+});
+
+// Get cache statistics (development only)
+router.get("/cache-stats", (req, res) => {
+  if (process.env.NODE_ENV !== "development") {
+    return res.status(404).json({ message: "Not found" });
+  }
+
+  res.json({
+    success: true,
+    cache: weatherService.getCacheStats(),
+  });
 });
 
 module.exports = router;

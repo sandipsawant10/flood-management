@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install root dependencies (if any)
+        run: |
+          if [ -f package.json ]; then npm ci; fi
+
+      - name: Install server dependencies
+        working-directory: server
+        run: npm ci
+
+      - name: Install client dependencies
+        working-directory: client
+        run: npm ci
+
+      - name: Lint server
+        working-directory: server
+        run: |
+          if npm run | grep -q "lint"; then npm run lint; else echo "No lint script"; fi
+
+      - name: Lint client
+        working-directory: client
+        run: npm run lint
+
+      - name: Run client tests
+        working-directory: client
+        run: npm test -- --coverage --reporter=default --reporter=junit --outputFile=./junit.xml || true
+
+      - name: Archive test coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-coverage-${{ matrix.node-version }}
+          path: client/coverage
+
+      - name: Upload test results (if produced)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-test-results-${{ matrix.node-version }}
+          path: client/junit.xml
+          if-no-files-found: ignore

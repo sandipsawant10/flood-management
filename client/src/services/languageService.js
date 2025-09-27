@@ -64,9 +64,14 @@ async function loadTranslations(languageCode) {
   }
 
   try {
+    console.log(`Loading translations for ${languageCode}...`);
     // In production, load from server or bundled files
     const response = await import(`../locales/${languageCode}.json`);
-    translations[languageCode] = response.default;
+    translations[languageCode] = response.default || response;
+    console.log(
+      `Loaded ${languageCode} translations:`,
+      Object.keys(translations[languageCode])
+    );
     return translations[languageCode];
   } catch (error) {
     console.error(`Failed to load translations for ${languageCode}:`, error);
@@ -107,11 +112,19 @@ export const languageService = {
    * @returns {Promise} Resolves when language is changed
    */
   changeLanguage: async (languageCode) => {
+    console.log("languageService: changeLanguage called with:", languageCode);
+
     if (!AVAILABLE_LANGUAGES[languageCode]) {
       throw new Error(`Language ${languageCode} is not supported`);
     }
 
     await loadTranslations(languageCode);
+    console.log("languageService: Translations loaded for", languageCode);
+    console.log(
+      "languageService: Available translations:",
+      Object.keys(translations[languageCode] || {})
+    );
+
     currentLanguage = languageCode;
     saveLanguagePreference(languageCode);
     document.documentElement.lang = languageCode;
@@ -128,6 +141,7 @@ export const languageService = {
       new CustomEvent("languagechange", { detail: { language: languageCode } })
     );
 
+    console.log("languageService: Language change event dispatched");
     return languageCode;
   },
 

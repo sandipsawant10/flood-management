@@ -13,10 +13,10 @@ import {
   X,
   LogOut,
 } from "lucide-react";
-import { useAuth } from "../../contexts/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const UserPortalLayout = ({ children }) => {
-  const { currentUser, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const navigation = [
@@ -90,16 +90,14 @@ const UserPortalLayout = ({ children }) => {
                 <img
                   className="h-8 w-8 rounded-full"
                   src={
-                    currentUser.photoURL ||
+                    user.photoURL ||
                     "https://ui-avatars.com/api/?name=" +
-                      encodeURIComponent(
-                        currentUser.displayName || currentUser.email
-                      )
+                      encodeURIComponent(user.displayName || user.email)
                   }
-                  alt={currentUser.displayName || "User"}
+                  alt={user.displayName || "User"}
                 />
                 <span className="ml-2 text-sm font-medium text-gray-700">
-                  {currentUser.displayName || currentUser.email}
+                  {user.displayName || user.email}
                 </span>
               </div>
             </div>
@@ -132,21 +130,17 @@ const UserPortalLayout = ({ children }) => {
             <img
               className="h-10 w-10 rounded-full"
               src={
-                currentUser.photoURL ||
+                user.photoURL ||
                 "https://ui-avatars.com/api/?name=" +
-                  encodeURIComponent(
-                    currentUser.displayName || currentUser.email
-                  )
+                  encodeURIComponent(user.displayName || user.email)
               }
-              alt={currentUser.displayName || "User"}
+              alt={user.displayName || "User"}
             />
             <div className="ml-3">
               <p className="text-base font-medium text-gray-800">
-                {currentUser.displayName || "User"}
+                {user.displayName || "User"}
               </p>
-              <p className="text-sm font-medium text-gray-500">
-                {currentUser.email}
-              </p>
+              <p className="text-sm font-medium text-gray-500">{user.email}</p>
             </div>
           </div>
 

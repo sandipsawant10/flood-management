@@ -1,7 +1,6 @@
-import axios from "axios";
-import { API_URL } from "../config";
+import axiosInstance from "./axiosConfig";
 
-const API = `${API_URL}/api/verification`;
+const API = "/verification";
 
 const verificationService = {
   /**
@@ -11,15 +10,9 @@ const verificationService = {
    */
   verifyReport: async (reportId) => {
     try {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${API}/verify/${reportId}`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        {}
       );
       return response.data;
     } catch (error) {
@@ -35,11 +28,7 @@ const verificationService = {
    */
   getVerificationStatus: async (reportId) => {
     try {
-      const response = await axios.get(`${API}/status/${reportId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axiosInstance.get(`${API}/status/${reportId}`);
       return response.data;
     } catch (error) {
       console.error("Error getting verification status:", error);
@@ -54,16 +43,9 @@ const verificationService = {
    */
   bulkVerifyReports: async (limit = 20) => {
     try {
-      const response = await axios.post(
-        `${API}/bulk-verify`,
-        { limit },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await axiosInstance.post(`${API}/bulk-verify`, {
+        limit,
+      });
       return response.data;
     } catch (error) {
       console.error("Error triggering bulk verification:", error);
@@ -77,11 +59,7 @@ const verificationService = {
    */
   getVerificationStatistics: async () => {
     try {
-      const response = await axios.get(`${API}/statistics`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axiosInstance.get(`${API}/statistics`);
       return response.data;
     } catch (error) {
       console.error("Error getting verification statistics:", error);

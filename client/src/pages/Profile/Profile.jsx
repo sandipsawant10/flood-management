@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import ProfileSettings from "./ProfileSettings"; // adjust the path if needed
 import { useAuthStore } from "../../store/authStore";
-import { User, Award, Calendar, Edit, Save, X, Loader2 } from "lucide-react";
+import {
+  User,
+  Award,
+  Calendar,
+  Edit,
+  Save,
+  X,
+  Loader2,
+  Camera,
+} from "lucide-react";
 import toast from "react-hot-toast";
 import { profileService } from "../../services/profileService";
 
@@ -10,15 +19,16 @@ const Profile = () => {
   const { user: authUser, updateUser } = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(null);
-  
+  const [profileImage, setProfileImage] = useState(null);
+
   // Fetch user profile data
   const { data: user, isLoading: isLoadingProfile } = useQuery({
-    queryKey: ['userProfile'],
+    queryKey: ["userProfile"],
     queryFn: profileService.getUserProfile,
-    initialData: authUser,
     staleTime: 300000, // 5 minutes
+    // Remove initialData to ensure fresh fetch from API
   });
-  
+
   // Update profile mutation
   const { mutate: updateProfile, isLoading: isUpdating } = useMutation({
     mutationFn: profileService.updateProfile,
@@ -38,12 +48,31 @@ const Profile = () => {
     return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
   };
 
+  // Handle image upload
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Image size should be less than 5MB");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfileImage(e.target.result); // Base64 string
+        // Automatically update the profile with new avatar
+        updateProfile({ avatar: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Start editing mode
   const handleEditClick = () => {
     setFormData({
       name: user?.name || "",
       email: user?.email || "",
-      avatar: user?.avatar || ""
+      avatar: profileImage || user?.avatar || "",
     });
     setIsEditing(true);
   };
@@ -59,7 +88,7 @@ const Profile = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -72,34 +101,37 @@ const Profile = () => {
   };
 
   // Update notification preferences mutation
-  const { mutate: updateNotifications, isLoading: isUpdatingNotifications } = useMutation({
-    mutationFn: profileService.updateNotificationPreferences,
-    onSuccess: (data) => {
-      toast.success("Notification preferences updated");
-    },
-    onError: (error) => {
-      toast.error(error.message || "Failed to update notification preferences");
-    },
-  });
+  const { mutate: updateNotifications, isLoading: isUpdatingNotifications } =
+    useMutation({
+      mutationFn: profileService.updateNotificationPreferences,
+      onSuccess: (data) => {
+        toast.success("Notification preferences updated");
+      },
+      onError: (error) => {
+        toast.error(
+          error.message || "Failed to update notification preferences"
+        );
+      },
+    });
 
   const handleNotificationToggle = (type) => {
     if (!user || !user.preferences) return;
-    
+
     const updatedNotifications = {
       ...user.preferences.notifications,
-      [type]: !user.preferences.notifications[type]
+      [type]: !user.preferences.notifications[type],
     };
-    
+
     // Update local state immediately for responsive UI
     const updatedUser = {
       ...user,
       preferences: {
         ...user.preferences,
-        notifications: updatedNotifications
-      }
+        notifications: updatedNotifications,
+      },
     };
     updateUser(updatedUser);
-    
+
     // Send to server
     updateNotifications(updatedNotifications);
   };
@@ -117,19 +149,32 @@ const Profile = () => {
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                  {user?.avatar ? (
-                    <img
-                      src={user.avatar}
-                      alt="Profile"
-                      className="w-full h-full rounded-full object-cover"
+                <div className="relative">
+                  <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                    {profileImage || user?.avatar ? (
+                      <img
+                        src={profileImage || user.avatar}
+                        alt="Profile"
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-12 h-12 text-white" />
+                    )}
+                  </div>
+                  <label className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1 cursor-pointer hover:bg-blue-800">
+                    <Camera className="w-4 h-4 text-white" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
                     />
-                  ) : (
-                    <User className="w-12 h-12 text-white" />
-                  )}
+                  </label>
                 </div>
                 <div className="ml-6">
-                  <h1 className="text-3xl font-bold">{user?.name || "User Name"}</h1>
+                  <h1 className="text-3xl font-bold">
+                    {user?.name || "User Name"}
+                  </h1>
                   <p className="text-blue-100 mt-1">
                     {user?.email || "user@email.com"}
                   </p>
@@ -166,12 +211,17 @@ const Profile = () => {
       {/* Edit Profile Form */}
       {isEditing && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
-          
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Edit Profile
+          </h2>
+
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Full Name
                 </label>
                 <input
@@ -187,7 +237,10 @@ const Profile = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Email Address
                 </label>
                 <input
@@ -203,7 +256,10 @@ const Profile = () => {
               </div>
 
               <div>
-                <label htmlFor="avatar" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="avatar"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Avatar URL
                 </label>
                 <input
@@ -258,7 +314,9 @@ const Profile = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-medium">Email Notifications</h3>
-                <p className="text-sm text-gray-500">Receive alerts via email</p>
+                <p className="text-sm text-gray-500">
+                  Receive alerts via email
+                </p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -275,7 +333,9 @@ const Profile = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-medium">Push Notifications</h3>
-                <p className="text-sm text-gray-500">Receive alerts on your device</p>
+                <p className="text-sm text-gray-500">
+                  Receive alerts on your device
+                </p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -305,7 +365,7 @@ const Profile = () => {
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600 disabled:opacity-50"></div>
               </label>
             </div>
-            
+
             {isUpdatingNotifications && (
               <div className="flex items-center justify-center mt-2 text-blue-600">
                 <Loader2 size={16} className="animate-spin mr-2" />

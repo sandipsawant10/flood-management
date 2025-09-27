@@ -216,10 +216,19 @@ export const getAllItems = async (storeName, query = null) => {
       let request;
       if (query && query.indexName) {
         const index = store.index(query.indexName);
-        request =
-          query.value !== undefined
-            ? index.getAll(query.value)
-            : index.getAll();
+        if (query.value !== undefined) {
+          // Convert boolean values to ensure IndexedDB compatibility
+          let keyValue = query.value;
+          if (typeof keyValue === "boolean") {
+            keyValue = keyValue ? 1 : 0;
+            console.log(
+              `Converting boolean ${query.value} to numeric ${keyValue} for IndexedDB index "${query.indexName}"`
+            );
+          }
+          request = index.getAll(keyValue);
+        } else {
+          request = index.getAll();
+        }
       } else {
         request = store.getAll();
       }
@@ -299,6 +308,66 @@ export const clearStore = async (storeName) => {
     });
   } catch (error) {
     console.error(`Error clearing store ${storeName}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Migrate boolean fields to numeric values for IndexedDB compatibility
+ * @param {string} storeName - The name of the store
+ * @param {Array<string>} booleanFields - Array of field names that contain boolean values
+ */
+export const migrateBooleanFields = async (
+  storeName,
+  booleanFields = ["synced", "read"]
+) => {
+  try {
+    console.log(`Migrating boolean fields in ${storeName}:`, booleanFields);
+
+    const db = await openDatabase();
+    const transaction = db.transaction(storeName, "readwrite");
+    const store = transaction.objectStore(storeName);
+
+    return new Promise((resolve, reject) => {
+      const getAllRequest = store.getAll();
+
+      getAllRequest.onsuccess = () => {
+        const items = getAllRequest.result;
+        let migrationCount = 0;
+
+        items.forEach((item) => {
+          let needsUpdate = false;
+          booleanFields.forEach((field) => {
+            if (typeof item[field] === "boolean") {
+              item[field] = item[field] ? 1 : 0;
+              needsUpdate = true;
+            }
+          });
+
+          if (needsUpdate) {
+            store.put(item);
+            migrationCount++;
+          }
+        });
+
+        console.log(`Migrated ${migrationCount} items in ${storeName}`);
+      };
+
+      getAllRequest.onerror = () => {
+        reject(getAllRequest.error);
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+        resolve();
+      };
+
+      transaction.onerror = () => {
+        reject(transaction.error);
+      };
+    });
+  } catch (error) {
+    console.error(`Error migrating boolean fields in ${storeName}:`, error);
     throw error;
   }
 };

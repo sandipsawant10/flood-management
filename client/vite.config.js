@@ -23,13 +23,21 @@ export default defineConfig({
   },
   server: {
     port: 5173, // Vite dev server port
-    // strictPort: true, // fail if port is busy
-    // Removed explicit HMR host and port configuration
-    // hmr: {
-    //   host: "localhost", // explicit HMR host
-    //   protocol: "ws", // or "wss" if using HTTPS
-    //   port: 5173,
-    // },
+    host: "localhost", // Explicitly set host
+    strictPort: false, // Allow fallback to different port if busy
+
+    // Configure HMR WebSocket properly
+    hmr: {
+      host: "localhost",
+      port: 24678, // Use different port for HMR to avoid conflicts
+      protocol: "ws",
+    },
+
+    // Improve WebSocket connection handling
+    watch: {
+      usePolling: false, // Use native file system events
+      interval: 1000,
+    },
 
     headers: {
       "Cache-Control": "no-store",

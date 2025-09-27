@@ -1,625 +1,306 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "../../services/axiosConfig";
 import {
-  Box,
-  Flex,
-  Heading,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  useToast,
-  Grid,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  Card,
-  CardBody
-} from '@chakra-ui/react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { AlertTriangle, CheckCircle, XCircle, AlertOctagon } from 'lucide-react';
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Users,
+  FileText,
+  TrendingUp,
+  Activity,
+} from "lucide-react";
 
 const MunicipalityDashboard = () => {
-  const toast = useToast();
-  const queryClient = useQueryClient();
-  const [selectedReport, setSelectedReport] = useState(null);
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Fetch flood reports
   const { data: reports, isLoading: reportsLoading } = useQuery({
-    queryKey: ['floodReports'],
+    queryKey: ["floodReports"],
     queryFn: async () => {
-      const { data } = await axios.get('/api/flood-reports');
+      const { data } = await axiosInstance.get("/api/flood-reports");
       return data;
-    }
+    },
   });
 
   // Fetch alerts
   const { data: alerts, isLoading: alertsLoading } = useQuery({
-    queryKey: ['alerts'],
+    queryKey: ["alerts"],
     queryFn: async () => {
-      const { data } = await axios.get('/api/alerts');
-      return data;
-    }
-  });
-
-  // Verify report mutation
-  const verifyReportMutation = useMutation({
-    mutationFn: async ({ reportId, status, notes }) => {
-      const { data } = await axios.patch(`/api/flood-reports/${reportId}/verify`, {
-        status,
-        notes
-      });
+      const { data } = await axiosInstance.get("/api/alerts");
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['floodReports']);
-      toast({
-        title: 'Report verified',
-        status: 'success',
-        duration: 3000
-      });
-    }
   });
 
-  // Update alert mutation
-  const updateAlertMutation = useMutation({
-    mutationFn: async ({ alertId, status }) => {
-      const { data } = await axios.patch(`/api/alerts/${alertId}`, { status });
-      return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['alerts']);
-      toast({
-        title: 'Alert updated',
-        status: 'success',
-        duration: 3000
-      });
-    }
-  });
+  // Ensure data is always an array
+  const reportsArray = Array.isArray(reports) ? reports : [];
+  const alertsArray = Array.isArray(alerts) ? alerts : [];
 
-  // Stats calculation
+  // Calculate stats
   const stats = {
-    totalReports: reports?.length || 0,
-    pendingReports: reports?.filter(r => r.verificationStatus === 'pending').length || 0,
-    criticalAlerts: alerts?.filter(a => a.severity === 'critical').length || 0,
-    activeAlerts: alerts?.filter(a => !a.resolved).length || 0
+    totalReports: reportsArray.length,
+    pendingReports: reportsArray.filter(
+      (r) => r.verificationStatus === "pending"
+    ).length,
+    criticalAlerts: alertsArray.filter((a) => a.severity === "critical").length,
+    activeAlerts: alertsArray.filter((a) => !a.resolved).length,
   };
 
-  return (
-    <Box p={4}>
-      <Heading mb={6}>Municipality Dashboard</Heading>
-
-      {/* Stats Overview */}
-      <Grid templateColumns="repeat(4, 1fr)" gap={6} mb={8}>
-        <Card>
-          <CardBody>
-            <Stat>
-              <StatLabel>Total Reports</StatLabel>
-              <StatNumber>{stats.totalReports}</StatNumber>
-              <StatHelpText>
-                <StatArrow type="increase" />
-                23% increase
-              </StatHelpText>
-            </Stat>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <Stat>
-              <StatLabel>Pending Reports</StatLabel>
-              <StatNumber>{stats.pendingReports}</StatNumber>
-              <StatHelpText>Requires verification</StatHelpText>
-            </Stat>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <Stat>
-              <StatLabel>Critical Alerts</StatLabel>
-              <StatNumber>{stats.criticalAlerts}</StatNumber>
-              <StatHelpText>High priority</StatHelpText>
-            </Stat>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <Stat>
-              <StatLabel>Active Alerts</StatLabel>
-              <StatNumber>{stats.activeAlerts}</StatNumber>
-              <StatHelpText>Needs attention</StatHelpText>
-            </Stat>
-          </CardBody>
-        </Card>
-      </Grid>
-
-      <Tabs variant="enclosed">
-        <TabList>
-          <Tab>Report Moderation</Tab>
-          <Tab>Alert Management</Tab>
-          <Tab>Analytics</Tab>
-        </TabList>
-
-        <TabPanels>
-          {/* Report Moderation Panel */}
-          <TabPanel>
-            <ReportModerationPanel
-              reports={reports}
-              isLoading={reportsLoading}
-              onVerify={verifyReportMutation.mutate}
-              selectedReport={selectedReport}
-              setSelectedReport={setSelectedReport}
-            />
-          </TabPanel>
-
-          {/* Alert Management Panel */}
-          <TabPanel>
-            <AlertManagementPanel
-              alerts={alerts}
-              isLoading={alertsLoading}
-              onUpdateAlert={updateAlertMutation.mutate}
-            />
-          </TabPanel>
-
-          {/* Analytics Panel */}
-          <TabPanel>
-            <AnalyticsPanel reports={reports} alerts={alerts} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Box>
+  const StatCard = ({ title, value, subtitle, icon: Icon, color = "blue" }) => (
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-gray-500">{title}</p>
+          <p className={`text-2xl font-bold text-${color}-600 mt-1`}>{value}</p>
+          {subtitle && <p className="text-sm text-gray-400 mt-1">{subtitle}</p>}
+        </div>
+        {Icon && (
+          <div className={`p-3 bg-${color}-100 rounded-full`}>
+            <Icon className={`w-6 h-6 text-${color}-600`} />
+          </div>
+        )}
+      </div>
+    </div>
   );
-};
 
-// Report Moderation Panel Component
-const ReportModerationPanel = ({
-  reports,
-  isLoading,
-  onVerify,
-  selectedReport,
-  setSelectedReport
-}) => {
-  const [verificationNotes, setVerificationNotes] = useState('');
+  const TabButton = ({ id, label, isActive, onClick }) => (
+    <button
+      onClick={() => onClick(id)}
+      className={`px-6 py-3 font-medium rounded-lg transition-colors ${
+        isActive
+          ? "bg-blue-600 text-white"
+          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+      }`}
+    >
+      {label}
+    </button>
+  );
 
-  if (isLoading) {
-    return <Box>Loading reports...</Box>;
-  }
-
-  return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={6}>
-      {/* Reports List */}
-      <Box>
-        <Heading size="md" mb={4}>Pending Reports</Heading>
-        {reports?.filter(report => report.verificationStatus === 'pending')
-          .map(report => (
-            <Card
-              key={report._id}
-              mb={4}
-              cursor="pointer"
-              onClick={() => setSelectedReport(report)}
-              bg={selectedReport?._id === report._id ? 'gray.100' : 'white'}
-            >
-              <CardBody>
-                <Flex justify="space-between" align="center">
-                  <Box>
-                    <Text fontWeight="bold">{report.location.address}</Text>
-                    <Text fontSize="sm" color="gray.600">
-                      Reported by: {report.reportedBy.name}
-                    </Text>
-                    <Text fontSize="sm" color="gray.600">
-                      Severity: {report.severity}
-                    </Text>
-                  </Box>
-                  <Box>
-                    {report.severity === 'critical' && (
-                      <AlertOctagon color="red" />
+  const ReportsList = () => (
+    <div className="bg-white rounded-lg shadow-md">
+      <div className="p-6 border-b border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900">Recent Reports</h3>
+      </div>
+      <div className="p-6">
+        {reportsLoading ? (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-2 text-gray-500">Loading reports...</p>
+          </div>
+        ) : reportsArray.length > 0 ? (
+          <div className="space-y-4">
+            {reportsArray.slice(0, 5).map((report) => (
+              <div
+                key={report._id}
+                className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
+              >
+                <div className="flex items-center space-x-4">
+                  <div
+                    className={`p-2 rounded-full ${
+                      report.verificationStatus === "verified"
+                        ? "bg-green-100"
+                        : report.verificationStatus === "pending"
+                        ? "bg-yellow-100"
+                        : "bg-red-100"
+                    }`}
+                  >
+                    {report.verificationStatus === "verified" ? (
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                    ) : report.verificationStatus === "pending" ? (
+                      <AlertTriangle className="w-4 h-4 text-yellow-600" />
+                    ) : (
+                      <XCircle className="w-4 h-4 text-red-600" />
                     )}
-                  </Box>
-                </Flex>
-              </CardBody>
-            </Card>
-          ))}
-      </Box>
-
-      {/* Report Details and Verification */}
-      <Box>
-        {selectedReport ? (
-          <Box>
-            <Heading size="md" mb={4}>Report Details</Heading>
-            <Card mb={4}>
-              <CardBody>
-                <VStack align="stretch" spacing={4}>
-                  <Box>
-                    <Text fontWeight="bold">Location</Text>
-                    <Text>{selectedReport.location.address}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Description</Text>
-                    <Text>{selectedReport.description}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Water Level</Text>
-                    <Text>{selectedReport.waterLevel}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Impact</Text>
-                    <Text>
-                      Affected People: {selectedReport.impact?.affectedPeople || 'N/A'}
-                      <br />
-                      Damaged Properties: {selectedReport.impact?.damagedProperties || 'N/A'}
-                    </Text>
-                  </Box>
-                  {selectedReport.mediaFiles?.length > 0 && (
-                    <Box>
-                      <Text fontWeight="bold">Media Files</Text>
-                      <SimpleGrid columns={2} spacing={2}>
-                        {selectedReport.mediaFiles.map((file, index) => (
-                          <Image
-                            key={index}
-                            src={file}
-                            alt={`Report media ${index + 1}`}
-                            borderRadius="md"
-                          />
-                        ))}
-                      </SimpleGrid>
-                    </Box>
-                  )}
-                  <FormControl>
-                    <FormLabel>Verification Notes</FormLabel>
-                    <Textarea
-                      value={verificationNotes}
-                      onChange={(e) => setVerificationNotes(e.target.value)}
-                      placeholder="Add verification notes..."
-                    />
-                  </FormControl>
-                  <ButtonGroup spacing={4}>
-                    <Button
-                      leftIcon={<CheckCircle />}
-                      colorScheme="green"
-                      onClick={() => {
-                        onVerify({
-                          reportId: selectedReport._id,
-                          status: 'verified',
-                          notes: verificationNotes
-                        });
-                        setVerificationNotes('');
-                        setSelectedReport(null);
-                      }}
-                    >
-                      Verify
-                    </Button>
-                    <Button
-                      leftIcon={<XCircle />}
-                      colorScheme="red"
-                      onClick={() => {
-                        onVerify({
-                          reportId: selectedReport._id,
-                          status: 'disputed',
-                          notes: verificationNotes
-                        });
-                        setVerificationNotes('');
-                        setSelectedReport(null);
-                      }}
-                    >
-                      Dispute
-                    </Button>
-                  </ButtonGroup>
-                </VStack>
-              </CardBody>
-            </Card>
-          </Box>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">
+                      {report.location?.address || "Unknown Location"}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Status: {report.verificationStatus} •{" "}
+                      {new Date(report.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className={`px-3 py-1 text-xs font-medium rounded-full ${
+                    report.severity === "critical"
+                      ? "bg-red-100 text-red-800"
+                      : report.severity === "high"
+                      ? "bg-orange-100 text-orange-800"
+                      : "bg-yellow-100 text-yellow-800"
+                  }`}
+                >
+                  {report.severity}
+                </span>
+              </div>
+            ))}
+          </div>
         ) : (
-          <Box textAlign="center" py={10}>
-            <Text color="gray.500">Select a report to view details</Text>
-          </Box>
+          <div className="text-center py-8">
+            <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+            <p className="text-gray-500">No reports found</p>
+          </div>
         )}
-      </Box>
-    </Grid>
+      </div>
+    </div>
   );
-};
 
-// Alert Management Panel Component
-const AlertManagementPanel = ({ alerts, isLoading, onUpdateAlert }) => {
-  const [selectedAlert, setSelectedAlert] = useState(null);
-  const [alertNotes, setAlertNotes] = useState('');
-  const [alertStatus, setAlertStatus] = useState('active');
-
-  if (isLoading) {
-    return <Box>Loading alerts...</Box>;
-  }
+  const AlertsList = () => (
+    <div className="bg-white rounded-lg shadow-md">
+      <div className="p-6 border-b border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900">Active Alerts</h3>
+      </div>
+      <div className="p-6">
+        {alertsLoading ? (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-2 text-gray-500">Loading alerts...</p>
+          </div>
+        ) : alertsArray.length > 0 ? (
+          <div className="space-y-4">
+            {alertsArray.slice(0, 5).map((alert) => (
+              <div
+                key={alert._id}
+                className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
+              >
+                <div className="flex items-center space-x-4">
+                  <div
+                    className={`p-2 rounded-full ${
+                      alert.severity === "critical"
+                        ? "bg-red-100"
+                        : alert.severity === "high"
+                        ? "bg-orange-100"
+                        : "bg-yellow-100"
+                    }`}
+                  >
+                    <AlertTriangle
+                      className={`w-4 h-4 ${
+                        alert.severity === "critical"
+                          ? "text-red-600"
+                          : alert.severity === "high"
+                          ? "text-orange-600"
+                          : "text-yellow-600"
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">{alert.title}</p>
+                    <p className="text-sm text-gray-500">
+                      {alert.description?.substring(0, 60)}...
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className={`px-3 py-1 text-xs font-medium rounded-full ${
+                    alert.resolved
+                      ? "bg-green-100 text-green-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
+                  {alert.resolved ? "Resolved" : "Active"}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <AlertTriangle className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+            <p className="text-gray-500">No active alerts</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={6}>
-      {/* Alerts List */}
-      <Box>
-        <Heading size="md" mb={4}>Active Alerts</Heading>
-        {alerts?.filter(alert => alert.status === 'active')
-          .map(alert => (
-            <Card
-              key={alert._id}
-              mb={4}
-              cursor="pointer"
-              onClick={() => setSelectedAlert(alert)}
-              bg={selectedAlert?._id === alert._id ? 'gray.100' : 'white'}
-              borderLeft="4px"
-              borderLeftColor={alert.severity === 'critical' ? 'red.500' : 
-                             alert.severity === 'high' ? 'orange.500' : 
-                             alert.severity === 'medium' ? 'yellow.500' : 'blue.500'}
-            >
-              <CardBody>
-                <Flex justify="space-between" align="center">
-                  <Box>
-                    <Text fontWeight="bold">{alert.title}</Text>
-                    <Text fontSize="sm" color="gray.600">
-                      Area: {alert.area}
-                    </Text>
-                    <Text fontSize="sm" color="gray.600">
-                      Type: {alert.type}
-                    </Text>
-                  </Box>
-                  <Badge
-                    colorScheme={alert.severity === 'critical' ? 'red' : 
-                                alert.severity === 'high' ? 'orange' : 
-                                alert.severity === 'medium' ? 'yellow' : 'blue'}
-                  >
-                    {alert.severity}
-                  </Badge>
-                </Flex>
-              </CardBody>
-            </Card>
-          ))}
-      </Box>
+    <div className="p-6 min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Municipality Dashboard
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Manage municipal services and monitor flood reports
+          </p>
+        </div>
 
-      {/* Alert Details and Management */}
-      <Box>
-        {selectedAlert ? (
-          <Box>
-            <Heading size="md" mb={4}>Alert Details</Heading>
-            <Card mb={4}>
-              <CardBody>
-                <VStack align="stretch" spacing={4}>
-                  <Box>
-                    <Text fontWeight="bold">Title</Text>
-                    <Text>{selectedAlert.title}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Description</Text>
-                    <Text>{selectedAlert.description}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Area</Text>
-                    <Text>{selectedAlert.area}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Type</Text>
-                    <Text>{selectedAlert.type}</Text>
-                  </Box>
-                  <Box>
-                    <Text fontWeight="bold">Created At</Text>
-                    <Text>{new Date(selectedAlert.createdAt).toLocaleString()}</Text>
-                  </Box>
-                  <FormControl>
-                    <FormLabel>Status</FormLabel>
-                    <Select
-                      value={alertStatus}
-                      onChange={(e) => setAlertStatus(e.target.value)}
-                    >
-                      <option value="active">Active</option>
-                      <option value="resolved">Resolved</option>
-                      <option value="expired">Expired</option>
-                    </Select>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Update Notes</FormLabel>
-                    <Textarea
-                      value={alertNotes}
-                      onChange={(e) => setAlertNotes(e.target.value)}
-                      placeholder="Add notes about the alert update..."
-                    />
-                  </FormControl>
-                  <Button
-                    colorScheme="blue"
-                    onClick={() => {
-                      onUpdateAlert({
-                        alertId: selectedAlert._id,
-                        status: alertStatus,
-                        notes: alertNotes
-                      });
-                      setAlertNotes('');
-                      setSelectedAlert(null);
-                    }}
-                  >
-                    Update Alert
-                  </Button>
-                </VStack>
-              </CardBody>
-            </Card>
-          </Box>
-        ) : (
-          <Box textAlign="center" py={10}>
-            <Text color="gray.500">Select an alert to view details</Text>
-          </Box>
-        )}
-      </Box>
-    </Grid>
-  );
-};
+        {/* Stats Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <StatCard
+            title="Total Reports"
+            value={stats.totalReports}
+            subtitle="+12% from last month"
+            icon={FileText}
+            color="blue"
+          />
+          <StatCard
+            title="Pending Reports"
+            value={stats.pendingReports}
+            subtitle="Requires verification"
+            icon={Activity}
+            color="yellow"
+          />
+          <StatCard
+            title="Critical Alerts"
+            value={stats.criticalAlerts}
+            subtitle="High priority"
+            icon={AlertTriangle}
+            color="red"
+          />
+          <StatCard
+            title="Active Alerts"
+            value={stats.activeAlerts}
+            subtitle="Needs attention"
+            icon={Users}
+            color="orange"
+          />
+        </div>
 
-// Analytics Panel Component
-const AnalyticsPanel = ({ reports, alerts }) => {
-  // Calculate report statistics
-  const reportStats = {
-    byStatus: {
-      pending: reports?.filter(r => r.verificationStatus === 'pending').length || 0,
-      verified: reports?.filter(r => r.verificationStatus === 'verified').length || 0,
-      disputed: reports?.filter(r => r.verificationStatus === 'disputed').length || 0
-    },
-    bySeverity: {
-      critical: reports?.filter(r => r.severity === 'critical').length || 0,
-      high: reports?.filter(r => r.severity === 'high').length || 0,
-      medium: reports?.filter(r => r.severity === 'medium').length || 0,
-      low: reports?.filter(r => r.severity === 'low').length || 0
-    }
-  };
+        {/* Tab Navigation */}
+        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg mb-6 w-fit">
+          <TabButton
+            id="overview"
+            label="Overview"
+            isActive={activeTab === "overview"}
+            onClick={setActiveTab}
+          />
+          <TabButton
+            id="reports"
+            label="Reports"
+            isActive={activeTab === "reports"}
+            onClick={setActiveTab}
+          />
+          <TabButton
+            id="alerts"
+            label="Alerts"
+            isActive={activeTab === "alerts"}
+            onClick={setActiveTab}
+          />
+        </div>
 
-  // Calculate alert statistics
-  const alertStats = {
-    byStatus: {
-      active: alerts?.filter(a => a.status === 'active').length || 0,
-      resolved: alerts?.filter(a => a.status === 'resolved').length || 0,
-      expired: alerts?.filter(a => a.status === 'expired').length || 0
-    },
-    bySeverity: {
-      critical: alerts?.filter(a => a.severity === 'critical').length || 0,
-      high: alerts?.filter(a => a.severity === 'high').length || 0,
-      medium: alerts?.filter(a => a.severity === 'medium').length || 0,
-      low: alerts?.filter(a => a.severity === 'low').length || 0
-    }
-  };
-
-  return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={8}>
-      {/* Report Analytics */}
-      <Box>
-        <Heading size="md" mb={6}>Report Analytics</Heading>
-        
-        <Card mb={6}>
-          <CardBody>
-            <Heading size="sm" mb={4}>Reports by Status</Heading>
-            <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-              <Box textAlign="center" p={4} bg="yellow.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="yellow.700">
-                  {reportStats.byStatus.pending}
-                </Text>
-                <Text color="yellow.700">Pending</Text>
-              </Box>
-              <Box textAlign="center" p={4} bg="green.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="green.700">
-                  {reportStats.byStatus.verified}
-                </Text>
-                <Text color="green.700">Verified</Text>
-              </Box>
-              <Box textAlign="center" p={4} bg="red.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="red.700">
-                  {reportStats.byStatus.disputed}
-                </Text>
-                <Text color="red.700">Disputed</Text>
-              </Box>
-            </Grid>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <Heading size="sm" mb={4}>Reports by Severity</Heading>
-            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-              {Object.entries(reportStats.bySeverity).map(([severity, count]) => (
-                <Box
-                  key={severity}
-                  textAlign="center"
-                  p={4}
-                  bg={severity === 'critical' ? 'red.100' :
-                      severity === 'high' ? 'orange.100' :
-                      severity === 'medium' ? 'yellow.100' : 'blue.100'}
-                  borderRadius="md"
-                >
-                  <Text
-                    fontSize="2xl"
-                    fontWeight="bold"
-                    color={severity === 'critical' ? 'red.700' :
-                           severity === 'high' ? 'orange.700' :
-                           severity === 'medium' ? 'yellow.700' : 'blue.700'}
-                  >
-                    {count}
-                  </Text>
-                  <Text
-                    color={severity === 'critical' ? 'red.700' :
-                           severity === 'high' ? 'orange.700' :
-                           severity === 'medium' ? 'yellow.700' : 'blue.700'}
-                    textTransform="capitalize"
-                  >
-                    {severity}
-                  </Text>
-                </Box>
-              ))}
-            </Grid>
-          </CardBody>
-        </Card>
-      </Box>
-
-      {/* Alert Analytics */}
-      <Box>
-        <Heading size="md" mb={6}>Alert Analytics</Heading>
-        
-        <Card mb={6}>
-          <CardBody>
-            <Heading size="sm" mb={4}>Alerts by Status</Heading>
-            <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-              <Box textAlign="center" p={4} bg="blue.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="blue.700">
-                  {alertStats.byStatus.active}
-                </Text>
-                <Text color="blue.700">Active</Text>
-              </Box>
-              <Box textAlign="center" p={4} bg="green.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="green.700">
-                  {alertStats.byStatus.resolved}
-                </Text>
-                <Text color="green.700">Resolved</Text>
-              </Box>
-              <Box textAlign="center" p={4} bg="gray.100" borderRadius="md">
-                <Text fontSize="2xl" fontWeight="bold" color="gray.700">
-                  {alertStats.byStatus.expired}
-                </Text>
-                <Text color="gray.700">Expired</Text>
-              </Box>
-            </Grid>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <Heading size="sm" mb={4}>Alerts by Severity</Heading>
-            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-              {Object.entries(alertStats.bySeverity).map(([severity, count]) => (
-                <Box
-                  key={severity}
-                  textAlign="center"
-                  p={4}
-                  bg={severity === 'critical' ? 'red.100' :
-                      severity === 'high' ? 'orange.100' :
-                      severity === 'medium' ? 'yellow.100' : 'blue.100'}
-                  borderRadius="md"
-                >
-                  <Text
-                    fontSize="2xl"
-                    fontWeight="bold"
-                    color={severity === 'critical' ? 'red.700' :
-                           severity === 'high' ? 'orange.700' :
-                           severity === 'medium' ? 'yellow.700' : 'blue.700'}
-                  >
-                    {count}
-                  </Text>
-                  <Text
-                    color={severity === 'critical' ? 'red.700' :
-                           severity === 'high' ? 'orange.700' :
-                           severity === 'medium' ? 'yellow.700' : 'blue.700'}
-                    textTransform="capitalize"
-                  >
-                    {severity}
-                  </Text>
-                </Box>
-              ))}
-            </Grid>
-          </CardBody>
-        </Card>
-      </Box>
-    </Grid>
+        {/* Tab Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {activeTab === "overview" && (
+            <>
+              <ReportsList />
+              <AlertsList />
+            </>
+          )}
+          {activeTab === "reports" && (
+            <div className="lg:col-span-2">
+              <ReportsList />
+            </div>
+          )}
+          {activeTab === "alerts" && (
+            <div className="lg:col-span-2">
+              <AlertsList />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -104,6 +104,10 @@ router.post(
           role: user.role,
           trustScore: user.trustScore,
           location: user.location,
+          preferences: user.preferences,
+          isVerified: user.isVerified || false,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
         },
       });
     } catch (error) {
@@ -217,6 +221,8 @@ router.post(
           preferences: user.preferences,
           lastActive: user.lastActive,
           isVerified: user.isVerified || false,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
         },
         expiresIn: 3600, // 1 hour in seconds
       });
@@ -234,7 +240,8 @@ router.post(
 // ---------- GET CURRENT USER PROFILE ----------
 router.get("/profile", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.userId).select("-password");
+    // req.user is already the full user object from auth middleware, no need to query again
+    const user = req.user;
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.json({
@@ -251,6 +258,8 @@ router.get("/profile", auth, async (req, res) => {
         preferences: user.preferences,
         isVerified: user.isVerified,
         lastActive: user.lastActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
       },
     });
   } catch (error) {
@@ -286,7 +295,8 @@ router.put(
         return res.status(400).json({ errors: errors.array() });
       }
 
-      const user = await User.findById(req.user.userId);
+      // req.user is already the full user object from auth middleware
+      const user = req.user;
       if (!user) return res.status(404).json({ message: "User not found" });
 
       // Only allow specific updates
@@ -348,7 +358,7 @@ router.get("/verify", auth, (req, res) => {
   res.json({
     status: "success",
     valid: true,
-    userId: req.user.userId,
+    userId: req.user._id,
     role: req.user.role,
   });
 });

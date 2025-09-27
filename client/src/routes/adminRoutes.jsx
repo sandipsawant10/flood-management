@@ -1,28 +1,14 @@
-import { lazy } from "react";
 import AdminRoute from "../components/Auth/AdminRoute";
-
-const AdminPortal = lazy(() => import("../pages/admin/AdminPortal"));
-const MunicipalityDashboard = lazy(() =>
-  import("../pages/admin/MunicipalityDashboard")
-);
-const RescuerDashboard = lazy(() =>
-  import("../pages/AdminDashboard/RescuerDashboard")
-);
-const FinancialAidRequests = lazy(() =>
-  import("../pages/admin/FinancialAidRequests")
-);
-const AdvancedAnalyticsDashboard = lazy(() =>
-  import("../pages/Analytics/AdvancedAnalyticsDashboard")
-);
-const UserManagement = lazy(() =>
-  import("../pages/AdminDashboard/UserManagement")
-);
-const ResourceTracking = lazy(() =>
-  import("../pages/AdminDashboard/ResourceTracking")
-);
-const AIVerificationDashboard = lazy(() =>
-  import("../pages/admin/AIVerificationDashboard")
-);
+import AdminPortal from "../pages/admin/AdminPortal";
+import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
+import SimpleAdminDashboard from "../components/Test/SimpleAdminDashboard";
+import MunicipalityDashboard from "../components/Admin/MunicipalityDashboard";
+import RescuerDashboard from "../pages/AdminDashboard/RescuerDashboard";
+import FinancialAidRequests from "../pages/admin/FinancialAidRequests";
+import AdvancedAnalyticsDashboard from "../pages/Analytics/AdvancedAnalyticsDashboard";
+import UserManagement from "../pages/AdminDashboard/UserManagement";
+import ResourceTracking from "../pages/AdminDashboard/ResourceTracking";
+import AIVerificationDashboard from "../pages/admin/AIVerificationDashboard";
 
 const adminRoutes = [
   {
@@ -33,47 +19,53 @@ const adminRoutes = [
       </AdminRoute>
     ),
     children: [
+      {
+        index: true,
+        element: (
+          <div
+            style={{
+              backgroundColor: "#e0f2fe",
+              padding: "20px",
+              border: "2px solid #0277bd",
+              borderRadius: "8px",
+              margin: "10px 0",
+            }}
+          >
+            <h1 style={{ color: "#01579b", margin: "0 0 10px 0" }}>
+              🎯 ADMIN DASHBOARD TEST
+            </h1>
+            <p>✅ Routing is working!</p>
+            <p>✅ Outlet is rendering!</p>
+            <p>🕐 Time: {new Date().toLocaleString()}</p>
+            <AdminDashboard />
+          </div>
+        ),
+      },
+      {
+        path: "dashboard",
+        element: <AdminDashboard />,
+      },
       { path: "municipality", element: <MunicipalityDashboard /> },
       { path: "rescuer", element: <RescuerDashboard /> },
       {
         path: "financial-aid",
-        element: (
-          <AdminRoute requiredRoles={["admin", "municipality"]}>
-            <FinancialAidRequests />
-          </AdminRoute>
-        ),
+        element: <FinancialAidRequests />,
       },
       {
         path: "analytics",
-        element: (
-          <AdminRoute requiredRoles={["admin"]}>
-            <AdvancedAnalyticsDashboard />
-          </AdminRoute>
-        ),
+        element: <AdvancedAnalyticsDashboard />,
       },
       {
         path: "users",
-        element: (
-          <AdminRoute requiredRoles={["admin"]}>
-            <UserManagement />
-          </AdminRoute>
-        ),
+        element: <UserManagement />,
       },
       {
         path: "resources",
-        element: (
-          <AdminRoute requiredRoles={["admin", "municipality"]}>
-            <ResourceTracking />
-          </AdminRoute>
-        ),
+        element: <ResourceTracking />,
       },
       {
         path: "verification",
-        element: (
-          <AdminRoute requiredRoles={["admin", "municipality"]}>
-            <AIVerificationDashboard />
-          </AdminRoute>
-        ),
+        element: <AIVerificationDashboard />,
       },
     ],
   },

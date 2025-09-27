@@ -1,27 +1,57 @@
-import api from "./axiosConfig";
+import axiosInstance from "./axiosConfig";
 
 export const floodReportService = {
   submitReport: async (formData) => {
-    const response = await api.post("/flood-reports", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    return response;
+    try {
+      console.log("Submitting flood report...", formData);
+      const response = await axiosInstance.post("/flood-reports", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        timeout: 30000, // Increase timeout to 30 seconds for file uploads
+      });
+      console.log("Flood report submitted successfully:", response.data);
+      return response;
+    } catch (error) {
+      console.error("Error in submitReport:", error);
+
+      // Provide more specific error messages
+      if (error.code === "ECONNABORTED") {
+        throw new Error(
+          "Request timeout - the server is taking too long to respond. Please check your internet connection and try again."
+        );
+      } else if (error.response?.status === 413) {
+        throw new Error(
+          "File too large - please reduce the size of your images and try again."
+        );
+      } else if (error.response?.status >= 500) {
+        throw new Error("Server error - please try again later.");
+      } else if (error.response?.status === 401) {
+        throw new Error(
+          "Authentication required - please log in and try again."
+        );
+      } else if (!navigator.onLine) {
+        throw new Error(
+          "No internet connection - please check your connection and try again."
+        );
+      }
+
+      throw error;
+    }
   },
 
   getReports: async (params = {}) => {
-    const response = await api.get("/flood-reports", { params });
+    const response = await axiosInstance.get("/flood-reports", { params });
     return response.data;
   },
 
   getReportById: async (id) => {
-    const response = await api.get(`/flood-reports/${id}`);
+    const response = await axiosInstance.get(`/flood-reports/${id}`);
     return response.data;
   },
 
   voteOnReport: async (id, vote) => {
-    const response = await api.post(`/flood-reports/${id}/vote`, {
+    const response = await axiosInstance.post(`/flood-reports/${id}/vote`, {
       vote,
     });
     return response.data;
@@ -29,7 +59,7 @@ export const floodReportService = {
 
   submitFloodReport: async (reportData) => {
     try {
-      const response = await api.post("/flood-reports", reportData);
+      const response = await axiosInstance.post("/flood-reports", reportData);
       return response.data;
     } catch (error) {
       console.error("Error submitting flood report:", error);
@@ -40,7 +70,7 @@ export const floodReportService = {
   // Get all flood reports for admin
   getAdminFloodReports: async () => {
     try {
-      const response = await api.get("/api/admin/flood-reports");
+      const response = await axiosInstance.get("/admin/flood-reports");
       return response.data;
     } catch (error) {
       console.error("Error fetching admin flood reports:", error);
@@ -52,7 +82,7 @@ export const floodReportService = {
   getFloodReports: async (filters = {}) => {
     try {
       const params = new URLSearchParams(filters);
-      const response = await api.get(`/api/flood-reports?${params}`);
+      const response = await axiosInstance.get(`/flood-reports?${params}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching flood reports:", error);
@@ -63,7 +93,7 @@ export const floodReportService = {
   // Get single flood report by ID
   getFloodReportById: async (id) => {
     try {
-      const response = await api.get(`/api/flood-reports/${id}`);
+      const response = await axiosInstance.get(`/flood-reports/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching flood report:", error);
@@ -74,7 +104,7 @@ export const floodReportService = {
   // Create new flood report
   createFloodReport: async (reportData) => {
     try {
-      const response = await api.post("/api/flood-reports", reportData);
+      const response = await axiosInstance.post("/flood-reports", reportData);
       return response.data;
     } catch (error) {
       console.error("Error creating flood report:", error);
@@ -85,7 +115,10 @@ export const floodReportService = {
   // Update flood report
   updateFloodReport: async (id, reportData) => {
     try {
-      const response = await api.put(`/api/flood-reports/${id}`, reportData);
+      const response = await axiosInstance.put(
+        `/flood-reports/${id}`,
+        reportData
+      );
       return response.data;
     } catch (error) {
       console.error("Error updating flood report:", error);
@@ -96,7 +129,7 @@ export const floodReportService = {
   // Delete flood report
   deleteFloodReport: async (id) => {
     try {
-      const response = await api.delete(`/api/flood-reports/${id}`);
+      const response = await axiosInstance.delete(`/flood-reports/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error deleting flood report:", error);
@@ -107,9 +140,11 @@ export const floodReportService = {
   // Update report status (for admin)
   updateReportStatus: async (id, status) => {
     try {
-      const response = await api.patch(
-        `/api/admin/flood-reports/${id}/status`,
-        { status }
+      const response = await axiosInstance.patch(
+        `/admin/flood-reports/${id}/status`,
+        {
+          status,
+        }
       );
       return response.data;
     } catch (error) {
@@ -121,9 +156,11 @@ export const floodReportService = {
   // Verify report (for admin)
   verifyReport: async (id, verified) => {
     try {
-      const response = await api.patch(
-        `/api/admin/flood-reports/${id}/verify`,
-        { verified }
+      const response = await axiosInstance.patch(
+        `/admin/flood-reports/${id}/verify`,
+        {
+          verified,
+        }
       );
       return response.data;
     } catch (error) {

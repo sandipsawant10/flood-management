@@ -5,20 +5,78 @@ const User = require("../models/User");
 const { auth } = require("../middleware/auth");
 const notificationService = require("../services/notificationService");
 
+// Cache for alerts - 2 minute expiry for active alerts due to real-time nature
+const alertsCache = new Map();
+const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes for alerts (more frequent than emergency contacts)
+
+// Helper function to invalidate alerts cache
+const invalidateAlertsCache = () => {
+  console.log("Invalidating alerts cache due to data modification");
+  alertsCache.clear();
+};
+
 // Get active alerts (public endpoint for prefetching)
 router.get("/active", async (req, res) => {
-  try {
-    const alerts = await Alert.find({ status: "active" })
-      .sort({ priority: -1, createdAt: -1 })
-      .select("title message severity priority targetArea createdAt updatedAt")
-      .limit(50);
+  const startTime = Date.now();
 
-    res.json({
+  try {
+    const { limit = "50" } = req.query;
+    const cacheKey = `active_alerts_${limit}`;
+
+    // Check cache first (shorter cache for active alerts)
+    const cached = alertsCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      console.log(
+        `Active alerts cache hit, response time: ${Date.now() - startTime}ms`
+      );
+      return res.json(cached.data);
+    }
+
+    console.log("Active alerts cache miss, fetching from database...");
+    const dbQueryStart = Date.now();
+
+    // Use isActive field instead of status for better performance (indexed field)
+    const alerts = await Alert.find({ isActive: true })
+      .sort({ priority: -1, createdAt: -1 })
+      .select(
+        "title message alertType severity priority targetArea validFrom validUntil createdAt updatedAt"
+      )
+      .limit(parseInt(limit))
+      .lean(); // Use lean() for better performance
+
+    const dbQueryTime = Date.now() - dbQueryStart;
+    console.log(
+      `Active alerts database query completed in ${dbQueryTime}ms, found ${alerts.length} alerts`
+    );
+
+    const response = {
       success: true,
       count: alerts.length,
       alerts,
+      cached: false,
+      queryTime: dbQueryTime,
+    };
+
+    // Cache the result
+    alertsCache.set(cacheKey, {
+      data: { ...response, cached: true },
+      timestamp: Date.now(),
     });
+
+    const totalTime = Date.now() - startTime;
+    console.log(
+      `Active alerts endpoint completed in ${totalTime}ms (DB: ${dbQueryTime}ms)`
+    );
+
+    res.set("X-Response-Time", `${totalTime}ms`);
+    res.json(response);
   } catch (error) {
+    const errorTime = Date.now() - startTime;
+    console.error(
+      `Active alerts endpoint error after ${errorTime}ms:`,
+      error.message
+    );
+
     res.status(500).json({
       success: false,
       message: "Server error fetching active alerts",
@@ -29,25 +87,95 @@ router.get("/active", async (req, res) => {
 
 // Get all alerts
 router.get("/", auth, async (req, res) => {
+  const startTime = Date.now();
+
   try {
-    const { status = "active", severity, district, state } = req.query;
+    const {
+      status = "active",
+      severity,
+      district,
+      state,
+      limit = "50",
+    } = req.query;
+
+    // Create cache key from query parameters
+    const cacheKey = `alerts_${status || "all"}_${severity || "all"}_${
+      district || "all"
+    }_${state || "all"}_${limit}`;
+
+    // Check cache first
+    const cached = alertsCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      console.log(
+        `Alerts cache hit for key: ${cacheKey}, response time: ${
+          Date.now() - startTime
+        }ms`
+      );
+      return res.json(cached.data);
+    }
+
+    console.log(
+      `Alerts cache miss for key: ${cacheKey}, fetching from database...`
+    );
 
     let query = {};
-    if (status) query.status = status;
+    if (status && status !== "all") query.status = status;
     if (severity) query.severity = severity;
-    if (district) query["targetArea.district"] = district;
-    if (state) query["targetArea.state"] = state;
+    if (district) query["targetArea.districts"] = district;
+    if (state) query["targetArea.states"] = state;
 
+    const dbQueryStart = Date.now();
+
+    // Optimize query: limit results and only populate essential user fields
     const alerts = await Alert.find(query)
       .sort({ priority: -1, createdAt: -1 })
-      .populate("createdBy", "name role");
+      .limit(parseInt(limit))
+      .select(
+        "title message alertType severity priority targetArea validFrom validUntil instructions isActive createdAt updatedAt issuedBy"
+      )
+      .populate("issuedBy", "name role")
+      .lean(); // Use lean() for better performance
 
-    res.json({
+    const dbQueryTime = Date.now() - dbQueryStart;
+    console.log(
+      `Database query completed in ${dbQueryTime}ms, found ${alerts.length} alerts`
+    );
+
+    const response = {
       success: true,
       count: alerts.length,
       alerts,
+      cached: false,
+      queryTime: dbQueryTime,
+    };
+
+    // Cache the result
+    alertsCache.set(cacheKey, {
+      data: { ...response, cached: true },
+      timestamp: Date.now(),
     });
+
+    // Clean up old cache entries periodically
+    if (alertsCache.size > 100) {
+      const now = Date.now();
+      for (const [key, value] of alertsCache.entries()) {
+        if (now - value.timestamp > CACHE_DURATION) {
+          alertsCache.delete(key);
+        }
+      }
+    }
+
+    const totalTime = Date.now() - startTime;
+    console.log(
+      `Alerts endpoint completed in ${totalTime}ms (DB: ${dbQueryTime}ms)`
+    );
+
+    res.set("X-Response-Time", `${totalTime}ms`);
+    res.json(response);
   } catch (error) {
+    const errorTime = Date.now() - startTime;
+    console.error(`Alerts endpoint error after ${errorTime}ms:`, error.message);
+
     res.status(500).json({
       success: false,
       message: "Server error fetching alerts",
@@ -103,6 +231,9 @@ router.post("/", auth, async (req, res) => {
     const alert = await Alert.create(alertData);
     await alert.populate("createdBy", "name role");
 
+    // Invalidate cache since new alert was created
+    invalidateAlertsCache();
+
     // Find users in the target area to notify
     const targetUsers = await User.find({
       "location.state": alert.targetArea.state,
@@ -156,6 +287,9 @@ router.put("/:id", auth, async (req, res) => {
         message: "Alert not found",
       });
     }
+
+    // Invalidate cache since alert was updated
+    invalidateAlertsCache();
 
     // If alert was updated to active status or severity increased, notify users
     if (
@@ -213,6 +347,9 @@ router.delete("/:id", auth, async (req, res) => {
         message: "Alert not found",
       });
     }
+
+    // Invalidate cache since alert was deleted
+    invalidateAlertsCache();
 
     res.json({
       success: true,

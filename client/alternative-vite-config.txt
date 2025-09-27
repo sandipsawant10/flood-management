@@ -1,0 +1,29 @@
+# Alternative Vite Configuration (if main config doesn't work)
+
+# Replace the server section in vite.config.js with this if needed:
+
+server: {
+  port: 5173,
+  host: true, // Allow external connections
+  cors: true,
+  
+  // More aggressive WebSocket configuration
+  hmr: {
+    overlay: false, // Disable error overlay if causing issues
+  },
+  
+  // Alternative: Disable HMR WebSocket entirely for testing
+  // hmr: false,
+  
+  headers: {
+    "Cache-Control": "no-store",
+  },
+
+  proxy: {
+    "/api": {
+      target: "http://localhost:5003",
+      changeOrigin: true,
+      secure: false,
+    },
+  },
+},

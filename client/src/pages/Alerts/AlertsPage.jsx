@@ -142,10 +142,58 @@ const AlertsPage = () => {
 
   // Handle opening navigation for an alert
   const handleNavigate = (alert) => {
-    if (!alert.location || !alert.location.latitude) return;
+    console.log("handleNavigate called with alert:", alert);
 
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${alert.location.latitude},${alert.location.longitude}`;
-    window.open(url, "_blank");
+    if (!alert || !alert.location) {
+      console.error("Alert has no location data:", alert);
+      // Show user-friendly error message
+      window.alert("This alert doesn't have location information available.");
+      return;
+    }
+
+    // Handle GeoJSON coordinates format [longitude, latitude]
+    let latitude, longitude;
+
+    if (
+      alert.location.coordinates &&
+      Array.isArray(alert.location.coordinates) &&
+      alert.location.coordinates.length >= 2
+    ) {
+      // GeoJSON format: [longitude, latitude]
+      longitude = alert.location.coordinates[0];
+      latitude = alert.location.coordinates[1];
+    } else if (alert.location.latitude && alert.location.longitude) {
+      // Direct lat/lng fields (fallback)
+      latitude = alert.location.latitude;
+      longitude = alert.location.longitude;
+    } else {
+      console.error("Alert location is incomplete:", alert.location);
+      window.alert("Location coordinates are not available for this alert.");
+      return;
+    }
+
+    console.log("Opening directions to:", {
+      latitude,
+      longitude,
+      address: alert.location.address,
+    });
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+
+    try {
+      window.open(url, "_blank");
+    } catch (error) {
+      console.error("Error opening Google Maps:", error);
+      // Fallback: copy coordinates to clipboard
+      const coords = `${latitude},${longitude}`;
+      navigator.clipboard
+        .writeText(coords)
+        .then(() => {
+          window.alert(`Coordinates copied to clipboard: ${coords}`);
+        })
+        .catch(() => {
+          window.alert(`Unable to open maps. Coordinates: ${coords}`);
+        });
+    }
   };
 
   return (
@@ -196,9 +244,17 @@ const AlertsPage = () => {
               <Typography variant="body1">
                 {location
                   ? `Your location: ${location.latitude.toFixed(
-                      5
-                    )}, ${location.longitude.toFixed(5)}`
-                  : "Location unavailable"}
+                      7
+                    )}, ${location.longitude.toFixed(7)} (accuracy: ${
+                      location.accuracy
+                        ? Math.round(location.accuracy) + "m"
+                        : "unknown"
+                    })`
+                  : error
+                  ? `Location error: ${
+                      error.message || "Unable to get location"
+                    }`
+                  : "Getting location..."}
               </Typography>
             </Box>
 
@@ -510,10 +566,20 @@ const AlertsPage = () => {
                     Alert Location:
                   </Typography>
                   <Typography variant="body2">
-                    Latitude: {selectedAlert.location.latitude}
+                    Latitude:{" "}
+                    {selectedAlert.location.coordinates
+                      ? Number(selectedAlert.location.coordinates[1]).toFixed(7)
+                      : selectedAlert.location.latitude
+                      ? Number(selectedAlert.location.latitude).toFixed(7)
+                      : "N/A"}
                   </Typography>
                   <Typography variant="body2">
-                    Longitude: {selectedAlert.location.longitude}
+                    Longitude:{" "}
+                    {selectedAlert.location.coordinates
+                      ? Number(selectedAlert.location.coordinates[0]).toFixed(7)
+                      : selectedAlert.location.longitude
+                      ? Number(selectedAlert.location.longitude).toFixed(7)
+                      : "N/A"}
                   </Typography>
                   {selectedAlert.distance && (
                     <Typography variant="body2" sx={{ mt: 1 }}>

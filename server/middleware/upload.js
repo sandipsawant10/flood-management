@@ -7,13 +7,26 @@ cloudinary.config();
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: {
-    folder: "flood-reports",
-    allowed_formats: ["jpg", "jpeg", "png", "gif", "mp4", "avi", "mov"],
-    resource_type: "auto",
-    transformation: [
-      { width: 1200, height: 1200, crop: "limit", quality: "auto" },
-    ],
+  params: (req, file) => {
+    // Determine folder based on the route
+    let folder = "flood-reports"; // default
+
+    if (req.route && req.route.path) {
+      if (req.route.path.includes("water-issues")) {
+        folder = "water-issues";
+      } else if (req.route.path.includes("flood-reports")) {
+        folder = "flood-reports";
+      }
+    }
+
+    return {
+      folder: folder,
+      allowed_formats: ["jpg", "jpeg", "png", "gif", "mp4", "avi", "mov"],
+      resource_type: "auto",
+      transformation: [
+        { width: 1200, height: 1200, crop: "limit", quality: "auto" },
+      ],
+    };
   },
 });
 

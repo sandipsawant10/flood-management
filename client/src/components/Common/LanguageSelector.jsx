@@ -23,6 +23,7 @@ const LanguageSelector = ({ className = "", compact = false }) => {
 
   // Handle language selection
   const handleLanguageSelect = (languageCode) => {
+    console.log("LanguageSelector: Selected language:", languageCode);
     changeLanguage(languageCode);
     setIsOpen(false);
   };

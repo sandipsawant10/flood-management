@@ -72,7 +72,8 @@ const ReportFlood = () => {
 
   // Automatically set depth based on waterLevel if depth is not manually entered
   useEffect(() => {
-    if (!watchDepth) { // Only auto-fill if depth is not already set by the user
+    if (!watchDepth) {
+      // Only auto-fill if depth is not already set by the user
       let newDepth = "";
       if (watchWaterLevel === "ankle-deep") newDepth = 0.15;
       else if (watchWaterLevel === "knee-deep") newDepth = 0.5;
@@ -178,7 +179,11 @@ const ReportFlood = () => {
       navigate("/reports");
     } catch (error) {
       console.error("Error submitting report:", error);
-      toast.error(error.response?.data?.message || error.message || "Failed to submit report");
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to submit report"
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -256,11 +261,11 @@ const ReportFlood = () => {
                   required: "District is required",
                 })}
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 shadow-sm placeholder-gray-400"
                 placeholder="Enter district name"
               />
               {errors.location?.district && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-red-700 font-medium text-sm mt-1 bg-red-50 px-2 py-1 rounded">
                   {errors.location.district.message}
                 </p>
               )}
@@ -273,17 +278,19 @@ const ReportFlood = () => {
                 {...register("location.state", {
                   required: "State is required",
                 })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 shadow-sm"
               >
-                <option value="">Select State</option>
+                <option value="" className="text-gray-500">
+                  Select State
+                </option>
                 {indianStates.map((state) => (
-                  <option key={state} value={state}>
+                  <option key={state} value={state} className="text-gray-900">
                     {state}
                   </option>
                 ))}
               </select>
               {errors.location?.state && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-red-700 font-medium text-sm mt-1 bg-red-50 px-2 py-1 rounded">
                   {errors.location.state.message}
                 </p>
               )}
@@ -296,7 +303,7 @@ const ReportFlood = () => {
             <textarea
               {...register("location.address")}
               rows={2}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 shadow-sm placeholder-gray-400"
               placeholder="Describe the exact location or nearby landmarks"
             />
           </div>
@@ -339,16 +346,26 @@ const ReportFlood = () => {
               </label>
               <select
                 {...register("severity", { required: "Severity is required" })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 shadow-sm"
               >
-                <option value="">Select Severity</option>
-                <option value="low">Low - Minor flooding</option>
-                <option value="medium">Medium - Moderate flooding</option>
-                <option value="high">High - Significant flooding</option>
-                <option value="critical">Critical - Severe flooding</option>
+                <option value="" className="text-gray-500">
+                  Select Severity
+                </option>
+                <option value="low" className="text-gray-900">
+                  Low - Minor flooding
+                </option>
+                <option value="medium" className="text-gray-900">
+                  Medium - Moderate flooding
+                </option>
+                <option value="high" className="text-gray-900">
+                  High - Significant flooding
+                </option>
+                <option value="critical" className="text-gray-900">
+                  Critical - Severe flooding
+                </option>
               </select>
               {errors.severity && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-red-700 font-medium text-sm mt-1 bg-red-50 px-2 py-1 rounded">
                   {errors.severity.message}
                 </p>
               )}
@@ -360,23 +377,40 @@ const ReportFlood = () => {
               <select
                 id="waterLevel"
                 {...register("waterLevel", { required: true })}
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-white text-gray-900 shadow-sm"
               >
-                <option value="">Select water level</option>
-                <option value="ankle-deep">Ankle-deep</option>
-                <option value="knee-deep">Knee-deep</option>
-                <option value="waist-deep">Waist-deep</option>
-                <option value="chest-deep">Chest-deep</option>
-                <option value="above-head">Above Head</option>
+                <option value="" className="text-gray-500">
+                  Select water level
+                </option>
+                <option value="ankle-deep" className="text-gray-900">
+                  Ankle-deep
+                </option>
+                <option value="knee-deep" className="text-gray-900">
+                  Knee-deep
+                </option>
+                <option value="waist-deep" className="text-gray-900">
+                  Waist-deep
+                </option>
+                <option value="chest-deep" className="text-gray-900">
+                  Chest-deep
+                </option>
+                <option value="above-head" className="text-gray-900">
+                  Above Head
+                </option>
               </select>
               {errors.waterLevel && (
-                <p className="mt-2 text-sm text-red-600">Water level is required.</p>
+                <p className="mt-2 text-sm text-red-700 font-medium bg-red-50 px-2 py-1 rounded">
+                  Water level is required.
+                </p>
               )}
             </div>
           </div>
 
           <div>
-            <label htmlFor="depth" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="depth"
+              className="block text-sm font-medium text-gray-700"
+            >
               Water Depth (meters)
             </label>
             <input
@@ -386,19 +420,21 @@ const ReportFlood = () => {
               min="0"
               {...register("depth", { valueAsNumber: true, min: 0 })}
               placeholder="Enter water depth in meters"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-white text-gray-900 shadow-sm placeholder-gray-400"
             />
             {errors.depth && (
-              <p className="mt-2 text-sm text-red-600">Depth must be a positive number.</p>
+              <p className="mt-2 text-sm text-red-700 font-medium bg-red-50 px-2 py-1 rounded">
+                Depth must be a positive number.
+              </p>
             )}
           </div>
 
           {/* Urgency Slider */}
           <div className="mb-6 relative">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               Urgency Level
             </label>
-            <div className="relative">
+            <div className="relative bg-gray-50 p-3 rounded-lg">
               <input
                 type="range"
                 min="1"
@@ -406,15 +442,21 @@ const ReportFlood = () => {
                 {...register("urgencyLevel")}
                 value={watchUrgency}
                 readOnly
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-not-allowed"
+                className="w-full h-3 bg-gray-300 rounded-lg appearance-none cursor-not-allowed slider"
               />
               <div
-                className="absolute -top-6 left-0 transform"
+                className="absolute -top-2 left-0 transform transition-all duration-200"
                 style={{ left: `${((watchUrgency || 5) - 1) * 10}%` }}
               >
-                <div className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+                <div className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full shadow-lg">
                   {watchUrgency}
                 </div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-600 mt-2">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+                <span>Critical</span>
               </div>
             </div>
           </div>
@@ -432,11 +474,11 @@ const ReportFlood = () => {
                 },
               })}
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 shadow-sm placeholder-gray-400"
               placeholder="Describe the flood situation, affected areas, and current conditions..."
             />
             {errors.description && (
-              <p className="text-red-600 text-sm mt-1">
+              <p className="text-red-700 font-medium text-sm mt-1 bg-red-50 px-2 py-1 rounded">
                 {errors.description.message}
               </p>
             )}
@@ -450,22 +492,24 @@ const ReportFlood = () => {
           </h2>
           <div
             {...getRootProps()}
-            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors shadow-sm ${
               isDragActive
                 ? "border-blue-400 bg-blue-50"
                 : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
             }`}
           >
             <input {...getInputProps()} />
-            <Upload className="w-8 h-8 text-gray-400 mx-auto mb-4" />
+            <Upload className="w-8 h-8 text-gray-500 mx-auto mb-4" />
             {isDragActive ? (
-              <p className="text-blue-600">Drop the files here...</p>
+              <p className="text-blue-700 font-medium">
+                Drop the files here...
+              </p>
             ) : (
               <>
-                <p className="text-gray-600 mb-2">
+                <p className="text-gray-700 font-medium mb-2">
                   Drag & drop photos or videos here, or click to select
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-600">
                   Supports: JPG, PNG, MP4, WebM (Max 10MB each)
                 </p>
               </>
@@ -508,9 +552,16 @@ const ReportFlood = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+          className="w-full py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all duration-200"
         >
-          {isSubmitting ? "Submitting..." : "Submit Report"}
+          {isSubmitting ? (
+            <div className="flex items-center justify-center">
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Submitting...
+            </div>
+          ) : (
+            "Submit Report"
+          )}
         </button>
       </form>
     </div>

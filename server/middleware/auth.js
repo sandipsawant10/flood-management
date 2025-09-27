@@ -12,18 +12,24 @@ const authorize = (...roles) => {
       );
     }
 
+    // Flatten roles array if an array was passed as first argument
+    const flattenedRoles =
+      roles.length === 1 && Array.isArray(roles[0]) ? roles[0] : roles;
+
     // Check if user has any of the required roles (either from role field or roles array)
     const userRoles = Array.isArray(req.user.roles)
       ? req.user.roles
       : [req.user.role];
-    const hasAuthorization = roles.some((role) => userRoles.includes(role));
+    const hasAuthorization = flattenedRoles.some((role) =>
+      userRoles.includes(role)
+    );
 
     if (!hasAuthorization) {
       return next(
         new AuthenticationError(
           "Access denied. You do not have permission to perform this action",
           {
-            requiredRoles: roles,
+            requiredRoles: flattenedRoles,
             userRoles,
           }
         )

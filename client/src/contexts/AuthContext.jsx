@@ -3,7 +3,7 @@ import axiosInstance from "../services/axiosConfig";
 import { handleApiError } from "../utils/errorHandler";
 import { setAuthToken, clearAuthToken } from "../utils/tokenUtils";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 // Helper to get session data from localStorage or sessionStorage
 const getStoredSessionData = () => {
@@ -189,9 +189,15 @@ export const AuthProvider = ({ children }) => {
 
           // Load user profile
           try {
+            console.log("AuthContext: Loading user profile...");
             const response = await axiosInstance.get("/auth/profile");
+            console.log("AuthContext: Profile response:", response.data);
             if (!isMounted) return;
             setUser(response.data.user);
+            console.log(
+              "AuthContext: User set from profile:",
+              response.data.user
+            );
           } catch (profileError) {
             console.error("Profile loading failed:", profileError);
             // Clear invalid session
@@ -200,6 +206,7 @@ export const AuthProvider = ({ children }) => {
             delete axiosInstance.defaults.headers.common["Authorization"];
             if (!isMounted) return;
             setUser(null);
+            console.log("AuthContext: User cleared due to profile error");
           }
         } else {
           // No stored session found
@@ -229,11 +236,13 @@ export const AuthProvider = ({ children }) => {
   // Handle login process
   const login = async (email, password, rememberMe = false) => {
     try {
+      console.log("AuthContext: Starting login for:", email);
       const response = await axiosInstance.post("/auth/login", {
         login: email,
         password,
       });
 
+      console.log("AuthContext: Login response:", response.data);
       const { token, refreshToken, user, expiresIn } = response.data;
 
       // Calculate token expiry time
@@ -252,6 +261,7 @@ export const AuthProvider = ({ children }) => {
       storageMethod.setItem("sessionData", JSON.stringify(sessionData));
 
       // Also store token directly for backward compatibility
+      console.log("AuthContext: Setting auth token:", token);
       setAuthToken(token);
 
       // Set axios auth header
@@ -260,9 +270,11 @@ export const AuthProvider = ({ children }) => {
       ] = `Bearer ${token}`;
 
       // Set user state
+      console.log("AuthContext: Setting user:", user);
       setUser(user);
       setTokenExpiry(tokenExpiry);
 
+      console.log("AuthContext: Login successful, returning success");
       return { success: true, user };
     } catch (error) {
       const parsedError = handleApiError(error, { showToast: true });
@@ -317,5 +329,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-
-export { AuthContext };

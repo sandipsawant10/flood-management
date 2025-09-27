@@ -4,17 +4,47 @@ const { authorize } = require("../middleware/auth");
 const emergencyService = require("../services/emergencyService");
 const Emergency = require("../models/Emergency");
 
+// Cache emergency contacts for better performance
+let cachedContacts = null;
+let cacheTimestamp = null;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 /**
  * @route   GET /api/emergency-services/contacts
  * @desc    Get emergency service contacts
  * @access  Public
  */
-router.get("/contacts", async (req, res) => {
+router.get("/contacts", (req, res) => {
+  const startTime = Date.now();
+
   try {
+    // Check if cached data is still valid
+    const now = Date.now();
+    if (
+      cachedContacts &&
+      cacheTimestamp &&
+      now - cacheTimestamp < CACHE_DURATION
+    ) {
+      const responseTime = Date.now() - startTime;
+      console.log(`Emergency contacts served from cache in ${responseTime}ms`);
+      return res.json(cachedContacts);
+    }
+
+    // Get fresh contacts and cache them
     const contacts = emergencyService.getEmergencyContacts();
+    cachedContacts = contacts;
+    cacheTimestamp = now;
+
+    const responseTime = Date.now() - startTime;
+    console.log(`Emergency contacts generated fresh in ${responseTime}ms`);
+
     res.json(contacts);
   } catch (error) {
-    console.error("Error fetching emergency contacts:", error);
+    const responseTime = Date.now() - startTime;
+    console.error(
+      `Error fetching emergency contacts after ${responseTime}ms:`,
+      error
+    );
     res.status(500).json({ message: "Error fetching emergency contacts" });
   }
 });
@@ -108,12 +138,10 @@ router.get("/status/:emergencyId", authorize(), async (req, res) => {
     res.json(statusUpdates);
   } catch (error) {
     console.error("Error fetching emergency status:", error);
-    res
-      .status(500)
-      .json({
-        message: "Failed to get emergency status updates",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Failed to get emergency status updates",
+      error: error.message,
+    });
   }
 });
 
@@ -133,12 +161,10 @@ router.put(
       res.json(result);
     } catch (error) {
       console.error("Error syncing emergency status:", error);
-      res
-        .status(500)
-        .json({
-          message: "Failed to sync emergency status",
-          error: error.message,
-        });
+      res.status(500).json({
+        message: "Failed to sync emergency status",
+        error: error.message,
+      });
     }
   }
 );
@@ -174,12 +200,10 @@ router.get("/resources", async (req, res) => {
     res.json(resources);
   } catch (error) {
     console.error("Error fetching emergency resources:", error);
-    res
-      .status(500)
-      .json({
-        message: "Failed to get emergency resources",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Failed to get emergency resources",
+      error: error.message,
+    });
   }
 });
 

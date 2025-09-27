@@ -47,10 +47,15 @@ const LanguageProvider = ({ children }) => {
   // Change language function
   const changeLanguage = async (languageCode) => {
     try {
+      console.log("LanguageContext: Changing language to:", languageCode);
       setIsLoading(true);
       await languageService.changeLanguage(languageCode);
       setCurrentLanguage(languageCode);
       setIsRTL(languageService.isRTL(languageCode));
+      console.log(
+        "LanguageContext: Language changed successfully to:",
+        languageCode
+      );
       return true;
     } catch (error) {
       console.error("Failed to change language:", error);
@@ -61,7 +66,16 @@ const LanguageProvider = ({ children }) => {
   };
 
   // Translate function (shorthand for languageService.translate)
-  const translate = (key, params) => languageService.translate(key, params);
+  const translate = (key, params) => {
+    const result = languageService.translate(key, params);
+    if (key.startsWith("hero.")) {
+      console.log(
+        `LanguageContext: Translating "${key}" in ${currentLanguage}:`,
+        result
+      );
+    }
+    return result;
+  };
 
   // Context value
   const contextValue = {

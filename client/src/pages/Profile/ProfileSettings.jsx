@@ -11,7 +11,6 @@ import {
   Bell,
   Shield,
   Save,
-  Camera,
   Loader2,
   CheckCircle,
   Award,
@@ -27,7 +26,6 @@ const ProfileSettings = () => {
   const { user, updateProfile, isLoading } = useAuthStore();
   const [activeTab, setActiveTab] = useState("profile");
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
 
   const {
     register,
@@ -82,7 +80,6 @@ const ProfileSettings = () => {
 
       if (data.name && data.name !== user.name) profileData.name = data.name;
       if (Object.keys(location).length > 0) profileData.location = location;
-      if (profileImage) profileData.avatar = profileImage;
 
       // Prevent sending empty object
       if (Object.keys(profileData).length === 0) {
@@ -119,22 +116,6 @@ const ProfileSettings = () => {
     } catch (err) {
       toast.error("An unexpected error occurred");
       console.error("Notification update error:", err);
-    }
-  };
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("Image size should be less than 5MB");
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setProfileImage(e.target.result); // Base64 string
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -180,55 +161,6 @@ const ProfileSettings = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-6 text-white">
-        <div className="flex items-center">
-          <div className="relative">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-              {profileImage || user?.avatar ? (
-                <img
-                  src={profileImage || user.avatar}
-                  alt="Profile"
-                  className="w-full h-full rounded-full object-cover"
-                />
-              ) : (
-                <User className="w-10 h-10 text-white" />
-              )}
-            </div>
-            <label className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1 cursor-pointer hover:bg-blue-800">
-              <Camera className="w-4 h-4 text-white" />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-            </label>
-          </div>
-
-          <div className="ml-6">
-            <h1 className="text-3xl font-bold">
-              {user?.name || "User Profile"}
-            </h1>
-            <p className="text-blue-100 mt-1">{user?.email}</p>
-            <div className="flex items-center mt-2 space-x-4">
-              <div className="flex items-center">
-                <Award className="w-4 h-4 mr-1" />
-                <span className="text-sm">
-                  Trust Score: {user?.trustScore || 100}
-                </span>
-              </div>
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-1" />
-                <span className="text-sm">
-                  Member since {new Date(user?.createdAt).toLocaleDateString()}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Navigation Tabs */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="border-b border-gray-200">

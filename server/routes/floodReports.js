@@ -11,6 +11,100 @@ const newsService = require("../services/newsService");
 const socialService = require("../services/socialService");
 const router = express.Router();
 
+// Get flood reports (public endpoint with optional filters)
+router.get(
+  "/",
+  [
+    query("status")
+      .optional()
+      .isIn(["verified", "pending"])
+      .withMessage("Invalid report status"),
+    query("severity")
+      .optional()
+      .isIn(["low", "medium", "high", "critical"])
+      .withMessage("Invalid severity level"),
+    query("district")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("District cannot be empty"),
+    query("state")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("State cannot be empty"),
+    query("page")
+      .optional()
+      .isInt({ min: 1 })
+      .toInt()
+      .withMessage("Page must be a positive integer"),
+    query("limit")
+      .optional()
+      .isInt({ min: 1, max: 50 })
+      .toInt()
+      .withMessage("Limit must be between 1 and 50"),
+    query("sortBy")
+      .optional()
+      .isIn(["createdAt", "severity", "waterLevel", "urgencyLevel", "newest"])
+      .withMessage("Invalid sort by field"),
+    query("sortOrder")
+      .optional()
+      .isIn(["asc", "desc"])
+      .withMessage("Invalid sort order"),
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const {
+        status,
+        severity,
+        district,
+        state,
+        page = 1,
+        limit = 20,
+        sortBy = "createdAt",
+        sortOrder = "desc",
+      } = req.query;
+
+      // Build filter - only show verified reports for public access
+      const filter = { verificationStatus: "verified" };
+
+      if (status && status === "verified") filter.verificationStatus = status;
+      if (severity) filter.severity = severity;
+      if (district) filter["location.district"] = new RegExp(district, "i");
+      if (state) filter["location.state"] = new RegExp(state, "i");
+
+      // Handle "newest" sortBy alias
+      const actualSortBy = sortBy === "newest" ? "createdAt" : sortBy;
+      const sort = {};
+      sort[actualSortBy] = sortOrder === "desc" ? -1 : 1;
+
+      const floodReports = await FloodReport.find(filter)
+        .populate("reportedBy", "name trustScore")
+        .select("-verification -weatherConditions") // Hide sensitive verification data
+        .sort(sort)
+        .skip((page - 1) * limit)
+        .limit(limit);
+
+      const totalReports = await FloodReport.countDocuments(filter);
+
+      res.status(200).json({
+        reports: floodReports,
+        currentPage: page,
+        totalPages: Math.ceil(totalReports / limit),
+        totalReports,
+      });
+    } catch (error) {
+      console.error("Error fetching public flood reports:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  }
+);
+
 // Submit new flood report
 router.post(
   "/",
@@ -30,95 +124,113 @@ router.post(
       }
 
       const { location, severity, waterLevel, description, depth } = req.body;
-      const reportedBy = req.user.userId;
+      const reportedBy = req.user.id || req.user._id;
       const mediaFiles = req.files ? req.files.map((file) => file.path) : [];
 
-      // Fetch weather data for the reported location (with timeout)
+      // Debug location data structure
+      console.log("📍 LOCATION DEBUG:", {
+        locationRaw: location,
+        locationType: typeof location,
+        locationKeys: location ? Object.keys(location) : "null",
+        coordinates: location?.coordinates,
+        latitude: location?.latitude,
+        longitude: location?.longitude,
+        lat: location?.lat,
+        lng: location?.lng,
+        fullBody: req.body,
+      });
+
+      // Initialize default values for fast response
       let weatherConditions = {};
-      let weatherVerification = { status: "pending", summary: "N/A" };
+      let weatherVerification = { status: "pending", summary: "Processing..." };
+      let newsVerification = { status: "pending", summary: "Processing..." };
+
+      // Run external API calls in parallel with shorter timeouts for faster response
+      const apiCalls = [];
+
       if (location && location.latitude && location.longitude) {
-        try {
-          // Add timeout to prevent hanging
-          const weatherPromise = Promise.race([
-            weatherService.getCurrentWeather(
-              location.latitude,
-              location.longitude
-            ),
-            new Promise((_, reject) =>
-              setTimeout(() => reject(new Error("Weather API timeout")), 5000)
-            ),
-          ]);
+        const weatherPromise = Promise.race([
+          weatherService
+            .getCurrentWeather(location.latitude, location.longitude)
+            .then((weatherData) => {
+              weatherConditions = weatherData;
+              return weatherService.getFloodRiskLevel(
+                location.latitude,
+                location.longitude,
+                weatherData
+              );
+            })
+            .then((floodRisk) => ({
+              type: "weather",
+              status: floodRisk.level === "unknown" ? "error" : "verified",
+              summary: `Weather risk: ${floodRisk.level}`,
+              snapshot: weatherConditions,
+            })),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Weather API timeout")), 3000)
+          ),
+        ]).catch((error) => ({
+          type: "weather",
+          status: "error",
+          summary: "Weather check unavailable",
+        }));
 
-          const weatherData = await weatherPromise;
-          weatherConditions = weatherData; // Store full weather data
-
-          // Basic weather verification logic (with timeout)
-          const floodRiskPromise = Promise.race([
-            weatherService.getFloodRiskAssessment(
-              location.latitude,
-              location.longitude,
-              weatherData
-            ),
-            new Promise((_, reject) =>
-              setTimeout(
-                () => reject(new Error("Flood risk API timeout")),
-                3000
-              )
-            ),
-          ]);
-
-          const floodRisk = await floodRiskPromise;
-          weatherVerification = {
-            status: floodRisk.status,
-            summary: floodRisk.summary,
-            snapshot: weatherData, // Store the raw weather data
-          };
-        } catch (weatherError) {
-          console.warn("Could not fetch weather data:", weatherError.message);
-          weatherVerification = {
-            status: "error",
-            summary: "Failed to fetch weather data",
-          };
-        }
+        apiCalls.push(weatherPromise);
       }
 
-      // Fetch news data for the reported location and time (with timeout)
-      let newsVerification = { status: "pending", summary: "N/A" };
-      try {
-        if (location && location.district && location.state) {
-          // Add timeout to prevent hanging
-          const newsPromise = Promise.race([
-            newsService.getFloodNews(
+      if (location && location.district && location.state) {
+        const newsPromise = Promise.race([
+          newsService
+            .getFloodNews(
               `${location.district} ${location.state} flood`,
               location.district,
               new Date()
-            ),
+            )
+            .then((newsData) => ({
+              type: "news",
+              status: newsData.status || "not-matched",
+              summary: newsData.summary || "No relevant news found.",
+              snapshot: newsData,
+            })),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("News API timeout")), 3000)
+          ),
+        ]).catch((error) => ({
+          type: "news",
+          status: "error",
+          summary: "News check unavailable",
+        }));
+
+        apiCalls.push(newsPromise);
+      }
+
+      // Wait for API calls with overall timeout of 5 seconds max
+      if (apiCalls.length > 0) {
+        try {
+          const results = await Promise.race([
+            Promise.allSettled(apiCalls),
             new Promise((_, reject) =>
-              setTimeout(() => reject(new Error("News API timeout")), 5000)
+              setTimeout(() => reject(new Error("Overall API timeout")), 5000)
             ),
           ]);
 
-          const newsData = await newsPromise;
-          if (newsData && newsData.articles && newsData.articles.length > 0) {
-            newsVerification = {
-              status: "verified",
-              summary: `${newsData.articles.length} relevant news articles found.`, // Updated message
-              snapshot: newsData, // Store the raw news data
-            };
-          } else {
-            newsVerification = {
-              status: "not-matched",
-              summary: "No relevant news found.",
-              snapshot: newsData, // Store the raw news data
-            };
-          }
+          results.forEach((result) => {
+            if (result.status === "fulfilled" && result.value) {
+              if (result.value.type === "weather") {
+                weatherVerification = result.value;
+              } else if (result.value.type === "news") {
+                newsVerification = result.value;
+              }
+            }
+          });
+        } catch (error) {
+          console.warn("API calls timed out, using defaults:", error.message);
+          weatherVerification = {
+            status: "pending",
+            summary: "API unavailable",
+          };
+          newsVerification = { status: "pending", summary: "API unavailable" };
         }
-      } catch (newsError) {
-        console.warn("Could not fetch news data:", newsError.message);
-        newsVerification = {
-          status: "error",
-          summary: "Failed to fetch news data",
-        };
       }
 
       // Fetch social media data (stubbed for Instagram)
@@ -163,11 +275,69 @@ router.post(
         overallStatus = "manual-review";
       }
 
+      // Handle different coordinate formats and ensure they're valid numbers
+      let longitude, latitude;
+
+      // Try to extract coordinates from various possible formats
+      // Check all possible coordinate sources
+      const possibleSources = [
+        // Standard coordinates array
+        location?.coordinates,
+        // FormData array (location[coordinates][] becomes req.body['location[coordinates]'])
+        req.body["location[coordinates]"],
+        // Direct lat/lng fields
+        location?.longitude !== undefined && location?.latitude !== undefined
+          ? [location.longitude, location.latitude]
+          : null,
+        location?.lng !== undefined && location?.lat !== undefined
+          ? [location.lng, location.lat]
+          : null,
+        // Check if coordinates are in a different structure
+        req.body.coordinates,
+        // Direct coordinate fields in body
+        req.body.longitude !== undefined && req.body.latitude !== undefined
+          ? [req.body.longitude, req.body.latitude]
+          : null,
+      ];
+
+      // Find the first valid coordinate pair
+      for (const coords of possibleSources) {
+        if (coords && Array.isArray(coords) && coords.length >= 2) {
+          const lng = parseFloat(coords[0]);
+          const lat = parseFloat(coords[1]);
+          if (!isNaN(lng) && !isNaN(lat)) {
+            longitude = lng;
+            latitude = lat;
+            break;
+          }
+        }
+      }
+
+      // Validate coordinates
+      if (
+        isNaN(longitude) ||
+        isNaN(latitude) ||
+        longitude === null ||
+        latitude === null
+      ) {
+        console.error("❌ INVALID COORDINATES:", {
+          longitude,
+          latitude,
+          location,
+        });
+        return res.status(400).json({
+          message: "Invalid coordinates provided",
+          error: "Latitude and longitude must be valid numbers",
+        });
+      }
+
+      console.log("✅ VALID COORDINATES:", { longitude, latitude });
+
       const newReport = new FloodReport({
         reportedBy,
         location: {
           type: "Point",
-          coordinates: [location.longitude, location.latitude],
+          coordinates: [longitude, latitude],
           address: location.address,
           district: location.district,
           state: location.state,
@@ -180,7 +350,8 @@ router.post(
         mediaFiles,
         weatherConditions,
         verification: {
-          overallStatus: overallStatus,
+          status: overallStatus,
+          summary: `Weather: ${weatherVerification.summary}, News: ${newsVerification.summary}`,
           weather: weatherVerification,
           news: newsVerification,
           social: socialVerification,
@@ -197,8 +368,19 @@ router.post(
 
       res.status(201).json(newReport);
     } catch (error) {
-      console.error("Error submitting flood report:", error);
-      res.status(500).json({ message: "Server error" });
+      console.error("❌ FLOOD REPORT SUBMISSION ERROR:", {
+        message: error.message,
+        name: error.name,
+        stack: error.stack?.split("\n").slice(0, 5).join("\n"),
+        requestData: {
+          severity: req.body.severity,
+          waterLevel: req.body.waterLevel,
+          location: req.body.location,
+          hasFiles: req.files?.length > 0,
+          userId: req.user?.id || req.user?._id,
+        },
+      });
+      res.status(500).json({ message: "Server error", details: error.message });
     }
   }
 );

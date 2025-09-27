@@ -7,7 +7,7 @@ import {
   AlertTriangle,
   User,
   Mail,
-  Phone,
+  Phone as PhoneIcon,
   Lock,
   MapPin,
   Eye,
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import AppLogo from "../../components/Branding/AppLogo";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -174,35 +175,48 @@ const Register = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
-            <AlertTriangle className="w-8 h-8 text-white" />
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-slate-950">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
+      <div
+        className="absolute inset-0 -z-0 opacity-30"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 60%)",
+        }}
+      />
+      <div
+        className="absolute -z-0 pointer-events-none inset-0 mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "linear-gradient(115deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%)",
+        }}
+      />
+      <div className="w-full max-w-2xl mx-auto px-6 py-10">
+        <div className="bg-white/90 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/40 dark:border-slate-800 p-8">
+          <div className="flex flex-col items-center mb-6">
+            <AppLogo size={56} />
+            <h1 className="mt-4 text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-slate-100 dark:to-slate-400">
+              Create your account
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Join Aqua Assists and start contributing
+            </p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+              Already registered?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-sky-600 hover:text-sky-500"
+              >
+                Sign in
+              </Link>
+            </p>
           </div>
-        </div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Join Aqua Assists
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="font-medium text-primary-600 hover:text-primary-500"
-          >
-            Sign in here
-          </Link>
-        </p>
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* Personal Information */}
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300"
               >
                 Full Name
               </label>
@@ -231,7 +245,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300"
               >
                 Email Address
               </label>
@@ -261,11 +275,14 @@ const Register = () => {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300"
               >
                 Phone Number
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
+                <div className="absolute left-3 top-2.5 h-4 w-4 text-gray-400">
+                  <PhoneIcon className="h-4 w-4" />
+                </div>
                 <Controller
                   name="phone"
                   control={control}
@@ -279,7 +296,7 @@ const Register = () => {
                       {...field}
                       defaultCountry="IN"
                       placeholder="Enter phone number"
-                      className="block w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                      className="pl-10 block w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
                     />
                   )}
                 />
@@ -294,7 +311,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300"
               >
                 Password
               </label>
@@ -334,7 +351,7 @@ const Register = () => {
 
             {/* Location Information */}
             <div className="border-t border-gray-200 pt-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                 Location Information
               </h3>
 
@@ -364,7 +381,7 @@ const Register = () => {
                 type="button"
                 onClick={getCurrentLocation}
                 disabled={locationLoading}
-                className="mb-4 inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-primary-600 bg-primary-100 hover:bg-primary-200 disabled:opacity-50"
+                className="mb-4 inline-flex items-center px-3 py-2 border border-sky-200 text-sm font-medium rounded-md text-sky-700 bg-sky-50 hover:bg-sky-100 disabled:opacity-50"
               >
                 {locationLoading ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -378,7 +395,7 @@ const Register = () => {
                 <div>
                   <label
                     htmlFor="district"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
                     District *
                   </label>
@@ -400,7 +417,7 @@ const Register = () => {
                 <div>
                   <label
                     htmlFor="state"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-slate-300"
                   >
                     State *
                   </label>
@@ -428,7 +445,7 @@ const Register = () => {
               <div className="mt-4">
                 <label
                   htmlFor="address"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 dark:text-slate-300"
                 >
                   Address/Landmark (Optional)
                 </label>
@@ -451,7 +468,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <>
@@ -488,6 +505,9 @@ const Register = () => {
             </div>
           </div>
         </div>
+        <p className="mt-8 text-center text-xs text-slate-300 dark:text-slate-600">
+          &copy; {new Date().getFullYear()} Aqua Assists
+        </p>
       </div>
     </div>
   );

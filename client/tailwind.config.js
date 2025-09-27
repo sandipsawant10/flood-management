@@ -1,9 +1,21 @@
+/* eslint-disable */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        app: {
+          base: "rgb(var(--app-base) / <alpha-value>)",
+          surface: "rgb(var(--app-surface) / <alpha-value>)",
+          border: "rgb(var(--app-border) / <alpha-value>)",
+          text: "rgb(var(--app-text) / <alpha-value>)",
+          muted: "rgb(var(--app-muted) / <alpha-value>)",
+          accent: "rgb(var(--app-accent) / <alpha-value>)",
+          "accent-foreground":
+            "rgb(var(--app-accent-foreground) / <alpha-value>)",
+        },
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",

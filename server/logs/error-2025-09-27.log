@@ -1,0 +1,2273 @@
+2025-09-26T19:02:41.231Z [error]: Route not found with ID: /api/admin/municipalities?status=&state=&search= [fc105e9a-6655-4abb-8870-c96bd0321c67]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "fc105e9a-6655-4abb-8870-c96bd0321c67",
+    "url": "/api/admin/municipalities?status=&state=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "state": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/municipalities?status=&state=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/municipalities?status=&state=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:02:49.917Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [58925902-0b03-486c-99c9-5b36a4be7b7f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "58925902-0b03-486c-99c9-5b36a4be7b7f",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:05:28.852Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [a0573000-da0d-47e7-a6c4-8762f6e107ce]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "a0573000-da0d-47e7-a6c4-8762f6e107ce",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:05:35.775Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [c0bd8b6f-ab80-4865-8193-216d1a36601c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "c0bd8b6f-ab80-4865-8193-216d1a36601c",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:05:44.316Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [03862ee7-fbb9-4f83-9445-097654252ec7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "03862ee7-fbb9-4f83-9445-097654252ec7",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:05:56.303Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [6f5e6419-25a5-4294-aea2-6e188c8adcb3]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "6f5e6419-25a5-4294-aea2-6e188c8adcb3",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:06:15.355Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [dad31f00-13bd-468e-9ca9-aa5e8d84b2fa]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "dad31f00-13bd-468e-9ca9-aa5e8d84b2fa",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-26T19:06:29.347Z [error]: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search= [0607d626-bf77-4f63-934d-9d6eda2573ef]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "0607d626-bf77-4f63-934d-9d6eda2573ef",
+    "url": "/api/admin/rescuers?status=&specialty=&availability=&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "",
+      "specialty": "",
+      "availability": "",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/rescuers?status=&specialty=&availability=&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T04:50:21.395Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T06:05:57.681Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:265:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Sat Sep 27 2025 11:35:57 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 12316,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 115384320,
+        "heapTotal": 73371648,
+        "heapUsed": 50381904,
+        "external": 21718801,
+        "arrayBuffers": 18345091
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 4620.906
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 265,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T06:05:57.687Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-27T06:08:55.304Z [error]: Route not found with ID: /api/auth/me [544c65ae-89b3-4c48-a9e3-8aae94d11aa7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "544c65ae-89b3-4c48-a9e3-8aae94d11aa7",
+    "url": "/api/auth/me",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/auth/me",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/auth/me\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T06:14:38.731Z [error]: No authentication token provided. Please log in to access this resource [71b1ddb8-b00b-48a3-ac59-f68ac0c25d28]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "71b1ddb8-b00b-48a3-ac59-f68ac0c25d28",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "axios/1.11.0",
+    "userId": "anonymous",
+    "requestBody": {
+      "location": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York, NY"
+      },
+      "severity": "medium",
+      "waterLevel": "knee-deep",
+      "description": "Test flood report submission"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T06:24:00.098Z [error]: MongoDB Connection Error: querySrv ETIMEOUT _mongodb._tcp.completecoding.ny9acgk.mongodb.net
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "_mongodb._tcp.completecoding.ny9acgk.mongodb.net",
+    "environment": "development",
+    "code": "ETIMEOUT",
+    "syscall": "querySrv",
+    "stack": "Error: querySrv ETIMEOUT _mongodb._tcp.completecoding.ny9acgk.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)"
+  }
+}
+2025-09-27T06:32:04.995Z [error]: Route not found with ID: /api/auth/me [3c770701-1ccc-4e58-a5c2-57e50a75bb64]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3c770701-1ccc-4e58-a5c2-57e50a75bb64",
+    "url": "/api/auth/me",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/auth/me",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/auth/me\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T06:34:30.931Z [error]: unhandledRejection: (no error message)
+  No stack trace
+{
+  "metadata": {
+    "error": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    },
+    "rejection": true,
+    "date": "Sat Sep 27 2025 12:04:30 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 18640,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 92082176,
+        "heapTotal": 44797952,
+        "heapUsed": 41711064,
+        "external": 22072702,
+        "arrayBuffers": 18568468
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 6334.156
+    },
+    "trace": [],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T06:34:30.936Z [error]: UNHANDLED REJECTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "promise": "[object Promise]",
+    "reason": {
+      "error": {
+        "message": "Request Timeout",
+        "http_code": 499,
+        "name": "TimeoutError"
+      }
+    }
+  }
+}
+2025-09-27T06:34:30.939Z [error]: Request Timeout [cd6ab3db-fb0e-4038-81ad-b448a960651e]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "cd6ab3db-fb0e-4038-81ad-b448a960651e",
+    "url": "/api/flood-reports",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68cd02e081693953a94248ff",
+    "requestBody": {
+      "location": {
+        "district": "Pune",
+        "state": "Maharashtra",
+        "address": "there is water ",
+        "landmark": "",
+        "coordinates": [
+          "75.9010467",
+          "17.6700736"
+        ]
+      },
+      "severity": "low",
+      "waterLevel": "ankle-deep",
+      "depth": "0.15",
+      "description": "there is water ",
+      "urgencyLevel": "3"
+    },
+    "error": {
+      "name": "TimeoutError",
+      "message": "Request Timeout"
+    }
+  }
+}
+2025-09-27T06:44:30.755Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:265:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Sat Sep 27 2025 12:14:30 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 19220,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 116654080,
+        "heapTotal": 71536640,
+        "heapUsed": 50053776,
+        "external": 21718801,
+        "arrayBuffers": 18345091
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 6933.968
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 265,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T06:44:30.763Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-27T06:44:37.138Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:265:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Sat Sep 27 2025 12:14:37 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 14768,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 116346880,
+        "heapTotal": 71798784,
+        "heapUsed": 38940400,
+        "external": 21718651,
+        "arrayBuffers": 18344941
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 6940.359
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 265,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T06:44:37.142Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-27T06:45:37.345Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:265:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Sat Sep 27 2025 12:15:37 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 19316,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 116940800,
+        "heapTotal": 74158080,
+        "heapUsed": 47975232,
+        "external": 21718800,
+        "arrayBuffers": 18345090
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 7000.562
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 265,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T06:45:37.351Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-27T06:51:31.114Z [error]: Route not found with ID: /api/auth/me [27857fce-1457-4eec-a1cb-f71962e0d326]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "27857fce-1457-4eec-a1cb-f71962e0d326",
+    "url": "/api/auth/me",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/auth/me",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/auth/me\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T09:54:28.036Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:265:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Sat Sep 27 2025 15:24:28 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 12736,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 112300032,
+        "heapTotal": 73371648,
+        "heapUsed": 50411736,
+        "external": 21718801,
+        "arrayBuffers": 18345091
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 7338.25
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 265,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T09:54:28.048Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:265:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2025-09-27T09:59:32.533Z [error]: uncaughtException: allowedRoles is not defined
+ReferenceError: allowedRoles is not defined
+    at Object.<anonymous> (S:\flood-disaster-management\server\middleware\roleAuth.js:2:30)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (S:\flood-disaster-management\server\routes\floodReports.js:7:18)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+{
+  "metadata": {
+    "error": {},
+    "stack": "ReferenceError: allowedRoles is not defined\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\middleware\\roleAuth.js:2:30)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:7:18)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)",
+    "exception": true,
+    "date": "Sat Sep 27 2025 15:29:32 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 22276,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 112345088,
+        "heapTotal": 71380992,
+        "heapUsed": 35765816,
+        "external": 21688180,
+        "arrayBuffers": 18344537
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 7642.75
+    },
+    "trace": [
+      {
+        "column": 30,
+        "file": "S:\\flood-disaster-management\\server\\middleware\\roleAuth.js",
+        "function": null,
+        "line": 2,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 19,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.require",
+        "line": 1298,
+        "method": "require",
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "node:internal/modules/helpers",
+        "function": "require",
+        "line": 182,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "S:\\flood-disaster-management\\server\\routes\\floodReports.js",
+        "function": null,
+        "line": 7,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T09:59:32.537Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "ReferenceError",
+      "message": "allowedRoles is not defined",
+      "stack": "ReferenceError: allowedRoles is not defined\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\middleware\\roleAuth.js:2:30)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:7:18)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)"
+    }
+  }
+}
+2025-09-27T09:59:45.718Z [error]: uncaughtException: Unexpected token '}'
+S:\flood-disaster-management\server\middleware\roleAuth.js:10
+      } nested arrays
+      ^
+
+SyntaxError: Unexpected token '}'
+    at wrapSafe (node:internal/modules/cjs/loader:1472:18)
+    at Module._compile (node:internal/modules/cjs/loader:1501:20)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (S:\flood-disaster-management\server\routes\floodReports.js:7:18)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+{
+  "metadata": {
+    "error": {},
+    "stack": "S:\\flood-disaster-management\\server\\middleware\\roleAuth.js:10\n      } nested arrays\n      ^\n\nSyntaxError: Unexpected token '}'\n    at wrapSafe (node:internal/modules/cjs/loader:1472:18)\n    at Module._compile (node:internal/modules/cjs/loader:1501:20)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:7:18)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)",
+    "exception": true,
+    "date": "Sat Sep 27 2025 15:29:45 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 19136,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 111796224,
+        "heapTotal": 71643136,
+        "heapUsed": 35570128,
+        "external": 21688180,
+        "arrayBuffers": 18344537
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 7655.937
+    },
+    "trace": [
+      {
+        "column": 18,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "wrapSafe",
+        "line": 1472,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 20,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1501,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 19,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.require",
+        "line": 1298,
+        "method": "require",
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "node:internal/modules/helpers",
+        "function": "require",
+        "line": 182,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "S:\\flood-disaster-management\\server\\routes\\floodReports.js",
+        "function": null,
+        "line": 7,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-27T09:59:45.722Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "SyntaxError",
+      "message": "Unexpected token '}'",
+      "stack": "S:\\flood-disaster-management\\server\\middleware\\roleAuth.js:10\n      } nested arrays\n      ^\n\nSyntaxError: Unexpected token '}'\n    at wrapSafe (node:internal/modules/cjs/loader:1472:18)\n    at Module._compile (node:internal/modules/cjs/loader:1501:20)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:7:18)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)"
+    }
+  }
+}
+2025-09-27T10:59:20.742Z [error]: No authentication token provided. Please log in to access this resource [ce7adad3-a7b0-4648-ad7e-d48b11d7cad5]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "ce7adad3-a7b0-4648-ad7e-d48b11d7cad5",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T11:37:39.425Z [error]: MongoDB Connection Error: Server selection timed out after 5000 ms
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": 30
+    },
+    "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T11:39:31.637Z [error]: No authentication token provided. Please log in to access this resource [47acbab3-f2b7-49b8-9019-1aa82da47f00]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "47acbab3-f2b7-49b8-9019-1aa82da47f00",
+    "url": "/api/admin/users?page=1&limit=10&search=&role=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "role": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T11:39:32.685Z [error]: No authentication token provided. Please log in to access this resource [2a7d213a-4c2a-4265-8c36-f6316e8c421b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2a7d213a-4c2a-4265-8c36-f6316e8c421b",
+    "url": "/api/admin/users?page=1&limit=10&search=&role=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "role": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T11:39:34.706Z [error]: No authentication token provided. Please log in to access this resource [036f148e-68c6-4cae-a3ce-55d2adb9f698]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "036f148e-68c6-4cae-a3ce-55d2adb9f698",
+    "url": "/api/admin/users?page=1&limit=10&search=&role=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "role": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T11:39:38.746Z [error]: No authentication token provided. Please log in to access this resource [8b040761-54cf-4ba9-917a-5d2a07b31198]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8b040761-54cf-4ba9-917a-5d2a07b31198",
+    "url": "/api/admin/users?page=1&limit=10&search=&role=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "role": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:54:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T11:39:41.720Z [error]: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [2a6e8caf-294a-4dbc-9fb5-746a3842e9ba]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2a6e8caf-294a-4dbc-9fb5-746a3842e9ba",
+    "url": "/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T11:39:42.762Z [error]: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [e44c6110-cadc-48ff-a805-30fba4f0e520]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "e44c6110-cadc-48ff-a805-30fba4f0e520",
+    "url": "/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T11:39:44.798Z [error]: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [34dbb41b-c437-4189-8f31-4e380292972c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "34dbb41b-c437-4189-8f31-4e380292972c",
+    "url": "/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T11:51:28.472Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T12:14:36.599Z [error]: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc [28785147-97e1-4c90-a624-08ab2e32e271]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "28785147-97e1-4c90-a624-08ab2e32e271",
+    "url": "/api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T12:14:37.635Z [error]: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc [bce8086a-689f-4d72-ab68-0c3173c0e90a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "bce8086a-689f-4d72-ab68-0c3173c0e90a",
+    "url": "/api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T12:14:39.655Z [error]: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc [e11968cc-1aa2-4902-8c97-b24cdee92994]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "e11968cc-1aa2-4902-8c97-b24cdee92994",
+    "url": "/api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T12:14:43.674Z [error]: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc [42c40a2d-de58-4dda-b453-f4472f0a0ad8]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "42c40a2d-de58-4dda-b453-f4472f0a0ad8",
+    "url": "/api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/financial-aid-requests?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T12:24:54.540Z [error]: Access denied. You do not have permission to perform this action [af47ae7b-00d3-47b5-905b-4c45bde72027]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "af47ae7b-00d3-47b5-905b-4c45bde72027",
+    "url": "/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68d6dbc15816887082269dcc",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Access denied. You do not have permission to perform this action",
+      "stack": "AuthenticationError: Access denied. You do not have permission to perform this action\n    at S:\\flood-disaster-management\\server\\middleware\\auth.js:23:9\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:125:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T12:28:48.963Z [error]: Access denied. You do not have permission to perform this action [9708d87d-6529-4b83-90ec-caad98924347]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9708d87d-6529-4b83-90ec-caad98924347",
+    "url": "/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68d6dbc15816887082269dcc",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Access denied. You do not have permission to perform this action",
+      "stack": "AuthenticationError: Access denied. You do not have permission to perform this action\n    at S:\\flood-disaster-management\\server\\middleware\\auth.js:23:9\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:125:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T13:05:04.181Z [error]: Access denied. You do not have permission to perform this action [dddd59a0-77ff-4061-adfb-89de373e8d89]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "dddd59a0-77ff-4061-adfb-89de373e8d89",
+    "url": "/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "68d6dbc15816887082269dcc",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Access denied. You do not have permission to perform this action",
+      "stack": "AuthenticationError: Access denied. You do not have permission to perform this action\n    at S:\\flood-disaster-management\\server\\middleware\\auth.js:23:9\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:125:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T13:12:37.806Z [error]: Access denied. You do not have permission to perform this action [2739b8fe-f6dc-43c1-907b-97a84df290ec]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2739b8fe-f6dc-43c1-907b-97a84df290ec",
+    "url": "/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68d6dbc15816887082269dcc",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Access denied. You do not have permission to perform this action",
+      "stack": "AuthenticationError: Access denied. You do not have permission to perform this action\n    at S:\\flood-disaster-management\\server\\middleware\\auth.js:23:9\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:125:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T13:13:45.165Z [error]: Access denied. You do not have permission to perform this action [a717771a-f693-4bf0-be1d-0847a91fac77]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "a717771a-f693-4bf0-be1d-0847a91fac77",
+    "url": "/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "68d6dbc15816887082269dcc",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Access denied. You do not have permission to perform this action",
+      "stack": "AuthenticationError: Access denied. You do not have permission to perform this action\n    at S:\\flood-disaster-management\\server\\middleware\\auth.js:23:9\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:125:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T13:16:20.738Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T13:17:57.905Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T13:18:35.432Z [error]: MongoDB Connection Error: Server selection timed out after 5000 ms
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": 30
+    },
+    "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T13:35:49.416Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:41:01.900Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:43:05.681Z [error]: MongoDB Connection Error: Server selection timed out after 5000 ms
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": 30
+    },
+    "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:43:31.114Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:44:34.052Z [error]: MongoDB Connection Error: querySrv ECONNREFUSED _mongodb._tcp.completecoding.ny9acgk.mongodb.net
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "_mongodb._tcp.completecoding.ny9acgk.mongodb.net",
+    "environment": "development",
+    "code": "ECONNREFUSED",
+    "syscall": "querySrv",
+    "stack": "Error: querySrv ECONNREFUSED _mongodb._tcp.completecoding.ny9acgk.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)"
+  }
+}
+2025-09-27T16:46:21.043Z [error]: Route not found with ID: /api/auth/me [99c9f9d9-abb1-46f1-b363-441badcc7792]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "99c9f9d9-abb1-46f1-b363-441badcc7792",
+    "url": "/api/auth/me",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/auth/me",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/auth/me\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-09-27T16:46:57.924Z [error]: Authentication failed [788f0831-254b-4c07-86fe-324d968487e7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "788f0831-254b-4c07-86fe-324d968487e7",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at runNextTicks (node:internal/process/task_queues:64:3)\n    at listOnTimeout (node:internal/timers:545:9)\n    at process.processTimers (node:internal/timers:519:7)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-09-27T16:51:31.517Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:55:47.240Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:56:27.765Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-09-27T16:58:42.437Z [error]: MongoDB Connection Error: Server selection timed out after 5000 ms
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-7sv6yi-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": 30
+    },
+    "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}

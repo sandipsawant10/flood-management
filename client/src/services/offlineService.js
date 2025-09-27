@@ -11,6 +11,7 @@ import {
   updateItem,
   getAllItems,
   deleteItem,
+  migrateBooleanFields,
   STORES_ENUM,
 } from "./indexedDBService";
 import axiosInstance from "./axiosConfig";
@@ -21,8 +22,17 @@ import axiosInstance from "./axiosConfig";
 export const initOfflineService = () => {
   // Initialize the IndexedDB database
   initDatabase()
-    .then(() => {
+    .then(async () => {
       console.log("Offline service initialized");
+
+      // Run migration for existing boolean fields
+      try {
+        await migrateBooleanFields(STORES_ENUM.FLOOD_REPORTS, ["synced"]);
+        await migrateBooleanFields(STORES_ENUM.ALERTS, ["read"]);
+        console.log("Boolean field migration completed");
+      } catch (migrationError) {
+        console.warn("Boolean field migration failed:", migrationError);
+      }
 
       // Set up event listeners for online/offline status
       window.addEventListener("online", handleOnline);
@@ -208,7 +218,7 @@ export const storeFloodReport = async (report) => {
       ...report,
       id: report.id || uuidv4(),
       timestamp: new Date().toISOString(),
-      synced: false,
+      synced: 0, // 0 = false, 1 = true for IndexedDB compatibility
     };
 
     await addItem(STORES_ENUM.FLOOD_REPORTS, reportWithId);
@@ -240,7 +250,7 @@ export const syncFloodReports = async () => {
     // Get all unsynchronized flood reports
     const unsyncedReports = await getAllItems(STORES_ENUM.FLOOD_REPORTS, {
       indexName: "synced",
-      value: false,
+      value: 0, // 0 = false for IndexedDB compatibility
     });
 
     if (unsyncedReports.length === 0) {
@@ -262,7 +272,7 @@ export const syncFloodReports = async () => {
             ...report,
             id: response.data.id || report.id,
             serverId: response.data.id,
-            synced: true,
+            synced: 1, // 0 = false, 1 = true for IndexedDB compatibility
             syncedAt: new Date().toISOString(),
           });
 
@@ -355,7 +365,7 @@ export const storeAlerts = async (alerts) => {
             await addItem(STORES_ENUM.ALERTS, {
               ...normalizedAlert,
               timestamp: new Date().toISOString(),
-              read: false,
+              read: 0, // 0 = false, 1 = true for IndexedDB compatibility
             });
           }
         } catch (error) {
@@ -385,7 +395,7 @@ export const getLocalAlerts = async (options = {}) => {
     if (options.unreadOnly) {
       alerts = await getAllItems(STORES_ENUM.ALERTS, {
         indexName: "read",
-        value: false,
+        value: 0, // 0 = false for IndexedDB compatibility
       });
     } else if (options.severity) {
       alerts = await getAllItems(STORES_ENUM.ALERTS, {
@@ -426,7 +436,7 @@ export const markAlertAsRead = async (alertId) => {
     if (alert) {
       await updateItem(STORES_ENUM.ALERTS, {
         ...alert,
-        read: true,
+        read: 1, // 0 = false, 1 = true for IndexedDB compatibility
         readAt: new Date().toISOString(),
       });
 

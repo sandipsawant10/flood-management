@@ -89,7 +89,7 @@ const useAuthStore = create(
         set({ isLoading: true, error: null });
 
         try {
-          const response = await axios.post("/api/auth/register", userData);
+          const response = await axiosInstance.post("/auth/register", userData);
           const { token, user } = response.data;
 
           // Store in localStorage
@@ -146,7 +146,7 @@ const useAuthStore = create(
             return { success: true, message: "No changes to update" };
           }
 
-          const response = await axios.put("/api/auth/profile", updates);
+          const response = await axiosInstance.put("/auth/profile", updates);
 
           const updatedUser = response.data.user;
 
@@ -180,9 +180,12 @@ const useAuthStore = create(
       updateRole: async (userId, newRole) => {
         set({ isLoading: true, error: null });
         try {
-          const response = await axios.put(`/api/admin/users/${userId}/role`, {
-            role: newRole,
-          });
+          const response = await axiosInstance.put(
+            `/admin/users/${userId}/role`,
+            {
+              role: newRole,
+            }
+          );
           if (userId === get().user?._id) {
             set({ user: { ...get().user, role: newRole } });
           }

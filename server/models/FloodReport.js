@@ -35,8 +35,18 @@ const floodReportSchema = new mongoose.Schema(
     },
     waterLevel: {
       type: String,
-      enum: ["low", "medium", "high", "critical"],
-      default: "low",
+      enum: [
+        "ankle-deep",
+        "knee-deep",
+        "waist-deep",
+        "chest-deep",
+        "above-head",
+        "minor-pooling",
+        "window-level",
+        "roof-level",
+        "above-roof",
+      ],
+      default: "ankle-deep",
     },
     depth: {
       type: Number,
@@ -134,18 +144,30 @@ const floodReportSchema = new mongoose.Schema(
       },
       summary: String,
       weather: {
-        status: { type: String, enum: ["pending", "matched", "not-matched"], default: "pending" },
+        status: {
+          type: String,
+          enum: ["pending", "matched", "not-matched"],
+          default: "pending",
+        },
         snapshot: Object, // Store raw API response or key data
         message: String, // e.g., "Heavy rain detected"
       },
       news: {
-        status: { type: String, enum: ["pending", "matched", "not-matched"], default: "pending" },
+        status: {
+          type: String,
+          enum: ["pending", "matched", "not-matched"],
+          default: "pending",
+        },
         snapshot: Object, // Store raw API response or key data
         message: String, // e.g., "News matches report"
       },
       social: {
         // Instagram (Optional, stubbed for future use)
-        status: { type: String, enum: ["pending", "matched", "not-matched", "coming-soon"], default: "coming-soon" },
+        status: {
+          type: String,
+          enum: ["pending", "matched", "not-matched", "coming-soon"],
+          default: "coming-soon",
+        },
         snapshot: Object, // Store raw API response or key data
         message: String, // e.g., "Social media posts found"
       },
@@ -190,22 +212,37 @@ floodReportSchema.methods.checkExpiry = function () {
   }
 };
 
-
 // Pre-save hook to calculate depth based on waterLevel if depth is not provided
-floodReportSchema.pre('save', function (next) {
-  if (this.isModified('waterLevel') && (this.depth === undefined || this.depth === 0)) {
+floodReportSchema.pre("save", function (next) {
+  if (
+    this.isModified("waterLevel") &&
+    (this.depth === undefined || this.depth === 0)
+  ) {
     switch (this.waterLevel) {
-      case 'low':
-        this.depth = Math.random() * (0.5 - 0.1) + 0.1; // 0.1 to 0.5 meters
+      case "minor-pooling":
+        this.depth = Math.random() * (0.1 - 0.01) + 0.01; // 0.01 to 0.1 meters
         break;
-      case 'medium':
-        this.depth = Math.random() * (1.5 - 0.6) + 0.6; // 0.6 to 1.5 meters
+      case "ankle-deep":
+        this.depth = Math.random() * (0.3 - 0.1) + 0.1; // 0.1 to 0.3 meters
         break;
-      case 'high':
-        this.depth = Math.random() * (3.0 - 1.6) + 1.6; // 1.6 to 3.0 meters
+      case "knee-deep":
+        this.depth = Math.random() * (0.7 - 0.3) + 0.3; // 0.3 to 0.7 meters
         break;
-      case 'critical':
-        this.depth = Math.random() * (6.0 - 3.1) + 3.1; // 3.1 to 6.0 meters
+      case "waist-deep":
+        this.depth = Math.random() * (1.2 - 0.7) + 0.7; // 0.7 to 1.2 meters
+        break;
+      case "chest-deep":
+        this.depth = Math.random() * (1.8 - 1.2) + 1.2; // 1.2 to 1.8 meters
+        break;
+      case "above-head":
+      case "window-level":
+        this.depth = Math.random() * (3.0 - 1.8) + 1.8; // 1.8 to 3.0 meters
+        break;
+      case "roof-level":
+        this.depth = Math.random() * (6.0 - 3.0) + 3.0; // 3.0 to 6.0 meters
+        break;
+      case "above-roof":
+        this.depth = Math.random() * (10.0 - 6.0) + 6.0; // 6.0 to 10.0 meters
         break;
       default:
         this.depth = 0; // Default to 0 if waterLevel is not recognized

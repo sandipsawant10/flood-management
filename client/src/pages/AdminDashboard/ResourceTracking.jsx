@@ -474,7 +474,7 @@ const ResourceTracking = () => {
                   Total Resources
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {resourcesData.summary.totalResources}
+                  {resourcesData?.summary?.totalResources || 0}
                 </p>
               </div>
               <div className="p-2 bg-blue-100 text-blue-700 rounded-full">
@@ -483,7 +483,8 @@ const ResourceTracking = () => {
             </div>
             <div className="mt-2">
               <p className="text-xs text-gray-500">
-                Total Quantity: {resourcesData.summary.totalQuantity} units
+                Total Quantity: {resourcesData?.summary?.totalQuantity || 0}{" "}
+                units
               </p>
             </div>
           </div>
@@ -495,7 +496,7 @@ const ResourceTracking = () => {
                   Available Resources
                 </p>
                 <p className="text-2xl font-bold text-green-600">
-                  {resourcesData.summary.availableResources}
+                  {resourcesData?.summary?.availableResources || 0}
                 </p>
               </div>
               <div className="p-2 bg-green-100 text-green-700 rounded-full">
@@ -514,7 +515,7 @@ const ResourceTracking = () => {
                   In Use Resources
                 </p>
                 <p className="text-2xl font-bold text-blue-600">
-                  {resourcesData.summary.inUseResources}
+                  {resourcesData?.summary?.inUseResources || 0}
                 </p>
               </div>
               <div className="p-2 bg-blue-100 text-blue-700 rounded-full">
@@ -535,8 +536,8 @@ const ResourceTracking = () => {
                   Needs Attention
                 </p>
                 <p className="text-2xl font-bold text-yellow-600">
-                  {resourcesData.summary.lowStockResources +
-                    resourcesData.summary.maintenanceResources}
+                  {(resourcesData?.summary?.lowStockResources || 0) +
+                    (resourcesData?.summary?.maintenanceResources || 0)}
                 </p>
               </div>
               <div className="p-2 bg-yellow-100 text-yellow-700 rounded-full">
@@ -755,7 +756,7 @@ const ResourceTracking = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {resourcesData.resources.map((resource) => {
+                  {(resourcesData?.resources || []).map((resource) => {
                     const categoryInfo = getCategoryInfo(resource.category);
                     const statusInfo = getStatusInfo(resource.status);
 
@@ -841,7 +842,7 @@ const ResourceTracking = () => {
 
             <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
               <ul className="divide-y divide-gray-200">
-                {resourcesData.assignments.map((assignment) => (
+                {(resourcesData?.assignments || []).map((assignment) => (
                   <li key={assignment.id} className="p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-start">
@@ -935,11 +936,13 @@ const ResourceTracking = () => {
                   {/* This would be replaced with an actual chart component */}
                   <div className="space-y-6 w-full h-full flex flex-col justify-center">
                     {Object.entries(
-                      resourcesData.summary.resourcesByCategory
+                      resourcesData?.summary?.resourcesByCategory || {}
                     ).map(([category, quantity]) => {
                       const categoryInfo = getCategoryInfo(category);
                       const percentage = Math.round(
-                        (quantity / resourcesData.summary.totalQuantity) * 100
+                        (quantity /
+                          (resourcesData?.summary?.totalQuantity || 1)) *
+                          100
                       );
 
                       return (
