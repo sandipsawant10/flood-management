@@ -2271,3 +2271,15 @@ SyntaxError: Unexpected token '}'
     "stack": "MongooseServerSelectionError: Server selection timed out after 5000 ms\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
   }
 }
+2025-09-27T17:10:25.537Z [error]: MongoDB Connection Error: bufferMaxEntries: "bufferMaxEntries" is not a valid option to set
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "errors": {
+      "bufferMaxEntries": {}
+    },
+    "stack": "SetOptionError: bufferMaxEntries: \"bufferMaxEntries\" is not a valid option to set\n    at Mongoose.set (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\index.js:257:17)\n    at connectDB (S:\\flood-disaster-management\\server\\server.js:127:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+  }
+}

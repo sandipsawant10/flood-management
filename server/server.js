@@ -117,9 +117,11 @@ app.use(sanitizeInput);
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000,
+      connectTimeoutMS: 10000,
     });
+
     logger.info("MongoDB Connected");
   } catch (error) {
     logger.error("MongoDB Connection Error:", error);
@@ -131,6 +133,14 @@ connectDB();
 
 mongoose.connection.on("disconnected", () => {
   logger.warn("MongoDB disconnected");
+});
+
+mongoose.connection.on("error", (err) => {
+  logger.error("MongoDB connection error:", err);
+});
+
+mongoose.connection.on("reconnected", () => {
+  logger.info("MongoDB reconnected");
 });
 
 mongoose.connection.on("reconnected", () => {

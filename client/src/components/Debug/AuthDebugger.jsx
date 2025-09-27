@@ -222,6 +222,53 @@ const AuthDebugger = () => {
     }
   };
 
+  const testMeEndpoint = async () => {
+    try {
+      const token = getAuthToken();
+      if (!token) {
+        addTestResult("Me Endpoint Test", "error", "No token found");
+        return;
+      }
+
+      const response = await fetch("http://localhost:5003/api/auth/me", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        addTestResult(
+          "Me Endpoint Test",
+          "success",
+          `Me endpoint working: ${data.user?.name || "Unknown"} (${
+            data.user?.role
+          })`,
+          {
+            name: data.user?.name,
+            role: data.user?.role,
+            status: data.status,
+            isVerified: data.user?.isVerified,
+          }
+        );
+      } else {
+        addTestResult(
+          "Me Endpoint Test",
+          "error",
+          `Me endpoint error: ${response.status}`
+        );
+      }
+    } catch (error) {
+      addTestResult(
+        "Me Endpoint Test",
+        "error",
+        `Me endpoint failed: ${error.message}`
+      );
+    }
+  };
+
   const testRescuersEndpoint = async () => {
     try {
       const token = getAuthToken();
@@ -457,6 +504,13 @@ const AuthDebugger = () => {
           className="bg-yellow-500 text-white px-2 py-1 rounded text-xs ml-1"
         >
           Test Profile
+        </button>
+
+        <button
+          onClick={testMeEndpoint}
+          className="bg-amber-500 text-white px-2 py-1 rounded text-xs ml-1"
+        >
+          Test /me
         </button>
 
         <button

@@ -237,6 +237,41 @@ router.post(
   }
 );
 
+// ---------- GET CURRENT USER (ME) ----------
+router.get("/me", auth, async (req, res) => {
+  try {
+    // req.user is already the full user object from auth middleware, no need to query again
+    const user = req.user;
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json({
+      status: "success",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        trustScore: user.trustScore,
+        reportsSubmitted: user.reportsSubmitted,
+        verifiedReports: user.verifiedReports,
+        location: user.location,
+        preferences: user.preferences,
+        isVerified: user.isVerified,
+        lastActive: user.lastActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+    });
+  } catch (error) {
+    console.error("User fetch error:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Server error fetching user data",
+    });
+  }
+});
+
 // ---------- GET CURRENT USER PROFILE ----------
 router.get("/profile", auth, async (req, res) => {
   try {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../services/axiosConfig";
+import useAuth from "../../hooks/useAuth";
 import {
   AlertTriangle,
   CheckCircle,
@@ -9,9 +10,12 @@ import {
   FileText,
   TrendingUp,
   Activity,
+  LogOut,
+  UserCircle,
 } from "lucide-react";
 
 const MunicipalityDashboard = () => {
+  const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
 
   // Fetch flood reports
@@ -217,13 +221,37 @@ const MunicipalityDashboard = () => {
     <div className="p-6 min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Municipality Dashboard
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Manage municipal services and monitor flood reports
-          </p>
+        <div className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Municipality Dashboard
+            </h1>
+            <p className="text-gray-600 mt-2">
+              Manage municipal services and monitor flood reports
+            </p>
+          </div>
+
+          {/* User Profile and Logout */}
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 text-gray-600">
+              <UserCircle className="w-5 h-5" />
+              <div className="text-sm">
+                <p className="font-medium">
+                  {user?.name || "Municipality User"}
+                </p>
+                <p className="text-xs text-gray-500 capitalize">
+                  {user?.role || "municipality"}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={logout}
+              className="flex items-center space-x-1 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg border border-red-200 hover:border-red-300 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
 
         {/* Stats Overview */}

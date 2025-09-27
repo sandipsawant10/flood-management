@@ -10,10 +10,12 @@ import {
   BanknotesIcon,
   CheckCircleIcon,
   PresentationChartLineIcon,
+  ArrowRightOnRectangleIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
 const AdminPortal = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation(); // Helper function to check if user has any of the required roles
   const hasAnyRole = (roles) => {
     if (!user) return false;
@@ -154,6 +156,30 @@ const AdminPortal = () => {
             )}
           </ul>
         </nav>
+
+        {/* User Profile and Logout Section */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center">
+              <UserCircleIcon className="w-8 h-8 text-gray-400 mr-2" />
+              <div>
+                <p className="text-sm font-medium text-gray-800 truncate">
+                  {user?.name || "Admin User"}
+                </p>
+                <p className="text-xs text-gray-500 capitalize">
+                  {user?.role || "admin"}
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={logout}
+            className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md transition-colors"
+          >
+            <ArrowRightOnRectangleIcon className="w-4 h-4 mr-2" />
+            Logout
+          </button>
+        </div>
       </aside>
 
       {/* Main content */}

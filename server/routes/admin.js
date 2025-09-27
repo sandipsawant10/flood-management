@@ -350,7 +350,7 @@ router.get(
 router.get(
   "/flood-reports",
   auth,
-  roleAuth(["admin", "municipality_admin"]),
+  roleAuth(["admin", "municipality_admin", "municipality"]),
   asyncHandler(async (req, res) => {
     try {
       const { status, verified, page = 1, limit = 10 } = req.query;
@@ -392,7 +392,7 @@ router.get(
 router.patch(
   "/flood-reports/:id/status",
   auth,
-  roleAuth(["admin", "municipality_admin"]),
+  roleAuth(["admin", "municipality_admin", "municipality"]),
   asyncHandler(async (req, res) => {
     try {
       const { status } = req.body;
@@ -418,7 +418,7 @@ router.patch(
 router.patch(
   "/flood-reports/:id/verify",
   auth,
-  roleAuth(["admin", "municipality_admin"]),
+  roleAuth(["admin", "municipality_admin", "municipality"]),
   asyncHandler(async (req, res) => {
     try {
       const { verified } = req.body;
