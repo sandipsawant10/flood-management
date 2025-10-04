@@ -5,7 +5,7 @@ import { axe } from "jest-axe";
 import PublicNavBar from "../components/Layout/PublicNavBar";
 import Home from "../pages/Home";
 import { MemoryRouter } from "react-router-dom";
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 // matcher added in setupTests.js
 

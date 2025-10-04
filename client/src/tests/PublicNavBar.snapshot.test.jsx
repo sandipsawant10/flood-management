@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import PublicNavBar from "../components/Layout/PublicNavBar";
 import { MemoryRouter } from "react-router-dom";
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 const Providers = ({ children }) => (
   <MemoryRouter>

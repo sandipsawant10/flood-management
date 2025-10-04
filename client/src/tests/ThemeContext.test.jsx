@@ -2,7 +2,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import PublicNavBar from "../components/Layout/PublicNavBar";
 import { MemoryRouter } from "react-router-dom";
-import ThemeProvider from "../context/ThemeContext";
+import ThemeProvider from "../contexts/ThemeContext";
 
 describe("Theme toggle", () => {
   it("switches theme class on html element", () => {

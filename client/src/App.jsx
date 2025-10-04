@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import LanguageProvider from "./contexts/LanguageContext";
-import { ThemeProvider as CustomThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider as CustomThemeProvider } from "./contexts/ThemeContext";
 import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout/Layout.jsx";

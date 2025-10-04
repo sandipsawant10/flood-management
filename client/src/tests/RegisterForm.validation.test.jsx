@@ -4,7 +4,7 @@ import { vi, beforeAll, describe, it, expect } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Register from "../pages/Auth/Register";
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 // Mock toast to avoid side effects
 vi.mock("react-hot-toast", () => ({
