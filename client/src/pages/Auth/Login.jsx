@@ -6,7 +6,6 @@ import useAuth from "../../hooks/useAuth";
 import CustomButton from "../../components/Common/CustomButton";
 import InputField from "../../components/Common/InputField";
 import AppLogo from "../../components/Branding/AppLogo";
-import AuthDebugger from "../../components/Debug/AuthDebugger";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -128,7 +127,6 @@ const Login = () => {
           &copy; {new Date().getFullYear()} Aqua Assists
         </p>
       </div>
-      <AuthDebugger />
     </div>
   );
 };
