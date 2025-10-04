@@ -2,6 +2,7 @@ import React from "react";
 import useAuth from "../hooks/useAuth";
 import NearbyAlerts from "../components/Alerts/NearbyAlerts";
 import AlertsMap from "../components/Maps/AlertsMap";
+import NotificationCenter from "../pages/Notifications/NotificationCenter";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -58,8 +59,7 @@ const Dashboard = () => {
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold mb-4">Recent Notifications</h2>
           <div className="space-y-4">
-            {/* Add notifications component here */}
-            <p className="text-gray-600">No new notifications</p>
+            <NotificationCenter />
           </div>
         </div>
       </div>

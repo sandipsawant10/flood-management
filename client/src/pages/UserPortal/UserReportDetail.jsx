@@ -42,13 +42,19 @@ const UserReportDetail = () => {
   const { reportId } = useParams();
   const navigate = useNavigate();
 
+  // Debug log for reportId
+  console.log("[UserReportDetail] reportId param:", reportId);
+
   const {
     data: report,
     isLoading,
     error,
   } = useQuery({
     queryKey: ["report-detail", reportId],
-    queryFn: () => floodReportService.getReportById(reportId),
+    queryFn: () => {
+      console.log("[UserReportDetail] Fetching report", reportId);
+      return floodReportService.getReportById(reportId);
+    },
     enabled: !!reportId,
   });
 

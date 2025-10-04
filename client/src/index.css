@@ -1,3 +1,7 @@
+/* Profile page font visibility fix */
+.profile-text-on-white {
+  color: #1e293b !important; /* slate-800 for strong contrast */
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

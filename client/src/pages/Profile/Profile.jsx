@@ -173,9 +173,11 @@ const Profile = () => {
                 </div>
                 <div className="ml-6">
                   <h1 className="text-3xl font-bold">
-                    {user?.name || "User Name"}
+                    <span className="profile-text-on-white">
+                      {user?.name || "User Name"}
+                    </span>
                   </h1>
-                  <p className="text-blue-100 mt-1">
+                  <p className="profile-text-on-white mt-1">
                     {user?.email || "user@email.com"}
                   </p>
                   <div className="flex items-center mt-2 space-x-4">
@@ -212,7 +214,7 @@ const Profile = () => {
       {isEditing && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
-            Edit Profile
+            <span className="profile-text-on-white">Edit Profile</span>
           </h2>
 
           <form onSubmit={handleSubmit}>
@@ -220,7 +222,7 @@ const Profile = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium profile-text-on-white mb-1"
                 >
                   Full Name
                 </label>
@@ -239,7 +241,7 @@ const Profile = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium profile-text-on-white mb-1"
                 >
                   Email Address
                 </label>
@@ -258,7 +260,7 @@ const Profile = () => {
               <div>
                 <label
                   htmlFor="avatar"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium profile-text-on-white mb-1"
                 >
                   Avatar URL
                 </label>

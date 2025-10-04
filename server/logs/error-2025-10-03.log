@@ -1,0 +1,656 @@
+2025-10-03T11:55:16.777Z [error]: AI verification service error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T11:55:16.779Z [error]: AI verification route error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T11:55:34.929Z [error]: AI verification service error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T11:55:34.931Z [error]: AI verification route error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T11:56:21.214Z [error]: AI verification service error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T11:56:21.216Z [error]: AI verification route error: FloodReport validation failed: verification.social.status: `unavailable` is not a valid enum value for path `verification.social.status`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T12:28:12.123Z [error]: Route not found with ID: /flood-reports/68deb879164e271f5b2c5cef/status [8803c3a9-b182-410f-9120-bf015ce90395]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8803c3a9-b182-410f-9120-bf015ce90395",
+    "url": "/flood-reports/68deb879164e271f5b2c5cef/status",
+    "method": "PUT",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {
+      "status": "verified"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /flood-reports/68deb879164e271f5b2c5cef/status",
+      "stack": "ResourceNotFoundError: Route not found with ID: /flood-reports/68deb879164e271f5b2c5cef/status\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\server.js:217:3\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-03T12:32:07.148Z [error]: No authentication token provided. Please log in to access this resource [afc8d388-ad7e-46b6-9adb-3302110934f3]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "afc8d388-ad7e-46b6-9adb-3302110934f3",
+    "url": "/api/flood-reports/68deb879164e271f5b2c5cef/status",
+    "method": "PUT",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {
+      "status": "verified"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:60:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T12:48:11.898Z [error]: Authentication failed [2a2a55ec-37e8-4669-af1f-dac9c9257441]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2a2a55ec-37e8-4669-af1f-dac9c9257441",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T12:53:35.210Z [error]: Failed to create in-app notification: Notification validation failed: type: `report_moderated` is not a valid enum value for path `type`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "errors": {
+      "type": {
+        "name": "ValidatorError",
+        "message": "`report_moderated` is not a valid enum value for path `type`.",
+        "properties": {
+          "message": "`report_moderated` is not a valid enum value for path `type`.",
+          "type": "enum",
+          "enumValues": [
+            "alert",
+            "info",
+            "success"
+          ],
+          "path": "type",
+          "value": "report_moderated"
+        },
+        "kind": "enum",
+        "path": "type",
+        "value": "report_moderated"
+      }
+    },
+    "_message": "Notification validation failed",
+    "stack": "ValidationError: Notification validation failed: type: `report_moderated` is not a valid enum value for path `type`.\n    at Document.invalidate (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\document.js:3219:32)\n    at S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\document.js:3012:17\n    at S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\schematype.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"
+  }
+}
+2025-10-03T12:56:50.090Z [error]: Failed to create in-app notification: Notification validation failed: type: `report_moderated` is not a valid enum value for path `type`.
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "errors": {
+      "type": {
+        "name": "ValidatorError",
+        "message": "`report_moderated` is not a valid enum value for path `type`.",
+        "properties": {
+          "message": "`report_moderated` is not a valid enum value for path `type`.",
+          "type": "enum",
+          "enumValues": [
+            "alert",
+            "info",
+            "success"
+          ],
+          "path": "type",
+          "value": "report_moderated"
+        },
+        "kind": "enum",
+        "path": "type",
+        "value": "report_moderated"
+      }
+    },
+    "_message": "Notification validation failed",
+    "stack": "ValidationError: Notification validation failed: type: `report_moderated` is not a valid enum value for path `type`.\n    at Document.invalidate (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\document.js:3219:32)\n    at S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\document.js:3012:17\n    at S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\schematype.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"
+  }
+}
+2025-10-03T13:13:58.113Z [error]: MongoDB Connection Error: querySrv ETIMEOUT _mongodb._tcp.completecoding.ny9acgk.mongodb.net
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "_mongodb._tcp.completecoding.ny9acgk.mongodb.net",
+    "environment": "development",
+    "code": "ETIMEOUT",
+    "syscall": "querySrv",
+    "stack": "Error: querySrv ETIMEOUT _mongodb._tcp.completecoding.ny9acgk.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)"
+  }
+}
+2025-10-03T13:33:32.937Z [error]: Authentication failed [b2ff1421-8ccb-4420-a3b5-0aa3b89ef38a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b2ff1421-8ccb-4420-a3b5-0aa3b89ef38a",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T13:34:24.719Z [error]: Authentication failed [4d22436f-bb38-48f5-9caa-02e2eaa36c9d]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4d22436f-bb38-48f5-9caa-02e2eaa36c9d",
+    "url": "/api/flood-reports/admin",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T13:34:24.729Z [error]: Authentication failed [0f233af3-e7ed-4b12-834f-bfc321dc8c07]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "0f233af3-e7ed-4b12-834f-bfc321dc8c07",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T16:17:18.950Z [error]: Route not found with ID: /api/notifications/68dfc86cc94baff81d4e9696/read [5256e980-3366-4a14-b61c-251713c3f541]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "5256e980-3366-4a14-b61c-251713c3f541",
+    "url": "/api/notifications/68dfc86cc94baff81d4e9696/read",
+    "method": "POST",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestBody": {},
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/notifications/68dfc86cc94baff81d4e9696/read",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/notifications/68dfc86cc94baff81d4e9696/read\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-03T16:20:07.425Z [error]: uncaughtException: Cannot access 'router' before initialization
+ReferenceError: Cannot access 'router' before initialization
+    at Object.<anonymous> (S:\flood-disaster-management\server\routes\floodReports.js:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:30:27)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+{
+  "metadata": {
+    "error": {},
+    "stack": "ReferenceError: Cannot access 'router' before initialization\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:2:1)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:30:27)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)",
+    "exception": true,
+    "date": "Fri Oct 03 2025 21:50:07 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 8732,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 99602432,
+        "heapTotal": 63889408,
+        "heapUsed": 43043512,
+        "external": 21690836,
+        "arrayBuffers": 18344545
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 652.64
+    },
+    "trace": [
+      {
+        "column": 1,
+        "file": "S:\\flood-disaster-management\\server\\routes\\floodReports.js",
+        "function": null,
+        "line": 2,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 19,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.require",
+        "line": 1298,
+        "method": "require",
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "node:internal/modules/helpers",
+        "function": "require",
+        "line": 182,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 27,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 30,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T16:20:07.439Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "ReferenceError",
+      "message": "Cannot access 'router' before initialization",
+      "stack": "ReferenceError: Cannot access 'router' before initialization\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:2:1)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:30:27)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)"
+    }
+  }
+}
+2025-10-03T16:21:14.140Z [error]: uncaughtException: Cannot access 'router' before initialization
+ReferenceError: Cannot access 'router' before initialization
+    at Object.<anonymous> (S:\flood-disaster-management\server\routes\floodReports.js:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:30:27)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+{
+  "metadata": {
+    "error": {},
+    "stack": "ReferenceError: Cannot access 'router' before initialization\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:2:1)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:30:27)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)",
+    "exception": true,
+    "date": "Fri Oct 03 2025 21:51:14 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 5796,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 101781504,
+        "heapTotal": 63889408,
+        "heapUsed": 43303552,
+        "external": 21690836,
+        "arrayBuffers": 18344545
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 719.359
+    },
+    "trace": [
+      {
+        "column": 1,
+        "file": "S:\\flood-disaster-management\\server\\routes\\floodReports.js",
+        "function": null,
+        "line": 2,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 19,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.require",
+        "line": 1298,
+        "method": "require",
+        "native": false
+      },
+      {
+        "column": 18,
+        "file": "node:internal/modules/helpers",
+        "function": "require",
+        "line": 182,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 27,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 30,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-10-03T16:21:14.150Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "ReferenceError",
+      "message": "Cannot access 'router' before initialization",
+      "stack": "ReferenceError: Cannot access 'router' before initialization\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\routes\\floodReports.js:2:1)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Module.require (node:internal/modules/cjs/loader:1298:19)\n    at require (node:internal/modules/helpers:182:18)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:30:27)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)"
+    }
+  }
+}
+2025-10-03T17:27:05.217Z [error]: Your session has expired. Please log in again [74495c26-6efb-40c3-979a-5595a662f6dd]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "74495c26-6efb-40c3-979a-5595a662f6dd",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T17:27:07.244Z [error]: Your session has expired. Please log in again [960ff5b7-20eb-4e49-a65b-e92f0a216378]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "960ff5b7-20eb-4e49-a65b-e92f0a216378",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T17:27:14.473Z [error]: Your session has expired. Please log in again [b88cbcd2-8a8e-4a4c-98a1-6512e1972d63]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b88cbcd2-8a8e-4a4c-98a1-6512e1972d63",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T17:27:20.141Z [error]: Your session has expired. Please log in again [cf401c62-37e3-47c7-9098-4d9ff1c8e0ad]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "cf401c62-37e3-47c7-9098-4d9ff1c8e0ad",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-03T18:03:55.146Z [error]: Authentication failed [b10dd457-d209-4d0c-bb5c-0d86608e00d8]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b10dd457-d209-4d0c-bb5c-0d86608e00d8",
+    "url": "/api/notifications",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}

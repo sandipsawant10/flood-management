@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -23,1259 +23,257 @@ import {
   CloudRain,
   Sun,
   Wind,
-} from "lucide-react"; // Added CloudRain, Sun, Wind
-import { ambulance, bank, fire_station, hospital, school, police, pharmacy, shelter, community_centre, bus_station, railway_station, public_toilets, drinking_water, fuel, charging_station, assembly_point, college, social_facility } from '../../assets/icons/emergencyResources';
-import { MapControl, withLeaflet } from "react-leaflet";
-
-import { Legend } from "leaflet";
+  Loader2,
+} from "lucide-react";
 
 import { floodReportService } from "../../services/floodReportService";
-import { fetchNearbyEmergencyResources } from "../../services/overpassService";
+import ErrorBoundary from "../Common/ErrorBoundary";
 
-const HeatmapLayer = ({ points, longitudeExtractor, latitudeExtractor, intensityExtractor, ...options }) => {
+// Heatmap Layer Component
+const HeatmapLayer = ({
+  points,
+  longitudeExtractor,
+  latitudeExtractor,
+  intensityExtractor,
+  ...options
+}) => {
   const map = useMap();
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !points || points.length === 0) return;
 
-    const heat = L.heatLayer(points.map(p => [
-      latitudeExtractor(p),
-      longitudeExtractor(p),
-      intensityExtractor(p)
-    ]), options).addTo(map);
+    const heat = L.heatLayer(
+      points.map((p) => [
+        latitudeExtractor(p),
+        longitudeExtractor(p),
+        intensityExtractor(p),
+      ]),
+      options
+    ).addTo(map);
 
     return () => {
       map.removeLayer(heat);
     };
-  }, [map, points, longitudeExtractor, latitudeExtractor, intensityExtractor, options]);
+  }, [
+    map,
+    points,
+    longitudeExtractor,
+    latitudeExtractor,
+    intensityExtractor,
+    options,
+  ]);
 
   return null;
 };
 
-const EmergencyResourceLegend = ({ amenityIconMapping }) => {
+// SetViewAndZoom Component
+function SetViewAndZoom({ center, zoom }) {
   const map = useMap();
 
   useEffect(() => {
-    const legend = L.control({ position: "topright" });
-
-    legend.onAdd = function () {
-      const div = L.DomUtil.create("div", "info legend");
-      div.innerHTML += "<h4>Emergency Resources</h4>";
-
-      for (const amenityType in amenityIconMapping) {
-        if (amenityIconMapping.hasOwnProperty(amenityType)) {
-          const iconUrl = amenityIconMapping[amenityType].options.iconUrl;
-          const color = amenityIconMapping[amenityType].options.shadowColor;
-
-          div.innerHTML +=
-            `<img src="${iconUrl}" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle; background-color: ${color}; padding: 2px; border-radius: 3px;"/> ` +
-            `${amenityType.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}<br>`;
-        }
-      }
-      return div;
-    };
-
-    legend.addTo(map);
-
-    return () => {
-      legend.remove();
-    };
-  }, [map, amenityIconMapping]);
-
-  return null;
-};
-import { alertService } from "../../services/alertService";
-import { useAuthStore } from "../../store/authStore";
-
-const MapLegend = ({ depthToColor }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    const legend = L.control({ position: "bottomright" });
-
-    legend.onAdd = function () {
-      const div = L.DomUtil.create("div", "info legend");
-      const depths = [0, 0.5, 1, 2, 5]; // Example depth levels in meters
-      const labels = [];
-
-      div.innerHTML += "<h4>Water Depth (m)</h4>";
-
-      for (let i = 0; i < depths.length; i++) {
-        labels.push(
-          '<i style="background:' +
-            depthToColor(depths[i] + 0.1) +
-            '"></i> ' +
-            depths[i] +
-            (depths[i + 1] ? "&ndash;" + depths[i + 1] + " m" : "+ m")
-        );
-      }
-      div.innerHTML += labels.join("<br>");
-      return div;
-    };
-
-    legend.addTo(map);
-
-    return () => {
-      legend.remove();
-    };
-  }, [map, depthToColor]);
-
-  return null;
-};
-
-const FloodMap = ({
-  height = "500px",
-  center = [20.5937, 78.9629],
-  zoom = 5,
-  showReports = true,
-  showAlerts = true,
-  filters = {},
-  onMarkerClick = null,
-}) => {
-  const { user } = useAuthStore();
-  const [mapCenter, setMapCenter] = useState(center);
-  const [mapZoom, setMapZoom] = useState(zoom);
-  const [selectedReport, setSelectedReport] = useState(null);
-  const [minDepth, setMinDepth] = useState(''); // New state for min depth filter
-  const [maxDepth, setMaxDepth] = useState(''); // New state for max depth filter
-  const [emergencyRadius, setEmergencyRadius] = useState(5000); // Default radius for emergency resources in meters
-
-  const amenityIconMapping = {
-    hospital: new L.Icon({
-      iconUrl: hospital,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#FF5733'
-    }),
-    fire_station: new L.Icon({
-      iconUrl: fire_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#C70039'
-    }),
-    police: new L.Icon({
-      iconUrl: police,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#900C3F'
-    }),
-    ambulance_station: new L.Icon({
-      iconUrl: ambulance,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#581845'
-    }),
-    shelter: new L.Icon({
-      iconUrl: shelter,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#DAF7A6'
-    }),
-    community_centre: new L.Icon({
-      iconUrl: community_centre,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#FFC300'
-    }),
-    pharmacy: new L.Icon({
-      iconUrl: pharmacy,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#FFD700'
-    }),
-    social_facility: new L.Icon({
-      iconUrl: social_facility,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#ADD8E6'
-    }),
-      bus_station: new L.Icon({
-      iconUrl: bus_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#8A2BE2'
-    }),
-    railway_station: new L.Icon({
-      iconUrl: railway_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#4B0082'
-    }),
-    toilets: new L.Icon({
-      iconUrl: public_toilets,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#00CED1'
-    }),
-    drinking_water: new L.Icon({
-      iconUrl: drinking_water,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#20B2AA'
-    }),
-    fuel: new L.Icon({
-      iconUrl: fuel,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#DC143C'
-    }),
-    charging_station: new L.Icon({
-      iconUrl: charging_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#FF4500'
-    }),
-    assembly_point: new L.Icon({
-      iconUrl: assembly_point,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#B8860B'
-    }),
-    school: new L.Icon({
-      iconUrl: school,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#3CB371'
-    }),
-    college: new L.Icon({
-      iconUrl: college,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#2E8B57'
-    })
-  };
-
-  const { data: emergencyResources, isLoading: isLoadingEmergencyResources, error: emergencyResourcesError } = useQuery({
-    queryKey: ['emergencyResources', mapCenter, emergencyRadius],
-    queryFn: () => fetchNearbyEmergencyResources(mapCenter[0], mapCenter[1], emergencyRadius),
-    enabled: !!mapCenter[0] && !!mapCenter[1] && !!emergencyRadius,
-  });
-
-  useEffect(() => {
-    if (emergencyResourcesError) {
-      console.error("Error fetching emergency resources:", emergencyResourcesError);
-    }
-  }, [emergencyResourcesError]);
-
-  function SetViewAndZoom() {
-    const map = useMap();
-    useEffect(() => {
+    if (center && zoom) {
       map.setView(center, zoom);
-    }, [map, center, zoom]);
-    return null;
-  }
-
-  const depthToColor = (depth) => {
-    if (depth > 5) return "#500000";
-    if (depth > 2) return "#8B0000";
-    if (depth > 1) return "#DC143C";
-    if (depth > 0.5) return "#FF6347";
-    if (depth > 0) return "#FFA07A";
-    return "#FFFFFF"; // No flood
-  };
-
-  const getFloodColor = (depth) => {
-    if (depth > 5) return "#500000";
-    if (depth > 2) return "#8B0000";
-    if (depth > 1) return "#DC143C";
-    if (depth > 0.5) return "#FF6347";
-    if (depth > 0) return "#FFA07A";
-    return "transparent"; // No flood, or very minimal
-  };
-
-  const alertIcon = new L.Icon({
-    iconUrl: AlertTriangle,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-
-  const getSentimentColor = (sentiment) => {
-    switch (sentiment) {
-      case 'positive': return '#4CAF50';
-      case 'negative': return '#F44336';
-      case 'neutral': return '#2196F3';
-      default: return '#9E9E9E';
     }
-  };
-
-  return (
-    <div style={{ position: "relative", height: height }}>
-      <MapContainer
-        center={center}
-        zoom={zoom}
-        style={{ height: "100%", width: "100%" }}
-        whenCreated={map => {
-          map.on('moveend', () => {
-            setMapCenter(Object.values(map.getCenter()));
-            setMapZoom(map.getZoom());
-          });
-        }}
-      >
-        <SetViewAndZoom />
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-
-        {showReports &&
-          floodReports?.map((report) => (
-            <Marker
-              key={report._id}
-              position={[report.location.latitude, report.location.longitude]}
-              icon={L.divIcon({
-                className: 'custom-div-icon',
-                html: `<div style="background-color: ${getFloodColor(report.waterDepth)}; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>`,
-                iconSize: [20, 20],
-                iconAnchor: [10, 10]
-              })}
-              eventHandlers={{
-                click: () => {
-                  setSelectedReport(report);
-                  if (onMarkerClick) {
-                    onMarkerClick(report);
-                  }
-                },
-              }}
-            >
-              <Popup>
-                <div>
-                  <h2>Flood Report</h2>
-                  <p>Depth: {report.waterDepth} m</p>
-                  <p>Status: {report.floodStatus}</p>
-                  <p>Timestamp: {new Date(report.timestamp).toLocaleString()}</p>
-                  <p>Reporter: {report.reporter?.username || 'Anonymous'}</p>
-                  {report.images && report.images.length > 0 && (
-                    <div>
-                      <h3>Images:</h3>
-                      {report.images.map((image, index) => (
-                        <img
-                          key={index}
-                          src={image.url}
-                          alt={`Flood image ${index + 1}`}
-                          style={{ width: '100px', height: 'auto', marginRight: '5px' }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                  {report.sentiment && <p>Sentiment: <span style={{ color: getSentimentColor(report.sentiment) }}>{report.sentiment}</span></p>}
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-
-        {showAlerts &&
-          alerts?.map((alert) => (
-            <Marker
-              key={alert._id}
-              position={[alert.location.latitude, alert.location.longitude]}
-              icon={alertIcon}
-            >
-              <Popup>
-                <div>
-                  <h2>Flood Alert</h2>
-                  <p>Severity: {alert.severity}</p>
-                  <p>Description: {alert.description}</p>
-                  <p>Timestamp: {new Date(alert.timestamp).toLocaleString()}</p>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-
-        {emergencyResources && emergencyResources.map((resource, index) => (
-          <Marker
-            key={index}
-            position={[resource.lat, resource.lon]}
-            icon={amenityIconMapping[resource.amenity]}
-          >
-            <Popup>
-              <div>
-                <h3>{resource.name}</h3>
-                {resource.address && <p>{resource.address}</p>}
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-
-        {showReports && <MapLegend depthToColor={depthToColor} />}
-        <EmergencyResourceLegend amenityIconMapping={amenityIconMapping} />
-
-        {isLoadingEmergencyResources && (
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            zIndex: 1000,
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-          }}>
-            Loading Emergency Resources...
-          </div>
-        )}
-
-        <div style={{
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          zIndex: 1000,
-          backgroundColor: 'white',
-          padding: '10px',
-          borderRadius: '5px',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-        }}>
-          <label htmlFor="emergencyRadius">Emergency Search Radius (m): </label>
-          <input
-            type="number"
-            id="emergencyRadius"
-            value={emergencyRadius}
-            onChange={(e) => setEmergencyRadius(Number(e.target.value))}
-            min="100"
-            max="20000"
-            step="100"
-            style={{ marginLeft: '10px', width: '80px' }}
-          />
-        </div>
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#DAA520'
-    }),
-    college: new L.Icon({
-      iconUrl: college,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#CD853F'
-    }),
-    // ... existing code ...
-  bus_station: new L.Icon({
-      iconUrl: bus_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#87CEEB'
-    }),
-    railway_station: new L.Icon({
-      iconUrl: railway_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#6495ED'
-    }),
-    toilets: new L.Icon({
-      iconUrl: public_toilets,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#4682B4'
-    }),
-    drinking_water: new L.Icon({
-      iconUrl: drinking_water,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#TR2B4'
-    }),
-    fuel: new L.Icon({
-      iconUrl: fuel,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#B0C4DE'
-    }),
-    charging_station: new L.Icon({
-      iconUrl: charging_station,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#778899'
-    }),
-    assembly_point: new L.Icon({
-      iconUrl: assembly_point,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#C0C0C0'
-    }),
-    school: new L.Icon({
-      iconUrl: school,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#D3D3D3'
-    }),
-    college: new L.Icon({
-      iconUrl: college,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#A9A9A9'
-    }),
-    default: new L.Icon({
-      iconUrl: MapPin,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30],
-      shadowColor: '#696969'
-    }),
-  };
-
-  // Fetch flood reports
-  const { data: reportsData, isLoading: reportsLoading } = useQuery({
-    queryKey: ["flood-reports-map", filters, minDepth, maxDepth],
-    queryFn: () =>
-      floodReportService.getReports({
-        "location.coordinates": filters.coordinates,
-        "location.radius": filters.radius,
-        minDepth: minDepth || undefined, // Add minDepth to filters
-        maxDepth: maxDepth || undefined, // Add maxDepth to filters
-      }),
-    enabled: !!(filters.coordinates && filters.radius),
-  });
-
-  // Fetch alerts
-  const { data: alertsData, isLoading: alertsLoading } = useQuery({
-    queryKey: ["alerts-map", filters],
-    queryFn: () =>
-      alertService.getAlerts({ 
-        "location.coordinates": filters.coordinates,
-        "location.radius": filters.radius,
-      }),
-    enabled: !!(filters.coordinates && filters.radius),
-  });
-
-  const floodReports = reportsData?.data || [];
-  const floodAlerts = alertsData?.data || [];
-
-  const { data: emergencyResourcesData, isLoading: emergencyResourcesLoading } = useQuery({
-    queryKey: ["emergency-resources", mapCenter, emergencyRadius],
-    queryFn: () =>
-      fetchNearbyEmergencyResources(mapCenter[0], mapCenter[1], emergencyRadius),
-    enabled: !!mapCenter[0] && !!mapCenter[1],
-  });
-
-  const emergencyResources = emergencyResourcesData || [];
-
-  // Prepare data for heatmap
-  const heatmapData = floodReports.map(report => [
-    report.location.coordinates[1],
-    report.location.coordinates[0],
-    report.depth || 0.1 // Default to 0.1 if depth is not available for heatmap intensity
-  ]).filter(dataPoint => dataPoint[2] > 0);
-
-  useEffect(() => {
-    if (center) {
-      setMapCenter(center);
-      setMapZoom(zoom);
-    }
-  }, [center, zoom]);
-
-  useEffect(() => {
-    if (user?.location?.coordinates) {
-      setMapCenter([user.location.coordinates[1], user.location.coordinates[0]]);
-    }
-  }, [user]);
-
-  const handleMarkerClick = (report) => {
-    setSelectedReport(report);
-    if (onMarkerClick) {
-      onMarkerClick(report);
-    }
-  };
-
-  return (
-    <div className="relative h-full w-full">
-      <style>
-        {`
-          .info.legend {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            line-height: 18px;
-            color: #555;
-          }
-          .info.legend h4 {
-            margin: 0 0 5px;
-            color: #333;
-          }
-          .info.legend i {
-            width: 18px;
-            height: 18px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-          }
-        `}
-      </style>
-      <MapContainer
-        center={mapCenter}
-        zoom={mapZoom}
-        scrollWheelZoom={true}
-        style={{ height: height, width: "100%", borderRadius: "8px" }}
-        whenCreated={(map) => {
-          // Store the map instance if needed for external manipulation
-          // For now, use useMap hook for internal component access
-        }}
-      >
-        <MapController center={mapCenter} zoom={mapZoom} />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {/* Map Legend */}
-        <MapLegend depthToColor={depthToColor} />
-
-        {/* Heatmap Layer */}
-        {heatmapData.length > 0 && (
-          <HeatmapLayer
-            points={heatmapData}
-            longitudeExtractor={m => m[1]}
-            latitudeExtractor={m => m[0]}
-            intensityExtractor={m => parseFloat(m[2])}
-            radius={25}
-            max={1.0}
-            blur={15}
-            gradient={{
-              0.0: 'blue',
-              0.5: 'lime',
-              1.0: 'red'
-            }}
-          />
-        )}
-
-        <div className="absolute top-4 left-4 z-[1000] bg-white p-3 rounded-lg shadow-md flex space-x-2">
-          <input
-            type="number"
-            placeholder="Min Depth (m)"
-            value={minDepth}
-            onChange={(e) => setMinDepth(e.target.value)}
-            className="w-32 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="number"
-            placeholder="Max Depth (m)"
-            value={maxDepth}
-            onChange={(e) => setMaxDepth(e.target.value)}
-            className="w-32 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* User location */}
-        {user?.location?.coordinates && (
-          <Marker
-            position={[
-              user.location.coordinates[1],
-              user.location.coordinates[0],
-            ]}
-            icon={L.icon({
-              iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-            })}
-          >
-            <Popup>Your current location</Popup>
-          </Marker>
-        )}
-
-        {/* Flood Reports */}
-        {showReports &&
-          floodReports.map((report) => (
-            <CircleMarker
-              key={report._id}
-              center={[
-                report.location.coordinates[1],
-                report.location.coordinates[0],
-              ]}
-              radius={5 + Math.min(report.depth || 0, 10)} // Scale radius by depth
-              pathOptions={{
-                color: depthToColor(report.depth),
-                fillOpacity: 0.7,
-              }}
-              eventHandlers={{
-                click: () => handleMarkerClick(report),
-              }}
-            >
-              <Popup>
-                <div className="font-bold">Flood Report Details</div>
-                <div>
-                  <MapPin size={16} className="inline-block mr-1 text-blue-500" />
-                  Location: {report.location.address || "N/A"}
-                </div>
-                {report.depth !== undefined && report.depth !== null && (
-                  <div>
-                    <Droplets size={16} className="inline-block mr-1 text-blue-500" />
-                    Depth: {report.depth} meters
-                  </div>
-                )}
-                <div>
-                  <CloudRain size={16} className="inline-block mr-1 text-blue-500" />
-                  Water Level: {report.waterLevel}
-                </div>
-                <div>
-                  <Clock size={16} className="inline-block mr-1 text-gray-500" />
-                  Reported: {" "}
-                  {format(parseISO(report.date), "MMM dd, yyyy HH:mm")}
-                </div>
-                <div>
-                  <Eye size={16} className="inline-block mr-1 text-gray-500" />
-                  Severity: {report.severity}
-                </div>
-                {report.description && (
-                  <div>
-                    Description: {report.description}
-                  </div>
-                )}
-                {report.weatherInfo && (
-                  <div>
-                    Weather: {report.weatherInfo.temperature}°C, {report.weatherInfo.condition}, Wind: {report.weatherInfo.windSpeed} km/h
-                  </div>
-                )}
-                {report.impact && (
-                  <div>
-                    Impact: {report.impact}
-                  </div>
-                )}
-                {report.verifiedBy && (
-                  <div className="flex items-center mt-2 text-green-600">
-                    <CheckCircle size={16} className="inline-block mr-1" /> Verified by: {report.verifiedBy.username}
-                  </div>
-                )} 
-                {report.isFake && (
-                  <div className="flex items-center mt-2 text-red-600">
-                    <XCircle size={16} className="inline-block mr-1" /> Marked as Fake
-                  </div>
-                )}
-                {report.upvotes !== undefined && report.downvotes !== undefined && (
-                  <div className="flex items-center mt-2">
-                    <Users size={16} className="inline-block mr-1" /> {report.upvotes} Upvotes, {report.downvotes} Downvotes
-                  </div>
-                )}
-              </Popup>
-            </CircleMarker>
-          ))}
-
-        {/* Alerts */}
-        {showAlerts &&
-          <DepthLegend />
-        }
-          floodAlerts.map((alert) => (
-            <React.Fragment key={alert._id}>
-              <Circle
-                center={[
-                  alert.location.coordinates[1],
-                  alert.location.coordinates[0],
-                ]}
-                radius={alert.radius * 1000} // Convert km to meters
-                pathOptions={{ color: "red", fillOpacity: 0.1 }}
-              />
-              <Marker
-                position={[
-                  alert.location.coordinates[1],
-                  alert.location.coordinates[0],
-                ]}
-                icon={alertIcon}
-              >
-                <Popup>
-                  <div className="font-bold">Flood Alert!</div>
-                  <div>Severity: {alert.severity}</div>
-                  <div>Area: {alert.radius} km radius</div>
-                  <div>
-                    <Clock size={16} className="inline-block mr-1 text-gray-500" />
-                    Issued: {" "}
-                    {format(parseISO(alert.date), "MMM dd, yyyy HH:mm")}
-                  </div>
-                  <div>Threshold: {alert.threshold}</div>
-                  {alert.description && (
-                    <div>Description: {alert.description}</div>
-                  )}
-                </Popup>
-              </Marker>
-            </React.Fragment>
-          ))}
-      </MapContainer>
-    </div>
-  );
-};
-
-// Helper function for color interpolation based on depth
-const depthToColor = (depth) => {
-  if (depth === undefined || depth === null) return "#A0A0A0"; // Default color for unknown depth
-  if (depth <= 0.05) return "#E0F7FA"; // Very Light Cyan
-  if (depth <= 0.1) return "#B2EBF2"; // Light Cyan
-  if (depth <= 0.25) return "#80DEEA"; // Cyan
-  if (depth <= 0.5) return "#4DD0E1"; // Medium Cyan
-  if (depth <= 0.75) return "#26C6DA"; // Strong Cyan
-  if (depth <= 1.0) return "#00BCD4"; // Dark Cyan
-  if (depth <= 1.5) return "#00ACC1"; // Very Dark Cyan
-  if (depth <= 2.0) return "#0097A7"; // Even Darker Cyan
-  if (depth <= 3.0) return "#00838F"; // Blue-Green
-  if (depth <= 4.0) return "#006064"; // Dark Blue-Green
-  if (depth <= 5.0) return "#FFC107"; // Amber for caution
-  if (depth <= 7.5) return "#FF9800"; // Orange for warning
-  if (depth <= 10.0) return "#FF5722"; // Deep Orange for high warning
-  return "#D32F2F"; // Red for critical depth
-};
-
-// Depth Legend Component
-const DepthLegend = () => {
-  const legendItems = [
-    { label: "< 0.05 m", color: "#E0F7FA" },
-    { label: "0.05 - 0.1 m", color: "#B2EBF2" },
-    { label: "0.1 - 0.25 m", color: "#80DEEA" },
-    { label: "0.25 - 0.5 m", color: "#4DD0E1" },
-    { label: "0.5 - 0.75 m", color: "#26C6DA" },
-    { label: "0.75 - 1.0 m", color: "#00BCD4" },
-    { label: "1.0 - 1.5 m", color: "#00ACC1" },
-    { label: "1.5 - 2.0 m", color: "#0097A7" },
-    { label: "2.0 - 3.0 m", color: "#00838F" },
-    { label: "3.0 - 4.0 m", color: "#006064" },
-    { label: "4.0 - 5.0 m", color: "#FFC107" },
-    { label: "5.0 - 7.5 m", color: "#FF9800" },
-    { label: "7.5 - 10.0 m", color: "#FF5722" },
-    { label: "> 10.0 m", color: "#D32F2F" },
-    { label: "Unknown", color: "#A0A0A0" },
-  ];
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 20,
-        left: 20,
-        backgroundColor: "white",
-        padding: "10px",
-        borderRadius: "5px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.6)",
-        zIndex: 1000,
-      }}
-    >
-      <div style={{ fontWeight: "bold", marginBottom: "5px" }}>Depth (m)</div>
-      {legendItems.map((item, index) => (
-        <div key={index} style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              width: "20px",
-              height: "20px",
-              backgroundColor: item.color,
-              marginRight: "5px",
-              border: "1px solid #ccc",
-            }}
-          ></div>
-          <div>{item.label}</div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// Custom icons for different severity levels
-  const createCustomIcon = (severity, verified = false, depth = null) => {
-    const colors = {
-      low: "#10B981",
-      medium: "#F59E0B",
-      high: "#EF4444",
-      critical: "#7C2D12",
-    };
-
-    const baseColor = depth !== null ? depthToColor(depth) : (colors[severity] || colors.medium);
-
-    const iconHtml = `
-    <div style="
-      background-color: ${baseColor};
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    ">
-      <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
-      ${
-        verified
-          ? '<div style="position: absolute; top: -2px; right: -2px; background: #10B981; border-radius: 50%; width: 8px; height: 8px; border: 1px solid white;"></div>'
-          : ""
-      }
-    </div>
-  `;
-
-    return new L.DivIcon({
-      html: iconHtml,
-      className: "custom-flood-marker",
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      popupAnchor: [0, -12],
-    });
-  };
-
-  const alertIcon = new L.DivIcon({
-    html: `
-    <div style="
-      background-color: #DC2626;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: pulse 2s infinite;
-    ">
-      <svg width="14" height="14" fill="white" viewBox="0 0 24 24">
-        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-      </svg>
-    </div>
-  `,
-    className: "custom-alert-marker",
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
-    popupAnchor: [0, -14],
-  });
-
-  // Component to update map center when location changes
-  const MapController = ({ center, zoom }) => {
-    const map = useMap();
-
-    useEffect(() => {
-      if (center) {
-        map.setView(center, zoom);
-      }
   }, [center, zoom, map]);
 
   return null;
-};
+}
 
-const MapLegend = ({ depthToColor }) => {
-  const map = useMap();
+// Loading Component
+const LoadingSpinner = ({ message = "Loading map data..." }) => (
+  <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-[1000]">
+    <div className="flex flex-col items-center space-y-2">
+      <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+      <span className="text-sm text-gray-600">{message}</span>
+    </div>
+  </div>
+);
 
-  useEffect(() => {
-    const legend = L.control({ position: "bottomright" });
+// Error Component
+const ErrorMessage = ({ message, onRetry }) => (
+  <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-[1000]">
+    <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center max-w-md">
+      <XCircle className="w-12 h-12 text-red-500 mx-auto mb-2" />
+      <h3 className="text-red-800 font-medium mb-2">Map Error</h3>
+      <p className="text-red-600 text-sm mb-3">{message}</p>
+      {onRetry && (
+        <button
+          onClick={onRetry}
+          className="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700 transition-colors"
+        >
+          Try Again
+        </button>
+      )}
+    </div>
+  </div>
+);
 
-    legend.onAdd = () => {
-      const div = L.DomUtil.create("div", "info legend");
-      const depths = [0, 0.1, 0.5, 1.0, 2.0, 3.0, 5.0];
-      const labels = [];
-
-      div.innerHTML = '<h4>Water Depth (m)</h4>';
-
-      // Loop through our depth intervals and generate a label with a colored square for each interval
-      for (let i = 0; i < depths.length; i++) {
-        const from = depths[i];
-        const to = depths[i + 1];
-
-        labels.push(
-          '<i style="background:' +
-            depthToColor(from + 0.01) +
-            '"></i> ' +
-            from +
-            (to ? '&ndash;' + to : '+')
-        );
-      }
-
-      div.innerHTML += labels.join('<br>');
-
-      // Add size legend
-      div.innerHTML += '<h4>Size Scale</h4>';
-      div.innerHTML += `
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-          <div style="width: 10px; height: 10px; border-radius: 50%; background: #4682B4;"></div>
-          <span style="margin-left: 5px; font-size: 12px;">Small (e.g., 0.5m)</span>
-        </div>
-        <div style="display: flex; align-items: center;">
-          <div style="width: 20px; height: 20px; border-radius: 50%; background: #8B0000;"></div>
-          <span style="margin-left: 5px; font-size: 12px;">Large (e.g., 5m+)</span>
-        </div>
-      `;
-
-      return div;
-    };
-
-    legend.addTo(map);
-
-    return () => {
-      legend.remove();
-    };
-  }, [map, depthToColor]);
-
-  return null;
-};
-
+// Main FloodMap Component
 const FloodMap = ({
+  center = [28.6139, 77.209], // Default to Delhi
+  zoom = 10,
   height = "500px",
-  center = [20.5937, 78.9629],
-  zoom = 5,
-  showReports = true,
-  showAlerts = true,
   filters = {},
-  onMarkerClick = null,
+  showReports = true,
+  onReportClick = null,
+  className = "",
 }) => {
-  const { user } = useAuthStore();
   const [mapCenter, setMapCenter] = useState(center);
-  const [mapZoom, setMapZoom] = useState(zoom);
-  const [selectedReport, setSelectedReport] = useState(null);
 
   // Fetch flood reports
-  const { data: reportsData, isLoading: reportsLoading } = useQuery({
+  const {
+    data: reportsData,
+    isLoading: reportsLoading,
+    error: reportsError,
+    refetch: refetchReports,
+  } = useQuery({
     queryKey: ["flood-reports-map", filters],
-    queryFn: () =>
-      floodReportService.getReports({
-        ...filters,
-        lat: user?.location?.coordinates?.[1],
-        lng: user?.location?.coordinates?.[0],
-        radius: 50,
-        limit: 100,
-      }),
+    queryFn: () => floodReportService.getFloodReports(filters),
     enabled: showReports,
-    refetchInterval: 60000,
+    retry: 3,
+    staleTime: 300000, // 5 minutes
   });
 
-  // Fetch active alerts
-  const { data: alertsData, isLoading: alertsLoading } = useQuery({
-    queryKey: ["active-alerts-map"],
-    queryFn: () => alertService.getActiveAlerts(),
-    enabled: showAlerts,
-    refetchInterval: 30000,
-  });
+  // Process data
+  const floodReports = reportsData?.data || reportsData || [];
 
-  const reports = reportsData?.reports || [];
-  const alerts = alertsData?.alerts || [];
-
-  // Focus on user's location if available
+  // Update map center when center prop changes
   useEffect(() => {
-    if (user?.location?.coordinates) {
-      const [lng, lat] = user.location.coordinates;
-      setMapCenter([lat, lng]);
-      setMapZoom(12);
+    if (center) {
+      setMapCenter(center);
     }
-  }, [user]);
+  }, [center]);
 
-  const handleMarkerClick = (report) => {
-    setSelectedReport(report);
-    if (onMarkerClick) onMarkerClick(report);
-  };
+  // Depth to color mapping
+  const depthToColor = useCallback((depth) => {
+    if (depth < 0.5) return "#3B82F6"; // Blue for shallow
+    if (depth < 1) return "#F59E0B"; // Orange for medium
+    if (depth < 2) return "#EF4444"; // Red for deep
+    return "#7C2D12"; // Dark red for very deep
+  }, []);
 
-  const getSeverityColor = (severity) => {
-    const colors = {
-      low: "#10B981",
-      medium: "#F59E0B",
-      high: "#EF4444",
-      critical: "#7C2D12",
-    };
-    return colors[severity] || colors.medium;
-  };
+  // Handle loading states
+  const isLoading = showReports && reportsLoading;
 
-  const getVerificationIcon = (status) => {
-    switch (status) {
-      case "verified":
-        return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case "disputed":
-        return <XCircle className="w-4 h-4 text-red-500" />;
-      default:
-        return <Clock className="w-4 h-4 text-yellow-500" />;
-    }
+  // Handle errors
+  const hasError = reportsError;
+  const errorMessage = reportsError?.message;
+
+  const handleRetry = () => {
+    if (reportsError) refetchReports();
   };
 
   return (
-    <div className="relative" style={{ height }}>
-      {(reportsLoading || alertsLoading) && (
-        <div className="absolute top-2 left-2 z-[1000] bg-white px-3 py-1 rounded-lg shadow-lg">
-          <div className="flex items-center text-sm text-gray-600">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-600 mr-2"></div>
-            Loading map data...
-          </div>
-        </div>
-      )}
-
-      <MapContainer
-        center={mapCenter}
-        zoom={mapZoom}
-        style={{ height: "100%", width: "100%" }}
-        className="rounded-lg"
-      >
-        <MapController center={mapCenter} zoom={mapZoom} />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {/* Map Legend */}
-        <MapLegend depthToColor={depthToColor} />
-
-        {/* User location */}
-        {user?.location?.coordinates && (
-          <Marker
-            position={[
-              user.location.coordinates[1],
-              user.location.coordinates[0],
-            ]}
-            icon={
-              new L.DivIcon({
-                html: `<div style="background-color:#3B82F6;width:16px;height:16px;border-radius:50%;border:3px solid white;"></div>`,
-                className: "user-location-marker",
-                iconSize: [16, 16],
-                iconAnchor: [8, 8],
-              })
-            }
-          >
-            <Popup>
-              <div className="p-2">
-                <div className="flex items-center mb-2">
-                  <MapPin className="w-4 h-4 text-blue-500 mr-2" />
-                  <span className="font-medium">Your Location</span>
-                </div>
-                <p className="text-sm text-gray-600">
-                  {user.location.address || "Current position"}
-                </p>
-              </div>
-            </Popup>
-          </Marker>
+    <ErrorBoundary
+      message="The flood map failed to load. This might be due to network issues or invalid location data."
+      onRetry={handleRetry}
+    >
+      <div className={`relative ${className}`} style={{ height }}>
+        {isLoading && <LoadingSpinner />}
+        {hasError && (
+          <ErrorMessage message={errorMessage} onRetry={handleRetry} />
         )}
 
-        {/* Flood reports */}
-        {showReports &&
-          reports.map((report) => (
-            <CircleMarker
-              key={report._id}
-              center={[
-                report.location.coordinates[1],
-                report.location.coordinates[0],
-              ]}
-              radius={5 + Math.min(report.depth || 0, 15)} // Scale radius based on depth, max radius 20
-              pathOptions={{
-                color: depthToColor(report.depth),
-                fillColor: depthToColor(report.depth),
-                fillOpacity: 0.6,
-                weight: 2,
-              }}
-              eventHandlers={{ click: () => handleMarkerClick(report) }}
-            >
-              <Popup maxWidth={320}>
-                <div className="p-2">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center">
-                      <Droplets
-                        className={`w-5 h-5 mr-2`}
-                        style={{ color: getSeverityColor(report.severity) }}
-                      />
-                      <span className="font-medium capitalize">
-                        {report.severity} Severity
-                      </span>
-                    </div>
-                    {getVerificationIcon(report.verificationStatus)}
-                  </div>
-                  <div className="mb-3 text-sm text-gray-600">
-                    <MapPin className="w-3 h-3 mr-1 inline" />{" "}
-                    {report.location.address ||
-                      `${report.location.district}, ${report.location.state}`}
-                  </div>
-                  {report.depth !== undefined && report.depth !== null && (
-                    <div className="mb-3 text-sm text-gray-700 flex items-center">
-                      <Droplets className="w-4 h-4 mr-1 inline text-blue-600" />
-                      <strong>Depth:</strong> {report.depth.toFixed(2)} meters
-                    </div>
-                  )}
-                  <p className="text-sm mb-3 line-clamp-2">
-                    {report.description}
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 mt-3">
-                    <div className="flex items-center"><Clock className="w-3 h-3 mr-1" /> {format(parseISO(report.createdAt), 'MMM dd, yyyy HH:mm')}</div>
-                    <div className="flex items-center"><Eye className="w-3 h-3 mr-1" /> {report.communityVotes.upvotes + report.communityVotes.downvotes} votes</div>
-                    {report.weatherConditions && (
-                      <div className="flex items-center">
-                        {report.weatherConditions.rainfall !== undefined && (
-                          <span className="flex items-center mr-2">
-                            <CloudRain className="w-3 h-3 mr-1" />{report.weatherConditions.rainfall}mm
-                          </span>
-                        )}
-                        {report.weatherConditions.temperature !== undefined && (
-                          <span className="flex items-center mr-2">
-                            <Sun className="w-3 h-3 mr-1" />{report.weatherConditions.temperature}°C
-                          </span>
-                        )}
-                        {report.weatherConditions.windSpeed !== undefined && (
-                          <span className="flex items-center">
-                            <Wind className="w-3 h-3 mr-1" />{report.weatherConditions.windSpeed}km/h
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {report.impact?.affectedPeople > 0 && (
-                      <div className="flex items-center"><Users className="w-3 h-3 mr-1" /> {report.impact.affectedPeople} affected</div>
-                    )}
-                  </div>
-                </div>
-              </Popup>
-            </CircleMarker>
-          ))}
+        <MapContainer
+          center={mapCenter}
+          zoom={zoom}
+          style={{ height: "100%", width: "100%" }}
+        >
+          <SetViewAndZoom center={mapCenter} zoom={zoom} />
 
-        {/* Alerts */}
-        {showAlerts &&
-          alerts.map((alert) => {
-            if (alert.targetArea.type === "Circle") {
-              const center = alert.targetArea.coordinates;
-              const radius = alert.targetArea.radius * 1000;
-              return (
-                <React.Fragment key={alert._id}>
-                  <Circle
-                    center={center}
-                    radius={radius}
-                    pathOptions={{
-                      color: "#DC2626",
-                      fillColor: "#FEE2E2",
-                      fillOpacity: 0.3,
-                      weight: 2,
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+
+          {/* Flood Report Markers */}
+          <ErrorBoundary message="Unable to display flood report markers">
+            {showReports &&
+              floodReports?.map((report) => {
+                const position = report.location?.coordinates
+                  ? [
+                      report.location.coordinates[1],
+                      report.location.coordinates[0],
+                    ]
+                  : [report.location?.latitude, report.location?.longitude];
+
+                if (!position[0] || !position[1]) return null;
+
+                return (
+                  <Marker
+                    key={report._id}
+                    position={position}
+                    icon={L.divIcon({
+                      className: "custom-div-icon",
+                      html: `
+                  <div style="
+                    background-color: ${depthToColor(report.depth || 0)};
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 10px;
+                    font-weight: bold;
+                  ">
+                    ${report.depth ? Math.round(report.depth * 10) / 10 : "?"}
+                  </div>
+                `,
+                      iconSize: [20, 20],
+                      iconAnchor: [10, 10],
+                    })}
+                    eventHandlers={{
+                      click: () => onReportClick && onReportClick(report),
                     }}
-                  />
-                  <Marker position={center} icon={alertIcon}>
+                  >
                     <Popup maxWidth={300}>
                       <div className="p-2">
                         <div className="flex items-center mb-2">
-                          <AlertTriangle className="w-5 h-5 text-red-500 mr-2" />
-                          <span className="font-medium">
-                            {alert.alertType.toUpperCase()}
+                          <Droplets className="w-4 h-4 text-blue-500 mr-2" />
+                          <span className="font-medium text-sm">
+                            Flood Report
                           </span>
                         </div>
-                        <h4 className="font-medium mb-2">{alert.title}</h4>
-                        <p className="text-sm mb-3">{alert.message}</p>
+                        <div className="space-y-1 text-xs">
+                          <div>
+                            <strong>Severity:</strong> {report.severity}
+                          </div>
+                          <div>
+                            <strong>Water Level:</strong> {report.waterLevel}
+                          </div>
+                          {report.depth && (
+                            <div>
+                              <strong>Depth:</strong> {report.depth}m
+                            </div>
+                          )}
+                          <div>
+                            <strong>Status:</strong> {report.status}
+                          </div>
+                          {report.createdAt && (
+                            <div>
+                              <strong>Reported:</strong>{" "}
+                              {new Date(report.createdAt).toLocaleDateString()}
+                            </div>
+                          )}
+                          {report.description && (
+                            <div className="mt-2 text-gray-600">
+                              {report.description}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </Popup>
                   </Marker>
-                </React.Fragment>
-              );
-            }
-            return null;
-          })}
-      </MapContainer>
-    </div>
+                );
+              })}
+          </ErrorBoundary>
+        </MapContainer>
+      </div>
+    </ErrorBoundary>
   );
 };
 

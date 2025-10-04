@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+console.log("[DEBUG] ViewReports component is rendering");
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -58,12 +60,14 @@ const ViewReports = () => {
         sortBy,
         limit: 20,
       };
-
-      return floodReportService.getReports(params);
+      console.log("[DEBUG] Fetching reports with params:", params);
+      const result = await floodReportService.getReports(params);
+      console.log("[DEBUG] API result:", result);
+      return result;
     },
   });
 
-  const reports = reportsData?.data || [];
+  const reports = reportsData?.reports || [];
 
   const handleValidation = async (reportId, vote) => {
     try {
@@ -73,7 +77,11 @@ const ViewReports = () => {
       );
       refetch();
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message || "Failed to validate report");
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to validate report"
+      );
     }
   };
 
@@ -146,7 +154,9 @@ const ViewReports = () => {
           {/* Filter Button (Mobile) */}
           <div className="md:hidden">
             <button
-              onClick={() => document.getElementById("filters").classList.toggle("hidden")}
+              onClick={() =>
+                document.getElementById("filters").classList.toggle("hidden")
+              }
               className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
             >
               <Filter className="w-4 h-4 mr-2" />
@@ -267,86 +277,98 @@ const ViewReports = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reports.map((report) => (
-              <div
-                key={report.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
-              >
-                {/* Report Header */}
-                <div className="p-4 border-b border-gray-100">
-                  <div className="flex items-center justify-between mb-2">
-                    <div
-                      className={`px-3 py-1 rounded-full text-xs font-medium border ${getSeverityColor(
-                        report.severity
-                      )}`}
-                    >
-                      {report.severity.charAt(0).toUpperCase() +
-                        report.severity.slice(1)}
+            {reports.map((report) => {
+              console.log("[DEBUG] Report object:", report);
+              return (
+                <div
+                  key={report._id || report.id}
+                  className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                >
+                  {/* Report Header */}
+                  <div className="p-4 border-b border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                      <div
+                        className={`px-3 py-1 rounded-full text-xs font-medium border ${getSeverityColor(
+                          report.severity
+                        )}`}
+                      >
+                        {report.severity.charAt(0).toUpperCase() +
+                          report.severity.slice(1)}
+                      </div>
+                      <div className="flex items-center">
+                        {getStatusIcon(report.status)}
+                        <span className="text-xs ml-1 capitalize">
+                          {report.status}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      {getStatusIcon(report.status)}
-                      <span className="text-xs ml-1 capitalize">
-                        {report.status}
+                    <h3 className="font-medium text-gray-900 mb-1 truncate">
+                      {report.location.district}, {report.location.state}
+                    </h3>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <MapPin className="w-3 h-3 mr-1" />
+                      <span className="truncate">
+                        {report.location.address}
                       </span>
                     </div>
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-1 truncate">
-                    {report.location.district}, {report.location.state}
-                  </h3>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    <span className="truncate">{report.location.address}</span>
+
+                  {/* Report Content */}
+                  <div className="p-4">
+                    <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                      {report.description}
+                    </p>
+
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        <span>
+                          {new Date(report.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="flex items-center">
+                        <Users className="w-3 h-3 mr-1" />
+                        <span>{report.validations || 0} validations</span>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() =>
+                            handleValidation(report._id || report.id, "upvote")
+                          }
+                          className="flex items-center px-2 py-1 bg-green-50 text-green-700 rounded hover:bg-green-100"
+                        >
+                          <ThumbsUp className="w-3 h-3 mr-1" />
+                          <span className="text-xs">Confirm</span>
+                        </button>
+                        <button
+                          onClick={() =>
+                            handleValidation(
+                              report._id || report.id,
+                              "downvote"
+                            )
+                          }
+                          className="flex items-center px-2 py-1 bg-red-50 text-red-700 rounded hover:bg-red-100"
+                        >
+                          <ThumbsDown className="w-3 h-3 mr-1" />
+                          <span className="text-xs">Dispute</span>
+                        </button>
+                      </div>
+                      <Link
+                        to={`/reports/${report._id || report.id}`}
+                        className="flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded hover:bg-blue-100"
+                      >
+                        <Eye className="w-3 h-3 mr-1" />
+                        <span className="text-xs">View</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-
-                {/* Report Content */}
-                <div className="p-4">
-                  <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                    {report.description}
-                  </p>
-
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <Calendar className="w-3 h-3 mr-1" />
-                      <span>
-                        {new Date(report.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <Users className="w-3 h-3 mr-1" />
-                      <span>{report.validations || 0} validations</span>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => handleValidation(report.id, "upvote")}
-                        className="flex items-center px-2 py-1 bg-green-50 text-green-700 rounded hover:bg-green-100"
-                      >
-                        <ThumbsUp className="w-3 h-3 mr-1" />
-                        <span className="text-xs">Confirm</span>
-                      </button>
-                      <button
-                        onClick={() => handleValidation(report.id, "downvote")}
-                        className="flex items-center px-2 py-1 bg-red-50 text-red-700 rounded hover:bg-red-100"
-                      >
-                        <ThumbsDown className="w-3 h-3 mr-1" />
-                        <span className="text-xs">Dispute</span>
-                      </button>
-                    </div>
-                    <Link
-                      to={`/reports/${report.id}`}
-                      className="flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded hover:bg-blue-100"
-                    >
-                      <Eye className="w-3 h-3 mr-1" />
-                      <span className="text-xs">View</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

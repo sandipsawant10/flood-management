@@ -1,0 +1,169 @@
+2025-09-28T08:48:34.344Z [info]: Email sent: mock-email-id
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test"
+  }
+}
+2025-09-28T08:48:34.352Z [info]: SMS sent: mock-sms-sid
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test"
+  }
+}
+2025-09-28T08:48:34.356Z [warn]: SMS service not configured
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test"
+  }
+}
+2025-09-28T08:48:34.360Z [info]: Email sent: mock-email-id
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test"
+  }
+}
+2025-09-28T08:48:34.365Z [info]: SMS sent: mock-sms-sid
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test"
+  }
+}
+2025-09-28T08:48:34.400Z [error]: Notification failed for user user101: Email failed
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "test",
+    "stack": "Error: Email failed\n    at S:\\flood-disaster-management\\server\\services\\notificationService.test.js:157:75\n    at Generator.call (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at Generator._invoke [as next] (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at asyncGeneratorStep (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at asyncGeneratorStep (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at _next (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at new Promise (<anonymous>)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\services\\notificationService.test.js:2:1)\n    at Promise.then.completed (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at _runTest (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at _runTestsForDescribeBlock (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (S:\\flood-disaster-management\\server\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapter.js:79:19)\n    at runTestInternal (S:\\flood-disaster-management\\server\\node_modules\\jest-runner\\build\\runTest.js:367:16)\n    at runTest (S:\\flood-disaster-management\\server\\node_modules\\jest-runner\\build\\runTest.js:444:34)"
+  }
+}
+2025-09-28T10:19:29.351Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T10:19:29.355Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T10:19:29.356Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T10:19:37.978Z [info]: MongoDB Connected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:02:13.957Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:02:13.961Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:02:13.962Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:02:17.532Z [info]: MongoDB Connected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:08:26.557Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:08:26.561Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:08:26.561Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T11:08:29.927Z [info]: MongoDB Connected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T12:08:13.075Z [warn]: MongoDB disconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T12:12:03.861Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2025-09-28T12:12:03.862Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}

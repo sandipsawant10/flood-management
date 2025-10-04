@@ -1,61 +1,106 @@
 # Flood Disaster Management System
 
 ## Overview
+
 The Flood Disaster Management System is a comprehensive web application designed to help communities prepare for, respond to, and recover from flood disasters. The system provides real-time flood alerts, reporting capabilities, emergency response coordination, and data analytics to improve disaster management efforts.
 
 ## Features
 
 ### User Management
+
 - User registration and authentication
 - Profile management
 - Password reset functionality
 - Role-based access control (admin, regular users)
 
 ### Flood Reporting
+
 - Submit flood reports with location data
 - Upload images of flood situations
 - Track report status and updates
 - View historical reports
 
 ### Alert System
+
 - Real-time flood alerts based on severity levels
 - Customizable notification preferences
 - Multi-channel notifications (in-app, email, SMS)
 - Geographic targeting of alerts
 
 ### Emergency Response
+
 - Emergency contact information
 - SOS functionality for immediate assistance
 - Emergency resource locator
 - Evacuation routes and safe zones
 
 ### Maps and Visualization
+
 - Interactive flood maps using Leaflet
 - Real-time flood data visualization
 - Historical flood data overlays
 - Risk assessment visualization
 
 ### Analytics and Predictions
+
 - Flood trend analysis
 - Predictive modeling for flood risks
 - Data visualization with charts and graphs
 - Downloadable reports
 
 ### Notifications
+
 - Real-time notifications via WebSockets
 - Email notifications for critical alerts
 - SMS notifications for emergency situations
 - Customizable notification preferences
 
-### Admin Dashboard
-- User management
-- System-wide analytics
-- Alert management
-- Content moderation
+### Admin & Municipality Portals
+
+- **Admin Portal**: Full access for admin users to all dashboards, analytics, user/resource management, and AI verification.
+- **Municipality Portal**: Municipality users access the admin portal with municipality-specific permissions:
+  - Municipality Dashboard
+  - Resource Tracking
+  - Financial Aid Requests Management
+  - AI Report Verification Dashboard
+  - Alerts and flood report management
+
+#### Municipality Login Credentials
+
+Default municipality accounts are provided for testing and onboarding:
+
+| City      | Email                                      | Password     |
+| --------- | ------------------------------------------ | ------------ |
+| Mumbai    | mumbai.municipality@floodmanagement.com    | mumbai123    |
+| Delhi     | delhi.municipality@floodmanagement.com     | delhi123     |
+| Bangalore | bangalore.municipality@floodmanagement.com | bangalore123 |
+| Chennai   | chennai.municipality@floodmanagement.com   | chennai123   |
+| Kolkata   | kolkata.municipality@floodmanagement.com   | kolkata123   |
+| Pune      | pune.municipality@floodmanagement.com      | pune123      |
+
+See `MUNICIPALITY_CREDENTIALS.md` for full details, phone numbers, and government IDs.
+
+#### Logout Functionality
+
+- **Logout is available in both admin and municipality portals**
+  - Sidebar logout button in AdminPortal
+  - Header logout button in MunicipalityDashboard
+  - Clears session and redirects to login page
+
+#### AI Verification Dashboard
+
+- Municipality users can access the AI Report Verification dashboard for reviewing and verifying flood reports
+- Role-based access control ensures only authorized users can access verification features
+
+#### Security Notes
+
+- Default passwords should be changed after first login
+- Municipality accounts have verified status and maximum trust score
 
 ## Tech Stack
 
 ### Frontend
+
 - React 18
 - React Router v7
 - Zustand for state management
@@ -66,6 +111,7 @@ The Flood Disaster Management System is a comprehensive web application designed
 - Socket.io client for real-time communication
 
 ### Backend
+
 - Node.js with Express
 - MongoDB with Mongoose ODM
 - JWT for authentication
@@ -76,6 +122,7 @@ The Flood Disaster Management System is a comprehensive web application designed
 - Swagger for API documentation
 
 ### DevOps & Tools
+
 - Vite for frontend build
 - Nodemon for development
 - Jest for testing
@@ -109,6 +156,7 @@ The Flood Disaster Management System is a comprehensive web application designed
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - MongoDB
 - npm or yarn
@@ -116,22 +164,26 @@ The Flood Disaster Management System is a comprehensive web application designed
 ### Installation
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/yourusername/flood-disaster-management.git
    cd flood-disaster-management
    ```
 
 2. Install server dependencies
+
    ```bash
    cd server
    npm install
    ```
 
 3. Configure server environment variables
+
    - Create a `.env` file in the server directory based on `.env.example`
    - Set up your MongoDB connection string, JWT secret, email service credentials, etc.
 
 4. Install client dependencies
+
    ```bash
    cd ../client
    npm install
@@ -143,18 +195,27 @@ The Flood Disaster Management System is a comprehensive web application designed
 ### Running the Application
 
 1. Start the server
+
    ```bash
    cd server
    npm run dev
    ```
 
 2. Start the client
+
    ```bash
    cd client
    npm run dev
    ```
 
 3. Access the application at `http://localhost:5173`
+
+### Municipality Login Instructions
+
+1. Go to the login page: `http://localhost:5173/login`
+2. Use any municipality email and password from the table above
+3. After login, you'll be redirected to the portal with municipality permissions
+4. Use the logout button in the sidebar or dashboard header to securely log out
 
 ## API Documentation
 
@@ -173,6 +234,7 @@ Users can customize their notification preferences in their profile settings.
 ## Deployment
 
 ### Frontend
+
 1. Build the client
    ```bash
    cd client
@@ -181,6 +243,7 @@ Users can customize their notification preferences in their profile settings.
 2. Deploy the contents of the `dist` directory to your web server or hosting service
 
 ### Backend
+
 1. Set up production environment variables
 2. Deploy the server code to your hosting service
 3. Configure a process manager like PM2 to keep the server running

@@ -1,4 +1,5 @@
 import React from "react";
+import FloodReportTable from "../../components/Admin/FloodReportTable";
 import { useNavigate } from "react-router-dom";
 import {
   UserGroupIcon,
@@ -135,6 +136,12 @@ const AdminDashboard = () => {
           <p className="text-3xl font-bold text-purple-600">8m</p>
           <p className="text-sm text-gray-500 mt-1">Average response time</p>
         </div>
+      </div>
+
+      {/* Flood Reports Table */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Flood Reports</h2>
+        <FloodReportTable />
       </div>
     </div>
   );

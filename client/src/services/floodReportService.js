@@ -46,8 +46,18 @@ export const floodReportService = {
   },
 
   getReportById: async (id) => {
-    const response = await axiosInstance.get(`/flood-reports/${id}`);
-    return response.data;
+    // Try public endpoint first for citizen portal
+    try {
+      const response = await axiosInstance.get(`/flood-reports/public/${id}`);
+      return response.data;
+    } catch (err) {
+      // Fallback to admin/municipality endpoint if not found (for admin views)
+      if (err.response && err.response.status === 404) {
+        const response = await axiosInstance.get(`/flood-reports/${id}`);
+        return response.data;
+      }
+      throw err;
+    }
   },
 
   voteOnReport: async (id, vote) => {
@@ -68,9 +78,12 @@ export const floodReportService = {
   },
 
   // Get all flood reports for admin
-  getAdminFloodReports: async () => {
+  getAdminFloodReports: async (filters = {}) => {
     try {
-      const response = await axiosInstance.get("/admin/flood-reports");
+      const params = new URLSearchParams(filters);
+      const response = await axiosInstance.get(
+        `/flood-reports/admin?${params}`
+      );
       return response.data;
     } catch (error) {
       console.error("Error fetching admin flood reports:", error);
@@ -137,15 +150,12 @@ export const floodReportService = {
     }
   },
 
-  // Update report status (for admin)
+  // Update report status (for admin/municipality)
   updateReportStatus: async (id, status) => {
     try {
-      const response = await axiosInstance.patch(
-        `/admin/flood-reports/${id}/status`,
-        {
-          status,
-        }
-      );
+      const response = await axiosInstance.put(`/flood-reports/${id}/status`, {
+        status,
+      });
       return response.data;
     } catch (error) {
       console.error("Error updating report status:", error);

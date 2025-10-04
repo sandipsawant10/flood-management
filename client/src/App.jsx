@@ -40,9 +40,10 @@ import MunicipalityResourceManagement from "./pages/Municipality/ManageResources
 import LoginPage from "./pages/Auth/Login.jsx";
 import RegisterPage from "./pages/Auth/Register.jsx";
 import AboutPage from "./pages/Home.jsx";
-import ConnectivityTest from "./components/Debug/ConnectivityTest.jsx";
 import adminRoutes from "./routes/adminRoutes";
 import SmartDashboardRouter from "./components/Auth/SmartDashboardRouter.jsx";
+import PortalRoutes from "./routes/portalRoutes";
+import UserReportDetail from "./pages/UserPortal/UserReportDetail.jsx";
 
 // Unauthorized page component
 const UnauthorizedPage = () => (
@@ -108,7 +109,6 @@ const AuthenticatedApp = () => {
 const AppRoutes = () => {
   return (
     <>
-      <ConnectivityTest />
       <OfflineStatus />
       <Routes>
         {/* Public Routes */}
@@ -150,6 +150,7 @@ const AppRoutes = () => {
             <Route path="/water-issues" element={<WaterIssuesList />} />
             <Route path="/report-water-issue" element={<WaterIssueReport />} />
             <Route path="/water-issues/:id" element={<WaterIssueDetail />} />
+            <Route path="/reports/:reportId" element={<UserReportDetail />} />
           </Route>
 
           {/* Municipality Routes */}
@@ -187,6 +188,9 @@ const AppRoutes = () => {
               element={<MunicipalityResourceManagement />}
             />
           </Route>
+
+          {/* Portal Routes */}
+          <Route path="/portal/*" element={<PortalRoutes />} />
         </Route>
       </Routes>
     </>

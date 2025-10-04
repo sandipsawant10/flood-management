@@ -16,14 +16,14 @@ import toast from "react-hot-toast";
 const MunicipalityDashboard = () => {
   const queryClient = useQueryClient();
   const [selectedReport, setSelectedReport] = useState(null);
-  const [selectedAlert, setSelectedAlert] = useState(null);
-  const [activeTab, setActiveTab] = useState("reports");
+  const [_selectedAlert, _setSelectedAlert] = useState(null);
+  const [_activeTab, _setActiveTab] = useState("reports");
 
   // Fetch flood reports
   const { data: reports, isLoading: reportsLoading } = useQuery({
     queryKey: ["floodReports"],
     queryFn: async () => {
-      const { data } = await axiosInstance.get("/api/flood-reports");
+      const { data } = await axiosInstance.get("/flood-reports/admin");
       return data;
     },
   });
@@ -41,7 +41,7 @@ const MunicipalityDashboard = () => {
   const verifyReportMutation = useMutation({
     mutationFn: async ({ reportId, status, notes }) => {
       const { data } = await axiosInstance.patch(
-        `/api/flood-reports/${reportId}/verify`,
+        `/flood-reports/${reportId}/verify`,
         {
           status,
           notes,

@@ -25,6 +25,10 @@ const NotificationSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    link: {
+      type: String,
+      default: null,
+    },
     relatedItem: {
       type: {
         type: String,
@@ -41,7 +45,7 @@ const NotificationSchema = new mongoose.Schema(
     },
     expiresAt: {
       type: Date,
-      default: function() {
+      default: function () {
         // Default expiration: 30 days from creation
         const now = new Date();
         return new Date(now.setDate(now.getDate() + 30));

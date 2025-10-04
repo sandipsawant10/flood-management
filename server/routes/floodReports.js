@@ -6,10 +6,27 @@ const { auth, authorize } = require("../middleware/auth");
 const upload = require("../middleware/upload");
 const roleAuth = require("../middleware/roleAuth");
 const weatherService = require("../services/weatherService");
-const notificationService = require("../services/notificationService");
+const NotificationService = require("../services/notificationService");
+const notificationService = new NotificationService();
 const newsService = require("../services/newsService");
 const socialService = require("../services/socialService");
 const router = express.Router();
+// Public route: Get a single flood report by ID (for citizen portal)
+router.get("/public/:id", async (req, res) => {
+  try {
+    const floodReport = await FloodReport.findById(req.params.id).populate(
+      "reportedBy",
+      "name trustScore role"
+    );
+    if (!floodReport) {
+      return res.status(404).json({ message: "Flood report not found" });
+    }
+    res.status(200).json(floodReport);
+  } catch (error) {
+    console.error("Error fetching public single flood report:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 // Get flood reports (public endpoint with optional filters)
 router.get(
@@ -360,6 +377,7 @@ router.post(
       });
 
       await newReport.save();
+      console.log("✅ Flood report saved to MongoDB:", newReport._id);
 
       // Send notifications to relevant rescuers/admins
       // TODO: Implement proper notification service for new flood reports
@@ -488,9 +506,17 @@ router.get(
         .sort(sort)
         .skip((page - 1) * limit)
         .limit(limit);
+
+      // Add 'status' field to each report for frontend compatibility
+      const reportsWithStatus = floodReports.map((report) => {
+        const r = report.toObject();
+        r.status = r.verificationStatus;
+        return r;
+      });
+
       const totalReports = await FloodReport.countDocuments(filter);
       res.status(200).json({
-        reports: floodReports,
+        reports: reportsWithStatus,
         currentPage: page,
         totalPages: Math.ceil(totalReports / limit),
         totalReports,
@@ -514,8 +540,12 @@ router.put(
   ],
   async (req, res) => {
     try {
+      console.log("[MODERATE REPORT] Params:", req.params);
+      console.log("[MODERATE REPORT] Body:", req.body);
+      console.log("[MODERATE REPORT] User:", req.user);
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
+        console.error("[MODERATE REPORT] Validation errors:", errors.array());
         return res.status(400).json({ errors: errors.array() });
       }
       const { id } = req.params;
@@ -523,6 +553,7 @@ router.put(
       const moderatorId = req.user.userId;
       const floodReport = await FloodReport.findById(id);
       if (!floodReport) {
+        console.error(`[MODERATE REPORT] Flood report not found for id: ${id}`);
         return res.status(404).json({ message: "Flood report not found" });
       }
       floodReport.verificationStatus = status;
@@ -531,23 +562,28 @@ router.put(
       if (reason) floodReport.moderationReason = reason;
       await floodReport.save();
       // Notify the user who reported it about the moderation decision
-      notificationService.sendNotification({
-        recipient: floodReport.reportedBy,
-        type: "report_moderated",
-        message: `Your flood report in ${floodReport.location.district} has been ${status}.`,
-        link: `/reports/${floodReport._id}`,
-        relatedEntity: {
-          kind: "FloodReport",
-          item: floodReport._id,
-        },
-      });
+      try {
+        await notificationService.createInAppNotification({
+          recipient: floodReport.reportedBy,
+          title: `Flood Report Moderated`,
+          message: `Your flood report in ${floodReport.location.district} has been ${status}.`,
+          type: "info",
+          link: `/reports/${floodReport._id}`,
+          relatedItem: {
+            type: "floodReport",
+            id: floodReport._id,
+          },
+        });
+      } catch (notifyErr) {
+        console.error("[MODERATE REPORT] Notification error:", notifyErr);
+      }
       res.status(200).json({
         message: `Report ${id} status updated to ${status}`,
         floodReport,
       });
     } catch (error) {
-      console.error("Error moderating flood report:", error);
-      res.status(500).json({ message: "Server error" });
+      console.error("[MODERATE REPORT] Unhandled error:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
     }
   }
 );

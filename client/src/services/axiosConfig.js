@@ -26,16 +26,7 @@ axiosInstance.interceptors.request.use(
       startTime: new Date().getTime(),
     };
 
-    try {
-      const base = axiosInstance.defaults.baseURL || "";
-      if (config.url && typeof config.url === "string") {
-        if (base.endsWith("/api") && config.url.startsWith("/api")) {
-          config.url = config.url.replace(/^\/api/, "");
-        }
-      }
-    } catch (e) {
-      console.debug("URL normalization error:", e);
-    }
+    // Removed code that stripped '/api' from the request URL to ensure Vite proxy works correctly.
 
     return config;
   },

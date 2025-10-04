@@ -50,7 +50,7 @@ const NotificationCenter = () => {
     refetchIntervalInBackground: true,
   });
 
-  const notifications = notificationsData?.data || [];
+  const notifications = notificationsData?.notifications || [];
 
   const markAsRead = async (id) => {
     try {
@@ -146,7 +146,75 @@ const NotificationCenter = () => {
       {/* Header and Stats */}
       {/* Filters/Search */}
       {/* Notification List */}
-      {/* ... same JSX as before ... */}
+      <div className="space-y-4">
+        {isLoading ? (
+          <div className="flex items-center space-x-2">
+            <Loader2 className="animate-spin" />{" "}
+            <span>Loading notifications...</span>
+          </div>
+        ) : error ? (
+          <div className="text-red-600">{error.message}</div>
+        ) : notifications.length === 0 ? (
+          <div className="text-gray-500">No notifications found.</div>
+        ) : (
+          notifications.map((notification) => (
+            <div
+              key={notification._id || notification.id}
+              className={getNotificationStyle(
+                notification.type,
+                notification.isRead
+              )}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "1rem",
+                border: "1px solid #e5e7eb",
+                marginBottom: "0.5rem",
+              }}
+            >
+              <div className="mr-4">
+                {getNotificationIcon(notification.type)}
+              </div>
+              <div className="flex-1">
+                <div className="font-semibold">
+                  {notification.title || "Notification"}
+                </div>
+                <div className="text-gray-700 text-sm">
+                  {notification.message}
+                </div>
+                <div className="text-xs text-gray-400 mt-1">
+                  {formatTimeAgo(notification.createdAt)}
+                </div>
+              </div>
+              {notification.link && (
+                <a
+                  href={notification.link}
+                  className="ml-4 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Report
+                </a>
+              )}
+              <button
+                className="ml-2 text-xs text-gray-400 hover:text-blue-600"
+                onClick={() => markAsRead(notification._id || notification.id)}
+                disabled={notification.isRead}
+              >
+                {notification.isRead ? "Read" : "Mark as Read"}
+              </button>
+              <button
+                className="ml-2 text-xs text-gray-400 hover:text-red-600"
+                onClick={() =>
+                  deleteNotification(notification._id || notification.id)
+                }
+              >
+                <Trash2 className="inline w-4 h-4" />
+              </button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

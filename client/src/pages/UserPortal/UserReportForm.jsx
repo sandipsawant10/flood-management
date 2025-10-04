@@ -18,7 +18,6 @@ import {
   Wind,
   Users,
   Home,
-  Road,
   DollarSign,
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
@@ -711,7 +710,7 @@ const UserReportForm = () => {
 
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <Road className="w-4 h-4 mr-1" />
+              {/* Blocked Roads icon removed: lucide-react does not export Road */}
               Blocked Roads (comma separated)
             </label>
             <input

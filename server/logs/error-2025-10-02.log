@@ -1,0 +1,122 @@
+2025-10-02T11:09:48.388Z [error]: Your session has expired. Please log in again [2bce12cb-241b-4b78-8523-108dfc318568]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2bce12cb-241b-4b78-8523-108dfc318568",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-02T12:24:22.066Z [error]: The user associated with this token no longer exists [794967e5-529a-48b9-93de-385348449e6c]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "794967e5-529a-48b9-93de-385348449e6c",
+    "url": "/api/flood-reports/admin",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "The user associated with this token no longer exists",
+      "stack": "AuthenticationError: The user associated with this token no longer exists\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:99:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-02T12:24:22.419Z [error]: The user associated with this token no longer exists [3d85db32-fa47-46aa-b8fd-b2c4a808fc1f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3d85db32-fa47-46aa-b8fd-b2c4a808fc1f",
+    "url": "/api/alerts",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "The user associated with this token no longer exists",
+      "stack": "AuthenticationError: The user associated with this token no longer exists\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:99:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-02T12:27:36.724Z [error]: The user associated with this token no longer exists [fd0f79f5-109e-4535-b612-36f6c8e49afc]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "fd0f79f5-109e-4535-b612-36f6c8e49afc",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "The user associated with this token no longer exists",
+      "stack": "AuthenticationError: The user associated with this token no longer exists\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:99:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-02T16:06:54.671Z [error]: MongoDB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "reason": {
+      "type": "ReplicaSetNoPrimary",
+      "servers": {},
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": "atlas-wr4261-shard-0",
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    },
+    "stack": "MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/\n    at _handleConnectionErrors (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:816:11)\n    at NativeConnection.openUri (S:\\flood-disaster-management\\server\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectDB (S:\\flood-disaster-management\\server\\server.js:119:5)"
+  }
+}
+2025-10-02T17:28:42.444Z [error]: The user associated with this token no longer exists [c2ff56e0-e2f5-45e3-a641-e7a914964f19]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "c2ff56e0-e2f5-45e3-a641-e7a914964f19",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "The user associated with this token no longer exists",
+      "stack": "AuthenticationError: The user associated with this token no longer exists\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:99:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}

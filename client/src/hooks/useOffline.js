@@ -19,6 +19,7 @@ import {
 /**
  * Hook for offline functionality
  */
+
 export const useOffline = () => {
   const [online, setOnline] = useState(isOnline());
   const [offlineReady, setOfflineReady] = useState(false);
@@ -34,6 +35,56 @@ export const useOffline = () => {
     indexedDBSupported: "indexedDB" in window,
     backgroundSyncSupported: "SyncManager" in window,
   });
+
+  /**
+   * Manually trigger data synchronization
+   */
+  const syncData = useCallback(async () => {
+    if (!navigator.onLine) {
+      console.log("Cannot sync while offline");
+      return {
+        success: false,
+        error: "Device is offline",
+      };
+    }
+
+    try {
+      setSyncStatus((prev) => ({
+        ...prev,
+        syncing: true,
+        error: null,
+      }));
+
+      // Sync all offline data types
+      const requestsSync = await syncOfflineRequests();
+      const reportsSync = await syncFloodReports();
+
+      setSyncStatus((prev) => ({
+        ...prev,
+        syncing: false,
+        lastSyncTime: new Date(),
+      }));
+
+      return {
+        success: true,
+        requestsSync,
+        reportsSync,
+      };
+    } catch (error) {
+      console.error("Error during manual sync:", error);
+
+      setSyncStatus((prev) => ({
+        ...prev,
+        syncing: false,
+        error: error.message,
+      }));
+
+      return {
+        success: false,
+        error: error.message,
+      };
+    }
+  }, []);
 
   // Check for service worker registration
   useEffect(() => {
@@ -86,57 +137,7 @@ export const useOffline = () => {
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("sync-complete", handleSyncComplete);
     };
-  }, []);
-
-  /**
-   * Manually trigger data synchronization
-   */
-  const syncData = useCallback(async () => {
-    if (!navigator.onLine) {
-      console.log("Cannot sync while offline");
-      return {
-        success: false,
-        error: "Device is offline",
-      };
-    }
-
-    try {
-      setSyncStatus((prev) => ({
-        ...prev,
-        syncing: true,
-        error: null,
-      }));
-
-      // Sync all offline data types
-      const requestsSync = await syncOfflineRequests();
-      const reportsSync = await syncFloodReports();
-
-      setSyncStatus((prev) => ({
-        ...prev,
-        syncing: false,
-        lastSyncTime: new Date(),
-      }));
-
-      return {
-        success: true,
-        requestsSync,
-        reportsSync,
-      };
-    } catch (error) {
-      console.error("Error during manual sync:", error);
-
-      setSyncStatus((prev) => ({
-        ...prev,
-        syncing: false,
-        error: error.message,
-      }));
-
-      return {
-        success: false,
-        error: error.message,
-      };
-    }
-  }, []);
+  }, [syncData]);
 
   /**
    * Get alerts from local storage

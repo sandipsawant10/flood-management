@@ -26,13 +26,18 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { SearchIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import {
+  SearchIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
 import floodReportService from "../../services/floodReportService";
+import adminService from "../../services/adminService";
 
 const ReportReviewPage = () => {
   const [reports, setReports] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [_loading, setLoading] = useState(true);
+  const [_error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -137,10 +142,12 @@ const ReportReviewPage = () => {
             {reports.map((report) => (
               <Tr key={report._id}>
                 <Td>{report.location.address}</Td>
-                <Td>{report.reporter.name}</Td>
+                <Td>{report.reportedBy?.name}</Td>
                 <Td>
-                  <Badge colorScheme={getStatusBadgeColor(report.status)}>
-                    {report.status}
+                  <Badge
+                    colorScheme={getStatusBadgeColor(report.verificationStatus)}
+                  >
+                    {report.verificationStatus}
                   </Badge>
                 </Td>
                 <Td>{report.severity}</Td>
@@ -152,7 +159,7 @@ const ReportReviewPage = () => {
                       setSelectedReport(report);
                       onOpen();
                     }}
-                    isDisabled={report.status !== "pending"}
+                    isDisabled={report.verificationStatus !== "pending"}
                   >
                     Moderate
                   </Button>
@@ -187,7 +194,7 @@ const ReportReviewPage = () => {
           <ModalBody>
             <Stack spacing={4}>
               <Text>Location: {selectedReport?.location.address}</Text>
-              <Text>Reporter: {selectedReport?.reporter.name}</Text>
+              <Text>Reporter: {selectedReport?.reportedBy?.name}</Text>
               <Text>Description: {selectedReport?.description}</Text>
               <Textarea
                 placeholder="Enter moderation reason..."

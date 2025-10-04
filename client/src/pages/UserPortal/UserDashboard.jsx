@@ -19,16 +19,23 @@ import { floodReportService } from "../../services/floodReportService";
 import { alertService } from "../../services/alertService";
 import WeatherWidget from "../../components/WeatherWidget";
 import NewsWidget from "../../components/NewsWidget";
-import FloodMap from "../../components/FloodMap";
+// import FloodMap from "../../components/FloodMap";
+import ErrorBoundary from "../../components/Common/ErrorBoundary";
+import { SimpleErrorBoundary } from "../../components/Common/ErrorBoundaryHelpers";
+import {
+  LoadingSpinner,
+  CardSkeleton,
+  MapSkeleton,
+} from "../../components/Common/LoadingComponents";
 
 const UserDashboard = () => {
-  const { data: recentReports } = useQuery({
+  const { data: recentReports, isLoading: reportsLoading } = useQuery({
     queryKey: ["user-recent-reports"],
     queryFn: () => floodReportService.getCurrentUserReports({ limit: 3 }),
     placeholderData: [],
   });
 
-  const { data: nearbyAlerts } = useQuery({
+  const { data: nearbyAlerts, isLoading: alertsLoading } = useQuery({
     queryKey: ["nearby-alerts"],
     queryFn: () => alertService.getNearbyAlerts(),
     placeholderData: [],
@@ -170,7 +177,9 @@ const UserDashboard = () => {
               <h2 className="font-medium text-gray-800">Local Weather</h2>
             </div>
             <div className="p-4">
-              <WeatherWidget />
+              <SimpleErrorBoundary>
+                <WeatherWidget />
+              </SimpleErrorBoundary>
             </div>
           </div>
         </div>
@@ -189,7 +198,7 @@ const UserDashboard = () => {
             </Link>
           </div>
           <div className="h-64 relative">
-            <FloodMap height="100%" />
+            {/* <FloodMap height="100%" /> */}
           </div>
         </div>
 
@@ -199,7 +208,9 @@ const UserDashboard = () => {
             <h2 className="font-medium text-gray-800">Latest News & Updates</h2>
           </div>
           <div className="p-4">
-            <NewsWidget />
+            <SimpleErrorBoundary>
+              <NewsWidget />
+            </SimpleErrorBoundary>
           </div>
         </div>
       </div>
@@ -216,7 +227,11 @@ const UserDashboard = () => {
           </Link>
         </div>
         <div className="divide-y divide-gray-200">
-          {recentReports && recentReports.length > 0 ? (
+          {reportsLoading ? (
+            <div className="p-4">
+              <CardSkeleton lines={2} showAvatar={true} height="120px" />
+            </div>
+          ) : recentReports && recentReports.length > 0 ? (
             recentReports.map((report) => (
               <div key={report._id} className="p-4 hover:bg-gray-50">
                 <div className="flex items-start">
@@ -274,7 +289,11 @@ const UserDashboard = () => {
           <h2 className="font-medium text-gray-800">Nearby Flood Alerts</h2>
         </div>
         <div className="divide-y divide-gray-200">
-          {nearbyAlerts && nearbyAlerts.length > 0 ? (
+          {alertsLoading ? (
+            <div className="p-4">
+              <CardSkeleton lines={2} showAvatar={true} height="100px" />
+            </div>
+          ) : nearbyAlerts && nearbyAlerts.length > 0 ? (
             nearbyAlerts.map((alert) => (
               <div key={alert._id} className="p-4 hover:bg-gray-50">
                 <div className="flex items-start">

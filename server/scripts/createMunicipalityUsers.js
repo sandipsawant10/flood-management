@@ -6,6 +6,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 const createMunicipalityUsers = async () => {
   try {
@@ -151,6 +152,10 @@ const createMunicipalityUsers = async () => {
           continue;
         }
 
+        // Hash the password before saving
+        const salt = await bcrypt.genSalt(10);
+        userData.password = await bcrypt.hash(userData.password, salt);
+
         // Create the municipality user
         const municipalityUser = new User(userData);
         await municipalityUser.save();
@@ -232,6 +237,13 @@ const createSingleMunicipalityUser = async (municipalityData) => {
       console.log("Municipality user already exists:", existingUser.email);
       return existingUser;
     }
+
+    // Hash the password before saving
+    const salt = await bcrypt.genSalt(10);
+    municipalityData.password = await bcrypt.hash(
+      municipalityData.password,
+      salt
+    );
 
     const user = new User(municipalityData);
     await user.save();
