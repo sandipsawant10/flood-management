@@ -32,7 +32,7 @@ import Analytics from "./pages/Analytics/Analytics.jsx";
 import DisasterManagement from "./pages/admin/ManageDisasters.jsx";
 import RequestManagement from "./pages/admin/ManageRequests.jsx";
 import MunicipalityDashboard from "./pages/municipality/MunicipalityDashboard";
-import MunicipalityProfile from "./pages/municipality/MunicipalityProfile";
+import MunicipalityProfile from "./pages/Municipality/MunicipalityProfile";
 import MunicipalitySettings from "./pages/municipality/MunicipalitySettings";
 import MunicipalityAnalytics from "./pages/Municipality/Analytics.jsx";
 import MunicipalityReports from "./pages/Reports/ViewReports.jsx";
