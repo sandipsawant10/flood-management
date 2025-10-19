@@ -1,0 +1,767 @@
+2025-10-05T06:33:38.975Z [error]: Authentication failed [db50c0a5-2b46-4225-b894-9022dcb6d05d]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "db50c0a5-2b46-4225-b894-9022dcb6d05d",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at runNextTicks (node:internal/process/task_queues:64:3)\n    at listOnTimeout (node:internal/timers:545:9)\n    at process.processTimers (node:internal/timers:519:7)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T06:33:44.119Z [error]: Authentication failed [9b3b6c7b-9260-4455-8b07-d14e0b077486]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9b3b6c7b-9260-4455-8b07-d14e0b077486",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.321Z [error]: Your session has expired. Please log in again [7ee9554d-47fa-41aa-9349-5a8d4f977621]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7ee9554d-47fa-41aa-9349-5a8d4f977621",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.332Z [error]: Your session has expired. Please log in again [5443f9b4-53aa-4c5d-9008-5cdce645360b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "5443f9b4-53aa-4c5d-9008-5cdce645360b",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.343Z [error]: Your session has expired. Please log in again [3062da35-e473-4614-a00b-2617b3a7c36d]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "3062da35-e473-4614-a00b-2617b3a7c36d",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.353Z [error]: Your session has expired. Please log in again [4ee18656-e371-438f-babf-e9bf68c65823]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4ee18656-e371-438f-babf-e9bf68c65823",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.364Z [error]: Your session has expired. Please log in again [c0e9d1d7-eade-4b22-ab56-7919cb9ea1e1]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "c0e9d1d7-eade-4b22-ab56-7919cb9ea1e1",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.379Z [error]: Your session has expired. Please log in again [6e5fedc8-e949-40ef-99bd-0ff18f41aec0]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "6e5fedc8-e949-40ef-99bd-0ff18f41aec0",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.395Z [error]: Your session has expired. Please log in again [1ef9466b-4dea-412e-8310-1bd1d3d83c77]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "1ef9466b-4dea-412e-8310-1bd1d3d83c77",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.435Z [error]: Your session has expired. Please log in again [e8b6ed2e-4481-47f8-8dac-e1d48995d50b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "e8b6ed2e-4481-47f8-8dac-e1d48995d50b",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.449Z [error]: Your session has expired. Please log in again [dc1adfb9-12e7-427d-9e2d-68dad7d94f84]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "dc1adfb9-12e7-427d-9e2d-68dad7d94f84",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.460Z [error]: Your session has expired. Please log in again [9cef2116-7539-428b-ba31-35cd6702ff79]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9cef2116-7539-428b-ba31-35cd6702ff79",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.472Z [error]: Your session has expired. Please log in again [d04c6825-c815-4083-b895-af20f5d24153]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d04c6825-c815-4083-b895-af20f5d24153",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.483Z [error]: Your session has expired. Please log in again [232f733e-1e93-4e14-81a5-2a4b8b1e5540]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "232f733e-1e93-4e14-81a5-2a4b8b1e5540",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.492Z [error]: Your session has expired. Please log in again [2f647a39-3296-477f-aac5-2d300f5e8d25]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "2f647a39-3296-477f-aac5-2d300f5e8d25",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:36.502Z [error]: Your session has expired. Please log in again [f770eeba-8976-418d-8325-3e3a4d037036]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "f770eeba-8976-418d-8325-3e3a4d037036",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:12:47.430Z [error]: Your session has expired. Please log in again [b12e5c7e-29ef-4ff0-9244-7499a33b99d6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b12e5c7e-29ef-4ff0-9244-7499a33b99d6",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:17:30.977Z [error]: Authentication failed [8b9d6219-65b1-43ea-9fc3-75d573ee63bf]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8b9d6219-65b1-43ea-9fc3-75d573ee63bf",
+    "url": "/api/auth/profile",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Authentication failed",
+      "stack": "AuthenticationError: Authentication failed\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:134:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2025-10-05T09:34:26.839Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [7ad286d6-a161-48f4-832a-c15a19e7f4d6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7ad286d6-a161-48f4-832a-c15a19e7f4d6",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:34:27.858Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [507ebb73-2a8a-4cff-9001-dcb49f8ad716]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "507ebb73-2a8a-4cff-9001-dcb49f8ad716",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:34:29.871Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [ec86abf6-e47c-4d50-a26b-ed4c94f1c795]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "ec86abf6-e47c-4d50-a26b-ed4c94f1c795",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:34:33.885Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [cfcc1b01-d309-464a-9b6a-a81040df1f47]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "cfcc1b01-d309-464a-9b6a-a81040df1f47",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:34:36.380Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [581ee928-90b1-4b2a-bb11-8e6f10bd7243]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "581ee928-90b1-4b2a-bb11-8e6f10bd7243",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:34:37.465Z [error]: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc [b05ccc2f-b258-4229-8a34-b7a8047765af]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b05ccc2f-b258-4229-8a34-b7a8047765af",
+    "url": "/api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": "",
+      "category": "all",
+      "location": "all",
+      "status": "all",
+      "sortField": "name",
+      "sortOrder": "asc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:11.721Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [96264328-4efd-4900-be88-4626b2e643f9]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "96264328-4efd-4900-be88-4626b2e643f9",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:12.740Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [f967db02-5f0b-47af-82e8-331bfeebe031]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "f967db02-5f0b-47af-82e8-331bfeebe031",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:14.760Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [7cd9d44d-2d4d-4438-ba99-5cfef0ee7a1e]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "7cd9d44d-2d4d-4438-ba99-5cfef0ee7a1e",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:22.481Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [1a07384a-c720-416f-a352-1575ea5c9590]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "1a07384a-c720-416f-a352-1575ea5c9590",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:23.500Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [13f6fd13-068f-45de-93ee-795f08be6438]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "13f6fd13-068f-45de-93ee-795f08be6438",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:25.524Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [8d3b2cc2-8c8d-4af7-a2e3-b9f03e8444bd]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8d3b2cc2-8c8d-4af7-a2e3-b9f03e8444bd",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2025-10-05T09:35:29.552Z [error]: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc [b580af87-695f-406c-a3be-9b21e9457a82]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "b580af87-695f-406c-a3be-9b21e9457a82",
+    "url": "/api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "sortField": "createdAt",
+      "sortOrder": "desc"
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
