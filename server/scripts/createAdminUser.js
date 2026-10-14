@@ -27,9 +27,7 @@ const createAdminUser = async (adminData) => {
       return existingAdmin;
     }
 
-    // Hash the password before saving
-    const salt = await bcrypt.genSalt(10);
-    adminData.password = await bcrypt.hash(adminData.password, salt);
+    // Mongoose pre-save hook handles bcrypt hashing
     const adminUser = new User(adminData);
     await adminUser.save();
 

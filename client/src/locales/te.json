@@ -1,52 +1,105 @@
 {
   "app": {
     "name": "వరద విపత్తు నిర్వహణ",
-    "tagline": "సమాజాలు సిద్ధం కావడానికి, స్పందించడానికి మరియు కోలుకోవడానికి సహాయం చేస్తోంది"
+    "tagline": "సముదాయాలు సిద్ధం కావడానికి, స్పందించడానికి సహాయపడుతుంది"
+  },
+  "hero": {
+    "title": "వేగవంతమైన వరద సమాచారం.",
+    "titleHighlight": "బలమైన స్పందన.",
+    "subtitle": "రియల్ టైమ్ కమ్యూనిటీ నివేదికలు మరియు నిర్ణయ మద్దతు.",
+    "getStarted": "ప్రారంభించండి",
+    "signIn": "సైన్ ఇన్ చేయండి"
   },
   "navigation": {
     "home": "హోమ్",
     "dashboard": "డాష్‌బోర్డ్",
     "reports": "నివేదికలు",
+    "reportFlood": "వరద నివేదించండి",
+    "reportWaterIssue": "నీటి సమస్య నివేదించండి",
+    "viewReports": "నివేదికలను చూడండి",
+    "waterIssues": "నీటి సమస్యలు",
     "alerts": "హెచ్చరికలు",
     "map": "మ్యాప్",
     "notifications": "నోటిఫికేషన్లు",
     "profile": "ప్రొఫైల్",
-    "settings": "సెట్టింగులు",
+    "settings": "సెట్టింగ్‌లు",
     "logout": "లాగ్ అవుట్",
-    "login": "లాగిన్"
+    "login": "లాగిన్",
+    "register": "రిజిస్టర్ చేయండి",
+    "features": "ఫీచర్లు",
+    "howItWorks": "ఇది ఎలా పనిచేస్తుంది",
+    "emergency": "అత్యవసర సేవలు"
+  },
+  "dashboard": {
+    "welcome": "స్వాగతం",
+    "manageAssistance": "ఇక్కడ మీ వరద విపత్తు సహాయాన్ని నిర్వాహించండి",
+    "nearbyAlerts": "సమీప హెచ్చరికలు",
+    "alertMap": "హెచ్చరిక మ్యాప్",
+    "quickActions": "త్వరిత చర్యలు",
+    "recentNotifications": "ఇటీవలి నోటిఫికేషన్లు"
+  },
+  "waterIssues": {
+    "title": "నీటి సమస్యలు",
+    "reportIssue": "నీటి సమస్య నివేదించండి",
+    "listTitle": "నీటి సమస్య నివేదికలు"
+  },
+  "admin": {
+    "municipality": "మున్సిపాలిటీ",
+    "rescuers": "రక్షకులు",
+    "users": "వినియోగదారుల నిర్వహణ",
+    "analytics": "విశ్లేషణ"
+  },
+  "municipality": {
+    "resources": "వనరులను నిర్వహించండి"
+  },
+  "features": {
+    "sectionTitle": "అధిక ప్రమాదం ఉన్న ప్రాంతాల కోసం నిర్మించబడింది",
+    "sectionSubtitle": "Aqua Assists పౌరుల సమాచారాన్ని మరియు అత్యవసర సమన్వయాన్ని ఒకే చోటకు తెస్తుంది.",
+    "reportingTitle": "రియల్-టైమ్ నివేదిక",
+    "reportingText": "జియో-ట్యాగింగ్ మరియు మీడియా అప్‌లోడ్‌లతో వరద నివేదిక.",
+    "responseTitle": "సమన్వయ స్పందన",
+    "responseText": "అత్యవసర బృందాల కోసం ఏకీకృత డాష్‌బోర్డ్.",
+    "mappingTitle": "డైనమిక్ మ్యాపింగ్",
+    "mappingText": "తీవ్రత దృశ్య రూపకల్పన మరియు మ్యాప్ దృశ్యం.",
+    "validationTitle": "ధృవీకరణ ఇంజిన్",
+    "validationText": "నమ్మకమైన నివేదికలను ప్రోత్సహించడానికి సమీక్ష వర్క్‌ఫ్లో."
+  },
+  "cta": {
+    "title": "నిమిషాలను రక్షించబడిన ప్రాణాలుగా మార్చే నెట్‌వర్క్‌లో చేరండి",
+    "subtitle": "ప్రతి ధృవీకరించబడిన నివేదిక స్పందన ఖచ్చితత్వాన్ని పెంచుతుంది."
   },
   "common": {
     "loading": "లోడ్ అవుతోంది...",
-    "error": "లోపం సంభవించింది",
+    "error": "ఒక లోపం సంభవించింది",
     "retry": "మళ్ళీ ప్రయత్నించండి",
-    "cancel": "రద్దు",
-    "save": "సేవ్",
+    "cancel": "రద్దు చేయి",
+    "save": "సేవ్ చేయి",
     "edit": "సవరించు",
     "delete": "తొలగించు",
-    "search": "శోధన",
+    "search": "శోధించు",
     "filter": "ఫిల్టర్",
-    "clear": "క్లియర్",
-    "submit": "సమర్పించండి",
-    "close": "మూసివేయండి",
+    "clear": "క్లియర్ చేయి",
+    "submit": "సమర్పించు",
+    "close": "మూసివేయి",
     "yes": "అవును",
     "no": "కాదు",
     "back": "వెనుకకు",
-    "next": "తదుపరి",
-    "continue": "కొనసాగించండి",
-    "view": "చూడండి",
+    "next": "తరువాత",
+    "continue": "కొనసాగించు",
+    "view": "చూడు",
     "details": "వివరాలు",
     "moreInfo": "మరింత సమాచారం",
-    "showMore": "మరింత చూపించు",
+    "showMore": "మరిన్ని చూపించు",
     "showLess": "తక్కువ చూపించు"
   },
   "geolocation": {
-    "unknownLocation": "తెలియని స్థానం",
-    "currentLocation": "ప్రస్తుత స్థానం",
+    "unknownLocation": "తెలియని ప్రాంతం",
+    "currentLocation": "ప్రస్తుత ప్రాంతం",
     "locationFormat": "అక్షాంశం: {{latitude}}, రేఖాంశం: {{longitude}}",
-    "accessDenied": "స్థాన ప్రాప్తి నిరాకరించబడింది",
-    "locationUnavailable": "స్థాన సమాచారం అందుబాటులో లేదు",
-    "timeoutError": "వినియోగదారు స్థానాన్ని పొందడానికి అభ్యర్థన సమయం ముగిసింది",
-    "unsupportedError": "మీ బ్రౌజర్ జియోలొకేషన్‌కి మద్దతు ఇవ్వదు",
+    "accessDenied": "ప్రాంత యాక్సెస్ నిరాకరించబడింది",
+    "locationUnavailable": "ప్రాంత సమాచారం అందుబాటులో లేదు",
+    "timeoutError": "అభ్యర్థన సమయం ముగిసింది",
+    "unsupportedError": "బ్రౌజర్ జియోలొకేషన్‌కు మద్దతు ఇవ్వదు",
     "accuracy": "ఖచ్చితత్వం: {{meters}} మీటర్లు",
     "updatedAt": "నవీకరించబడింది: {{time}}",
     "directions": {
@@ -56,32 +109,32 @@
       "southeast": "ఆగ్నేయం",
       "south": "దక్షిణం",
       "southwest": "నైరుతి",
-      "west": "పశ్చిమం",
-      "northwest": "వాయవ్యం",
-      "headingDirection": "{{destination}}కి చేరుకోవడానికి {{direction}} వైపు సుమారు {{distance}}కిమీ వెళ్ళండి."
+      "west": "పడమర",
+      "northwest": "వాయువ్యం",
+      "headingDirection": "{{destination}} చేరడానికి సుమారు {{distance}}కిమీ {{direction}} వైపు వెళ్ళండి."
     },
     "evacuationRoutes": {
-      "title": "ఖాళీ చేయు మార్గాలు",
+      "title": "తరలింపు మార్గాలు",
       "findSafeRoutes": "సురక్షిత మార్గాలను కనుగొనండి",
       "safeRouteFound": "సురక్షిత మార్గం కనుగొనబడింది",
       "noRoutesFound": "సురక్షిత మార్గాలు కనుగొనబడలేదు",
       "walkingTime": "{{minutes}} నిమిషాల నడక",
       "distance": "{{distance}} కిమీ",
       "safeShelter": "సురక్షిత ఆశ్రయం",
-      "highGround": "ఎత్తైన ప్రదేశం",
+      "highGround": "ఎత్తైన ప్రాంతం",
       "emergencyCenter": "అత్యవసర కేంద్రం",
-      "evacuationCenter": "కమ్యూనిటీ ఎవాక్యుయేషన్ సెంటర్",
+      "evacuationCenter": "కమ్యూనిటీ తరలింపు కేంద్రం",
       "reliefCenter": "అత్యవసర సహాయ కేంద్రం"
     },
     "errors": {
-      "invalidLocation": "చెల్లని స్థానం",
+      "invalidLocation": "చెల్లని ప్రాంతం",
       "geocodingServiceUnavailable": "జియోకోడింగ్ సేవ అందుబాటులో లేదు"
     },
     "riskLevels": {
-      "high": "అధిక",
+      "high": "అధికం",
       "medium": "మధ్యస్థం",
       "low": "తక్కువ",
-      "unknown": "తెలియని"
+      "unknown": "తెలియదు"
     },
     "risk": {
       "floodRisk": "వరద ప్రమాదం",
@@ -91,5 +144,27 @@
       "unknownRisk": "తెలియని ప్రమాదం",
       "elevationRisk": "ఎత్తు ప్రమాదం"
     }
+  },
+  "emergency": {
+    "emergencyServices": "అత్యవసర సేవలు",
+    "emergencyContacts": "అత్యవసర పరిచయాలు",
+    "nearbyResources": "సమీప అత్యవసర వనరులు",
+    "reportEmergency": "అత్యవసర పరిస్థితిని నివేదించండి",
+    "callNow": "ఇప్పుడే కాల్ చేయండి",
+    "call": "కాల్ చేయండి",
+    "emergencyCall": "అత్యవసర కాల్",
+    "confirmEmergencyCall": "మీరు ఖచ్చితంగా కాల్ చేయాలనుకుంటున్నారా",
+    "onlyUseForEmergencies": "దయచేసి నిజమైన అత్యవసర పరిస్థితులకు మాత్రమే అత్యవసర సేవలను ఉపయోగించండి.",
+    "reportEmergencyPrompt": "దయచేసి అత్యవసర పరిస్థితి వివరాలను అందించండి.",
+    "locationRequired": "అత్యవసర నివేదిక ఇవ్వడానికి లొకేషన్ యాక్సెస్ అవసరం.",
+    "hospitals": "ఆసుపత్రులు",
+    "shelters": "అత్యవసర ఆశ్రయాలు",
+    "policeStations": "పోలీస్ స్టేషన్లు",
+    "fireStations": "ఫైర్ స్టేషన్లు",
+    "bedsAvailable": "అందుబాటులో ఉన్న బెడ్‌లు",
+    "availableSpace": "అందుబాటులో ఉన్న స్థలం",
+    "noResourcesFound": "మీ ప్రాంతంలో అత్యవసర వనరులు కనుగొనబడలేదు.",
+    "errorFetchingContacts": "అత్యవసర పరిచయాలను పొందడంలో విఫలమైంది.",
+    "errorFetchingResources": "అత్యవసర వనరులను పొందడంలో విఫలమైంది."
   }
 }

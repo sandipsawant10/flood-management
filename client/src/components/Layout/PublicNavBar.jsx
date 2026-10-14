@@ -4,9 +4,11 @@ import AppLogo from "../Branding/AppLogo";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "../Common/ThemeToggle";
 import LanguageSelector from "../Common/LanguageSelector";
+import { useLanguage } from "../../contexts/languageContextDef";
 
 const PublicNavBar = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   const linkBase =
     "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors";
@@ -20,13 +22,13 @@ const PublicNavBar = () => {
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#features" className={linkBase}>
-              Features
+              {t("navigation.features") || "Features"}
             </a>
             <a href="#how" className={linkBase}>
-              How it works
+              {t("navigation.howItWorks") || "How it works"}
             </a>
             <a href="#cta" className={linkBase}>
-              Get Started
+              {t("hero.getStarted") || "Get Started"}
             </a>
           </div>
           <div className="flex items-center gap-2">
@@ -36,13 +38,13 @@ const PublicNavBar = () => {
               to="/login"
               className="px-4 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              Login
+              {t("navigation.login") || "Login"}
             </Link>
             <Link
               to="/register"
               className="px-4 py-2 rounded-md text-sm font-semibold text-white bg-gradient-to-r from-sky-600 to-indigo-600 shadow hover:from-sky-500 hover:to-indigo-500"
             >
-              Register
+              {t("navigation.register") || "Register"}
             </Link>
             <button
               className="md:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -62,13 +64,13 @@ const PublicNavBar = () => {
               className={linkBase}
               onClick={() => setOpen(false)}
             >
-              Features
+              {t("navigation.features") || "Features"}
             </a>
             <a href="#how" className={linkBase} onClick={() => setOpen(false)}>
-              How it works
+              {t("navigation.howItWorks") || "How it works"}
             </a>
             <a href="#cta" className={linkBase} onClick={() => setOpen(false)}>
-              Get Started
+              {t("hero.getStarted") || "Get Started"}
             </a>
           </div>
         </div>
@@ -78,3 +80,4 @@ const PublicNavBar = () => {
 };
 
 export default PublicNavBar;
+

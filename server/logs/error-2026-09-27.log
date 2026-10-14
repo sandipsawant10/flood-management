@@ -1,0 +1,92 @@
+2026-09-27T09:36:57.677Z [error]: Your session has expired. Please log in again [f5b89fa7-2cab-416d-8321-52f74652348f]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "f5b89fa7-2cab-416d-8321-52f74652348f",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-27T09:36:57.706Z [error]: Your session has expired. Please log in again [4e0ed578-b464-4632-8c3f-ab2c1ab5b2e7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4e0ed578-b464-4632-8c3f-ab2c1ab5b2e7",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-27T09:36:57.730Z [error]: Your session has expired. Please log in again [6fb85963-53e0-4ef7-9f0f-5c4e2be17081]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "6fb85963-53e0-4ef7-9f0f-5c4e2be17081",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-27T09:36:57.747Z [error]: Your session has expired. Please log in again [d226b17a-0eb1-45af-a2d0-cc06a5fb3adc]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "d226b17a-0eb1-45af-a2d0-cc06a5fb3adc",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "Your session has expired. Please log in again",
+      "stack": "AuthenticationError: Your session has expired. Please log in again\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:77:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}

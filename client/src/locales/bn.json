@@ -1,36 +1,89 @@
 {
   "app": {
     "name": "বন্যা দুর্যোগ ব্যবস্থাপনা",
-    "tagline": "সম্প্রদায়কে প্রস্তুত, প্রতিক্রিয়া এবং পুনরুদ্ধার করতে সহায়তা করা"
+    "tagline": "সম্প্রদায়কে প্রস্তুতি, সাড়া প্রদান এবং পুনরুদ্ধারে সহায়তা করা"
+  },
+  "hero": {
+    "title": "দ্রুত বন্যা সংক্রান্ত তথ্য।",
+    "titleHighlight": "জোরালো সাড়া।",
+    "subtitle": "রিয়েল-টাইম কমিউনিটি রিপোর্টিং এবং সিদ্ধান্ত সহায়তা।",
+    "getStarted": "শুরু করুন",
+    "signIn": "সাইন ইন করুন"
   },
   "navigation": {
     "home": "হোম",
     "dashboard": "ড্যাশবোর্ড",
-    "reports": "প্রতিবেদন",
-    "alerts": "সতর্কতা",
+    "reports": "রিপোর্ট",
+    "reportFlood": "বন্যা রিপোর্ট করুন",
+    "reportWaterIssue": "পানি সমস্যা রিপোর্ট করুন",
+    "viewReports": "রিপোর্ট দেখুন",
+    "waterIssues": "পানি সমস্যা",
+    "alerts": "সতর্কবার্তা",
     "map": "মানচিত্র",
     "notifications": "বিজ্ঞপ্তি",
     "profile": "প্রোফাইল",
     "settings": "সেটিংস",
-    "logout": "লগআউট",
-    "login": "লগইন"
+    "logout": "লগ আউট",
+    "login": "লগ ইন",
+    "register": "নিবন্ধন করুন",
+    "features": "বৈশিষ্ট্যসমূহ",
+    "howItWorks": "কীভাবে কাজ করে",
+    "emergency": "জরুরি সেবা"
+  },
+  "dashboard": {
+    "welcome": "স্বাগতম",
+    "manageAssistance": "এখানে আপনার বন্যা দুর্যোগ সহায়তা পরিচালনা করুন",
+    "nearbyAlerts": "নিকটবর্তী সতর্কবার্তা",
+    "alertMap": "সতর্কবার্তা মানচিত্র",
+    "quickActions": "দ্রুত পদক্ষেপ",
+    "recentNotifications": "সাম্প্রতিক বিজ্ঞপ্তি"
+  },
+  "waterIssues": {
+    "title": "পানি সমস্যা",
+    "reportIssue": "পানি সমস্যা রিপোর্ট করুন",
+    "listTitle": "পানি সমস্যা রিপোর্ট"
+  },
+  "admin": {
+    "municipality": "পৌরসভা",
+    "rescuers": "উদ্ধারকারী দল",
+    "users": "ব্যবহারকারী ব্যবস্থাপনা",
+    "analytics": "বিশ্লেষণ"
+  },
+  "municipality": {
+    "resources": "সম্পদ পরিচালনা করুন"
+  },
+  "features": {
+    "sectionTitle": "উচ্চ ঝুঁকিপূর্ণ সম্প্রদায়ের জন্য নির্মিত",
+    "sectionSubtitle": "Aqua Assists নাগরিক তথ্য ও জরুরি সমন্বয় একত্রিত করে।",
+    "reportingTitle": "রিয়েল-টাইম রিপোর্টিং",
+    "reportingText": "জিও-ট্যাগিং সহ বন্যার অবস্থা ক্যাপচার।",
+    "responseTitle": "সমন্বিত সাড়া",
+    "responseText": "জরুরি দলের জন্য সমন্বিত ড্যাশবোর্ড।",
+    "mappingTitle": "ডাইনামিক ম্যাপিং",
+    "mappingText": "তীব্রতা ভিজ্যুয়ালাইজেশন ও প্রভাব ওভারলে।",
+    "validationTitle": "যাচাইকরণ ইঞ্জিন",
+    "validationText": "বিশ্বাসযোগ্য রিপোর্ট উন্নত করতে পর্যালোচনা।"
+  },
+  "cta": {
+    "title": "এমন নেটওয়ার্কে যোগ দিন যা মিনিটকে জীবন রক্ষায় রূপান্তর করে",
+    "subtitle": "প্রতিটি যাচাইকৃত রিপোর্ট প্রতিক্রিয়ার নির্ভুলতা বাড়ায়।"
   },
   "common": {
     "loading": "লোড হচ্ছে...",
     "error": "একটি ত্রুটি ঘটেছে",
     "retry": "পুনরায় চেষ্টা করুন",
     "cancel": "বাতিল",
-    "save": "সংরক্ষণ",
+    "save": "সংরক্ষণ করুন",
     "edit": "সম্পাদনা",
     "delete": "মুছে ফেলুন",
     "search": "অনুসন্ধান",
     "filter": "ফিল্টার",
-    "clear": "পরিষ্কার",
+    "clear": "পরিষ্কার করুন",
     "submit": "জমা দিন",
-    "close": "বন্ধ",
+    "close": "বন্ধ করুন",
     "yes": "হ্যাঁ",
     "no": "না",
-    "back": "পেছনে",
+    "back": "ফিরে যান",
     "next": "পরবর্তী",
     "continue": "চালিয়ে যান",
     "view": "দেখুন",
@@ -43,11 +96,11 @@
     "unknownLocation": "অজানা অবস্থান",
     "currentLocation": "বর্তমান অবস্থান",
     "locationFormat": "অক্ষাংশ: {{latitude}}, দ্রাঘিমাংশ: {{longitude}}",
-    "accessDenied": "অবস্থান অ্যাক্সেস অস্বীকার করা হয়েছে",
-    "locationUnavailable": "অবস্থান তথ্য অনুপলব্ধ",
-    "timeoutError": "ব্যবহারকারীর অবস্থান পাওয়ার অনুরোধ সময় শেষ হয়ে গেছে",
-    "unsupportedError": "আপনার ব্রাউজার জিওলোকেশন সমর্থন করে না",
-    "accuracy": "সঠিকতা: {{meters}} মিটার",
+    "accessDenied": "অবস্থান প্রবেশাধিকার প্রত্যাখ্যাত হয়েছে",
+    "locationUnavailable": "অবস্থানের তথ্য অনুপলব্ধ",
+    "timeoutError": "অনুরোধের সময় শেষ হয়ে গেছে",
+    "unsupportedError": "ব্রাউজার জিওলোকেশন সমর্থন করে না",
+    "accuracy": "নির্ভুলতা: {{meters}} মিটার",
     "updatedAt": "আপডেট করা হয়েছে: {{time}}",
     "directions": {
       "north": "উত্তর",
@@ -58,38 +111,60 @@
       "southwest": "দক্ষিণ-পশ্চিম",
       "west": "পশ্চিম",
       "northwest": "উত্তর-পশ্চিম",
-      "headingDirection": "{{destination}} পৌঁছাতে {{direction}} দিকে প্রায় {{distance}} কিমি যান।"
+      "headingDirection": "{{destination}}-এ পৌঁছাতে আনুমানিক {{distance}} কিমি {{direction}} দিকে যান।"
     },
     "evacuationRoutes": {
-      "title": "অপসারণ পথ",
+      "title": "স্থানান্তর রুট",
       "findSafeRoutes": "নিরাপদ রুট খুঁজুন",
       "safeRouteFound": "নিরাপদ রুট পাওয়া গেছে",
-      "noRoutesFound": "কোন নিরাপদ রুট পাওয়া যায়নি",
+      "noRoutesFound": "কোনো নিরাপদ রুট পাওয়া যায়নি",
       "walkingTime": "{{minutes}} মিনিট হাঁটা",
       "distance": "{{distance}} কিমি",
       "safeShelter": "নিরাপদ আশ্রয়",
-      "highGround": "উঁচু জায়গা",
-      "emergencyCenter": "জরুরী কেন্দ্র",
-      "evacuationCenter": "কমিউনিটি অপসারণ কেন্দ্র",
-      "reliefCenter": "জরুরী ত্রাণ কেন্দ্র"
+      "highGround": "উঁচু স্থান অঞ্চল",
+      "emergencyCenter": "জরুরি কেন্দ্র",
+      "evacuationCenter": "কমিউনিটি ইভাকুয়েশন সেন্টার",
+      "reliefCenter": "জরুরি ত্রাণ কেন্দ্র"
     },
     "errors": {
-      "invalidLocation": "অবৈধ অবস্থান",
+      "invalidLocation": "অকার্যকর অবস্থান",
       "geocodingServiceUnavailable": "জিওকোডিং পরিষেবা অনুপলব্ধ"
     },
     "riskLevels": {
       "high": "উচ্চ",
-      "medium": "মধ্যম",
-      "low": "নিম্ন",
+      "medium": "মাঝারি",
+      "low": "কম",
       "unknown": "অজানা"
     },
     "risk": {
       "floodRisk": "বন্যার ঝুঁকি",
       "highRisk": "উচ্চ ঝুঁকি",
-      "mediumRisk": "মধ্যম ঝুঁকি",
-      "lowRisk": "নিম্ন ঝুঁকি",
+      "mediumRisk": "মাঝারি ঝুঁকি",
+      "lowRisk": "কম ঝুঁকি",
       "unknownRisk": "অজানা ঝুঁকি",
-      "elevationRisk": "উচ্চতা ঝুঁকি"
+      "elevationRisk": "উচ্চতার ঝুঁকি"
     }
+  },
+  "emergency": {
+    "emergencyServices": "জরুরি সেবা",
+    "emergencyContacts": "জরুরি যোগাযোগ",
+    "nearbyResources": "নিকটবর্তী জরুরি সম্পদ",
+    "reportEmergency": "জরুরি পরিস্থিতি রিপোর্ট করুন",
+    "callNow": "এখনই কল করুন",
+    "call": "কল করুন",
+    "emergencyCall": "জরুরি কল",
+    "confirmEmergencyCall": "আপনি কি নিশ্চিত কল করতে চান",
+    "onlyUseForEmergencies": "অনুগ্রহ করে কেবল প্রকৃত জরুরি পরিস্থিতিতে জরুরি সেবা ব্যবহার করুন।",
+    "reportEmergencyPrompt": "অনুগ্রহ করে জরুরি পরিস্থিতি সম্পর্কে বিস্তারিত জানান।",
+    "locationRequired": "জরুরি অবস্থা রিপোর্ট করতে অবস্থানের অনুমতি প্রয়োজন।",
+    "hospitals": "হাসপাতাল",
+    "shelters": "জরুরি আশ্রয়কেন্দ্র",
+    "policeStations": "পুলিশ স্টেশন",
+    "fireStations": "ফায়ার স্টেশন",
+    "bedsAvailable": "উপলব্ধ বেড",
+    "availableSpace": "উপলব্ধ স্থান",
+    "noResourcesFound": "আপনার এলাকায় কোনো জরুরি সম্পদ পাওয়া যায়নি।",
+    "errorFetchingContacts": "জরুরি যোগাযোগ আনতে ব্যর্থ হয়েছে।",
+    "errorFetchingResources": "জরুরি সম্পদ আনতে ব্যর্থ হয়েছে।"
   }
 }

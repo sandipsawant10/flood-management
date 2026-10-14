@@ -1,0 +1,48 @@
+2026-09-29T07:34:10.946Z [warn]: MongoDB disconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-29T07:34:22.608Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-29T07:34:22.610Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-29T15:53:17.109Z [warn]: MongoDB disconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-29T15:53:27.336Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-29T15:53:27.338Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Container, Paper, Typography, Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../contexts/languageContextDef";
 import EmergencyServices from "../../components/Emergency/EmergencyServices";
 
 const EmergencyServicesPage = () => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -26,3 +26,4 @@ const EmergencyServicesPage = () => {
 };
 
 export default EmergencyServicesPage;
+

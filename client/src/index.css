@@ -30,7 +30,33 @@
 @layer base {
   body {
     @apply bg-app-base text-app-text transition-colors;
+    color: #0f172a;
   }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 dark:text-slate-100 font-semibold;
+    color: #0f172a;
+  }
+  table th {
+    @apply text-slate-800 dark:text-slate-200 font-semibold;
+    color: #1e293b;
+  }
+  table td {
+    @apply text-slate-900 dark:text-slate-100;
+    color: #0f172a;
+  }
+}
+
+/* Material UI typography and table contrast rules in light mode */
+html:not(.dark) .MuiTypography-root:not([class*="bg-"]):not([class*="text-white"]):not([class*="text-red"]):not([class*="text-green"]):not([class*="text-blue"]):not([class*="text-sky"]) {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .MuiTableCell-root {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .MuiCardContent-root {
+  color: #0f172a;
 }
 
 /* Offline styles */

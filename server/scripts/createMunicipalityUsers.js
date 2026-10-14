@@ -152,11 +152,7 @@ const createMunicipalityUsers = async () => {
           continue;
         }
 
-        // Hash the password before saving
-        const salt = await bcrypt.genSalt(10);
-        userData.password = await bcrypt.hash(userData.password, salt);
-
-        // Create the municipality user
+        // Mongoose pre-save hook handles bcrypt hashing
         const municipalityUser = new User(userData);
         await municipalityUser.save();
 

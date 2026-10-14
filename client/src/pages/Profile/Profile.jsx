@@ -379,7 +379,7 @@ const Profile = () => {
       )}
 
       {/* Profile Settings */}
-      <ProfileSettings />
+      <ProfileSettings user={user} />
     </div>
   );
 };

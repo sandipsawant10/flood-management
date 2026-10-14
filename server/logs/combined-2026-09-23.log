@@ -1,0 +1,751 @@
+2026-09-23T16:40:16.085Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:40:16.099Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:40:16.101Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:40:16.329Z [warn]: MongoDB disconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:42:31.424Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:42:31.428Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:42:31.429Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:42:31.615Z [warn]: MongoDB disconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:21.459Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:21.464Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:21.465Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:21.502Z [info]: MongoDB Connected to: mongodb://127.0.0.1:27017/flood-management
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:57.449Z [error]: uncaughtException: listen EADDRINUSE: address already in use :::5003
+Error: listen EADDRINUSE: address already in use :::5003
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (S:\flood-disaster-management\server\server.js:295:8)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+{
+  "metadata": {
+    "error": {
+      "code": "EADDRINUSE",
+      "errno": -4091,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5003
+    },
+    "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:295:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49",
+    "exception": true,
+    "date": "Wed Sep 23 2026 22:25:57 GMT+0530 (India Standard Time)",
+    "process": {
+      "pid": 15480,
+      "uid": null,
+      "gid": null,
+      "cwd": "S:\\flood-disaster-management\\server",
+      "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+      "version": "v20.19.3",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.exe",
+        "S:\\flood-disaster-management\\server\\server.js"
+      ],
+      "memoryUsage": {
+        "rss": 117309440,
+        "heapTotal": 71942144,
+        "heapUsed": 50366640,
+        "external": 21682268,
+        "arrayBuffers": 18344779
+      }
+    },
+    "os": {
+      "loadavg": [
+        0,
+        0,
+        0
+      ],
+      "uptime": 2509661.171
+    },
+    "trace": [
+      {
+        "column": 16,
+        "file": "node:net",
+        "function": "Server.setupListenHandle [as _listen2]",
+        "line": 1908,
+        "method": "setupListenHandle [as _listen2]",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:net",
+        "function": "listenInCluster",
+        "line": 1965,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 7,
+        "file": "node:net",
+        "function": "Server.listen",
+        "line": 2067,
+        "method": "listen",
+        "native": false
+      },
+      {
+        "column": 8,
+        "file": "S:\\flood-disaster-management\\server\\server.js",
+        "function": null,
+        "line": 295,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._compile",
+        "line": 1529,
+        "method": "_compile",
+        "native": false
+      },
+      {
+        "column": 10,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._extensions..js",
+        "line": 1613,
+        "method": ".js",
+        "native": false
+      },
+      {
+        "column": 32,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module.load",
+        "line": 1275,
+        "method": "load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/cjs/loader",
+        "function": "Module._load",
+        "line": 1096,
+        "method": "_load",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "node:internal/modules/run_main",
+        "function": "Function.executeUserEntryPoint [as runMain]",
+        "line": 164,
+        "method": "executeUserEntryPoint [as runMain]",
+        "native": false
+      },
+      {
+        "column": 49,
+        "file": "node:internal/main/run_main_module",
+        "function": null,
+        "line": 28,
+        "method": null,
+        "native": false
+      }
+    ],
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:55:57.457Z [error]: UNCAUGHT EXCEPTION! 💥
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "error": {
+      "name": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5003",
+      "stack": "Error: listen EADDRINUSE: address already in use :::5003\n    at Server.setupListenHandle [as _listen2] (node:net:1908:16)\n    at listenInCluster (node:net:1965:12)\n    at Server.listen (node:net:2067:7)\n    at Object.<anonymous> (S:\\flood-disaster-management\\server\\server.js:295:8)\n    at Module._compile (node:internal/modules/cjs/loader:1529:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)\n    at Module.load (node:internal/modules/cjs/loader:1275:32)\n    at Module._load (node:internal/modules/cjs/loader:1096:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49"
+    }
+  }
+}
+2026-09-23T16:55:57.490Z [info]: MongoDB Connected to: mongodb://127.0.0.1:27017/flood-management
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:04.119Z [info]: ::1 - - [23/Sep/2026:16:57:04 +0000] "GET /api/health HTTP/1.1" 200 102 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:50.738Z [info]: ::1 - - [23/Sep/2026:16:57:50 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 200 389 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:50.742Z [info]: ::1 - - [23/Sep/2026:16:57:50 +0000] "GET /api/evacuation-centers HTTP/1.1" 200 566 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:50.746Z [info]: ::1 - - [23/Sep/2026:16:57:50 +0000] "GET /api/emergency/contacts HTTP/1.1" 200 230 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:50.811Z [info]: ::1 - - [23/Sep/2026:16:57:50 +0000] "GET /api/alerts/active HTTP/1.1" 500 112 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:57:51.312Z [info]: ::1 - - [23/Sep/2026:16:57:51 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 688 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T16:58:29.029Z [info]: ::1 - - [23/Sep/2026:16:58:29 +0000] "GET /api/alerts/active HTTP/1.1" 500 112 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:00:54.381Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:00:54.385Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:00:54.386Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:00:54.426Z [info]: MongoDB Connected to: 127.0.0.1:27017/flood-management?authSource=admin
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:08.097Z [info]: ::1 - - [23/Sep/2026:17:03:08 +0000] "GET /api/emergency/contacts HTTP/1.1" 200 230 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:08.117Z [info]: ::1 - - [23/Sep/2026:17:03:08 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 200 389 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:08.121Z [info]: ::1 - - [23/Sep/2026:17:03:08 +0000] "GET /api/evacuation-centers HTTP/1.1" 200 566 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:08.192Z [info]: ::1 - - [23/Sep/2026:17:03:08 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:08.379Z [info]: ::1 - - [23/Sep/2026:17:03:08 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 688 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:03:33.842Z [info]: ::1 - - [23/Sep/2026:17:03:33 +0000] "POST /api/auth/login HTTP/1.1" 400 168 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:04:01.473Z [info]: ::1 - - [23/Sep/2026:17:04:01 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:04:18.352Z [info]: ::1 - - [23/Sep/2026:17:04:18 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:06.125Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:06.129Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:06.129Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:06.179Z [info]: MongoDB Connected to: 127.0.0.1:27017/flood-management?authSource=admin
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:18.775Z [info]: 🚀 Aqua Assists Server running on port 5003
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:18.780Z [info]: 📚 API Documentation: http://localhost:5003/api-docs
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:18.781Z [info]: 🌍 Environment: development
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:05:18.819Z [info]: MongoDB Connected to: 127.0.0.1:27017/flood-management?authSource=admin
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:07:50.271Z [info]: ::1 - - [23/Sep/2026:17:07:50 +0000] "POST /api/auth/login HTTP/1.1" 200 - "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:08:35.688Z [info]: ::1 - - [23/Sep/2026:17:08:35 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "-" "node"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:09.049Z [info]: ::1 - - [23/Sep/2026:17:09:09 +0000] "GET /api/emergency/contacts HTTP/1.1" 200 230 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:09.272Z [info]: ::1 - - [23/Sep/2026:17:09:09 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:09.459Z [info]: ::1 - - [23/Sep/2026:17:09:09 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 200 389 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:09.667Z [info]: ::1 - - [23/Sep/2026:17:09:09 +0000] "GET /api/evacuation-centers HTTP/1.1" 200 566 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:10.455Z [info]: ::1 - - [23/Sep/2026:17:09:10 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:17.003Z [info]: ::1 - - [23/Sep/2026:17:09:17 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:18.405Z [info]: ::1 - - [23/Sep/2026:17:09:18 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:18.532Z [info]: ::1 - - [23/Sep/2026:17:09:18 +0000] "GET /api/alerts/active HTTP/1.1" 200 640 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:18.541Z [info]: ::1 - - [23/Sep/2026:17:09:18 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:27.738Z [info]: ::1 - - [23/Sep/2026:17:09:27 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:29.070Z [info]: ::1 - - [23/Sep/2026:17:09:29 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:29.211Z [info]: ::1 - - [23/Sep/2026:17:09:29 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:29.235Z [info]: ::1 - - [23/Sep/2026:17:09:29 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:41.676Z [info]: ::1 - - [23/Sep/2026:17:09:41 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:42.349Z [info]: ::1 - - [23/Sep/2026:17:09:42 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:42.371Z [info]: ::1 - - [23/Sep/2026:17:09:42 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:09:42.490Z [info]: ::1 - - [23/Sep/2026:17:09:42 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:09.366Z [info]: ::1 - - [23/Sep/2026:17:10:09 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:10.782Z [info]: ::1 - - [23/Sep/2026:17:10:10 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:10.828Z [info]: ::1 - - [23/Sep/2026:17:10:10 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:10.967Z [info]: ::1 - - [23/Sep/2026:17:10:10 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:15.344Z [info]: ::1 - - [23/Sep/2026:17:10:15 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:16.707Z [info]: ::1 - - [23/Sep/2026:17:10:16 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:16.881Z [info]: ::1 - - [23/Sep/2026:17:10:16 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:16.893Z [info]: ::1 - - [23/Sep/2026:17:10:16 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:33.126Z [info]: ::1 - - [23/Sep/2026:17:10:33 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:34.467Z [info]: ::1 - - [23/Sep/2026:17:10:34 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:34.508Z [info]: ::1 - - [23/Sep/2026:17:10:34 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:34.615Z [info]: ::1 - - [23/Sep/2026:17:10:34 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:46.397Z [info]: ::1 - - [23/Sep/2026:17:10:46 +0000] "POST /api/auth/login HTTP/1.1" 401 83 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:47.682Z [info]: ::1 - - [23/Sep/2026:17:10:47 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:47.764Z [info]: ::1 - - [23/Sep/2026:17:10:47 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-23T17:10:47.809Z [info]: ::1 - - [23/Sep/2026:17:10:47 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}

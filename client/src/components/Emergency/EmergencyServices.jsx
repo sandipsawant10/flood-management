@@ -33,13 +33,13 @@ import {
   Emergency as EmergencyIcon,
   DirectionsCar as VehicleIcon,
 } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../contexts/languageContextDef";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import emergencyServiceClient from "../../services/emergencyServiceClient";
 
 // Helper component to display emergency contacts
 const EmergencyContactCard = ({ contacts, onCallEmergency }) => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   return (
     <Card elevation={3} sx={{ mb: 3, border: "1px solid #f44336" }}>
@@ -88,7 +88,7 @@ const EmergencyContactCard = ({ contacts, onCallEmergency }) => {
 
 // Helper component to display emergency resources
 const EmergencyResourcesList = ({ resources, resourceType, title, icon }) => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
 
   if (!resources || resources.length === 0) return null;
 
@@ -173,7 +173,7 @@ const EmergencyResourcesList = ({ resources, resourceType, title, icon }) => {
 
 // Main emergency services component
 const EmergencyServices = () => {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const { coordinates } = useGeolocation();
 
   const [contacts, setContacts] = useState([]);

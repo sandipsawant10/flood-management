@@ -14,6 +14,10 @@
     "home": "Home",
     "dashboard": "Dashboard",
     "reports": "Reports",
+    "reportFlood": "Report Flood",
+    "reportWaterIssue": "Report Water Issue",
+    "viewReports": "View Reports",
+    "waterIssues": "Water Issues",
     "alerts": "Alerts",
     "map": "Map",
     "notifications": "Notifications",
@@ -21,7 +25,48 @@
     "settings": "Settings",
     "logout": "Logout",
     "login": "Login",
+    "register": "Register",
+    "features": "Features",
+    "howItWorks": "How it works",
     "emergency": "Emergency Services"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "manageAssistance": "Manage your flood disaster assistance here",
+    "nearbyAlerts": "Nearby Alerts",
+    "alertMap": "Alert Map",
+    "quickActions": "Quick Actions",
+    "recentNotifications": "Recent Notifications"
+  },
+  "waterIssues": {
+    "title": "Water Issues",
+    "reportIssue": "Report Water Issue",
+    "listTitle": "Water Issue Reports"
+  },
+  "admin": {
+    "municipality": "Municipality",
+    "rescuers": "Rescuers",
+    "users": "User Management",
+    "analytics": "Analytics"
+  },
+  "municipality": {
+    "resources": "Manage Resources"
+  },
+  "features": {
+    "sectionTitle": "Built For High-Risk Communities",
+    "sectionSubtitle": "Aqua Assists unifies citizen intelligence and emergency coordination so decisions happen minutes—not hours—faster.",
+    "reportingTitle": "Real-time Reporting",
+    "reportingText": "Crowd-sourced flood condition capture with geo-tagging & media uploads.",
+    "responseTitle": "Coordinated Response",
+    "responseText": "Unified dashboard for emergency teams to prioritize and deploy resources.",
+    "mappingTitle": "Dynamic Mapping",
+    "mappingText": "Layered severity visualization & infrastructure impact overlays.",
+    "validationTitle": "Validation Engine",
+    "validationText": "Community + official review workflow to elevate trusted reports."
+  },
+  "cta": {
+    "title": "Join The Network That Turns Minutes Into Saved Lives",
+    "subtitle": "Every validated report sharpens response accuracy. Become an early reporter, validator, or coordinator today."
   },
   "common": {
     "loading": "Loading...",
@@ -123,3 +168,4 @@
     "errorFetchingResources": "Failed to fetch emergency resources."
   }
 }
+

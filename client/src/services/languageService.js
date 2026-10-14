@@ -3,10 +3,20 @@
  * Provides utilities for internationalization (i18n) support
  */
 
+import en from "../locales/en.json";
+import hi from "../locales/hi.json";
+import ta from "../locales/ta.json";
+import bn from "../locales/bn.json";
+import te from "../locales/te.json";
+import ar from "../locales/ar.json";
+import es from "../locales/es.json";
+import fr from "../locales/fr.json";
+
 // Default language
 const DEFAULT_LANGUAGE = "en";
 // Language storage key for persisting user preference
 const LANGUAGE_STORAGE_KEY = "userLanguagePreference";
+
 // Available languages
 const AVAILABLE_LANGUAGES = {
   en: { name: "English", nativeName: "English", rtl: false },
@@ -14,10 +24,23 @@ const AVAILABLE_LANGUAGES = {
   ta: { name: "Tamil", nativeName: "தமிழ்", rtl: false },
   bn: { name: "Bengali", nativeName: "বাংলা", rtl: false },
   te: { name: "Telugu", nativeName: "తెలుగు", rtl: false },
+  ar: { name: "Arabic", nativeName: "العربية", rtl: true },
+  es: { name: "Spanish", nativeName: "Español", rtl: false },
+  fr: { name: "French", nativeName: "Français", rtl: false },
 };
 
-// Translations storage
-let translations = {};
+// Translations storage - statically bundled into memory
+const translations = {
+  en,
+  hi,
+  ta,
+  bn,
+  te,
+  ar,
+  es,
+  fr,
+};
+
 let currentLanguage = loadSavedLanguage() || DEFAULT_LANGUAGE;
 
 /**
@@ -52,39 +75,9 @@ function saveLanguagePreference(languageCode) {
  */
 async function loadTranslations(languageCode) {
   if (!AVAILABLE_LANGUAGES[languageCode]) {
-    console.warn(
-      `Language ${languageCode} not supported, falling back to ${DEFAULT_LANGUAGE}`
-    );
     languageCode = DEFAULT_LANGUAGE;
   }
-
-  // Check if translations already loaded
-  if (translations[languageCode]) {
-    return translations[languageCode];
-  }
-
-  try {
-    console.log(`Loading translations for ${languageCode}...`);
-    // In production, load from server or bundled files
-    const response = await import(`../locales/${languageCode}.json`);
-    translations[languageCode] = response.default || response;
-    console.log(
-      `Loaded ${languageCode} translations:`,
-      Object.keys(translations[languageCode])
-    );
-    return translations[languageCode];
-  } catch (error) {
-    console.error(`Failed to load translations for ${languageCode}:`, error);
-
-    // If we fail to load the requested language, try loading default
-    if (languageCode !== DEFAULT_LANGUAGE) {
-      console.warn(`Falling back to ${DEFAULT_LANGUAGE}`);
-      return loadTranslations(DEFAULT_LANGUAGE);
-    }
-
-    // If even default fails, return empty object to avoid errors
-    return {};
-  }
+  return translations[languageCode] || translations[DEFAULT_LANGUAGE] || {};
 }
 
 export const languageService = {
@@ -119,12 +112,6 @@ export const languageService = {
     }
 
     await loadTranslations(languageCode);
-    console.log("languageService: Translations loaded for", languageCode);
-    console.log(
-      "languageService: Available translations:",
-      Object.keys(translations[languageCode] || {})
-    );
-
     currentLanguage = languageCode;
     saveLanguagePreference(languageCode);
     document.documentElement.lang = languageCode;
@@ -141,7 +128,7 @@ export const languageService = {
       new CustomEvent("languagechange", { detail: { language: languageCode } })
     );
 
-    console.log("languageService: Language change event dispatched");
+    console.log("languageService: Language change event dispatched for", languageCode);
     return languageCode;
   },
 
@@ -172,33 +159,49 @@ export const languageService = {
    * @param {Object} params - Parameters to replace in translation
    * @returns {string} Translated text
    */
-  translate: (key, params = {}) => {
-    if (!key) return "";
+  translate: (key, params = {}, fallback = "") => {
+    if (!key) return fallback;
 
-    const langData = translations[currentLanguage] || {};
-
-    // Handle nested keys with dot notation (e.g., 'geolocation.directions.north')
-    const keyParts = key.split(".");
-    let value = langData;
-
-    // Navigate through nested objects
-    for (const part of keyParts) {
-      if (value && typeof value === "object" && part in value) {
-        value = value[part];
-      } else {
-        // Key not found in translations, return the key itself
-        return key;
-      }
+    // Handle case where second argument is string (fallback string passed as 2nd arg)
+    let actualParams = params;
+    let actualFallback = fallback;
+    if (typeof params === "string") {
+      actualFallback = params;
+      actualParams = {};
     }
 
-    // If we found a string value, use it; otherwise return the key
-    const text = typeof value === "string" ? value : key;
+    const getValue = (data, k) => {
+      const keyParts = k.split(".");
+      let val = data;
+      for (const part of keyParts) {
+        if (val && typeof val === "object" && part in val) {
+          val = val[part];
+        } else {
+          return undefined;
+        }
+      }
+      return typeof val === "string" ? val : undefined;
+    };
+
+    const currentLangData = translations[currentLanguage] || {};
+    let text = getValue(currentLangData, key);
+
+    // Fallback to default language if key not found in current language
+    if (text === undefined && currentLanguage !== DEFAULT_LANGUAGE) {
+      const defaultLangData = translations[DEFAULT_LANGUAGE] || {};
+      text = getValue(defaultLangData, key);
+    }
+
+    // Fallback if still not found
+    if (text === undefined) {
+      text = actualFallback || key;
+    }
 
     // Replace parameters in the translation string
-    if (params && Object.keys(params).length) {
+    if (actualParams && typeof actualParams === "object" && Object.keys(actualParams).length) {
       let result = text;
-      Object.keys(params).forEach((param) => {
-        result = result.replace(new RegExp(`{{${param}}}`, "g"), params[param]);
+      Object.keys(actualParams).forEach((param) => {
+        result = result.replace(new RegExp(`{{${param}}}`, "g"), actualParams[param]);
       });
       return result;
     }
@@ -208,4 +211,7 @@ export const languageService = {
 };
 
 // Create a shorthand for translate function
-export const t = (key, params) => languageService.translate(key, params);
+export const t = (key, params, fallback) => languageService.translate(key, params, fallback);
+
+
+

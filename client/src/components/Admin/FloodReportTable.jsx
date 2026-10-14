@@ -42,6 +42,7 @@ const FloodReportTable = () => {
   });
 
   const getStatusBadge = (status) => {
+    const key = (status || "pending").toLowerCase();
     const badges = {
       pending: {
         icon: Clock,
@@ -57,30 +58,36 @@ const FloodReportTable = () => {
       },
     };
 
-    const badge = badges[status] || badges.pending;
+    const badge = badges[key] || badges.pending;
+    const displayStatus = key.charAt(0).toUpperCase() + key.slice(1);
     return (
       <span
         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badge.class}`}
       >
         <badge.icon className="w-4 h-4 mr-1" />
-        {status.charAt(0).toUpperCase() + status.slice(1)}
+        {displayStatus}
       </span>
     );
   };
 
   const getSeverityBadge = (severity) => {
+    const key = (severity || "low").toLowerCase();
     const classes = {
       high: "bg-red-100 text-red-800",
       medium: "bg-yellow-100 text-yellow-800",
       low: "bg-blue-100 text-blue-800",
+      critical: "bg-red-200 text-red-900",
     };
+
+    const badgeClass = classes[key] || "bg-gray-100 text-gray-800";
+    const displaySeverity = key.charAt(0).toUpperCase() + key.slice(1);
 
     return (
       <span
-        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${classes[severity]}`}
+        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badgeClass}`}
       >
         <AlertTriangle className="w-4 h-4 mr-1" />
-        {severity.charAt(0).toUpperCase() + severity.slice(1)}
+        {displaySeverity}
       </span>
     );
   };
@@ -140,24 +147,24 @@ const FloodReportTable = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {/* Test row to confirm table renders */}
-            <tr style={{ background: "#f0f0f0" }}>
-              <td className="px-6 py-4 whitespace-nowrap">Test Location</td>
+            <tr className="bg-slate-100 dark:bg-slate-800">
+              <td className="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-slate-100 font-medium">Test Location</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 {getSeverityBadge("high")}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 {getStatusBadge("pending")}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700 dark:text-slate-300">
                 This is a test row for debugging table rendering.
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700 dark:text-slate-300">
                 Test User
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700 dark:text-slate-300">
                 2025-10-03 12:00:00
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700 dark:text-slate-300">
                 -
               </td>
             </tr>

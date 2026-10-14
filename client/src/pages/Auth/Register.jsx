@@ -93,11 +93,22 @@ const Register = () => {
       const response = await axios.post("/api/auth/register", registrationData);
 
       if (response.data.token) {
-        // Store token and user data
-        localStorage.setItem("token", response.data.token);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.token}`;
+        const userObj = response.data.user || {};
+        const tokenStr = response.data.token;
+
+        // Store token, user, and sessionData in localStorage
+        localStorage.setItem("token", tokenStr);
+        localStorage.setItem("user", JSON.stringify(userObj));
+        localStorage.setItem(
+          "sessionData",
+          JSON.stringify({
+            token: tokenStr,
+            user: userObj,
+            rememberMe: true,
+          })
+        );
+
+        axios.defaults.headers.common["Authorization"] = `Bearer ${tokenStr}`;
 
         toast.success("Registration successful! Welcome to Aqua Assists.");
         navigate("/dashboard");
@@ -175,23 +186,22 @@ const Register = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-slate-950">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden isolate py-12 bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div
-        className="absolute inset-0 -z-0 opacity-30"
+        className="absolute inset-0 z-0 opacity-30 pointer-events-none"
         style={{
           backgroundImage:
             "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 60%)",
         }}
       />
       <div
-        className="absolute -z-0 pointer-events-none inset-0 mix-blend-overlay"
+        className="absolute z-0 pointer-events-none inset-0 mix-blend-overlay"
         style={{
           backgroundImage:
             "linear-gradient(115deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%)",
         }}
       />
-      <div className="w-full max-w-2xl mx-auto px-6 py-10">
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-6 py-10">
         <div className="bg-white/90 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/40 dark:border-slate-800 p-8">
           <div className="flex flex-col items-center mb-6">
             <AppLogo size={56} />

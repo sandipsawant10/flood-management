@@ -1,0 +1,1206 @@
+2026-09-26T08:17:01.372Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:17:01.419Z [info]: MongoDB reconnected
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:17:57.750Z [info]: ::1 - - [26/Sep/2026:08:17:57 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:17:57.964Z [info]: ::1 - - [26/Sep/2026:08:17:57 +0000] "GET /api/alerts/active HTTP/1.1" 200 642 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:00.111Z [info]: ::1 - - [26/Sep/2026:08:18:00 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:08.591Z [info]: ::1 - - [26/Sep/2026:08:18:08 +0000] "POST /api/auth/login HTTP/1.1" 200 972 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:10.623Z [info]: ::1 - - [26/Sep/2026:08:18:10 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 67 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:10.634Z [info]: ::1 - - [26/Sep/2026:08:18:10 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 66 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:10.795Z [info]: ::1 - - [26/Sep/2026:08:18:10 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 200 95 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:10.816Z [info]: ::1 - - [26/Sep/2026:08:18:10 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:18:31.241Z [info]: ::1 - - [26/Sep/2026:08:18:31 +0000] "GET /api/flood-reports?sortBy=newest&limit=20 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:19:41.074Z [info]: ::1 - - [26/Sep/2026:08:19:41 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:11.726Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [4e2c06a8-75da-4989-910f-480b88e42073]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4e2c06a8-75da-4989-910f-480b88e42073",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:11.745Z [info]: ::1 - - [26/Sep/2026:08:20:11 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:12.764Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [dab4e6d2-72f0-44c4-b82e-3b85ba009860]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "dab4e6d2-72f0-44c4-b82e-3b85ba009860",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:12.770Z [info]: ::1 - - [26/Sep/2026:08:20:12 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:14.790Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [563502e0-62a2-4d33-9558-b17f60d3cff6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "563502e0-62a2-4d33-9558-b17f60d3cff6",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:14.793Z [info]: ::1 - - [26/Sep/2026:08:20:14 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:18.805Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [8cf405bf-c09d-4366-9d42-943b48823ee0]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8cf405bf-c09d-4366-9d42-943b48823ee0",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:18.809Z [info]: ::1 - - [26/Sep/2026:08:20:18 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:44.535Z [info]: ::1 - - [26/Sep/2026:08:20:44 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:44.567Z [info]: ::1 - - [26/Sep/2026:08:20:44 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:44.575Z [info]: ::1 - - [26/Sep/2026:08:20:44 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:51.502Z [info]: ::1 - - [26/Sep/2026:08:20:51 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 67 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:51.635Z [info]: ::1 - - [26/Sep/2026:08:20:51 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 66 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:51.703Z [info]: ::1 - - [26/Sep/2026:08:20:51 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:20:52.001Z [info]: ::1 - - [26/Sep/2026:08:20:52 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:21:05.471Z [info]: ::1 - - [26/Sep/2026:08:21:05 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:21:11.064Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [44baab18-2064-42bf-92b0-c32369408ebd]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "44baab18-2064-42bf-92b0-c32369408ebd",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:11.067Z [info]: ::1 - - [26/Sep/2026:08:21:11 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:21:13.812Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [9330e16f-88cb-4887-a701-ffbbf8bcf63a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9330e16f-88cb-4887-a701-ffbbf8bcf63a",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:13.831Z [info]: ::1 - - [26/Sep/2026:08:21:13 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:21:15.845Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [9ba55535-f24b-4c57-8702-78517d24bd3b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9ba55535-f24b-4c57-8702-78517d24bd3b",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:15.849Z [info]: ::1 - - [26/Sep/2026:08:21:15 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:21:19.923Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [fb00a56b-8b65-4625-8d09-820237f253c7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "fb00a56b-8b65-4625-8d09-820237f253c7",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:19.960Z [info]: ::1 - - [26/Sep/2026:08:21:19 +0000] "GET /api/api/admin/users?page=1&limit=10&search= HTTP/1.1" 404 217 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:08.701Z [info]: ::1 - - [26/Sep/2026:08:26:08 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:08.722Z [info]: ::1 - - [26/Sep/2026:08:26:08 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:08.879Z [info]: ::1 - - [26/Sep/2026:08:26:08 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.198Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/auth/profile HTTP/1.1" 200 587 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.254Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.272Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/alerts/active HTTP/1.1" 200 640 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.283Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.292Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:37.306Z [info]: ::1 - - [26/Sep/2026:08:26:37 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 723 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:47.302Z [info]: ::1 - - [26/Sep/2026:08:26:47 +0000] "GET /api/admin/users?page=1&limit=10&search= HTTP/1.1" 200 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:26:55.255Z [info]: ::1 - - [26/Sep/2026:08:26:55 +0000] "GET /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc HTTP/1.1" 200 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:00.072Z [info]: ::1 - - [26/Sep/2026:08:27:00 +0000] "GET /api/flood-reports/admin? HTTP/1.1" 200 62 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:26.910Z [info]: ::1 - - [26/Sep/2026:08:27:26 +0000] "GET /api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc HTTP/1.1" 200 94 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:29.445Z [info]: ::1 - - [26/Sep/2026:08:27:29 +0000] "GET /api/verification/statistics HTTP/1.1" 200 186 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:29.503Z [info]: ::1 - - [26/Sep/2026:08:27:29 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 200 62 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:43.736Z [info]: ::1 - - [26/Sep/2026:08:27:43 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:27:43.786Z [info]: ::1 - - [26/Sep/2026:08:27:43 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:28:10.042Z [info]: ::1 - - [26/Sep/2026:08:28:10 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:28:10.100Z [info]: ::1 - - [26/Sep/2026:08:28:10 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:30:58.974Z [info]: ::1 - - [26/Sep/2026:08:30:58 +0000] "POST /api/auth/login HTTP/1.1" 200 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:31:11.936Z [info]: ::1 - - [26/Sep/2026:08:31:11 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:31:12.006Z [info]: ::1 - - [26/Sep/2026:08:31:12 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:43.108Z [info]: ::1 - - [26/Sep/2026:08:36:43 +0000] "GET /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:44.624Z [info]: ::1 - - [26/Sep/2026:08:36:44 +0000] "GET /api/flood-reports/admin? HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:49.017Z [info]: ::1 - - [26/Sep/2026:08:36:49 +0000] "GET /api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:50.564Z [info]: ::1 - - [26/Sep/2026:08:36:50 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:50.608Z [info]: ::1 - - [26/Sep/2026:08:36:50 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:53.116Z [info]: ::1 - - [26/Sep/2026:08:36:53 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:36:53.157Z [info]: ::1 - - [26/Sep/2026:08:36:53 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:07.848Z [info]: ::1 - - [26/Sep/2026:08:39:07 +0000] "GET /api/auth/profile HTTP/1.1" 200 652 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.139Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.195Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.423Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.482Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.499Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:08.990Z [info]: ::1 - - [26/Sep/2026:08:39:08 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:14.580Z [info]: ::1 - - [26/Sep/2026:08:39:14 +0000] "GET /api/flood-reports/admin? HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:17.498Z [info]: ::1 - - [26/Sep/2026:08:39:17 +0000] "GET /api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:18.960Z [info]: ::1 - - [26/Sep/2026:08:39:18 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:39:19.402Z [info]: ::1 - - [26/Sep/2026:08:39:19 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:41:48.021Z [info]: ::1 - - [26/Sep/2026:08:41:48 +0000] "POST /api/auth/login HTTP/1.1" 200 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:42:10.217Z [info]: ::1 - - [26/Sep/2026:08:42:10 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:42:10.264Z [info]: ::1 - - [26/Sep/2026:08:42:10 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:42:10.375Z [info]: ::1 - - [26/Sep/2026:08:42:10 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:59:56.659Z [info]: ::1 - - [26/Sep/2026:08:59:56 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 68 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:59:56.722Z [info]: ::1 - - [26/Sep/2026:08:59:56 +0000] "GET /api/alerts?status=active HTTP/1.1" 200 67 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:59:56.769Z [info]: ::1 - - [26/Sep/2026:08:59:56 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T08:59:56.813Z [info]: ::1 - - [26/Sep/2026:08:59:56 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:13.952Z [info]: ::1 - - [26/Sep/2026:09:00:13 +0000] "POST /api/auth/login HTTP/1.1" 200 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:16.329Z [info]: ::1 - - [26/Sep/2026:09:00:16 +0000] "GET /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:18.711Z [info]: ::1 - - [26/Sep/2026:09:00:18 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:18.762Z [info]: ::1 - - [26/Sep/2026:09:00:18 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:20.033Z [info]: ::1 - - [26/Sep/2026:09:00:20 +0000] "GET /api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:22.996Z [info]: ::1 - - [26/Sep/2026:09:00:22 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.047Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/auth/profile HTTP/1.1" 200 652 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.127Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.169Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/alerts/active HTTP/1.1" 200 640 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.182Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.197Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.235Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/verification/statistics HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:00:58.273Z [info]: ::1 - - [26/Sep/2026:09:00:58 +0000] "GET /api/flood-reports/admin?status=pending&limit=10 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:01:00.448Z [info]: ::1 - - [26/Sep/2026:09:01:00 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:01:01.632Z [info]: ::1 - - [26/Sep/2026:09:01:01 +0000] "GET /api/financial-aid?page=1&limit=10&sortField=createdAt&sortOrder=desc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:01:04.324Z [info]: ::1 - - [26/Sep/2026:09:01:04 +0000] "GET /api/flood-reports/admin? HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:01:05.698Z [info]: ::1 - - [26/Sep/2026:09:01:05 +0000] "GET /api/admin/resources?page=1&limit=10&search=&category=all&location=all&status=all&sortField=name&sortOrder=asc HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:04:45.944Z [info]: ::1 - - [26/Sep/2026:09:04:45 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:04:45.990Z [info]: ::1 - - [26/Sep/2026:09:04:45 +0000] "GET /api/alerts/active HTTP/1.1" 200 641 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:04:46.009Z [info]: ::1 - - [26/Sep/2026:09:04:46 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:04:46.022Z [info]: ::1 - - [26/Sep/2026:09:04:46 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:04:46.034Z [info]: ::1 - - [26/Sep/2026:09:04:46 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.355Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/auth/profile HTTP/1.1" 200 652 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.397Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.432Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/alerts/active HTTP/1.1" 200 640 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.445Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.458Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:07.932Z [info]: ::1 - - [26/Sep/2026:09:09:07 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.526Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.558Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.595Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/alerts/active HTTP/1.1" 200 639 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.615Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/disaster-prone-areas HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.636Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/evacuation-centers HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:10.649Z [info]: ::1 - - [26/Sep/2026:09:09:10 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:32.436Z [info]: ::1 - - [26/Sep/2026:09:09:32 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:33.031Z [info]: ::1 - - [26/Sep/2026:09:09:33 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:37.998Z [info]: ::1 - - [26/Sep/2026:09:09:37 +0000] "GET /api/emergency/contacts HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:38.011Z [info]: ::1 - - [26/Sep/2026:09:09:38 +0000] "GET /api/alerts/active HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:38.030Z [info]: ::1 - - [26/Sep/2026:09:09:38 +0000] "GET /api/weather/forecast?lat=20.5937&lon=78.9629 HTTP/1.1" 200 721 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:49.738Z [error]: No authentication token provided. Please log in to access this resource [96ae8690-9834-4ffd-83c1-d33b65b3c980]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "96ae8690-9834-4ffd-83c1-d33b65b3c980",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:60:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-26T09:09:49.769Z [info]: ::1 - - [26/Sep/2026:09:09:49 +0000] "GET /api/alerts?status=active HTTP/1.1" 401 224 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:49.786Z [error]: No authentication token provided. Please log in to access this resource [ddd0df7c-7e84-495a-9e0c-ce5a143c3e15]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "ddd0df7c-7e84-495a-9e0c-ce5a143c3e15",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:60:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-26T09:09:49.791Z [info]: ::1 - - [26/Sep/2026:09:09:49 +0000] "GET /api/alerts?status=active HTTP/1.1" 401 224 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:52.259Z [info]: ::1 - - [26/Sep/2026:09:09:52 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:52.287Z [info]: ::1 - - [26/Sep/2026:09:09:52 +0000] "GET /api/alerts/nearby?status=active&lat=21.153084&lng=79.097874&radius=50 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}
+2026-09-26T09:09:53.670Z [info]: ::1 - - [26/Sep/2026:09:09:53 +0000] "POST /api/auth/login HTTP/1.1" 200 991 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development"
+  }
+}

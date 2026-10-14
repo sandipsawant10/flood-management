@@ -3,23 +3,18 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../../contexts/languageContextDef";
 
 const Hero = () => {
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
+    <section className="relative overflow-hidden isolate bg-gradient-to-br from-sky-600 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div
-        className="absolute inset-0 -z-0 opacity-30"
+        className="absolute inset-0 z-0 opacity-30 pointer-events-none"
         style={{
           backgroundImage:
             "radial-gradient(circle at 40% 40%, rgba(255,255,255,0.3), transparent 60%)",
         }}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
-        {/* Debug: Current Language Indicator */}
-        <div className="mb-4 text-xs bg-black/30 text-white/80 px-3 py-1 rounded-full inline-block">
-          Language: {currentLanguage} | Title: {t("hero.title")}
-        </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
           {t("hero.title")}{" "}
           <span className="text-sky-200">{t("hero.titleHighlight")}</span>

@@ -1,44 +1,46 @@
 import React from "react";
 import { AlertTriangle, Shield, MapPin, Users } from "lucide-react";
-
-const items = [
-  {
-    icon: AlertTriangle,
-    title: "Real-time Reporting",
-    text: "Crowd-sourced flood condition capture with geo-tagging & media uploads.",
-    color: "from-sky-500/10 to-sky-500/0",
-  },
-  {
-    icon: Shield,
-    title: "Coordinated Response",
-    text: "Unified dashboard for emergency teams to prioritize and deploy resources.",
-    color: "from-indigo-500/10 to-indigo-500/0",
-  },
-  {
-    icon: MapPin,
-    title: "Dynamic Mapping",
-    text: "Layered severity visualization & infrastructure impact overlays.",
-    color: "from-blue-500/10 to-blue-500/0",
-  },
-  {
-    icon: Users,
-    title: "Validation Engine",
-    text: "Community + official review workflow to elevate trusted reports.",
-    color: "from-violet-500/10 to-violet-500/0",
-  },
-];
+import { useLanguage } from "../../contexts/languageContextDef";
 
 const FeatureCards = () => {
+  const { t } = useLanguage();
+
+  const items = [
+    {
+      icon: AlertTriangle,
+      title: t("features.reportingTitle") || "Real-time Reporting",
+      text: t("features.reportingText") || "Crowd-sourced flood condition capture with geo-tagging & media uploads.",
+      color: "from-sky-500/10 to-sky-500/0",
+    },
+    {
+      icon: Shield,
+      title: t("features.responseTitle") || "Coordinated Response",
+      text: t("features.responseText") || "Unified dashboard for emergency teams to prioritize and deploy resources.",
+      color: "from-indigo-500/10 to-indigo-500/0",
+    },
+    {
+      icon: MapPin,
+      title: t("features.mappingTitle") || "Dynamic Mapping",
+      text: t("features.mappingText") || "Layered severity visualization & infrastructure impact overlays.",
+      color: "from-blue-500/10 to-blue-500/0",
+    },
+    {
+      icon: Users,
+      title: t("features.validationTitle") || "Validation Engine",
+      text: t("features.validationText") || "Community + official review workflow to elevate trusted reports.",
+      color: "from-violet-500/10 to-violet-500/0",
+    },
+  ];
+
   return (
     <section id="features" className="py-24 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-            Built For High-Risk Communities
+            {t("features.sectionTitle") || "Built For High-Risk Communities"}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Aqua Assists unifies citizen intelligence and emergency coordination
-            so decisions happen minutes—not hours—faster.
+            {t("features.sectionSubtitle") || "Aqua Assists unifies citizen intelligence and emergency coordination so decisions happen minutes—not hours—faster."}
           </p>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -70,3 +72,4 @@ const FeatureCards = () => {
 };
 
 export default FeatureCards;
+

@@ -26,7 +26,10 @@ axiosInstance.interceptors.request.use(
       startTime: new Date().getTime(),
     };
 
-    // Removed code that stripped '/api' from the request URL to ensure Vite proxy works correctly.
+    // If request URL starts with '/api', strip it because baseURL already includes '/api'
+    if (config.url && (config.url.startsWith("/api/") || config.url === "/api")) {
+      config.url = config.url.replace(/^\/api/, "");
+    }
 
     return config;
   },

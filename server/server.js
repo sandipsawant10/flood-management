@@ -115,16 +115,41 @@ app.use(sanitizeInput);
 
 // ---------- MONGODB CONNECTION ----------
 const connectDB = async () => {
+  const uri =
+    process.env.MONGODB_URI ||
+    "mongodb://admin:admin@127.0.0.1:27017/flood-management?authSource=admin";
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000,
       connectTimeoutMS: 10000,
     });
 
-    logger.info("MongoDB Connected");
+    logger.info(
+      "MongoDB Connected to: " + (uri.includes("@") ? uri.split("@")[1] : uri)
+    );
   } catch (error) {
-    logger.error("MongoDB Connection Error:", error);
+    logger.error("Primary MongoDB Connection Error:", error.message);
+    const fallbacks = [
+      "mongodb://admin:admin@127.0.0.1:27017/flood-management?authSource=admin",
+      "mongodb://127.0.0.1:27017/flood-management",
+    ];
+    for (const fallbackUri of fallbacks) {
+      if (uri === fallbackUri) continue;
+      try {
+        logger.info(`Attempting fallback connection to ${fallbackUri}...`);
+        await mongoose.connect(fallbackUri, {
+          serverSelectionTimeoutMS: 5000,
+        });
+        logger.info("MongoDB Connected to local fallback: " + fallbackUri);
+        return;
+      } catch (fallbackErr) {
+        logger.error(
+          "Fallback MongoDB Connection Error:",
+          fallbackErr.message
+        );
+      }
+    }
     process.exit(1);
   }
 };

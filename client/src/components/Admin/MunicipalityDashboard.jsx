@@ -13,8 +13,23 @@ import {
 const MunicipalityDashboard = () => {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
-
-  // (Stats and alerts logic omitted for brevity, keep if needed elsewhere)
+  const [alertsLoading] = useState(false);
+  const [alertsArray] = useState([
+    {
+      _id: "1",
+      title: "High Water Level Alert",
+      description: "Manila Bay Area reporting rising water level.",
+      severity: "high",
+      resolved: false,
+    },
+    {
+      _id: "2",
+      title: "Heavy Rainfall Warning",
+      description: "Monsoon rainfall expected over the next 6 hours.",
+      severity: "critical",
+      resolved: false,
+    },
+  ]);
 
   const StatCard = ({ title, value, subtitle, icon: Icon, color = "blue" }) => (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
@@ -175,10 +190,17 @@ const MunicipalityDashboard = () => {
         </div>
 
         {/* Tab Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="lg:col-span-2">
-            <FloodReportTable />
-          </div>
+        <div className="grid grid-cols-1 gap-6">
+          {(activeTab === "overview" || activeTab === "reports") && (
+            <div>
+              <FloodReportTable />
+            </div>
+          )}
+          {activeTab === "alerts" && (
+            <div>
+              <AlertsList />
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -44,8 +44,12 @@ const LanguageSelector = ({ className = "", compact = false }) => {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <Globe className={`${compact ? "h-4 w-4" : "h-5 w-5"} mr-1`} />
-        {!compact && (
+        <Globe className={`${compact ? "h-4 w-4" : "h-5 w-5"} mr-1 text-sky-600 dark:text-sky-400`} />
+        {compact ? (
+          <span className="mx-1 text-xs font-bold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+            {currentLanguage}
+          </span>
+        ) : (
           <span className="mx-1 text-sm font-medium">
             {currentLanguageDetails?.nativeName || "Language"}
           </span>

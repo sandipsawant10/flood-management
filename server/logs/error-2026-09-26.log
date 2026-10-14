@@ -1,0 +1,246 @@
+2026-09-26T08:20:11.726Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [4e2c06a8-75da-4989-910f-480b88e42073]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "4e2c06a8-75da-4989-910f-480b88e42073",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:12.764Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [dab4e6d2-72f0-44c4-b82e-3b85ba009860]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "dab4e6d2-72f0-44c4-b82e-3b85ba009860",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:14.790Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [563502e0-62a2-4d33-9558-b17f60d3cff6]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "563502e0-62a2-4d33-9558-b17f60d3cff6",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:20:18.805Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [8cf405bf-c09d-4366-9d42-943b48823ee0]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "8cf405bf-c09d-4366-9d42-943b48823ee0",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:11.064Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [44baab18-2064-42bf-92b0-c32369408ebd]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "44baab18-2064-42bf-92b0-c32369408ebd",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:13.812Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [9330e16f-88cb-4887-a701-ffbbf8bcf63a]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9330e16f-88cb-4887-a701-ffbbf8bcf63a",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:15.845Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [9ba55535-f24b-4c57-8702-78517d24bd3b]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "9ba55535-f24b-4c57-8702-78517d24bd3b",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T08:21:19.923Z [error]: Route not found with ID: /api/api/admin/users?page=1&limit=10&search= [fb00a56b-8b65-4625-8d09-820237f253c7]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "fb00a56b-8b65-4625-8d09-820237f253c7",
+    "url": "/api/api/admin/users?page=1&limit=10&search=",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "page": "1",
+      "limit": "10",
+      "search": ""
+    },
+    "error": {
+      "name": "ResourceNotFoundError",
+      "message": "Route not found with ID: /api/api/admin/users?page=1&limit=10&search=",
+      "stack": "ResourceNotFoundError: Route not found with ID: /api/api/admin/users?page=1&limit=10&search=\n    at notFoundHandler (S:\\flood-disaster-management\\server\\middleware\\errorHandler.js:361:17)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_NOT_FOUND"
+    }
+  }
+}
+2026-09-26T09:09:49.738Z [error]: No authentication token provided. Please log in to access this resource [96ae8690-9834-4ffd-83c1-d33b65b3c980]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "96ae8690-9834-4ffd-83c1-d33b65b3c980",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:60:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}
+2026-09-26T09:09:49.786Z [error]: No authentication token provided. Please log in to access this resource [ddd0df7c-7e84-495a-9e0c-ce5a143c3e15]
+{
+  "metadata": {
+    "service": "Aqua Assists-api",
+    "hostname": "Sandip_10",
+    "environment": "development",
+    "correlationId": "ddd0df7c-7e84-495a-9e0c-ce5a143c3e15",
+    "url": "/api/alerts?status=active",
+    "method": "GET",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "userId": "anonymous",
+    "requestQuery": {
+      "status": "active"
+    },
+    "error": {
+      "name": "AuthenticationError",
+      "message": "No authentication token provided. Please log in to access this resource",
+      "stack": "AuthenticationError: No authentication token provided. Please log in to access this resource\n    at auth (S:\\flood-disaster-management\\server\\middleware\\auth.js:60:9)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (S:\\flood-disaster-management\\server\\node_modules\\express\\lib\\router\\index.js:47:12)",
+      "errorCode": "ERR_AUTHENTICATION"
+    }
+  }
+}

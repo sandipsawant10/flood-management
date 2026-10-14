@@ -13,7 +13,7 @@ const adminService = {
         page = 1,
         limit = 10,
       } = filters;
-      const response = await axiosInstance.get("/api/admin/users", {
+      const response = await axiosInstance.get("/admin/users", {
         params: { page, limit, search, role, status, sortField, sortOrder },
       });
       return response.data;
@@ -24,7 +24,7 @@ const adminService = {
 
   createUser: async (userData) => {
     try {
-      const response = await axiosInstance.post("/api/admin/users", userData);
+      const response = await axiosInstance.post("/admin/users", userData);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -34,7 +34,7 @@ const adminService = {
   updateUser: async (userId, updates) => {
     try {
       const response = await axiosInstance.put(
-        `/api/admin/users/${userId}`,
+        `/admin/users/${userId}`,
         updates
       );
       return response.data;
@@ -45,7 +45,7 @@ const adminService = {
 
   deleteUser: async (userId) => {
     try {
-      const response = await axiosInstance.delete(`/api/admin/users/${userId}`);
+      const response = await axiosInstance.delete(`/admin/users/${userId}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -65,7 +65,7 @@ const adminService = {
         page = 1,
         limit = 10,
       } = filters;
-      const response = await axiosInstance.get("/api/admin/resources", {
+      const response = await axiosInstance.get("/admin/resources", {
         params: {
           page,
           limit,
@@ -86,7 +86,7 @@ const adminService = {
   createResource: async (resourceData) => {
     try {
       const response = await axiosInstance.post(
-        "/api/admin/resources",
+        "/admin/resources",
         resourceData
       );
       return response.data;
@@ -98,7 +98,7 @@ const adminService = {
   updateResource: async (resourceId, updates) => {
     try {
       const response = await axiosInstance.put(
-        `/api/admin/resources/${resourceId}`,
+        `/admin/resources/${resourceId}`,
         updates
       );
       return response.data;
@@ -110,7 +110,7 @@ const adminService = {
   deleteResource: async (resourceId) => {
     try {
       const response = await axiosInstance.delete(
-        `/api/admin/resources/${resourceId}`
+        `/admin/resources/${resourceId}`
       );
       return response.data;
     } catch (error) {
@@ -122,7 +122,7 @@ const adminService = {
   getAdvancedAnalytics: async (timeframe, region) => {
     try {
       const response = await axiosInstance.get(
-        "/api/admin/advanced-analytics",
+        "/admin/advanced-analytics",
         {
           params: { timeframe, region },
         }
@@ -136,7 +136,7 @@ const adminService = {
   getPredictiveModelResults: async (params) => {
     try {
       const response = await axiosInstance.get(
-        "/api/admin/analytics/predictions",
+        "/admin/analytics/predictions",
         {
           params,
         }
@@ -150,7 +150,7 @@ const adminService = {
   getOptimizedResourceAllocation: async (params) => {
     try {
       const response = await axiosInstance.get(
-        "/api/admin/analytics/resource-optimization",
+        "/admin/analytics/resource-optimization",
         { params }
       );
       return response.data;
@@ -162,7 +162,7 @@ const adminService = {
   // Report Management
   getReports: async (page = 1, limit = 10, filters = {}) => {
     try {
-      const response = await axiosInstance.get("/api/admin/reports", {
+      const response = await axiosInstance.get("/admin/reports", {
         params: { page, limit, ...filters },
       });
       return response.data;
@@ -174,7 +174,7 @@ const adminService = {
   moderateReport: async (reportId, action, reason) => {
     try {
       const response = await axiosInstance.put(
-        `/api/admin/reports/${reportId}/moderate`,
+        `/admin/reports/${reportId}/moderate`,
         {
           action,
           reason,
@@ -190,7 +190,7 @@ const adminService = {
   verifyReportAutomatically: async (reportId) => {
     try {
       const response = await axiosInstance.post(
-        `/api/admin/reports/${reportId}/auto-verify`
+        `/admin/reports/${reportId}/auto-verify`
       );
       return response.data;
     } catch (error) {
@@ -201,7 +201,7 @@ const adminService = {
   getVerificationResult: async (reportId) => {
     try {
       const response = await axiosInstance.get(
-        `/api/admin/reports/${reportId}/verification-status`
+        `/admin/reports/${reportId}/verification-status`
       );
       return response.data;
     } catch (error) {
@@ -212,7 +212,7 @@ const adminService = {
   // System Statistics
   getSystemStats: async () => {
     try {
-      const response = await axiosInstance.get("/api/admin/stats");
+      const response = await axiosInstance.get("/admin/stats");
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -223,7 +223,7 @@ const adminService = {
   getUserActivity: async (userId) => {
     try {
       const response = await axiosInstance.get(
-        `/api/admin/users/${userId}/activity`
+        `/admin/users/${userId}/activity`
       );
       return response.data;
     } catch (error) {
@@ -234,7 +234,7 @@ const adminService = {
   // System Health
   getSystemHealth: async () => {
     try {
-      const response = await axiosInstance.get("/api/admin/system/health");
+      const response = await axiosInstance.get("/admin/system/health");
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -244,7 +244,7 @@ const adminService = {
   // Audit Logs
   getAuditLogs: async (page = 1, limit = 10, filters = {}) => {
     try {
-      const response = await axiosInstance.get("/api/admin/audit-logs", {
+      const response = await axiosInstance.get("/admin/audit-logs", {
         params: { page, limit, ...filters },
       });
       return response.data;
@@ -257,7 +257,7 @@ const adminService = {
   syncWithGovernmentSystems: async (systemType) => {
     try {
       const response = await axiosInstance.post(
-        "/api/admin/integrations/government/sync",
+        "/admin/integrations/government/sync",
         { systemType }
       );
       return response.data;
@@ -269,7 +269,7 @@ const adminService = {
   getIntegrationStatus: async (systemType) => {
     try {
       const response = await axiosInstance.get(
-        `/api/admin/integrations/government/status`,
+        `/admin/integrations/government/status`,
         {
           params: { systemType },
         }

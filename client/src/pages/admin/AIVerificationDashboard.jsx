@@ -172,7 +172,7 @@ const AIVerificationDashboard = () => {
       <Typography
         variant="h4"
         gutterBottom
-        sx={{ display: "flex", alignItems: "center" }}
+        sx={{ display: "flex", alignItems: "center", color: "#0f172a", fontWeight: "bold" }}
       >
         <AutoAwesomeIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
         AI Report Verification Dashboard
@@ -294,7 +294,7 @@ const AIVerificationDashboard = () => {
       </Stack>
 
       {/* Reports Table */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 2 }}>
+      <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 2, color: "#0f172a", fontWeight: "bold" }}>
         Pending Reports
       </Typography>
 

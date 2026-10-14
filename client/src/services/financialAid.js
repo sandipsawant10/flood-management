@@ -10,7 +10,7 @@ export const getFinancialAidRequests = async (filters = {}) => {
       sortOrder = "desc",
     } = filters;
 
-    const response = await axiosInstance.get("/api/financial-aid", {
+    const response = await axiosInstance.get("/financial-aid", {
       params: { page, limit, status, sortField, sortOrder },
     });
     return response.data;
@@ -22,7 +22,7 @@ export const getFinancialAidRequests = async (filters = {}) => {
 export const reviewFinancialAidRequest = async (requestId, reviewData) => {
   try {
     const response = await axiosInstance.put(
-      `/api/financial-aid/${requestId}/review`,
+      `/financial-aid/${requestId}/review`,
       reviewData
     );
     return response.data;
@@ -33,7 +33,7 @@ export const reviewFinancialAidRequest = async (requestId, reviewData) => {
 
 export const getFinancialAidStats = async () => {
   try {
-    const response = await axiosInstance.get("/api/financial-aid/stats");
+    const response = await axiosInstance.get("/financial-aid/stats");
     return response.data;
   } catch (error) {
     throw error.response?.data || error;
@@ -42,7 +42,7 @@ export const getFinancialAidStats = async () => {
 
 export const exportFinancialAidReport = async (filters = {}) => {
   try {
-    const response = await axiosInstance.get("/api/financial-aid/export", {
+    const response = await axiosInstance.get("/financial-aid/export", {
       params: filters,
       responseType: "blob",
     });

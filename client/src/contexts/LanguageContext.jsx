@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { LanguageContext } from "./languageContextDef";
 import { languageService } from "../services/languageService";
 
@@ -11,7 +11,7 @@ const LanguageProvider = ({ children }) => {
     languageService.getCurrentLanguage()
   );
   const [isRTL, setIsRTL] = useState(languageService.isRTL());
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initialize language service
   useEffect(() => {
@@ -22,8 +22,6 @@ const LanguageProvider = ({ children }) => {
         setIsRTL(languageService.isRTL());
       } catch (error) {
         console.error("Failed to initialize language service:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -33,8 +31,9 @@ const LanguageProvider = ({ children }) => {
   // Listen for language changes
   useEffect(() => {
     const handleLanguageChange = (event) => {
-      setCurrentLanguage(event.detail.language);
-      setIsRTL(languageService.isRTL(event.detail.language));
+      const newLang = event.detail?.language || languageService.getCurrentLanguage();
+      setCurrentLanguage(newLang);
+      setIsRTL(languageService.isRTL(newLang));
     };
 
     window.addEventListener("languagechange", handleLanguageChange);
@@ -45,7 +44,7 @@ const LanguageProvider = ({ children }) => {
   }, []);
 
   // Change language function
-  const changeLanguage = async (languageCode) => {
+  const changeLanguage = useCallback(async (languageCode) => {
     try {
       console.log("LanguageContext: Changing language to:", languageCode);
       setIsLoading(true);
@@ -63,22 +62,15 @@ const LanguageProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   // Translate function (shorthand for languageService.translate)
-  const translate = (key, params) => {
-    const result = languageService.translate(key, params);
-    if (key.startsWith("hero.")) {
-      console.log(
-        `LanguageContext: Translating "${key}" in ${currentLanguage}:`,
-        result
-      );
-    }
-    return result;
-  };
+  const translate = useCallback((key, params) => {
+    return languageService.translate(key, params);
+  }, [currentLanguage]);
 
   // Context value
-  const contextValue = {
+  const contextValue = useMemo(() => ({
     currentLanguage,
     isRTL,
     isLoading,
@@ -86,7 +78,7 @@ const LanguageProvider = ({ children }) => {
     translate,
     t: translate, // Alias for translate
     availableLanguages: languageService.getAvailableLanguages(),
-  };
+  }), [currentLanguage, isRTL, isLoading, changeLanguage, translate]);
 
   return (
     <LanguageContext.Provider value={contextValue}>
@@ -96,3 +88,4 @@ const LanguageProvider = ({ children }) => {
 };
 
 export default LanguageProvider;
+

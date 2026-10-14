@@ -51,13 +51,17 @@ const FinancialAidRequests = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Financial Aid Requests</h1>
+      <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-8">
+        Financial Aid Requests
+      </h1>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Requests List */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="p-4 border-b">
-            <h2 className="text-xl font-semibold">Pending Requests</h2>
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow overflow-hidden">
+          <div className="p-4 border-b border-gray-200 dark:border-slate-800">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+              Pending Requests
+            </h2>
           </div>
           <div className="divide-y">
             {requests.length > 0 ? (

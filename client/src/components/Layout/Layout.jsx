@@ -19,23 +19,25 @@ import {
 import useAuth from "../../hooks/useAuth";
 import ThemeToggle from "../Common/ThemeToggle";
 import LanguageSelector from "../Common/LanguageSelector";
+import { useLanguage } from "../../contexts/languageContextDef";
 
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { t } = useLanguage();
 
   const userNavigation = [
-    { name: "Dashboard", href: "/dashboard", icon: Home },
-    { name: "Report Flood", href: "/report-flood", icon: FileText },
-    { name: "Report Water Issue", href: "/report-water-issue", icon: Droplet },
-    { name: "View Reports", href: "/reports", icon: MapPin },
-    { name: "Water Issues", href: "/water-issues", icon: Droplet },
-    { name: "Alerts", href: "/alerts", icon: AlertTriangle },
-    { name: "Emergency", href: "/emergency", icon: Phone },
+    { name: t("navigation.dashboard") || "Dashboard", href: "/dashboard", icon: Home },
+    { name: t("navigation.reports") || "Report Flood", href: "/report-flood", icon: FileText },
+    { name: t("waterIssues.reportIssue") || "Report Water Issue", href: "/report-water-issue", icon: Droplet },
+    { name: t("navigation.viewReports") || "View Reports", href: "/reports", icon: MapPin },
+    { name: t("waterIssues.title") || "Water Issues", href: "/water-issues", icon: Droplet },
+    { name: t("navigation.alerts") || "Alerts", href: "/alerts", icon: AlertTriangle },
+    { name: t("navigation.emergency") || "Emergency", href: "/emergency", icon: Phone },
     {
-      name: "Notifications",
+      name: t("navigation.notifications") || "Notifications",
       href: "/notifications",
       icon: () => (
         <svg
@@ -54,13 +56,13 @@ const Layout = () => {
         </svg>
       ),
     },
-    { name: "Profile", href: "/profile", icon: User },
+    { name: t("navigation.profile") || "Profile", href: "/profile", icon: User },
   ];
 
   const adminNavigation = [
-    { name: "Admin Dashboard", href: "/admin/dashboard", icon: Home },
+    { name: t("navigation.dashboard") || "Admin Dashboard", href: "/admin/dashboard", icon: Home },
     {
-      name: "Municipality",
+      name: t("admin.municipality") || "Municipality",
       href: "/admin/municipality",
       icon: () => (
         <svg
@@ -80,7 +82,7 @@ const Layout = () => {
       ),
     },
     {
-      name: "Rescuers",
+      name: t("admin.rescuers") || "Rescuers",
       href: "/admin/rescuers",
       icon: () => (
         <svg
@@ -101,27 +103,27 @@ const Layout = () => {
         </svg>
       ),
     },
-    { name: "User Management", href: "/admin/users", icon: Users },
-    { name: "Flood Reports", href: "/admin/reports", icon: ShieldAlert },
-    { name: "Water Issues", href: "/admin/water-issues", icon: Droplet },
-    { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
+    { name: t("admin.users") || "User Management", href: "/admin/users", icon: Users },
+    { name: t("navigation.reports") || "Flood Reports", href: "/admin/reports", icon: ShieldAlert },
+    { name: t("waterIssues.title") || "Water Issues", href: "/admin/water-issues", icon: Droplet },
+    { name: t("admin.analytics") || "Analytics", href: "/admin/analytics", icon: BarChart3 },
   ];
 
   const municipalityNavigation = [
     {
-      name: "Municipality Dashboard",
+      name: t("navigation.dashboard") || "Municipality Dashboard",
       href: "/municipality/dashboard",
       icon: Home,
     },
-    { name: "Flood Reports", href: "/municipality/reports", icon: MapPin },
-    { name: "Water Issues", href: "/municipality/water-issues", icon: Droplet },
+    { name: t("navigation.reports") || "Flood Reports", href: "/municipality/reports", icon: MapPin },
+    { name: t("waterIssues.title") || "Water Issues", href: "/municipality/water-issues", icon: Droplet },
     {
-      name: "Manage Alerts",
+      name: t("navigation.alerts") || "Manage Alerts",
       href: "/municipality/alerts",
       icon: AlertTriangle,
     },
     {
-      name: "Manage Rescuers",
+      name: t("admin.rescuers") || "Manage Rescuers",
       href: "/municipality/rescuers",
       icon: () => (
         <svg
@@ -142,9 +144,9 @@ const Layout = () => {
         </svg>
       ),
     },
-    { name: "Manage Resources", href: "/municipality/resources", icon: Box },
-    { name: "Analytics", href: "/municipality/analytics", icon: BarChart3 },
-    { name: "Profile", href: "/municipality/profile", icon: User },
+    { name: t("municipality.resources") || "Manage Resources", href: "/municipality/resources", icon: Box },
+    { name: t("admin.analytics") || "Analytics", href: "/municipality/analytics", icon: BarChart3 },
+    { name: t("navigation.profile") || "Profile", href: "/municipality/profile", icon: User },
   ];
 
   let navigation = [];
@@ -158,7 +160,6 @@ const Layout = () => {
 
   const handleLogout = async () => {
     setSidebarOpen(false);
-    // If logout is async, await it; otherwise, just call
     const result = logout();
     if (result instanceof Promise) {
       await result;
@@ -226,7 +227,7 @@ const Layout = () => {
             const isActive = location.pathname === item.href;
             return (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center px-3 py-2 mb-1 text-sm font-medium rounded-lg transition-colors ${
@@ -249,7 +250,7 @@ const Layout = () => {
             className="w-full flex items-center px-3 py-2 text-sm font-medium text-app-muted rounded-lg hover:bg-app-surface/70 hover:text-app-text transition-colors"
           >
             <LogOut className="w-5 h-5 mr-3" />
-            Logout
+            {t("navigation.logout") || "Logout"}
           </button>
         </div>
       </div>
@@ -270,7 +271,7 @@ const Layout = () => {
               <div className="ml-4 lg:ml-0">
                 <h1 className="text-xl font-semibold text-app-text">
                   {navigation.find((item) => item.href === location.pathname)
-                    ?.name || "Dashboard"}
+                    ?.name || t("navigation.dashboard")}
                 </h1>
               </div>
             </div>
@@ -285,7 +286,7 @@ const Layout = () => {
                   className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-danger-600 hover:bg-danger-700"
                 >
                   <Phone className="w-4 h-4 mr-1" />
-                  Emergency
+                  {t("emergency.call") || "Emergency"}
                 </Link>
                 <Link
                   to="/emergency-services"
@@ -306,7 +307,7 @@ const Layout = () => {
                     <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
                     <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
                   </svg>
-                  Services
+                  {t("navigation.emergency") || "Services"}
                 </Link>
               </div>
 
@@ -336,3 +337,4 @@ const Layout = () => {
 };
 
 export default Layout;
+
